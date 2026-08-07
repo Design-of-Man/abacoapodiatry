@@ -6,6 +6,8 @@ RewriteRule ^regenerative-medicine/?$ /services/regenerative-medicine/ [R=301,L]
 RewriteRule ^neuropathy-solutions/?$ /conditions/neuropathy/ [R=301,L]
 RewriteRule ^plantar-fasciitis/?$ /conditions/plantar-fasciitis/ [R=301,L]
 RewriteRule ^stem-cell-therapy/?$ /services/stem-cell-therapy/ [R=301,L]
+RewriteRule ^testimonials/?$ /reviews/ [R=301,L]
+RewriteRule ^what-we-do/?$ /services/ [R=301,L]
 
 # Serve custom 404
 ErrorDocument 404 /404.html

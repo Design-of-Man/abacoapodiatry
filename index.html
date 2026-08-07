@@ -67,12 +67,19 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8934, "longitude": -80.1096 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=4601+Military+Trail+Suite+202+Jupiter+FL+33458",
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:30",
-      "closes": "17:00"
-    }],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "description": "By appointment only"
+      }
+    ],
     "areaServed": [
       { "@type": "City", "name": "Jupiter" },
       { "@type": "City", "name": "Palm Beach Gardens" },
@@ -563,14 +570,20 @@
           <span class="kicker">Patient Stories</span>
           <h2>What patients say about us</h2>
         </div>
-        <!-- LAUNCH TODO: Replace placeholder quotes with real patient reviews (with permission) before go-live. -->
+        <!-- LAUNCH TODO — VERIFY BEFORE GO-LIVE:
+             These are the practice's REAL patient reviews, recovered from the
+             existing jupiterlaser.com/testimonials/ page and Healthgrades via
+             search. They came through a search summarizer, so wording may be
+             lightly normalized. Before launch, copy each one verbatim from the
+             source (and add reviewer first names/initials where the source
+             shows them) so no patient is misquoted. -->
         <div class="testi-track" tabindex="0" role="group" aria-label="Patient testimonials — scrollable">
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"After two years of plantar fasciitis and three cortisone shots, laser therapy is what finally got me walking without pain. I wish I'd started here."</p><footer>M.R. &middot; Jupiter, FL</footer></figure>
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"Dr. Cedeno actually took time to explain what was wrong and every option I had. No pressure, no upsell — just a clear plan that worked."</p><footer>J.T. &middot; Palm Beach Gardens, FL</footer></figure>
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"The burning in my feet from neuropathy kept me up every night. After my laser sessions I'm finally sleeping again. The staff is wonderful."</p><footer>D.S. &middot; Tequesta, FL</footer></figure>
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"Achilles tendonitis had me off the tennis court for months. Twelve laser sessions later I'm playing three days a week again."</p><footer>K.B. &middot; Juno Beach, FL</footer></figure>
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"Painless, fast, and it worked. The whole office runs on time and everyone knows your name. Highly recommend this practice."</p><footer>A.L. &middot; North Palm Beach, FL</footer></figure>
-          <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"I was told surgery was my only option for my heel. Dr. Cedeno's combination of shockwave and laser proved that wrong. Forever grateful."</p><footer>R.G. &middot; Hobe Sound, FL</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno has a wonderful bedside manner — kind, caring and thorough. He listened to where I had pain, and his treatment plan provided instant relief and allowed me to enjoy the remainder of my visit in Florida.&rdquo;</p><footer>Patient testimonial</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Beyond a 5-star doctor. He makes you feel very comfortable and is so gentle and concerned that he doesn't want to hurt you — patience beyond measure. Truly an amazing doctor; I can't say enough good things about him and his staff.&rdquo;</p><footer>Patient testimonial</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno was knowledgeable and very thorough, with exceptional communication skills — clearly explaining his process and the recommended treatment. I highly recommend him.&rdquo;</p><footer>Patient testimonial</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno and his team are amazing — very personable and professional. I would highly recommend them to anyone in need of a podiatrist.&rdquo;</p><footer>Patient testimonial</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno was great before, during and after the surgery. He made sure I had everything I needed and saw me on a regular basis to ensure I was healing well. The laser treatments definitely helped.&rdquo;</p><footer>Patient testimonial</footer></figure>
+          <figure class="testi"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno is awesome — very knowledgeable and very attentive to my concerns and goals. Thanks so much for doing everything you do to keep me out of pain.&rdquo;</p><footer>Verified patient review &middot; Healthgrades</footer></figure>
         </div>
         <div class="testi-nav">
           <button class="testi-btn" data-prev aria-label="Previous testimonials">←</button>
@@ -614,7 +627,7 @@
             </div>
             <div class="info-tile">
               <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-              <div><h3>Office Hours</h3><p>Monday&ndash;Friday: 8:30 AM &ndash; 5:00 PM<br>Saturday&ndash;Sunday: Closed</p></div>
+              <div><h3>Office Hours</h3><p>Monday&ndash;Friday: 8:30 AM &ndash; 5:00 PM<br>Saturday: by appointment &middot; Sunday: closed</p></div>
             </div>
           </div>
         </div>
@@ -706,7 +719,8 @@
           <h4>Office Hours</h4>
           <ul class="footer-hours">
             <li><span>Monday&ndash;Friday</span> <span>8:30 AM &ndash; 5:00 PM</span></li>
-            <li><span>Saturday&ndash;Sunday</span> <span>Closed</span></li>
+            <li><span>Saturday</span> <span>By appointment</span></li>
+            <li><span>Sunday</span> <span>Closed</span></li>
           </ul>
           <h4 style="margin-top:1.6rem">Quick Links</h4>
           <ul>

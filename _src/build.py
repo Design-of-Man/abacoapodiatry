@@ -35,6 +35,8 @@ REDIRECTS = {
     "neuropathy-solutions/": "/conditions/neuropathy/",
     "plantar-fasciitis/": "/conditions/plantar-fasciitis/",
     "stem-cell-therapy/": "/services/stem-cell-therapy/",
+    "testimonials/": "/reviews/",
+    "what-we-do/": "/services/",
 }
 
 REDIRECT_HTML = """<!DOCTYPE html>

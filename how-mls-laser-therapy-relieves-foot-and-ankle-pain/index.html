@@ -67,12 +67,19 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8934, "longitude": -80.1096 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=4601+Military+Trail+Suite+202+Jupiter+FL+33458",
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:30",
-      "closes": "17:00"
-    }],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "description": "By appointment only"
+      }
+    ],
     "areaServed": [
       { "@type": "City", "name": "Jupiter" },
       { "@type": "City", "name": "Palm Beach Gardens" },
@@ -374,7 +381,8 @@
           <h4>Office Hours</h4>
           <ul class="footer-hours">
             <li><span>Monday&ndash;Friday</span> <span>8:30 AM &ndash; 5:00 PM</span></li>
-            <li><span>Saturday&ndash;Sunday</span> <span>Closed</span></li>
+            <li><span>Saturday</span> <span>By appointment</span></li>
+            <li><span>Sunday</span> <span>Closed</span></li>
           </ul>
           <h4 style="margin-top:1.6rem">Quick Links</h4>
           <ul>

@@ -67,12 +67,19 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8934, "longitude": -80.1096 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=4601+Military+Trail+Suite+202+Jupiter+FL+33458",
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:30",
-      "closes": "17:00"
-    }],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:30",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "description": "By appointment only"
+      }
+    ],
     "areaServed": [
       { "@type": "City", "name": "Jupiter" },
       { "@type": "City", "name": "Palm Beach Gardens" },
@@ -253,6 +260,13 @@
           <li><strong>Robotic delivery.</strong> The treatment head scans your anatomy under computer control, ensuring the prescribed dose is delivered evenly and reproducibly — every session, every time. No hand-held wand variability.</li>
         </ul>
 
+        <!-- PHOTO SLOT: add assets/img/photos/mls-laser.jpg to show the machine. -->
+        <figure class="photo-frame" style="margin:2rem 0;min-height:300px">
+          <span class="monogram" aria-hidden="true">MLS</span>
+          <img src="/assets/img/photos/mls-laser.jpg" alt="The robotic MLS laser system used at Jupiter Laser &amp; Regenerative Medicine" onerror="this.remove()">
+          <figcaption class="cap">Our robotic MLS class IV therapeutic laser</figcaption>
+        </figure>
+
         <h2>EPAT shockwave system</h2>
         <p>Our extracorporeal pulse activation technology (EPAT) system delivers calibrated acoustic pressure waves through the skin into chronically injured tissue. Intensity is adjustable in real time to your comfort, and treatment is fully non-invasive — no anesthesia, no needles. Shockwave is among the most-studied non-surgical treatments for chronic plantar fasciitis and tendinopathy, with an evidence base spanning two decades.</p>
 
@@ -330,7 +344,8 @@
           <h4>Office Hours</h4>
           <ul class="footer-hours">
             <li><span>Monday&ndash;Friday</span> <span>8:30 AM &ndash; 5:00 PM</span></li>
-            <li><span>Saturday&ndash;Sunday</span> <span>Closed</span></li>
+            <li><span>Saturday</span> <span>By appointment</span></li>
+            <li><span>Sunday</span> <span>Closed</span></li>
           </ul>
           <h4 style="margin-top:1.6rem">Quick Links</h4>
           <ul>

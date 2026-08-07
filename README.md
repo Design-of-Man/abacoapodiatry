@@ -44,6 +44,21 @@ Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `
 - [ ] **Replace placeholder testimonials** on the home page, reviews page (marked with `LAUNCH TODO` comments in `_src/pages/home.html` and `_src/pages/reviews.html`) with real patient reviews used with permission
 - [ ] **Wire the contact form**: create a free form at formspree.io and replace `YOUR_FORM_ID` in `_src/pages/contact.html` (until then, the form politely tells visitors to call)
 - [ ] **Confirm services offered** (telehealth page, PRP, stem cell) match what the practice currently offers
-- [ ] **Add real photos** when available — office, staff, Dr. Cedeno headshot (currently initials avatar), the MLS laser
+- [ ] **Add real photos**: drop `dr-cedeno.jpg`, `office.jpg`, `mls-laser.jpg` into
+      `assets/img/photos/` (see the README there for sizes). Until then each slot
+      shows a gold monogram, never a broken image.
+- [ ] **Make the hero video durable.** The lighthouse video is currently fetched at
+      build time from a one-time Dropbox link, which will not survive future
+      rebuilds. Fix it permanently one of two ways:
+      1. In Dropbox, share `lighthouse-1440p.mp4` → "Anyone with the link" → copy the
+         URL, change `?dl=0` to `?raw=1`, and set it as a `HERO_VIDEO_URL`
+         environment variable in the Vercel project; or
+      2. Commit the file to the repo at `assets/video/lighthouse.mp4` (~5 MB).
+      With neither in place the hero falls back to the generated poster image and
+      hides the pause button — it still looks finished.
+- [ ] **Verify the patient reviews verbatim.** The quotes on the home and reviews
+      pages are the practice's real reviews, recovered from its own
+      /testimonials/ page and Healthgrades via search, so wording may be lightly
+      normalized. Copy each from the source before launch (marked `LAUNCH TODO`).
 - [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above

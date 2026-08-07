@@ -44,7 +44,8 @@ Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `
 - [ ] **Replace placeholder testimonials** on the home page, reviews page (marked with `LAUNCH TODO` comments in `_src/pages/home.html` and `_src/pages/reviews.html`) with real patient reviews used with permission
 - [ ] **Wire the contact form**: create a free form at formspree.io and replace `YOUR_FORM_ID` in `_src/pages/contact.html` (until then, the form politely tells visitors to call)
 - [ ] **Confirm services offered** (telehealth page, PRP, stem cell) match what the practice currently offers
-- [ ] **Add real photos**: drop `dr-cedeno.jpg`, `office.jpg`, `mls-laser.jpg` into
+- [x] ~~Add real photos~~ — Dr. Cedeno, Dr. Mustafa and the logo are installed. Still open: `office.jpg`, `mls-laser.jpg`
+- [ ] **Remaining photos**: drop `dr-cedeno.jpg`, `office.jpg`, `mls-laser.jpg` into
       `assets/img/photos/` (see the README there for sizes). Until then each slot
       shows a gold monogram, never a broken image.
 - [ ] **Make the hero video durable.** The lighthouse video is currently fetched at

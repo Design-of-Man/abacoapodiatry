@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Abacoa Podiatry">
-  <rect width="64" height="64" rx="13" fill="#0c0b08"/>
-  <rect x="1.6" y="1.6" width="60.8" height="60.8" rx="11.6" fill="none"
-        stroke="#b98f35" stroke-width="1.6" opacity="0.7"/>
-  <text x="32" y="47" text-anchor="middle"
-        font-family="Fraunces, Georgia, 'Times New Roman', serif"
-        font-size="42" font-weight="700" fill="#ffffff">A</text>
-</svg>

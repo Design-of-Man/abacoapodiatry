@@ -1,0 +1,19 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/mls", "destination": "/services/mls-laser-therapy/", "permanent": true },
+    { "source": "/about-us", "destination": "/about/", "permanent": true },
+    { "source": "/regenerative-medicine", "destination": "/services/regenerative-medicine/", "permanent": true },
+    { "source": "/neuropathy-solutions", "destination": "/conditions/neuropathy/", "permanent": true },
+    { "source": "/plantar-fasciitis", "destination": "/conditions/plantar-fasciitis/", "permanent": true },
+    { "source": "/stem-cell-therapy", "destination": "/services/stem-cell-therapy/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

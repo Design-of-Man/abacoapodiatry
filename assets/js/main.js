@@ -274,7 +274,7 @@
   var videoToggle = $("#video-toggle");
   if (heroVideo && videoToggle) {
     // Cinematic half-speed drift
-    var setRate = function () { heroVideo.playbackRate = 0.5; };
+    var setRate = function () { heroVideo.playbackRate = 0.75; };
     setRate();
     heroVideo.addEventListener("loadeddata", setRate);
     heroVideo.addEventListener("play", setRate);

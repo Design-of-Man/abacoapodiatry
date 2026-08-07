@@ -22,7 +22,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_src"
 PAGES = SRC / "pages"
-BASE_URL = "https://jupiterlaser.com"
+# Canonical domain for canonicals, schema @ids, and sitemap URLs.
+# The site is branded Abacoa Podiatry & Leg Vein Center but currently targets
+# the jupiterlaser.com domain (the site being replaced, which holds the existing
+# rankings). To launch on a different domain instead, set SITE_ORIGIN:
+#     SITE_ORIGIN=https://abacoapodiatry.com python3 _src/build.py
+import os
+BASE_URL = os.environ.get("SITE_ORIGIN", "https://jupiterlaser.com").rstrip("/")
 
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402

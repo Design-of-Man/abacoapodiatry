@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=00ef2aa244">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -297,9 +297,13 @@
         <div class="section-head" data-reveal>
           <span class="kicker">The Full Playlist</span>
           <h2>Foot &amp; ankle health, explained on video</h2>
-          <p class="lede">Browse the complete library below — use the playlist icon in the top-right of the player to jump between videos.</p>
+          <p class="lede">Scroll the full library below — tap any video and it expands into a large player right on the page.</p>
         </div>
-        <div class="video-embed" data-reveal>
+        <div data-reveal>
+          <p class="center" style="margin-bottom:1.6rem"><span class="kicker" style="margin:0" id="video-count"></span></p>
+          <div class="video-grid" id="video-grid"></div>
+        </div>
+        <div class="video-embed" id="playlist-fallback" data-reveal>
           <iframe
             src="https://www.youtube-nocookie.com/embed/videoseries?list=PLCPM-92qYtTdOlcUc4XqyHI66gRvd-BkW"
             title="Abacoa Podiatry & Leg Vein Center video playlist — Dr. Orlando Cedeno"
@@ -337,6 +341,9 @@
         </div>
       </div>
     </section>
+
+    <script src="/assets/data/videos.js"></script>
+    <script src="/assets/js/media.js?v=0011aea490" defer></script>
 
     <section class="section-tight">
       <div class="wrap">
@@ -506,8 +513,8 @@
     <p class="assist-note">Automated assistant &mdash; general info only, not medical advice. For urgent concerns call <a href="tel:+15619151934">(561)&nbsp;915-1934</a>.</p>
   </div>
 
-  <script src="/assets/js/assistant.js" defer></script>
+  <script src="/assets/js/assistant.js?v=66dc7b1bb0" defer></script>
 
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.js?v=0aa23cccdb" defer></script>
 </body>
 </html>

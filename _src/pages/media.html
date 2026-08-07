@@ -54,9 +54,13 @@ META-->
         <div class="section-head" data-reveal>
           <span class="kicker">The Full Playlist</span>
           <h2>Foot &amp; ankle health, explained on video</h2>
-          <p class="lede">Browse the complete library below — use the playlist icon in the top-right of the player to jump between videos.</p>
+          <p class="lede">Scroll the full library below — tap any video and it expands into a large player right on the page.</p>
         </div>
-        <div class="video-embed" data-reveal>
+        <div data-reveal>
+          <p class="center" style="margin-bottom:1.6rem"><span class="kicker" style="margin:0" id="video-count"></span></p>
+          <div class="video-grid" id="video-grid"></div>
+        </div>
+        <div class="video-embed" id="playlist-fallback" data-reveal>
           <iframe
             src="https://www.youtube-nocookie.com/embed/videoseries?list=PLCPM-92qYtTdOlcUc4XqyHI66gRvd-BkW"
             title="Abacoa Podiatry & Leg Vein Center video playlist — Dr. Orlando Cedeno"
@@ -94,6 +98,9 @@ META-->
         </div>
       </div>
     </section>
+
+    <script src="/assets/data/videos.js"></script>
+    <script src="/assets/js/media.js" defer></script>
 
     <section class="section-tight">
       <div class="wrap">

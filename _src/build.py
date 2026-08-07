@@ -12,6 +12,7 @@ Run `python3 _src/build.py` from the repo root (or anywhere). It wraps every
 page in _src/template.html, writes it to the site root, and regenerates
 sitemap.xml. Nothing else on the site is generated — CSS/JS/images are static.
 """
+import hashlib
 import json
 import re
 import sys
@@ -143,8 +144,25 @@ def build_page(template: str, raw: str, name: str):
     return meta
 
 
+def asset_versions():
+    """Map asset URL -> URL?v=<content hash>. Busts long-lived CDN/browser
+    caches the moment a file's content changes — without this, visitors can
+    get new HTML with months-old CSS."""
+    out = {}
+    for rel in ["assets/css/main.css", "assets/js/main.js",
+                "assets/js/assistant.js", "assets/js/media.js"]:
+        f = ROOT / rel
+        if f.exists():
+            h = hashlib.md5(f.read_bytes()).hexdigest()[:10]
+            out["/" + rel] = f"/{rel}?v={h}"
+    return out
+
+
 def main():
     template = (SRC / "template.html").read_text(encoding="utf-8")
+    versions = asset_versions()
+    for src, versioned in versions.items():
+        template = template.replace(f'"{src}"', f'"{versioned}"')
     pages = sorted(PAGES.glob("*.html"))
     if not pages:
         sys.exit("ERROR: no pages found in _src/pages/")
@@ -154,6 +172,8 @@ def main():
     sources = [(p.name, p.read_text(encoding="utf-8")) for p in pages]
     sources += list(location_pages())
     for name, raw in sources:
+        for src, versioned in versions.items():
+            raw = raw.replace(f'"{src}"', f'"{versioned}"')
         meta = build_page(template, raw, name)
         if meta.get("sitemap", True) and not meta["path"].endswith(".html"):
             sitemap_rows.append((

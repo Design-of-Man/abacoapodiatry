@@ -622,6 +622,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   background: linear-gradient(0deg, rgba(12,11,8,0.5), rgba(12,11,8,0.12) 45%, rgba(12,11,8,0.18));
 }
 .hero.has-video::before { opacity: 0.22; }
+.hero.has-video .laser-beams { display: none; }
 
 .video-toggle {
   position: absolute;
@@ -1554,6 +1555,119 @@ body.assist-open .assist-fab { display: none; }
   border: 0;
 }
 
+/* Video library grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+@media (max-width: 980px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .video-grid { grid-template-columns: 1fr; } }
+.video-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.video-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #d6b974; }
+.video-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  overflow: hidden;
+}
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.video-card:hover .video-thumb img { transform: scale(1.05); }
+.video-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(12, 11, 8, 0.25);
+  transition: background 0.2s ease;
+}
+.video-card:hover .video-play { background: rgba(12, 11, 8, 0.05); }
+.video-play svg {
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.5));
+  background: linear-gradient(120deg, #e9c878, #b98f35);
+  color: #201703;
+  border-radius: 50%;
+  padding: 14px;
+  transition: transform 0.2s ease;
+}
+.video-card:hover .video-play svg { transform: scale(1.12); }
+.video-title {
+  padding: 0.9rem 1.1rem 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--head);
+  line-height: 1.45;
+}
+
+/* Expanding video lightbox */
+.video-modal { position: fixed; inset: 0; z-index: 120; }
+.video-modal[hidden] { display: none; }
+.video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 7, 5, 0.88);
+  backdrop-filter: blur(6px);
+}
+.video-modal-box {
+  position: relative;
+  width: min(1100px, 94vw);
+  margin: 50vh auto 0;
+  transform: translateY(-50%);
+  animation: fadeUp 0.25s ease;
+}
+.video-modal-frame {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+}
+.video-modal-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video-modal-title {
+  color: #f7f4ec;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  margin: 1rem 0 0;
+  text-align: center;
+}
+.video-modal-close {
+  position: absolute;
+  top: -52px;
+  right: 0;
+  width: 44px; height: 44px;
+  border: 1px solid rgba(214,185,116,0.5);
+  border-radius: 50%;
+  background: rgba(12, 11, 8, 0.8);
+  color: #f2d491;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.video-modal-close:hover { background: #201c15; }
+
 /* Location pages */
 .loc-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.6rem 0; }
 @media (max-width: 760px) { .loc-meta { grid-template-columns: 1fr; } }
@@ -1704,4 +1818,36 @@ body.assist-open .assist-fab { display: none; }
 @media print {
   .topbar, .site-header, .callbar, .to-top, .site-footer, .laser-beams { display: none !important; }
   body { color: #000; }
+}
+
+
+/* ==========================================================================
+   FINAL BUTTON COLOR GUARANTEE
+   Context rules like `.section-dark a {color:gold}` outrank `.btn-primary`
+   (0-1-1 vs 0-1-0), which made gold-on-gold buttons. These overrides are
+   last in the file and maximally specific: buttons keep their own text
+   color in EVERY context. Do not add link-color rules below this block.
+   ========================================================================== */
+.btn-primary, a.btn-primary,
+.hero a.btn-primary, .page-hero a.btn-primary,
+.section-dark a.btn-primary, .cta-band a.btn-primary,
+.section-dark .cta-band a.btn-primary {
+  color: #201703;
+}
+.btn-primary:hover, a.btn-primary:hover,
+.hero a.btn-primary:hover, .page-hero a.btn-primary:hover,
+.section-dark a.btn-primary:hover, .cta-band a.btn-primary:hover {
+  color: #201703;
+}
+a.btn-ghost { color: var(--head); }
+.hero a.btn-ghost, .page-hero a.btn-ghost,
+.section-dark a.btn-ghost, .cta-band a.btn-ghost,
+.section-dark .cta-band a.btn-ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.hero a.btn-ghost:hover, .page-hero a.btn-ghost:hover,
+.section-dark a.btn-ghost:hover, .cta-band a.btn-ghost:hover {
+  color: #f2d491;
+  border-color: #f2d491;
 }

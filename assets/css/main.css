@@ -443,7 +443,7 @@ blockquote {
   margin-bottom: 0.3rem;
 }
 
-.header-cta { display: flex; align-items: center; gap: 0.8rem; flex: none; }
+.header-cta { display: flex; align-items: center; gap: 0.8rem; flex: none; position: relative; z-index: 45; }
 .header-phone {
   display: inline-flex;
   flex-direction: column;
@@ -451,11 +451,13 @@ blockquote {
   line-height: 1.15;
   text-decoration: none;
 }
-.header-phone .ph-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); font-weight: 600; }
+.header-phone .ph-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); font-weight: 600; }
 .header-phone .ph-num { font-family: var(--font-head); font-weight: 700; font-size: 1.02rem; color: var(--head); }
 .header-phone:hover .ph-num { color: var(--cyan-deep); }
 
 .nav-burger {
+  position: relative;
+  z-index: 45;   /* must sit above .site-nav (40) so it stays tappable when open */
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -1373,7 +1375,7 @@ details.faq.hidden { display: none; }
 }
 @media (max-width: 980px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .footer-grid { grid-template-columns: 1fr; } }
-.site-footer h4 {
+.site-footer h4, .site-footer .footer-h {
   color: #fff;
   font-size: 0.86rem;
   letter-spacing: 0.12em;
@@ -1420,17 +1422,40 @@ details.faq.hidden { display: none; }
 /* Footer city links */
 .footer-cities {
   border-top: 1px solid rgba(214, 185, 116, 0.14);
-  padding: 2rem 0 2.4rem;
+  padding: 2.4rem 0 2.6rem;
+}
+.footer-cities h2 {
+  font-size: 0.86rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.footer-cities-note {
+  font-size: 0.87rem;
+  color: #a49b88;
+  max-width: 60ch;
+  margin: 0 0 1.3rem;
+}
+.footer-cities .link-arrow {
+  display: inline-flex;
+  margin-top: 1.3rem;
+  font-size: 0.88rem;
+  color: #e4c273;
 }
 .city-links {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 0.4rem 1.4rem;
-  font-size: 0.88rem;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 0.55rem 1.6rem;
+  font-size: 0.9rem;
 }
+.city-links a { color: #beb59f; text-decoration: none; }
+.city-links a:hover { color: #f2d491; }
 .city-links li { margin: 0; }
 
 /* --------------------------------------------------------------------------
@@ -2140,3 +2165,23 @@ a.btn-ghost { color: var(--head); }
 @media (max-width: 900px) { .logo-wordmark { width: 178px; } }
 @media (max-width: 640px) { .logo-wordmark { width: 152px; } }
 .site-footer .logo-wordmark { width: 230px; }
+
+
+/* Mobile legibility: nothing below 12px on small screens. */
+@media (max-width: 760px) {
+  .header-phone .ph-label,
+  .footer-bottom,
+  .footer-bottom a,
+  .footer-disclaimer,
+  .article-meta,
+  .crumbs,
+  .painmap-card .tag,
+  .form-note,
+  .med-note,
+  .assist-note,
+  .assist-note a {
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+  .logo-tag { font-size: 0.75rem; }
+}

@@ -36,7 +36,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css?v=b32b46da0d">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="preload" as="image" href="/assets/img/hero-poster.jpg" fetchpriority="high" media="(min-width: 1px)">
+  <link rel="stylesheet" href="/assets/css/main.css?v=56f0d798b0">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -132,7 +134,47 @@
     "@id": "https://jupiterlaser.com/#website",
     "url": "https://jupiterlaser.com/",
     "name": "Abacoa Podiatry & Leg Vein Center",
-    "publisher": { "@id": "https://jupiterlaser.com/#clinic" }
+    "publisher": { "@id": "https://jupiterlaser.com/#clinic" },
+    "inLanguage": "en-US",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".lede"]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["MedicalClinic", "LocalBusiness"],
+    "@id": "https://jupiterlaser.com/#clinic-pbg",
+    "name": "Abacoa Podiatry & Leg Vein Center — Palm Beach Gardens",
+    "parentOrganization": { "@id": "https://jupiterlaser.com/#clinic" },
+    "url": "https://jupiterlaser.com/locations/palm-beach-gardens/",
+    "telephone": "+1-561-915-1934",
+    "image": "https://jupiterlaser.com/assets/img/og-image.png",
+    "priceRange": "$$",
+    "medicalSpecialty": "Podiatric",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11380 Prosperity Farms Rd, Suite 204",
+      "addressLocality": "Palm Beach Gardens",
+      "addressRegion": "FL",
+      "postalCode": "33410",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 26.8412, "longitude": -80.0714 },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=11380+Prosperity+Farms+Rd+Suite+204+Palm+Beach+Gardens+FL+33410",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "08:00",
+      "closes": "17:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }]
   }
   </script>
   <script type="application/ld+json">
@@ -415,7 +457,7 @@
           </ul>
         </div>
         <div>
-          <h4>Services</h4>
+          <h2 class="footer-h">Services</h2>
           <ul>
             <li><a href="/services/mls-laser-therapy/">MLS Laser Therapy</a></li>
             <li><a href="/services/shockwave-therapy/">Shockwave Therapy</a></li>
@@ -427,7 +469,7 @@
           </ul>
         </div>
         <div>
-          <h4>Conditions</h4>
+          <h2 class="footer-h">Conditions</h2>
           <ul>
             <li><a href="/conditions/plantar-fasciitis/">Plantar Fasciitis</a></li>
             <li><a href="/conditions/heel-pain/">Heel Pain</a></li>
@@ -439,14 +481,14 @@
           </ul>
         </div>
         <div>
-          <h4>Office Hours</h4>
+          <h2 class="footer-h">Office Hours</h2>
           <ul class="footer-hours">
             <li><span>Mon&ndash;Thu</span> <span>8:00 AM &ndash; 5:00 PM</span></li>
             <li><span>Friday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
             <li><span>Sat&ndash;Sun</span> <span>Closed</span></li>
           </ul>
           <p style="font-size:0.82rem;color:#8a8170;margin:0.7rem 0 0">Closed for lunch 12:30&ndash;1:30 PM &middot; Closed holidays</p>
-          <h4 style="margin-top:1.6rem">Quick Links</h4>
+          <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
@@ -456,6 +498,30 @@
         </div>
       </div>
     </div>
+    <div class="footer-cities">
+      <div class="wrap">
+        <h2>Patients travel to our Jupiter office from</h2>
+        <p class="footer-cities-note">One location on Military Trail in Jupiter, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <ul class="city-links">
+            <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
+            <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>
+            <li><a href="/locations/singer-island/">Singer Island</a></li>
+            <li><a href="/locations/lake-park/">Lake Park</a></li>
+            <li><a href="/locations/north-palm-beach/">North Palm Beach</a></li>
+            <li><a href="/locations/palm-beach-gardens/">Palm Beach Gardens</a></li>
+            <li><a href="/locations/juno-beach/">Juno Beach</a></li>
+            <li><a href="/locations/jupiter/">Jupiter</a></li>
+            <li><a href="/locations/abacoa/">Abacoa</a></li>
+            <li><a href="/locations/tequesta/">Tequesta</a></li>
+            <li><a href="/locations/hobe-sound/">Hobe Sound</a></li>
+            <li><a href="/locations/port-salerno/">Port Salerno</a></li>
+            <li><a href="/locations/palm-city/">Palm City</a></li>
+            <li><a href="/locations/stuart/">Stuart</a></li>
+        </ul>
+        <a class="link-arrow" href="/locations/">See all locations &amp; directions</a>
+      </div>
+    </div>
+
     <div class="footer-disclaimer">
       <div class="wrap">
         The information on this website is provided for general educational purposes only and is not medical advice. It is not a substitute for professional evaluation, diagnosis, or treatment. Always consult a qualified healthcare provider about your specific condition. Individual results vary.
@@ -470,27 +536,6 @@
           <a href="/sitemap.xml">Sitemap</a>
         </span>
       </div>
-      <div class="footer-cities">
-        <h4>Serving West Palm Beach to Stuart</h4>
-        <ul class="city-links">
-            <li><a href="/locations/west-palm-beach/">Podiatrist in West Palm Beach</a></li>
-            <li><a href="/locations/riviera-beach/">Podiatrist in Riviera Beach</a></li>
-            <li><a href="/locations/singer-island/">Podiatrist in Singer Island</a></li>
-            <li><a href="/locations/lake-park/">Podiatrist in Lake Park</a></li>
-            <li><a href="/locations/north-palm-beach/">Podiatrist in North Palm Beach</a></li>
-            <li><a href="/locations/palm-beach-gardens/">Podiatrist in Palm Beach Gardens</a></li>
-            <li><a href="/locations/juno-beach/">Podiatrist in Juno Beach</a></li>
-            <li><a href="/locations/jupiter/">Podiatrist in Jupiter</a></li>
-            <li><a href="/locations/abacoa/">Podiatrist in Abacoa</a></li>
-            <li><a href="/locations/tequesta/">Podiatrist in Tequesta</a></li>
-            <li><a href="/locations/hobe-sound/">Podiatrist in Hobe Sound</a></li>
-            <li><a href="/locations/port-salerno/">Podiatrist in Port Salerno</a></li>
-            <li><a href="/locations/palm-city/">Podiatrist in Palm City</a></li>
-            <li><a href="/locations/stuart/">Podiatrist in Stuart</a></li>
-        </ul>
-        <p style="margin:1rem 0 0"><a href="/locations/">See all locations &amp; directions &rarr;</a></p>
-      </div>
-    </div>
   </footer>
 
   <button class="to-top" aria-label="Back to top">↑</button>
@@ -508,7 +553,7 @@
 
 
   <!-- Virtual assistant -->
-  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel">
+  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question — open the practice assistant">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9v4a3 3 0 0 0 3 3h1v-7H5v-.2A7 7 0 0 1 19 12v.8h-2v7h1a3 3 0 0 0 3-3v-4a9 9 0 0 0-9-9Z"/></svg>
     <span class="assist-fab-label">Ask a question</span>
   </button>

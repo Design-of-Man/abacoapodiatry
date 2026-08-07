@@ -65,7 +65,7 @@ REDIRECT_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Moved: Jupiter Laser &amp; Regenerative Medicine</title>
+  <title>Moved: {target} | Abacoa Podiatry</title>
   <meta http-equiv="refresh" content="0; url={target}">
   <link rel="canonical" href="{base}{target}">
   <meta name="robots" content="noindex">

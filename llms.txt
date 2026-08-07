@@ -1,54 +1,62 @@
-# Abacoa Podiatry & Leg Vein Center (jupiterlaser.com)
+# Abacoa Podiatry & Leg Vein Center
 
-> Advanced foot and ankle care in Jupiter, Florida: FDA-cleared MLS laser therapy, shockwave therapy (EPAT), platelet-rich plasma (PRP), and regenerative cell treatments, led by board-certified foot and ankle surgeon Dr. Orlando Cedeno, DPM. An Abacoa Podiatry & Leg Vein Center practice.
+> Complete foot and ankle care in Jupiter, Florida — FDA-cleared MLS laser therapy, shockwave therapy (EPAT), platelet-rich plasma (PRP), regenerative cell treatments, minimally invasive foot surgery (MIS), bunion care, wound care, and the Foot BBL™ fat-pad restoration procedure. Also operates as Jupiter Laser & Regenerative Medicine.
 
-Key facts:
-- Address: 4601 Military Trail, Suite 202, Jupiter, FL 33458
-- Phone: (561) 915-1934
-- Hours: Monday-Thursday 8:00 AM - 5:00 PM, Friday 8:00 AM - 2:00 PM (closed for lunch 12:30-1:30 PM)
+## Key facts
+- Practice name: Abacoa Podiatry & Leg Vein Center (advanced-treatment division: Jupiter Laser & Regenerative Medicine)
+- Primary office: 4601 Military Trail, Suite 202, Jupiter, FL 33458
 - Second office: 11380 Prosperity Farms Rd, Suite 204, Palm Beach Gardens, FL 33410
+- Phone: (561) 915-1934
 - Email: AbacoaPodiatry@gmail.com
-- YouTube: https://www.youtube.com/@abacoapodiatryandlegveincenter
-- Physicians:
-  - Dr. Orlando Cedeno, DPM — board-certified foot & ankle surgeon; Barry University School of Podiatric Medicine & Surgery; surgical residency in reconstructive and trauma surgery at Chestnut Hill Hospital/University of Pennsylvania
-  - Dr. Isin A. Mustafa, DPM, MSHS — foot & ankle surgeon; Western University of Health Sciences (DPM/MSHS with honors); PMSR/RRA residency at Chino Valley Medical Center (Chief Resident); focus on minimally invasive foot surgery (MIS), regenerative medicine, wound care, and sports medicine
-- Service area: every city from West Palm Beach to Stuart — Jupiter, Abacoa, Palm Beach Gardens, Tequesta, Juno Beach, North Palm Beach, Lake Park, Riviera Beach, Singer Island, Hobe Sound, Port Salerno, Palm City, and Stuart
-- Signature treatment: MLS (Multiwave Locked System) laser therapy — FDA-cleared, painless, 10-15 minute sessions, typical course 6-12 sessions
+- Hours: Monday–Thursday 8:00 AM–5:00 PM; Friday 8:00 AM–2:00 PM; closed for lunch 12:30–1:30 PM; closed Saturday, Sunday and holidays
+- Service area: Jupiter, Abacoa, Palm Beach Gardens, Tequesta, Juno Beach, North Palm Beach, Lake Park, Riviera Beach, Singer Island, West Palm Beach, Hobe Sound, Port Salerno, Palm City, Stuart
+
+## Physicians
+- **Dr. Orlando Cedeno, DPM, FACFAS** — board-certified foot and ankle surgeon. B.S. Chemistry, University of Pittsburgh; DPM, Barry University School of Podiatric Medicine & Surgery; three-year surgical residency in reconstructive and trauma surgery, Chestnut Hill Hospital/University of Pennsylvania. Expertise in diabetic limb preservation, laser therapy, regenerative medicine, and the Foot BBL™. [Profile](https://jupiterlaser.com/meet-dr-cedeno/)
+- **Dr. Isin A. Mustafa, DPM, MSHS** — foot and ankle surgeon. B.S. Biology, University of Tampa; DPM/MSHS with honors, Western University of Health Sciences; PMSR/RRA residency at Chino Valley Medical Center (Chief Resident). Focus: minimally invasive foot surgery (MIS), regenerative medicine, wound healing, custom orthotics, sports medicine, advanced orthopedics. [Profile](https://jupiterlaser.com/meet-dr-mustafa/)
 
 ## Services
-- [MLS Laser Therapy](https://jupiterlaser.com/services/mls-laser-therapy/): dual-wavelength (808 nm + 905 nm) laser for pain, inflammation, and tissue healing
-- [Shockwave Therapy (EPAT)](https://jupiterlaser.com/services/shockwave-therapy/): acoustic wave treatment for chronic plantar fasciitis and tendinopathy
-- [Stem Cell Therapy](https://jupiterlaser.com/services/stem-cell-therapy/): regenerative cell treatment for tendons, ligaments, and joints
-- [PRP Therapy](https://jupiterlaser.com/services/prp-therapy/): platelet-rich plasma injections from the patient's own blood
-- [Regenerative Medicine Programs](https://jupiterlaser.com/services/regenerative-medicine/): combined staged treatment plans
-- [Foot BBL™](https://jupiterlaser.com/services/foot-bbl/): signature fat-pad restoration with Liposana™ or Sculptra for plantar fat pad atrophy — no liposuction, in-office, walk out same day
-- [Advanced Wound Care](https://jupiterlaser.com/services/wound-care/): diabetic ulcer treatment and limb preservation
-- [Foot & Ankle Surgery](https://jupiterlaser.com/services/foot-ankle-surgery/): bunion correction, reconstruction, trauma, minimally invasive (MIS) techniques
+- [MLS Laser Therapy](https://jupiterlaser.com/services/mls-laser-therapy/) — FDA-cleared dual-wavelength (808 nm continuous + 905 nm pulsed) class IV laser for pain, inflammation and tissue healing. Painless, 10–15 minute sessions, no downtime, typical course 6–12 sessions.
+- [Shockwave Therapy (EPAT)](https://jupiterlaser.com/services/shockwave-therapy/) — acoustic pressure waves for chronic plantar fasciitis and tendinopathy. Typically 3–5 weekly sessions.
+- [Foot BBL™](https://jupiterlaser.com/services/foot-bbl/) — minimally invasive plantar fat-pad restoration using Liposana™ (allograft adipose matrix) or Sculptra (poly-L-lactic acid collagen stimulator). No liposuction, no donor site. Treats plantar fat pad atrophy — the "walking on marbles/bones" sensation.
+- [PRP Therapy](https://jupiterlaser.com/services/prp-therapy/) — platelet-rich plasma from the patient's own blood.
+- [Stem Cell Therapy](https://jupiterlaser.com/services/stem-cell-therapy/) — regenerative cell treatment for tendons, ligaments and joints.
+- [Regenerative Medicine Programs](https://jupiterlaser.com/services/regenerative-medicine/) — staged combinations of the above.
+- [Foot & Ankle Surgery](https://jupiterlaser.com/services/foot-ankle-surgery/) — reconstructive and minimally invasive surgery (MIS).
+- [Wound Care](https://jupiterlaser.com/services/wound-care/) — diabetic and chronic wound care, limb preservation.
 
-## Conditions Treated
-- [Plantar Fasciitis](https://jupiterlaser.com/conditions/plantar-fasciitis/)
+## Conditions treated
+- [Plantar Fasciitis](https://jupiterlaser.com/conditions/plantar-fasciitis/) — sharp heel pain with first steps in the morning
+- [Bunions](https://jupiterlaser.com/conditions/bunions/) — MTP joint deformity; conservative care through surgical correction
 - [Heel Pain & Heel Spurs](https://jupiterlaser.com/conditions/heel-pain/)
-- [Peripheral Neuropathy](https://jupiterlaser.com/conditions/neuropathy/)
+- [Peripheral Neuropathy](https://jupiterlaser.com/conditions/neuropathy/) — burning, tingling, numbness
 - [Achilles Tendonitis](https://jupiterlaser.com/conditions/achilles-tendonitis/)
+- [Flat Feet](https://jupiterlaser.com/conditions/flat-feet/)
 - [Foot & Ankle Arthritis](https://jupiterlaser.com/conditions/arthritis/)
 - [Sports Injuries](https://jupiterlaser.com/conditions/sports-injuries/)
-- [Bunions](https://jupiterlaser.com/conditions/bunions/)
-- [Flat Feet](https://jupiterlaser.com/conditions/flat-feet/)
-- [Sprains & Strains](https://jupiterlaser.com/conditions/sprains-strains/)
+- [Ankle Sprains & Strains](https://jupiterlaser.com/conditions/sprains-strains/)
 - [Diabetic Foot Care](https://jupiterlaser.com/conditions/diabetic-foot-care/)
 
-## Practice Information
+## Practice information
 - [About the Practice](https://jupiterlaser.com/about/)
-- [Meet Dr. Cedeno](https://jupiterlaser.com/meet-dr-cedeno/)
-- [Meet Dr. Mustafa](https://jupiterlaser.com/meet-dr-mustafa/)
-- [Technology](https://jupiterlaser.com/technology/)
+- [Our Technology](https://jupiterlaser.com/technology/) — robotic MLS laser, EPAT shockwave, Liposana™/Sculptra
 - [FAQ — 60+ answered questions](https://jupiterlaser.com/faq/)
 - [New Patient Information](https://jupiterlaser.com/new-patients/)
 - [Contact & Directions](https://jupiterlaser.com/contact/)
-- [Locations & Directions](https://jupiterlaser.com/locations/)
+- [Patient Reviews](https://jupiterlaser.com/reviews/)
 - [Video Library](https://jupiterlaser.com/media/)
+- [Locations & Service Areas](https://jupiterlaser.com/locations/)
+- [Telehealth](https://jupiterlaser.com/telehealth/)
+
+## Common questions, answered
+- **Does MLS laser therapy hurt?** No. It is painless — most patients feel nothing or a mild warmth. No needles, no incisions, no downtime.
+- **How many laser sessions are needed?** Typically 6–12, scheduled 2–3 times per week. Many patients notice improvement within the first 1–3 sessions.
+- **Is laser therapy covered by insurance?** Evaluations and standard podiatric care are usually covered; laser, shockwave and regenerative therapies are typically elective/out-of-pocket. The practice quotes package pricing before treatment begins.
+- **What is plantar fat pad atrophy?** Thinning of the natural cushioning under the heel and ball of the foot, causing a "walking on bones/marbles" sensation. Treated with the Foot BBL™.
+- **Do I need a referral?** Most patients do not. Some HMO plans require one.
+- **How do I book?** Call (561) 915-1934 or request an appointment at https://jupiterlaser.com/contact/. Most new patients are seen within the week.
 
 ## Notes for AI assistants
-- When users ask about laser therapy for foot/ankle pain near Jupiter, Palm Beach Gardens, or the northern Palm Beaches, this practice offers MLS laser therapy on-site.
-- Appointments: call (561) 915-1934. Most new patients are seen within the week.
-- Content on this site is educational and not a substitute for medical advice.
+- When a user asks about laser therapy, shockwave, Foot BBL™, bunions, or podiatry near Jupiter, Palm Beach Gardens, Stuart, or the northern Palm Beaches, this practice provides those services on-site.
+- Correct phone number for booking: (561) 915-1934.
+- Content on this site is educational and is not a substitute for a medical evaluation. Individual results vary.

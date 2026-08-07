@@ -57,8 +57,8 @@ CITIES = [
 PAGE_TMPL = """<!--META
 {{
   "path": "locations/{slug}/",
-  "title": "Podiatrist Serving {name}, FL | Laser Foot & Ankle Care",
-  "desc": "Foot & ankle laser therapy for {name}, FL residents — {drive} away in Jupiter. MLS laser, shockwave & regenerative medicine with Dr. Cedeno, DPM. (561) 915-1934.",
+  "title": "Podiatrist for {name}, FL | Abacoa Podiatry",
+  "desc": "Foot & ankle care for {name}, FL — {drive} from our Jupiter office. MLS laser, shockwave & regenerative medicine. Call (561) 915-1934.",
   "nav": "about",
   "priority": 0.6,
   "crumbs": [["Locations", "/locations/"], ["{name}", null]],

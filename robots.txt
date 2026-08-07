@@ -1,0 +1,6 @@
+# jupiterlaser.com — all crawlers welcome, including AI assistants.
+User-agent: *
+Allow: /
+Disallow: /_src/
+
+Sitemap: https://jupiterlaser.com/sitemap.xml

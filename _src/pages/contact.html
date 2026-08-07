@@ -1,0 +1,106 @@
+<!--META
+{
+  "path": "contact/",
+  "title": "Contact & Directions | Jupiter Laser & Regenerative Medicine",
+  "desc": "Book an appointment at Jupiter Laser & Regenerative Medicine — 4601 Military Trail, Suite 202, Jupiter, FL 33458. Call (561) 624-4800 or request online.",
+  "nav": "contact",
+  "priority": 0.9,
+  "changefreq": "monthly",
+  "crumbs": [["Contact", null]],
+  "schema": [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Jupiter Laser & Regenerative Medicine",
+      "url": "https://jupiterlaser.com/contact/",
+      "about": { "@id": "https://jupiterlaser.com/#clinic" }
+    }
+  ]
+}
+META-->
+    <section class="page-hero">
+      <div class="wrap">
+        <ol class="crumbs">
+          <li><a href="/">Home</a></li>
+          <li>Contact</li>
+        </ol>
+        <span class="kicker">We're Easy To Reach</span>
+        <h1>Book an Appointment</h1>
+        <p class="lede">Call us, request online, or just come see where we are. The fastest route to relief is the phone: <a href="tel:+15616244800" style="color:#6fd8ff">(561) 624-4800</a>.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="grid grid-3" style="margin-bottom:3rem">
+          <div class="info-tile" data-reveal>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></div>
+            <div><h3>Phone</h3><p><a href="tel:+15616244800">(561) 624-4800</a><br>Mon&ndash;Fri, 8:30 AM &ndash; 5:00 PM</p></div>
+          </div>
+          <div class="info-tile" data-reveal style="--rd:0.06s">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><h3>Address</h3><p>4601 Military Trail, Suite 202<br>Jupiter, FL 33458 &middot; <a href="https://www.google.com/maps/search/?api=1&amp;query=4601+Military+Trail+Suite+202+Jupiter+FL+33458" rel="noopener">Directions</a></p></div>
+          </div>
+          <div class="info-tile" data-reveal style="--rd:0.12s">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><h3>Hours</h3><p>Monday&ndash;Friday: 8:30 AM &ndash; 5:00 PM<br>Saturday&ndash;Sunday: Closed</p></div>
+          </div>
+        </div>
+
+        <div class="split">
+          <div data-reveal>
+            <span class="kicker">Online Request</span>
+            <h2>Request your appointment</h2>
+            <p>Prefer not to call? Send us your details and our team will call you back to confirm a time — usually the same business day.</p>
+            <!-- LAUNCH TODO: create a Formspree (or similar) form and replace YOUR_FORM_ID below. -->
+            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+              <div class="form-grid">
+                <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
+                <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
+                <div class="field full"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+                <div class="field full">
+                  <label for="f-reason">What can we help with?</label>
+                  <select id="f-reason" name="reason">
+                    <option>Heel or arch pain</option>
+                    <option>Neuropathy / burning feet</option>
+                    <option>Tendon or ankle problem</option>
+                    <option>Arthritis pain</option>
+                    <option>Sports injury</option>
+                    <option>Diabetic foot care</option>
+                    <option>Interested in laser / regenerative therapy</option>
+                    <option>Something else</option>
+                  </select>
+                </div>
+                <div class="field full"><label for="f-msg">Anything else we should know?</label><textarea id="f-msg" name="message" placeholder="How long it's bothered you, what you've tried, best times to reach you…"></textarea></div>
+              </div>
+              <p class="form-note" style="margin:0.9rem 0">Please don't include sensitive medical details in this form — save those for your visit. By submitting you agree to be contacted by our office about scheduling.</p>
+              <button class="btn btn-primary btn-lg" type="submit">Request Appointment</button>
+              <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+          <div data-reveal style="--rd:0.1s">
+            <span class="kicker">Find Us</span>
+            <h2>On Military Trail in Jupiter</h2>
+            <iframe class="map-embed" src="https://www.google.com/maps?q=4601+Military+Trail+Suite+202,+Jupiter,+FL+33458&amp;output=embed" title="Map to Jupiter Laser and Regenerative Medicine, 4601 Military Trail Suite 202, Jupiter FL" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="card" style="margin-top:1.2rem">
+              <h3 style="font-size:1.05rem">Getting here</h3>
+              <p style="font-size:0.95rem"><strong>From I-95:</strong> Exit Indiantown Road, head east, turn south on Military Trail — we're at 4601, Suite 202, with free parking on site.<br><strong>From US-1:</strong> Indiantown Road west to Military Trail, turn south.<br><strong>Landmark:</strong> minutes from the Abacoa community and Jupiter Medical Center.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="wrap">
+        <div class="cta-band" data-reveal>
+          <div>
+            <h2>In pain right now?</h2>
+            <p>Don't fill out a form — call us. Acute problems get priority scheduling.</p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-lg" href="tel:+15616244800">(561) 624-4800</a>
+          </div>
+        </div>
+      </div>
+    </section>

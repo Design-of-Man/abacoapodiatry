@@ -1,0 +1,11 @@
+# 301 redirects from legacy jupiterlaser.com URLs
+RewriteEngine On
+RewriteRule ^mls/?$ /services/mls-laser-therapy/ [R=301,L]
+RewriteRule ^about-us/?$ /about/ [R=301,L]
+RewriteRule ^regenerative-medicine/?$ /services/regenerative-medicine/ [R=301,L]
+RewriteRule ^neuropathy-solutions/?$ /conditions/neuropathy/ [R=301,L]
+RewriteRule ^plantar-fasciitis/?$ /conditions/plantar-fasciitis/ [R=301,L]
+RewriteRule ^stem-cell-therapy/?$ /services/stem-cell-therapy/ [R=301,L]
+
+# Serve custom 404
+ErrorDocument 404 /404.html

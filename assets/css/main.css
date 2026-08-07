@@ -2167,8 +2167,10 @@ a.btn-ghost { color: var(--head); }
 .site-footer .logo-wordmark { width: 230px; }
 
 
-/* Mobile legibility: nothing below 12px on small screens. */
-@media (max-width: 760px) {
+/* Legibility floor: nothing renders below 12px at any width. Applied
+   globally rather than under a mobile breakpoint — tablets at 768px fell
+   through a max-width:760px rule and kept 11.5px text. */
+@media (max-width: 1100px) {
   .header-phone .ph-label,
   .footer-bottom,
   .footer-bottom a,

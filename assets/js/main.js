@@ -113,7 +113,8 @@
           var eased = 1 - Math.pow(1 - p, 3);
           var val = Math.round(target * eased);
           el.textContent = prefix + val.toLocaleString() + suffix;
-          if (p < 1) requestAnimationFrame(step);
+          if (p < 1) { requestAnimationFrame(step); }
+          else { el.classList.add("counted"); }
         };
         requestAnimationFrame(step);
       });
@@ -350,4 +351,101 @@
   $$("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+})();
+
+
+/* ==========================================================================
+   Dynamic layer: scroll rail, live open/closed status, stat rings, parallax.
+   Appended as its own IIFE so it can't disturb the code above.
+   ========================================================================== */
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Scroll progress rail ---- */
+  var rail = document.querySelector(".scroll-rail i");
+  if (rail) {
+    var onScroll = function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      rail.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  }
+
+  /* ---- Live open/closed pill (visitor's own clock) ----
+     Mon–Thu 8:00–17:00, Fri 8:00–14:00, lunch 12:30–13:30, closed weekends. */
+  var pill = document.getElementById("live-status");
+  if (pill) {
+    var render = function () {
+      var now = new Date();
+      var day = now.getDay();            // 0 Sun .. 6 Sat
+      var mins = now.getHours() * 60 + now.getMinutes();
+      var open = false, note = "Closed";
+      if (day >= 1 && day <= 5) {
+        var close = day === 5 ? 14 * 60 : 17 * 60;
+        var lunch = mins >= 12 * 60 + 30 && mins < 13 * 60 + 30;
+        if (mins >= 8 * 60 && mins < close && !lunch) {
+          open = true;
+          note = "Open now";
+        } else if (lunch) {
+          note = "Back at 1:30";
+        } else if (mins < 8 * 60) {
+          note = "Opens 8:00 AM";
+        } else {
+          note = "Closed";
+        }
+      } else {
+        note = day === 6 ? "Sat — by appt" : "Closed Sunday";
+      }
+      pill.hidden = false;
+      pill.classList.toggle("closed", !open);
+      pill.querySelector(".txt").textContent = note;
+      pill.setAttribute("title", open ? "Our office is open right now" : "Office hours: Mon–Thu 8–5, Fri 8–2");
+    };
+    render();
+    setInterval(render, 60000);
+  }
+
+  /* ---- Stat rings draw in on scroll ---- */
+  var rings = Array.prototype.slice.call(document.querySelectorAll(".statring-dial .fill"));
+  if (rings.length) {
+    var C = 2 * Math.PI * 40; // r=40
+    rings.forEach(function (r) { r.style.strokeDasharray = C; r.style.strokeDashoffset = C; });
+    if ("IntersectionObserver" in window && !reduced) {
+      var ro = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          ro.unobserve(e.target);
+          var pct = parseFloat(e.target.getAttribute("data-ring")) || 0;
+          e.target.style.strokeDashoffset = C * (1 - pct / 100);
+        });
+      }, { threshold: 0.4 });
+      rings.forEach(function (r) { ro.observe(r); });
+    } else {
+      rings.forEach(function (r) {
+        var pct = parseFloat(r.getAttribute("data-ring")) || 0;
+        r.style.strokeDashoffset = C * (1 - pct / 100);
+      });
+    }
+  }
+
+  /* ---- Hero parallax drift ---- */
+  var media = document.querySelector(".hero-media");
+  if (media && !reduced) {
+    media.classList.add("parallax");
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (y < window.innerHeight * 1.2) {
+          media.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0) scale(1.06)";
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
 })();

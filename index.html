@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css?v=72a447fa0c">
+  <link rel="stylesheet" href="/assets/css/main.css?v=4947b360f8">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -140,14 +140,12 @@
 <body data-nav="home">
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <div class="scroll-rail" aria-hidden="true"><i></i></div>
+
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
-        <img class="logo-mark" src="/assets/img/logo-mark.svg" alt="" width="44" height="44">
-        <span class="logo-text">
-          <span class="logo-name">Abacoa Podiatry</span>
-          <span class="logo-tag">&amp; Leg Vein Center</span>
-        </span>
+        <img class="logo-wordmark" src="/assets/img/logo-abacoa.svg" alt="Abacoa Podiatry and Leg Vein Center" width="290" height="120">
       </a>
 
       <nav class="site-nav" aria-label="Primary">
@@ -210,6 +208,7 @@
           <span class="ph-label">Call today</span>
           <span class="ph-num">(561) 915-1934</span>
         </a>
+        <span class="live-status" id="live-status" hidden><span class="pip"></span><span class="txt"></span></span>
         <a class="btn btn-primary btn-sm" href="/contact/">Book Appointment</a>
         <button class="nav-burger" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -276,11 +275,40 @@
             </div>
           </div>
           <div data-reveal style="--rd:0.15s">
-            <div class="stats-band" style="grid-template-columns:1fr 1fr; text-align:left; gap:2rem; background:var(--mist); border-radius:var(--radius-lg); padding:2.4rem">
-              <div class="stat"><b><span data-counter="20" data-suffix="+">0</span></b><span>years of surgical foot &amp; ankle experience</span></div>
-              <div class="stat"><b><span data-counter="8" data-suffix="+">0</span></b><span>conditions treated with advanced laser therapy</span></div>
-              <div class="stat"><b><span data-counter="90" data-suffix="%">0</span></b><span>of MLS patients in published reports note improvement</span></div>
-              <div class="stat"><b><span data-counter="15" data-suffix=" min">0</span></b><span>average session — most patients feel nothing but relief</span></div>
+            <div class="statring-grid" style="background:var(--mist);border:1px solid var(--line);border-radius:var(--radius-lg);padding:2.2rem">
+              <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+                <linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#f2d491"/><stop offset="1" stop-color="#b98f35"/>
+                </linearGradient>
+              </defs></svg>
+              <div class="statring">
+                <div class="statring-dial">
+                  <svg viewBox="0 0 92 92"><circle class="track" cx="46" cy="46" r="40"/><circle class="fill" cx="46" cy="46" r="40" data-ring="100"/></svg>
+                  <b><span data-counter="20" data-suffix="+">0</span></b>
+                </div>
+                <p>years of surgical foot &amp; ankle experience</p>
+              </div>
+              <div class="statring">
+                <div class="statring-dial">
+                  <svg viewBox="0 0 92 92"><circle class="track" cx="46" cy="46" r="40"/><circle class="fill" cx="46" cy="46" r="40" data-ring="85"/></svg>
+                  <b><span data-counter="14" data-suffix="+">0</span></b>
+                </div>
+                <p>conditions treated with advanced technology</p>
+              </div>
+              <div class="statring">
+                <div class="statring-dial">
+                  <svg viewBox="0 0 92 92"><circle class="track" cx="46" cy="46" r="40"/><circle class="fill" cx="46" cy="46" r="40" data-ring="90"/></svg>
+                  <b><span data-counter="90" data-suffix="%">0</span></b>
+                </div>
+                <p>of MLS patients in published reports note improvement</p>
+              </div>
+              <div class="statring">
+                <div class="statring-dial">
+                  <svg viewBox="0 0 92 92"><circle class="track" cx="46" cy="46" r="40"/><circle class="fill" cx="46" cy="46" r="40" data-ring="25"/></svg>
+                  <b><span data-counter="15" data-suffix="m">0</span></b>
+                </div>
+                <p>average laser session — in and out on a lunch break</p>
+              </div>
             </div>
           </div>
         </div>
@@ -335,6 +363,11 @@
         </div>
       </div>
     </section>
+
+
+    <div class="ticker" aria-label="Conditions and treatments we offer">
+      <div class="ticker-track"><a href="/conditions/plantar-fasciitis/">Plantar Fasciitis</a><a href="/conditions/bunions/">Bunions</a><a href="/conditions/neuropathy/">Neuropathy</a><a href="/conditions/heel-pain/">Heel Pain</a><a href="/conditions/achilles-tendonitis/">Achilles Tendonitis</a><a href="/conditions/flat-feet/">Flat Feet</a><a href="/services/foot-bbl/">Foot BBL™</a><a href="/conditions/arthritis/">Arthritis</a><a href="/conditions/sports-injuries/">Sports Injuries</a><a href="/conditions/diabetic-foot-care/">Diabetic Foot Care</a><a href="/services/wound-care/">Wound Care</a><a href="/conditions/sprains-strains/">Ankle Sprains</a><a href="/conditions/plantar-fasciitis/">Plantar Fasciitis</a><a href="/conditions/bunions/">Bunions</a><a href="/conditions/neuropathy/">Neuropathy</a><a href="/conditions/heel-pain/">Heel Pain</a><a href="/conditions/achilles-tendonitis/">Achilles Tendonitis</a><a href="/conditions/flat-feet/">Flat Feet</a><a href="/services/foot-bbl/">Foot BBL™</a><a href="/conditions/arthritis/">Arthritis</a><a href="/conditions/sports-injuries/">Sports Injuries</a><a href="/conditions/diabetic-foot-care/">Diabetic Foot Care</a><a href="/services/wound-care/">Wound Care</a><a href="/conditions/sprains-strains/">Ankle Sprains</a></div>
+    </div>
 
     <!-- ================= FOOT PAIN MAP ================= -->
     <section class="section">
@@ -678,11 +711,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
-            <img class="logo-mark" src="/assets/img/logo-mark.svg" alt="" width="44" height="44">
-            <span class="logo-text">
-              <span class="logo-name">Jupiter Laser</span>
-              <span class="logo-tag">Regenerative Medicine</span>
-            </span>
+            <img class="logo-wordmark" src="/assets/img/logo-abacoa.svg" alt="Abacoa Podiatry and Leg Vein Center" width="290" height="120">
           </a>
           <p class="footer-about">Complete foot &amp; ankle care in Jupiter, Florida: MLS laser therapy, shockwave, regenerative medicine, minimally invasive surgery, bunion care, and the Foot BBL&trade; — from surgeons Dr. Orlando Cedeno, DPM, FACFAS and Dr. Isin A. Mustafa, DPM, MSHS.</p>
           <ul class="footer-contact" style="margin-top:1.2rem">
@@ -828,6 +857,6 @@
 
   <script src="/assets/js/assistant.js?v=b906604d9e" defer></script>
 
-  <script src="/assets/js/main.js?v=c80c151bb4" defer></script>
+  <script src="/assets/js/main.js?v=7cd971fd57" defer></script>
 </body>
 </html>

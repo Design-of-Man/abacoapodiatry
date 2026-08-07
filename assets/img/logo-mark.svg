@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Jupiter Laser logo mark">
   <defs>
     <linearGradient id="jl-g" x1="8" y1="12" x2="56" y2="52" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#29e0ff"/>
-      <stop offset="0.55" stop-color="#2f8df5"/>
-      <stop offset="1" stop-color="#8b5cf6"/>
+      <stop offset="0" stop-color="#f2d491"/>
+      <stop offset="0.55" stop-color="#d3ac57"/>
+      <stop offset="1" stop-color="#8a6a2a"/>
     </linearGradient>
     <linearGradient id="jl-b" x1="4" y1="32" x2="60" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#29e0ff" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#29e0ff"/>
-      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+      <stop offset="0" stop-color="#f2d491" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#f2d491"/>
+      <stop offset="1" stop-color="#8a6a2a" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <circle cx="32" cy="32" r="19" fill="url(#jl-g)"/>
   <path d="M25 24c3-2.4 11-2.4 14 0M23.4 31c4-2.8 13.2-2.8 17.2 0M25 38c3 2.4 11 2.4 14 0" stroke="#fff" stroke-opacity="0.85" stroke-width="2.4" stroke-linecap="round"/>
   <ellipse cx="32" cy="32" rx="28" ry="10.5" stroke="url(#jl-b)" stroke-width="2.6" transform="rotate(-18 32 32)"/>
-  <circle cx="55.5" cy="21.5" r="3.2" fill="#29e0ff"/>
+  <circle cx="55.5" cy="21.5" r="3.2" fill="#f2d491"/>
 </svg>

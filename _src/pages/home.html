@@ -9,14 +9,25 @@
 }
 META-->
     <!-- ================= HERO ================= -->
-    <section class="hero">
+    <section class="hero has-video">
+      <div class="hero-media" aria-hidden="true">
+        <video id="hero-video" autoplay muted loop playsinline preload="metadata"
+               poster="/assets/img/hero-poster.jpg">
+          <source src="/assets/video/lighthouse.mp4" type="video/mp4">
+        </video>
+      </div>
+      <button class="video-toggle" id="video-toggle" aria-pressed="false"
+              aria-label="Pause background video">
+        <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.9l11-6.8a1 1 0 0 0 0-1.7l-11-6.8a1 1 0 0 0-1.5.8Z"/></svg>
+      </button>
       <div class="laser-beams" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
         <div class="hero-inner">
           <div>
             <span class="kicker">Jupiter, Florida &middot; Foot &amp; Ankle Specialists</span>
             <h1>Heal Faster. Hurt Less. <span class="accent">Without Surgery or Drugs.</span></h1>
-            <p class="lede">Jupiter Laser &amp; Regenerative Medicine combines FDA-cleared MLS laser therapy, shockwave, and regenerative treatments to resolve foot and ankle pain at its source — led by board-certified foot &amp; ankle surgeon <a href="/meet-dr-cedeno/" style="color:#6fd8ff">Dr. Orlando Cedeno, DPM</a>.</p>
+            <p class="lede">Jupiter Laser &amp; Regenerative Medicine combines FDA-cleared MLS laser therapy, shockwave, and regenerative treatments to resolve foot and ankle pain at its source — led by board-certified foot &amp; ankle surgeon <a href="/meet-dr-cedeno/" style="color:#e8c778">Dr. Orlando Cedeno, DPM</a>.</p>
             <ul class="hero-badges">
               <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg> FDA-Cleared Technology</li>
               <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M9 13 7 22l5-3 5 3-2-9"/></svg> Board-Certified Surgeon</li>
@@ -135,16 +146,16 @@ META-->
         </div>
         <div class="painmap" data-reveal>
           <div class="painmap-figure">
-            <svg viewBox="0 0 520 400" role="img" aria-label="Interactive diagram of a foot with selectable pain locations">
+            <svg viewBox="0 0 520 400" role="group" aria-label="Foot diagram — choose the area where you feel pain">
               <defs>
                 <linearGradient id="footg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#e8f4fc"/>
-                  <stop offset="1" stop-color="#cfe7f7"/>
+                  <stop offset="0" stop-color="#f6f0e1"/>
+                  <stop offset="1" stop-color="#eadfc2"/>
                 </linearGradient>
               </defs>
               <path d="M272,0 C272,60 268,110 258,150 C246,196 210,225 165,242 C120,256 75,262 48,264 C28,266 18,276 20,289 C22,303 38,312 68,316 C120,322 180,326 235,326 C275,326 305,330 330,334 C365,340 398,332 404,308 C408,284 400,250 388,215 C380,185 372,150 370,110 C369,60 370,25 370,0 Z"
-                fill="url(#footg)" stroke="#9cc3de" stroke-width="2"/>
-              <path d="M235,326 C255,314 285,312 330,334" fill="none" stroke="#9cc3de" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.7"/>
+                fill="url(#footg)" stroke="#c8b17c" stroke-width="2"/>
+              <path d="M235,326 C255,314 285,312 330,334" fill="none" stroke="#c8b17c" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.7"/>
               <g class="hotspot" data-spot="toes" tabindex="0" role="button" aria-label="Toes and ball of foot">
                 <circle class="halo" cx="75" cy="298" r="13"/>
                 <circle class="dot" cx="75" cy="298" r="11"/>
@@ -356,7 +367,7 @@ META-->
           <h2>What patients say about us</h2>
         </div>
         <!-- LAUNCH TODO: Replace placeholder quotes with real patient reviews (with permission) before go-live. -->
-        <div class="testi-track">
+        <div class="testi-track" tabindex="0" role="group" aria-label="Patient testimonials — scrollable">
           <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"After two years of plantar fasciitis and three cortisone shots, laser therapy is what finally got me walking without pain. I wish I'd started here."</p><footer>M.R. &middot; Jupiter, FL</footer></figure>
           <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"Dr. Cedeno actually took time to explain what was wrong and every option I had. No pressure, no upsell — just a clear plan that worked."</p><footer>J.T. &middot; Palm Beach Gardens, FL</footer></figure>
           <figure class="testi"><div class="stars" aria-label="5 star rating">★★★★★</div><p>"The burning in my feet from neuropathy kept me up every night. After my laser sessions I'm finally sleeping again. The staff is wonderful."</p><footer>D.S. &middot; Tequesta, FL</footer></figure>
@@ -435,7 +446,7 @@ META-->
       <div class="wrap">
         <div class="cta-band" data-reveal>
           <div>
-            <span class="kicker" style="color:#4fd6ff">Take the First Step</span>
+            <span class="kicker" style="color:#e8c778">Take the First Step</span>
             <h2>Ready to walk without pain?</h2>
             <p>Book your evaluation with Dr. Cedeno today. We'll find the real cause of your pain — and build a plan to fix it.</p>
           </div>

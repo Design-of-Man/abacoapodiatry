@@ -3,11 +3,11 @@
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1200, 630
-img = Image.new("RGB", (W, H), (7, 21, 39))
+img = Image.new("RGB", (W, H), (12, 11, 8))
 d = ImageDraw.Draw(img)
 
 # Vertical navy gradient
-top, bottom = (7, 21, 39), (13, 36, 64)
+top, bottom = (12, 11, 8), (24, 21, 14)
 for y in range(H):
     t = y / H
     d.line([(0, y), (W, y)], fill=tuple(int(a + (b - a) * t) for a, b in zip(top, bottom)))
@@ -18,16 +18,16 @@ gd = ImageDraw.Draw(glow)
 cx, cy, r = 1050, 60, 640
 for i in range(r, 0, -4):
     gd.ellipse([cx - i, cy - i, cx + i, cy + i], fill=int(70 * (1 - i / r)))
-img = Image.composite(Image.new("RGB", (W, H), (38, 90, 150)), img, glow)
+img = Image.composite(Image.new("RGB", (W, H), (140, 108, 44)), img, glow)
 d = ImageDraw.Draw(img)
 
 # Dot grid
 for gx in range(0, W, 34):
     for gy in range(0, H, 34):
-        d.ellipse([gx, gy, gx + 2, gy + 2], fill=(70, 110, 150))
+        d.ellipse([gx, gy, gx + 2, gy + 2], fill=(96, 86, 58))
 
 # Laser beam sweep
-for off, col in [(-3, (41, 224, 255)), (0, (80, 160, 250)), (3, (139, 92, 246))]:
+for off, col in [(-3, (232, 199, 120)), (0, (211, 172, 87)), (3, (138, 106, 42))]:
     d.line([(0, 470 + off), (W, 380 + off)], fill=col, width=2)
 
 def font(size, bold=True):
@@ -43,19 +43,19 @@ def font(size, bold=True):
 
 # Planet mark
 mx, my, mr = 140, 150, 58
-d.ellipse([mx - mr, my - mr, mx + mr, my + mr], fill=(47, 141, 245), outline=(41, 224, 255), width=3)
+d.ellipse([mx - mr, my - mr, mx + mr, my + mr], fill=(211, 172, 87), outline=(232, 199, 120), width=3)
 for band in (-22, 0, 22):
-    d.arc([mx - mr + 12, my + band - 12, mx + mr - 12, my + band + 12], 200, 340, fill=(235, 245, 255), width=4)
-d.ellipse([mx - mr - 34, my - 16, mx + mr + 34, my + 16], outline=(41, 224, 255), width=3)
+    d.arc([mx - mr + 12, my + band - 12, mx + mr - 12, my + band + 12], 200, 340, fill=(250, 246, 235), width=4)
+d.ellipse([mx - mr - 34, my - 16, mx + mr + 34, my + 16], outline=(232, 199, 120), width=3)
 
 d.text((230, 105), "JUPITER LASER", font=font(64), fill=(255, 255, 255))
-d.text((233, 180), "& REGENERATIVE MEDICINE", font=font(30), fill=(79, 214, 255))
+d.text((233, 180), "& REGENERATIVE MEDICINE", font=font(30), fill=(232, 199, 120))
 
 d.text((80, 300), "Heal Faster. Hurt Less.", font=font(58), fill=(255, 255, 255))
-d.text((80, 375), "Without Surgery or Drugs.", font=font(58), fill=(79, 214, 255))
+d.text((80, 375), "Without Surgery or Drugs.", font=font(58), fill=(232, 199, 120))
 
 d.text((80, 490), "FDA-Cleared MLS Laser Therapy  •  Shockwave  •  Regenerative Medicine",
-       font=font(26, bold=False), fill=(185, 205, 224))
+       font=font(26, bold=False), fill=(202, 195, 179))
 d.text((80, 540), "Jupiter, FL   •   (561) 624-4800   •   jupiterlaser.com",
        font=font(26), fill=(255, 255, 255))
 

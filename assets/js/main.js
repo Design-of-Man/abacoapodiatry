@@ -83,6 +83,14 @@
   } else {
     revealEls.forEach(function (el) { el.classList.add("revealed"); });
   }
+  // Failsafe: nothing may stay invisible. If an observer callback never fires
+  // (fast scroll, restored scroll position, background tab), reveal anyway.
+  window.setTimeout(function () {
+    revealEls.forEach(function (el) { el.classList.add("revealed"); });
+  }, 2500);
+  window.addEventListener("beforeprint", function () {
+    revealEls.forEach(function (el) { el.classList.add("revealed"); });
+  });
 
   /* ------------------------------------------------------------------
      Animated counters  <b data-counter="90" data-suffix="%">0</b>
@@ -145,8 +153,12 @@
   if (faqSearch) faqSearch.addEventListener("input", applyFaqFilter);
   $$(".faq-cat").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      $$(".faq-cat").forEach(function (b) { b.classList.remove("active"); });
+      $$(".faq-cat").forEach(function (b) {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       activeCat = btn.getAttribute("data-cat") || "all";
       applyFaqFilter();
     });
@@ -251,6 +263,33 @@
     var restart = $(".quiz-restart", quiz);
     if (restart) restart.addEventListener("click", function () { score = 0; setStep(0); });
     setStep(0);
+  }
+
+  /* ------------------------------------------------------------------
+     Hero video: pause control (WCAG 2.2.2 — auto-playing motion longer
+     than 5s must be pausable) + honor prefers-reduced-motion.
+     ------------------------------------------------------------------ */
+  var heroVideo = $("#hero-video");
+  var videoToggle = $("#video-toggle");
+  if (heroVideo && videoToggle) {
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var setPaused = function (paused) {
+      if (paused) {
+        heroVideo.pause();
+      } else {
+        var playing = heroVideo.play();
+        if (playing && playing.catch) playing.catch(function () {});
+      }
+      videoToggle.setAttribute("aria-pressed", paused ? "true" : "false");
+      videoToggle.setAttribute("aria-label", paused ? "Play background video" : "Pause background video");
+    };
+    if (reducedMotion.matches) setPaused(true);
+    reducedMotion.addEventListener("change", function (e) { setPaused(e.matches); });
+    videoToggle.addEventListener("click", function () {
+      setPaused(videoToggle.getAttribute("aria-pressed") !== "true");
+    });
+    // If the video can't load, hide the control so it isn't a dead button.
+    heroVideo.addEventListener("error", function () { videoToggle.style.display = "none"; }, true);
   }
 
   /* ------------------------------------------------------------------

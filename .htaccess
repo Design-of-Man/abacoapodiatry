@@ -9,6 +9,16 @@ RewriteRule ^stem-cell-therapy/?$ /services/stem-cell-therapy/ [R=301,L]
 RewriteRule ^testimonials/?$ /reviews/ [R=301,L]
 RewriteRule ^what-we-do/?$ /services/ [R=301,L]
 RewriteRule ^service-areas/?$ /locations/ [R=301,L]
+RewriteRule ^bbl/?$ /services/foot-bbl/ [R=301,L]
+RewriteRule ^bunion/?$ /conditions/bunions/ [R=301,L]
+RewriteRule ^flat-feet/?$ /conditions/flat-feet/ [R=301,L]
+RewriteRule ^wound-care/?$ /services/wound-care/ [R=301,L]
+RewriteRule ^foot-ankle-surgery/?$ /services/foot-ankle-surgery/ [R=301,L]
+RewriteRule ^providers/?$ /about/ [R=301,L]
+RewriteRule ^request-an-appointment/?$ /contact/ [R=301,L]
+RewriteRule ^videos/?$ /media/ [R=301,L]
+RewriteRule ^flat-feet-flatfoot-types-causes-treatment/?$ /conditions/flat-feet/ [R=301,L]
+RewriteRule ^physical-therapy-and-rehabilitation-after-flat-foot-surgery/?$ /conditions/flat-feet/ [R=301,L]
 
 # Serve custom 404
 ErrorDocument 404 /404.html

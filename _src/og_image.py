@@ -48,8 +48,8 @@ for band in (-22, 0, 22):
     d.arc([mx - mr + 12, my + band - 12, mx + mr - 12, my + band + 12], 200, 340, fill=(250, 246, 235), width=4)
 d.ellipse([mx - mr - 34, my - 16, mx + mr + 34, my + 16], outline=(232, 199, 120), width=3)
 
-d.text((230, 105), "JUPITER LASER", font=font(64), fill=(255, 255, 255))
-d.text((233, 180), "& REGENERATIVE MEDICINE", font=font(30), fill=(232, 199, 120))
+d.text((230, 105), "ABACOA PODIATRY", font=font(54), fill=(255, 255, 255))
+d.text((233, 172), "& LEG VEIN CENTER  •  JUPITER LASER", font=font(27), fill=(232, 199, 120))
 
 d.text((80, 300), "Heal Faster. Hurt Less.", font=font(58), fill=(255, 255, 255))
 d.text((80, 375), "Without Surgery or Drugs.", font=font(58), fill=(232, 199, 120))

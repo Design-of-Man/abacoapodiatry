@@ -75,6 +75,30 @@
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {
+      id: "bunion",
+      match: ["bunion", "bony bump", "big toe bump", "hallux valgus", "toe leaning"],
+      a: "A <strong>bunion</strong> is a progressive joint deformity — a bony bulge at the base of the big toe that worsens over time. First-line care is nonsurgical: taping, padding, custom orthotics, footwear changes, and anti-inflammatories. Large or stubbornly painful bunions may need surgical correction, which our board-certified surgeons perform — including minimally invasive techniques.<ul><li><a href='/conditions/bunions/'>Bunion treatment</a></li></ul>",
+      chips: ["Book an appointment", "Do I need surgery?"]
+    },
+    {
+      id: "bbl",
+      match: ["bbl", "fat pad", "cushion", "walking on marbles", "walking on bones", "ball of foot", "heels hurt", "liposana", "sculptra"],
+      a: "The <strong>Foot BBL&trade;</strong> is our signature fat-pad restoration procedure — it rebuilds the natural cushion under your heel and forefoot using Liposana&trade; (an adipose allograft) or Sculptra (a collagen stimulator). In-office, under local anesthesia, no liposuction, walk out same day. If it feels like you're walking on marbles or heels have become unbearable, this addresses the actual cause.<ul><li><a href='/services/foot-bbl/'>Foot BBL&trade; in depth</a></li></ul>",
+      chips: ["Is it painful?", "How much does it cost?", "Book an appointment"]
+    },
+    {
+      id: "flatfeet",
+      match: ["flat feet", "flat foot", "flatfoot", "fallen arch", "arches", "pttd"],
+      a: "Flat feet that ache, tire quickly, or roll inward deserve evaluation — especially if the arch is newly lowering (often a failing posterior tibial tendon). Care runs from custom orthotics and bracing to full flatfoot reconstruction by our surgeons.<ul><li><a href='/conditions/flat-feet/'>Flat feet treatment</a></li></ul>",
+      chips: ["Book an appointment", "What conditions do you treat?"]
+    },
+    {
+      id: "wound",
+      match: ["wound", "ulcer", "sore that won't heal", "not healing", "open sore"],
+      a: "Any wound that hasn't clearly improved in two weeks — or <strong>any wound on a diabetic foot</strong> — should be seen promptly. Our advanced wound care program includes debridement, offloading, biologics, and limb preservation. Please call " + PHONE_HTML + " today rather than waiting.<ul><li><a href='/services/wound-care/'>Wound care program</a></li></ul>",
+      chips: ["Book an appointment", "Where are you located?"]
+    },
+    {
       id: "arthritis",
       match: ["arthritis", "joint", "stiff", "big toe", "bunion", "hallux"],
       a: "Foot and ankle <strong>arthritis</strong> is very treatable: laser therapy reduces joint inflammation drug-free, and offloading strategies keep you active. Big-toe stiffness (hallux rigidus) is one of our most common presentations.<ul><li><a href='/conditions/arthritis/'>Arthritis treatment</a></li></ul>",
@@ -94,8 +118,8 @@
     },
     {
       id: "doctor",
-      match: ["doctor", "cedeno", "surgeon", "who", "podiatrist", "credentials", "qualified"],
-      a: "Care is led by <strong>Dr. Orlando Cedeno, DPM</strong> — a board-certified foot &amp; ankle surgeon (Barry University; surgical residency in reconstructive &amp; trauma surgery at Chestnut Hill Hospital/University of Pennsylvania). Because he can operate, you can trust him when he says you don't need surgery.<ul><li><a href='/meet-dr-cedeno/'>Meet Dr. Cedeno</a></li></ul>",
+      match: ["doctor", "cedeno", "mustafa", "surgeon", "who", "podiatrist", "credentials", "qualified", "providers"],
+      a: "Care is led by two foot &amp; ankle surgeons: <strong>Dr. Orlando Cedeno, DPM</strong> — board-certified, trained in reconstructive &amp; trauma surgery at Chestnut Hill Hospital/University of Pennsylvania — and <strong>Dr. Isin A. Mustafa, DPM, MSHS</strong> — Chief Resident-trained at Chino Valley Medical Center, specializing in minimally invasive surgery and regenerative medicine.<ul><li><a href='/meet-dr-cedeno/'>Meet Dr. Cedeno</a></li><li><a href='/meet-dr-mustafa/'>Meet Dr. Mustafa</a></li></ul>",
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {

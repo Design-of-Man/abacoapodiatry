@@ -43,6 +43,16 @@ REDIRECTS = {
     "what-we-do/": "/services/",
     # superseded by /locations/
     "service-areas/": "/locations/",
+    "bbl/": "/services/foot-bbl/",
+    "bunion/": "/conditions/bunions/",
+    "flat-feet/": "/conditions/flat-feet/",
+    "wound-care/": "/services/wound-care/",
+    "foot-ankle-surgery/": "/services/foot-ankle-surgery/",
+    "providers/": "/about/",
+    "request-an-appointment/": "/contact/",
+    "videos/": "/media/",
+    "flat-feet-flatfoot-types-causes-treatment/": "/conditions/flat-feet/",
+    "physical-therapy-and-rehabilitation-after-flat-foot-surgery/": "/conditions/flat-feet/",
 }
 
 REDIRECT_HTML = """<!DOCTYPE html>

@@ -45,6 +45,56 @@
       "source": "/service-areas",
       "destination": "/locations/",
       "permanent": true
+    },
+    {
+      "source": "/bbl",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/bunion",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/wound-care",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-ankle-surgery",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/providers",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/request-an-appointment",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/videos",
+      "destination": "/media/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet-flatfoot-types-causes-treatment",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
     }
   ],
   "headers": [

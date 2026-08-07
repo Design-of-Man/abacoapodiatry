@@ -17,8 +17,7 @@
     return;
   }
 
-  if (fallback) fallback.style.display = "none";
-  if (counter) counter.textContent = videos.length + " videos";
+  if (counter) counter.textContent = videos.length + " videos in the library";
 
   /* ---- Build the grid ---- */
   videos.forEach(function (v) {

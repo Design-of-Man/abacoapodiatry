@@ -272,6 +272,11 @@
   var heroVideo = $("#hero-video");
   var videoToggle = $("#video-toggle");
   if (heroVideo && videoToggle) {
+    // Cinematic half-speed drift
+    var setRate = function () { heroVideo.playbackRate = 0.5; };
+    setRate();
+    heroVideo.addEventListener("loadeddata", setRate);
+    heroVideo.addEventListener("play", setRate);
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var setPaused = function (paused) {
       if (paused) {
@@ -314,11 +319,6 @@
       e.preventDefault();
       var status = $("#form-status");
       var action = form.getAttribute("action") || "";
-      if (action.indexOf("YOUR_FORM_ID") !== -1) {
-        status.className = "form-status err";
-        status.textContent = "Online requests aren't connected yet — please call us at (561) 915-1934 and we'll get you scheduled right away.";
-        return;
-      }
       var btn = $('button[type="submit"]', form);
       btn.disabled = true;
       btn.textContent = "Sending…";

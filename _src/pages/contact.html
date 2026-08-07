@@ -52,8 +52,13 @@ META-->
             <span class="kicker">Online Request</span>
             <h2>Request your appointment</h2>
             <p>Prefer not to call? Send us your details and our team will call you back to confirm a time — usually the same business day.</p>
-            <!-- LAUNCH TODO: create a Formspree (or similar) form and replace YOUR_FORM_ID below. -->
-            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <!-- FormSubmit: requests go to the practice inbox. NOTE: the very first
+                 submission triggers a one-time activation email to
+                 AbacoaPodiatry@gmail.com — click it once and the form is live. -->
+            <form id="contact-form" action="https://formsubmit.co/ajax/AbacoaPodiatry@gmail.com" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="New appointment request — jupiterlaser.com">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
                 <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>

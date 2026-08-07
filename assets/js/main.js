@@ -316,7 +316,7 @@
       var action = form.getAttribute("action") || "";
       if (action.indexOf("YOUR_FORM_ID") !== -1) {
         status.className = "form-status err";
-        status.textContent = "Online requests aren't connected yet — please call us at (561) 624-4800 and we'll get you scheduled right away.";
+        status.textContent = "Online requests aren't connected yet — please call us at (561) 915-1934 and we'll get you scheduled right away.";
         return;
       }
       var btn = $('button[type="submit"]', form);
@@ -336,7 +336,7 @@
         }
       }).catch(function () {
         status.className = "form-status err";
-        status.textContent = "Something went wrong sending your request. Please call us at (561) 624-4800 and we'll take care of you.";
+        status.textContent = "Something went wrong sending your request. Please call us at (561) 915-1934 and we'll take care of you.";
       }).finally(function () {
         btn.disabled = false;
         btn.textContent = "Request Appointment";

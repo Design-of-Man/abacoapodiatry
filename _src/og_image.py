@@ -56,7 +56,7 @@ d.text((80, 375), "Without Surgery or Drugs.", font=font(58), fill=(232, 199, 12
 
 d.text((80, 490), "FDA-Cleared MLS Laser Therapy  •  Shockwave  •  Regenerative Medicine",
        font=font(26, bold=False), fill=(202, 195, 179))
-d.text((80, 540), "Jupiter, FL   •   (561) 624-4800   •   jupiterlaser.com",
+d.text((80, 540), "Jupiter, FL   •   (561) 915-1934   •   jupiterlaser.com",
        font=font(26), fill=(255, 255, 255))
 
 img.save("assets/img/og-image.png", optimize=True)

@@ -37,14 +37,14 @@ plus meta-refresh fallback stubs for any other host):**
 | `/stem-cell-therapy/` | `/services/stem-cell-therapy/` |
 
 ### 2. The phone number is the lead pipeline — it's everywhere and unchanged
-(561) 624-4800 appears in the header, footer, every CTA, the mobile sticky call bar, and
+(561) 915-1934 appears in the header, footer, every CTA, the mobile sticky call bar, and
 all structured data. **Do not add a call-tracking number that differs from the Google
 Business Profile number** without using a proper NAP-safe setup — number consistency is a
 local-ranking factor.
 
 ### 3. NAP consistency
 Name / Address / Phone are identical on every page and in schema:
-`Jupiter Laser & Regenerative Medicine · 4601 Military Trail, Suite 202, Jupiter, FL 33458 · (561) 624-4800`.
+`Jupiter Laser & Regenerative Medicine · 4601 Military Trail, Suite 202, Jupiter, FL 33458 · (561) 915-1934`.
 This must match the Google Business Profile exactly.
 
 ---

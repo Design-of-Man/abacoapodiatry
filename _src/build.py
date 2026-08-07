@@ -23,6 +23,9 @@ SRC = ROOT / "_src"
 PAGES = SRC / "pages"
 BASE_URL = "https://jupiterlaser.com"
 
+sys.path.insert(0, str(SRC))
+from locations import location_pages  # noqa: E402
+
 META_RE = re.compile(r"^<!--META\s*(\{.*?\})\s*META-->\s*", re.DOTALL)
 
 # Legacy jupiterlaser.com URLs -> new locations. Old URLs that we preserved
@@ -37,6 +40,8 @@ REDIRECTS = {
     "stem-cell-therapy/": "/services/stem-cell-therapy/",
     "testimonials/": "/reviews/",
     "what-we-do/": "/services/",
+    # superseded by /locations/
+    "service-areas/": "/locations/",
 }
 
 REDIRECT_HTML = """<!DOCTYPE html>
@@ -146,8 +151,10 @@ def main():
 
     sitemap_rows = []
     today = date.today().isoformat()
-    for p in pages:
-        meta = build_page(template, p.read_text(encoding="utf-8"), p.name)
+    sources = [(p.name, p.read_text(encoding="utf-8")) for p in pages]
+    sources += list(location_pages())
+    for name, raw in sources:
+        meta = build_page(template, raw, name)
         if meta.get("sitemap", True) and not meta["path"].endswith(".html"):
             sitemap_rows.append((
                 BASE_URL + "/" + meta["path"],
@@ -168,7 +175,7 @@ def main():
         encoding="utf-8",
     )
     build_redirects()
-    print(f"Built {len(pages)} pages + {len(REDIRECTS)} redirect stubs "
+    print(f"Built {len(sources)} pages + {len(REDIRECTS)} redirect stubs "
           f"+ sitemap.xml ({len(sitemap_rows)} URLs)")
 
 

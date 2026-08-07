@@ -40,6 +40,11 @@
       "source": "/what-we-do",
       "destination": "/services/",
       "permanent": true
+    },
+    {
+      "source": "/service-areas",
+      "destination": "/locations/",
+      "permanent": true
     }
   ],
   "headers": [

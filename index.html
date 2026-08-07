@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css?v=b18aa468eb">
+  <link rel="stylesheet" href="/assets/css/main.css?v=72a447fa0c">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -142,16 +142,7 @@
 
   <div class="topbar">
     <div class="wrap">
-      <div class="topbar-left">
-        <span class="topbar-item">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          4601 Military Trail, Suite 202, Jupiter, FL 33458
-        </span>
-        <span class="topbar-item">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          Mon&ndash;Thu 8&ndash;5 &middot; Fri 8&ndash;2
-        </span>
-      </div>
+      <div class="topbar-left"></div>
       <a class="topbar-item" href="tel:+15619151934">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
         <strong>(561) 915-1934</strong>
@@ -365,108 +356,48 @@
         </div>
         <div class="painmap" data-reveal>
           <div class="painmap-figure">
-            <svg viewBox="0 0 520 400" role="group" aria-label="Skeletal foot diagram — choose the area where you feel pain">
-              <defs>
-                <radialGradient id="zg" cx="0.5" cy="0.5" r="0.5">
-                  <stop offset="0" stop-color="#f2d491" stop-opacity="0.5"/>
-                  <stop offset="0.6" stop-color="#d9b45c" stop-opacity="0.18"/>
-                  <stop offset="1" stop-color="#d9b45c" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="tibg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#e9c878" stop-opacity="0.16"/>
-                  <stop offset="1" stop-color="#e9c878" stop-opacity="0.05"/>
-                </linearGradient>
-              </defs>
-
-              <!-- soft-tissue silhouette -->
-              <path class="tissue" d="M262,2
-                       C260,60 258,100 250,132
-                       C240,168 224,196 196,216
-                       C164,238 122,252 84,260
-                       C56,266 34,274 26,286
-                       C20,296 24,306 38,310
-                       C58,316 92,318 128,316
-                       C180,314 240,310 292,312
-                       C330,314 360,320 386,320
-                       C412,320 428,308 430,286
-                       C432,262 424,232 414,196
-                       C404,160 398,120 396,78
-                       C395,50 395,25 395,2"
-                    fill="none" stroke="#d9b45c" stroke-opacity="0.22" stroke-width="2"/>
-
-              <!-- tibia (shin bone) -->
-              <path class="bone" pathLength="100" d="M285,0 L285,118 C285,142 279,156 272,168 C270,176 272,184 280,188 C296,196 316,194 324,184 C328,178 326,170 322,162 C316,148 314,134 314,118 L314,0"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2" stroke-linejoin="round"/>
-              <!-- fibula hint -->
-              <path class="bone faint" pathLength="100" d="M334,0 L334,120 C334,136 336,148 340,158 C344,166 352,166 354,158 C356,148 354,134 352,120 L352,0"
-                    fill="none" stroke="#d9b45c" stroke-width="1.6"/>
-
-              <!-- talus -->
-              <path class="bone" pathLength="100" d="M268,192 C260,200 258,212 266,220 C278,230 300,232 314,226 C328,220 334,208 328,198 C320,188 306,184 292,186 C282,187 274,188 268,192 Z"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2"/>
-
-              <!-- calcaneus (heel bone) -->
-              <path class="bone" pathLength="100" d="M330,214 C324,226 326,240 336,250 C352,264 384,268 404,258 C418,250 422,236 416,222 C412,210 402,200 388,196 C372,192 350,196 338,204 C334,207 332,210 330,214 Z"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2"/>
-
-              <!-- navicular + cuneiform -->
-              <ellipse class="bone" pathLength="100" cx="248" cy="222" rx="16" ry="13" fill="url(#tibg)" stroke="#d9b45c" stroke-width="2"/>
-              <ellipse class="bone" pathLength="100" cx="216" cy="232" rx="14" ry="11" fill="url(#tibg)" stroke="#d9b45c" stroke-width="2"/>
-
-              <!-- metatarsals (rays 2-3 faint, ray 1 prominent) -->
-              <path class="bone faint" pathLength="100" d="M212,216 C186,222 158,232 140,242 C134,246 134,252 140,254 C158,258 190,250 214,240"
-                    fill="none" stroke="#d9b45c" stroke-width="1.5"/>
-              <path class="bone" pathLength="100" d="M204,240 C180,248 152,258 134,268 C126,273 126,282 134,285 C142,288 152,286 162,282 C184,274 204,264 218,256 C226,251 226,244 218,241 C213,239 208,239 204,240 Z"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2"/>
-
-              <!-- big toe phalanges -->
-              <path class="bone" pathLength="100" d="M122,272 C106,277 92,282 82,287 C76,290 76,297 82,299 C92,302 106,299 118,294 C126,291 128,284 124,278 Z"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2"/>
-              <path class="bone" pathLength="100" d="M70,291 C62,293 54,296 48,299 C44,301 44,306 48,308 C56,310 66,308 72,304 C76,301 76,295 72,292 Z"
-                    fill="url(#tibg)" stroke="#d9b45c" stroke-width="2.2"/>
-              <!-- sesamoid -->
-              <circle class="bone faint" pathLength="100" cx="128" cy="288" r="5" fill="none" stroke="#d9b45c" stroke-width="1.6"/>
-
-              <!-- Achilles tendon -->
-              <path class="tendon" pathLength="100" d="M394,196 C382,160 372,110 368,58"
-                    fill="none" stroke="#e9c878" stroke-opacity="0.55" stroke-width="5" stroke-linecap="round"/>
-
-              <!-- plantar fascia -->
-              <path class="fascia" pathLength="100" d="M382,262 C320,290 220,298 138,290"
-                    fill="none" stroke="#f2d491" stroke-width="2.4" stroke-dasharray="5 6" stroke-linecap="round"/>
-
-              <!-- pain zones -->
-              <g class="hotspot" data-spot="toes" tabindex="0" role="button" aria-label="Toes and ball of foot">
-                <circle class="zone-glow" cx="92" cy="290" r="52" fill="url(#zg)"/>
-                <circle class="halo" cx="92" cy="290" r="13"/>
-                <circle class="dot" cx="92" cy="290" r="10"/>
-              </g>
-              <g class="hotspot" data-spot="arch" tabindex="0" role="button" aria-label="Arch of foot">
-                <circle class="zone-glow" cx="248" cy="282" r="56" fill="url(#zg)"/>
-                <circle class="halo" cx="248" cy="282" r="13"/>
-                <circle class="dot" cx="248" cy="282" r="10"/>
-              </g>
-              <g class="hotspot" data-spot="heel" tabindex="0" role="button" aria-label="Heel">
-                <circle class="zone-glow" cx="382" cy="262" r="56" fill="url(#zg)"/>
-                <circle class="halo" cx="382" cy="262" r="13"/>
-                <circle class="dot" cx="382" cy="262" r="10"/>
-              </g>
-              <g class="hotspot" data-spot="achilles" tabindex="0" role="button" aria-label="Achilles tendon and back of ankle">
-                <circle class="zone-glow" cx="374" cy="112" r="52" fill="url(#zg)"/>
-                <circle class="halo" cx="374" cy="112" r="13"/>
-                <circle class="dot" cx="374" cy="112" r="10"/>
-              </g>
-              <g class="hotspot" data-spot="ankle" tabindex="0" role="button" aria-label="Ankle joint">
-                <circle class="zone-glow" cx="298" cy="196" r="52" fill="url(#zg)"/>
-                <circle class="halo" cx="298" cy="196" r="13"/>
-                <circle class="dot" cx="298" cy="196" r="10"/>
-              </g>
-              <g class="hotspot" data-spot="top" tabindex="0" role="button" aria-label="Top of foot and midfoot">
-                <circle class="zone-glow" cx="212" cy="228" r="52" fill="url(#zg)"/>
-                <circle class="halo" cx="212" cy="228" r="13"/>
-                <circle class="dot" cx="212" cy="228" r="10"/>
-              </g>
-            </svg>
+            <div class="painmap-stage">
+              <img src="/assets/img/foot-anatomy.webp" alt="" width="625" height="1128" loading="lazy">
+              <svg viewBox="0 0 625 1128" role="group" aria-label="Anatomical foot illustration — choose the area where you feel pain" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <radialGradient id="zg" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0" stop-color="#f2d491" stop-opacity="0.55"/>
+                    <stop offset="0.6" stop-color="#d9b45c" stop-opacity="0.2"/>
+                    <stop offset="1" stop-color="#d9b45c" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <g class="hotspot" data-spot="ankle" tabindex="0" role="button" aria-label="Ankle joint">
+                  <circle class="zone-glow" cx="350" cy="520" r="95" fill="url(#zg)"/>
+                  <circle class="halo" cx="350" cy="520" r="20"/>
+                  <circle class="dot" cx="350" cy="520" r="15"/>
+                </g>
+                <g class="hotspot" data-spot="achilles" tabindex="0" role="button" aria-label="Achilles tendon and back of ankle">
+                  <circle class="zone-glow" cx="460" cy="430" r="90" fill="url(#zg)"/>
+                  <circle class="halo" cx="460" cy="430" r="20"/>
+                  <circle class="dot" cx="460" cy="430" r="15"/>
+                </g>
+                <g class="hotspot" data-spot="heel" tabindex="0" role="button" aria-label="Heel">
+                  <circle class="zone-glow" cx="520" cy="625" r="95" fill="url(#zg)"/>
+                  <circle class="halo" cx="520" cy="625" r="20"/>
+                  <circle class="dot" cx="520" cy="625" r="15"/>
+                </g>
+                <g class="hotspot" data-spot="top" tabindex="0" role="button" aria-label="Top of foot and midfoot">
+                  <circle class="zone-glow" cx="290" cy="655" r="95" fill="url(#zg)"/>
+                  <circle class="halo" cx="290" cy="655" r="20"/>
+                  <circle class="dot" cx="290" cy="655" r="15"/>
+                </g>
+                <g class="hotspot" data-spot="arch" tabindex="0" role="button" aria-label="Arch of foot">
+                  <circle class="zone-glow" cx="440" cy="810" r="95" fill="url(#zg)"/>
+                  <circle class="halo" cx="440" cy="810" r="20"/>
+                  <circle class="dot" cx="440" cy="810" r="15"/>
+                </g>
+                <g class="hotspot" data-spot="toes" tabindex="0" role="button" aria-label="Toes and ball of foot">
+                  <circle class="zone-glow" cx="200" cy="1010" r="95" fill="url(#zg)"/>
+                  <circle class="halo" cx="200" cy="1010" r="20"/>
+                  <circle class="dot" cx="200" cy="1010" r="15"/>
+                </g>
+              </svg>
+            </div>
           </div>
           <div class="painmap-panel" aria-live="polite">
             <div class="painmap-card" data-spot="heel">

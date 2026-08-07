@@ -36,6 +36,21 @@
     grid.appendChild(card);
   });
 
+  /* ---- Hydrate real titles (best-effort; placeholders stay on failure) ---- */
+  videos.forEach(function (v, i) {
+    if (!/Abacoa Podiatry — Foot & Ankle Care/.test(v.title)) return; // already real
+    fetch("https://noembed.com/embed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + v.id)
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.title) {
+          v.title = d.title;
+          var el = grid.children[i] && grid.children[i].querySelector(".video-title");
+          if (el) el.textContent = d.title;
+          grid.children[i].setAttribute("aria-label", "Play video: " + d.title);
+        }
+      }).catch(function () {});
+  });
+
   /* ---- Lightbox ---- */
   var modal = document.createElement("div");
   modal.className = "video-modal";

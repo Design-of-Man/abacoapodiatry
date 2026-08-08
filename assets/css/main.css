@@ -448,6 +448,10 @@ blockquote {
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
+  /* Collapsing this to one line took it to 19px tall; padding restores a
+     24x24 target (WCAG 2.5.8) without changing how the bar reads. */
+  min-height: 28px;
+  padding: 0.3em 0.15em;
   line-height: 1.15;
   text-decoration: none;
   white-space: nowrap;
@@ -2224,3 +2228,37 @@ a.btn-ghost { color: var(--head); }
   .header-cta .live-status { display: none; }
   .logo-wordmark { width: 178px; }
 }
+
+/* The live open/closed pill outgrew the phone header: at 375px the header CTA
+   group measured 206px against 335px of container after the logo, pushing the
+   document to 397px wide and letting the page scroll sideways. The string is
+   time-dependent ("Open now" is short, "Sat — by appt" is not), so this only
+   surfaced on weekends. Hours are already in the footer, on every contact
+   block and in the mobile call bar, so the pill simply steps out below 780px. */
+@media (max-width: 780px) {
+  .header-cta .live-status { display: none; }
+}
+
+/* Buttons are nowrap so labels never break mid-phrase on desktop, but at 320px
+   a long CTA ("Request an appointment for Foot BBL") measured 448px and dragged
+   its .btn-row, the surrounding .prose and the hero glass panel past the
+   viewport, letting the whole page scroll sideways. Below 560px let the label
+   wrap instead — it only wraps when it genuinely doesn't fit, so nothing
+   changes on 375/390 where the labels already fit on one line. */
+@media (max-width: 560px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+  }
+  .btn-lg { padding: 1em 1.5em; }
+}
+
+/* The contact page's info tiles are flex rows (icon + text). Flex items default
+   to min-width:auto, so the unbreakable "AbacoaPodiatry@gmail.com" token set a
+   327px floor and pushed the tile past a 280px container at 320px wide. Let the
+   text column shrink and let the address/email wrap. */
+.info-tile > * { min-width: 0; }
+.info-tile p, .info-tile a { overflow-wrap: anywhere; }

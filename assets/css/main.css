@@ -443,17 +443,19 @@ blockquote {
   margin-bottom: 0.3rem;
 }
 
-.header-cta { display: flex; align-items: center; gap: 0.8rem; flex: none; position: relative; z-index: 45; }
+.header-cta { display: flex; align-items: center; gap: 0.7rem; flex: none; position: relative; z-index: 45; }
 .header-phone {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  gap: 0.45em;
   line-height: 1.15;
   text-decoration: none;
+  white-space: nowrap;
 }
-.header-phone .ph-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); font-weight: 600; }
+.header-phone .ph-icon { width: 16px; height: 16px; flex: none; color: var(--cyan); }
 .header-phone .ph-num { font-family: var(--font-head); font-weight: 700; font-size: 1.02rem; color: var(--head); }
-.header-phone:hover .ph-num { color: var(--cyan-deep); }
+.header-phone:hover .ph-num,
+.header-phone:hover .ph-icon { color: var(--cyan-deep); }
 
 .nav-burger {
   position: relative;
@@ -482,7 +484,7 @@ body.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(
 body.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
 body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .nav-burger { display: flex; }
   .header-phone { display: none; }
   .site-nav {
@@ -2171,7 +2173,6 @@ a.btn-ghost { color: var(--head); }
    globally rather than under a mobile breakpoint — tablets at 768px fell
    through a max-width:760px rule and kept 11.5px text. */
 @media (max-width: 1100px) {
-  .header-phone .ph-label,
   .footer-bottom,
   .footer-bottom a,
   .footer-disclaimer,
@@ -2186,4 +2187,40 @@ a.btn-ghost { color: var(--head); }
     line-height: 1.55;
   }
   .logo-tag { font-size: 0.75rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Header fit
+   The desktop bar measured 1357px of content against a 1180px .wrap, so on
+   every common laptop width (1280 / 1366 / 1440 / 1512) the Book Appointment
+   button was pushed past the right edge. Three moves fix it: give the header
+   its own wider container, tighten the nav at laptop widths, and hand mid-size
+   screens the burger instead of a crammed bar.
+   Every rule is min-width guarded so none of it leaks into the mobile menu.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1181px) {
+  /* The header may run wider than body copy; the bar reads better full-width. */
+  .site-header .wrap { width: min(1400px, calc(100% - 2.5rem)); gap: 1rem; }
+
+  .nav { gap: 0.1rem; }
+  .nav a, .nav button.nav-toggle-sub {
+    font-size: 0.9rem;
+    padding: 0.65em 0.62em;
+    gap: 0.25em;
+  }
+  .nav a.active::after { left: 0.62em; right: 0.62em; }
+}
+
+/* The roomy bar above measures 1340px of content, so it only earns its full
+   logo and open/closed pill at 1440px and up, where the container leaves ~60px
+   of slack. Below that, trim further and drop the pill — it is repeated in the
+   footer and on every contact block. */
+@media (min-width: 1181px) and (max-width: 1439px) {
+  .site-header .wrap { gap: 0.8rem; }
+  .nav a, .nav button.nav-toggle-sub { font-size: 0.86rem; padding: 0.65em 0.45em; }
+  .nav a.active::after { left: 0.45em; right: 0.45em; }
+  .header-cta { gap: 0.55rem; }
+  .header-cta .live-status { display: none; }
+  .logo-wordmark { width: 178px; }
 }

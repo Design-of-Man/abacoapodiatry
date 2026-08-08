@@ -2187,8 +2187,25 @@ a.btn-ghost { color: var(--head); }
    Every rule is min-width guarded so none of it leaks into the mobile menu.
    -------------------------------------------------------------------------- */
 @media (min-width: 1080px) {
-  /* The header may run wider than body copy; the bar reads better full-width. */
-  .site-header .wrap { width: min(1400px, calc(100% - 2.5rem)); gap: 1rem; }
+  /* Three columns rather than a flex row, so the nav is centred on the bar
+     instead of drifting toward whichever side has the wider neighbour. The
+     outer columns are equal, so the nav lands on the true centre and the logo
+     and CTA sit against their own edges. */
+  .site-header .wrap {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    /* 1280 rather than 1400: with the phone gone the bar no longer needs the
+       extra room, and at 1440 a 1400px container left 20px gutters that read
+       as edge-to-edge. This keeps the header a touch wider than the 1180px
+       body copy without touching the viewport edges. */
+    width: min(1280px, calc(100% - 2.5rem));
+    gap: 1rem;
+  }
+  /* margin-right:auto was what shoved the nav and CTA to the right. */
+  .logo { margin-right: 0; justify-self: start; }
+  .site-nav { justify-self: center; }
+  .header-cta { justify-self: end; }
 
   .nav { gap: 0.1rem; }
   .nav a, .nav button.nav-toggle-sub {
@@ -2199,29 +2216,18 @@ a.btn-ghost { color: var(--head); }
   .nav a.active::after { left: 0.62em; right: 0.62em; }
 }
 
-/* With the phone number gone the bar carries ~131px less, so the roomy config
-   (full logo, open/closed pill, generous nav padding) now measures 1208px and
-   earns its keep from 1280px up; 1320 is the floor here so it keeps ~70px of
-   slack rather than squeaking in. Below that, trim and drop the pill — it is
-   repeated in the footer and on every contact block. */
-@media (min-width: 1080px) and (max-width: 1319px) {
+/* The roomy config (full logo, open/closed pill, generous nav padding)
+   measures 1208px, which needs a 1260px container to breathe — so it starts at
+   1300px. Below that, trim and drop the pill; it is repeated in the footer and
+   on every contact block. */
+@media (min-width: 1080px) and (max-width: 1299px) {
   .site-header .wrap { gap: 0.8rem; }
   .nav a, .nav button.nav-toggle-sub { font-size: 0.86rem; padding: 0.65em 0.45em; }
   .nav a.active::after { left: 0.45em; right: 0.45em; }
   .header-cta { gap: 0.55rem; }
-  .header-cta .live-status { display: none; }
   .logo-wordmark { width: 178px; }
 }
 
-/* The live open/closed pill outgrew the phone header: at 375px the header CTA
-   group measured 206px against 335px of container after the logo, pushing the
-   document to 397px wide and letting the page scroll sideways. The string is
-   time-dependent ("Open now" is short, "Sat — by appt" is not), so this only
-   surfaced on weekends. Hours are already in the footer, on every contact
-   block and in the mobile call bar, so the pill simply steps out below 780px. */
-@media (max-width: 780px) {
-  .header-cta .live-status { display: none; }
-}
 
 /* Buttons are nowrap so labels never break mid-phrase on desktop, but at 320px
    a long CTA ("Request an appointment for Foot BBL") measured 448px and dragged

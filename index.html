@@ -263,10 +263,15 @@
 <!-- ================= HERO ================= -->
     <section class="hero has-video">
       <div class="hero-media" aria-hidden="true">
-        <video id="hero-video" autoplay muted loop playsinline preload="auto"
-               poster="/assets/img/hero-poster.jpg">
-          <source src="/assets/video/lighthouse.mp4" type="video/mp4">
-        </video>
+        <!-- No <source> here on purpose: main.js attaches exactly one by
+             matchMedia, so phones fetch the 2.2MB mobile encode and never the
+             25.6MB desktop one. preload="none" lets the poster paint first. -->
+        <video id="hero-video" autoplay muted loop playsinline preload="none"
+               poster="/assets/img/hero-poster.jpg"
+               data-mp4-full="/assets/video/lighthouse-hd.mp4"
+               data-mp4-mobile="/assets/video/lighthouse-mobile.mp4"
+               data-webm-full="/assets/video/lighthouse-hd.webm"
+               data-webm-mobile="/assets/video/lighthouse-mobile.webm"></video>
       </div>
       <button class="video-toggle" id="video-toggle" aria-pressed="false"
               aria-label="Pause background video">
@@ -902,6 +907,6 @@
 
   <script src="/assets/js/assistant.js?v=b906604d9e" defer></script>
 
-  <script src="/assets/js/main.js?v=2b43b8ae13" defer></script>
+  <script src="/assets/js/main.js?v=a21df98dd3" defer></script>
 </body>
 </html>

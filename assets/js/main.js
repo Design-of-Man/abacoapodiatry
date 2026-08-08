@@ -273,7 +273,35 @@
   var heroVideo = $("#hero-video");
   var videoToggle = $("#video-toggle");
   if (heroVideo && videoToggle) {
-    // Cinematic half-speed drift
+    // Attach exactly one source so only that file is ever downloaded. Under
+    // prefers-reduced-motion we attach nothing at all and leave the poster —
+    // no reason to spend 25MB of someone's data on motion they asked not to see.
+    if (!heroVideo.querySelector("source") && heroVideo.dataset.mp4Full) {
+      var wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (wantsMotion) {
+        var small = window.matchMedia("(max-width: 767px)").matches;
+        // MP4 first: it is the smaller file in both tiers and every mainstream
+        // browser decodes H.264. WebM second, for builds without proprietary
+        // codecs (some Linux Firefox/Chromium) that would otherwise show only
+        // the poster. The browser downloads the FIRST source it can play, so
+        // normal visitors never fetch both.
+        [
+          [small ? heroVideo.dataset.mp4Mobile : heroVideo.dataset.mp4Full, "video/mp4"],
+          [small ? heroVideo.dataset.webmMobile : heroVideo.dataset.webmFull, "video/webm"]
+        ].forEach(function (pair) {
+          if (!pair[0]) return;
+          var s = document.createElement("source");
+          s.src = pair[0];
+          s.type = pair[1];
+          heroVideo.appendChild(s);
+        });
+        heroVideo.load();
+        var kick = heroVideo.play();
+        if (kick && kick.catch) kick.catch(function () {});
+      }
+    }
+    // Cinematic drift — 0.75x, not 0.5x: on a 30fps source half speed lands at
+    // an effective 15fps and judders.
     var setRate = function () { heroVideo.playbackRate = 0.75; };
     setRate();
     heroVideo.addEventListener("loadeddata", setRate);
@@ -294,8 +322,22 @@
     videoToggle.addEventListener("click", function () {
       setPaused(videoToggle.getAttribute("aria-pressed") !== "true");
     });
-    // If the video can't load, hide the control so it isn't a dead button.
-    heroVideo.addEventListener("error", function () { videoToggle.style.display = "none"; }, true);
+    // Hide the control only when there is genuinely nothing to pause. A <source>
+    // that fails bubbles an error event here too — that is the normal MP4 ->
+    // WebM fallback, and swallowing it used to strip the pause control off a
+    // perfectly good playing video (WCAG 2.2.2 needs it).
+    var hideToggle = function () { videoToggle.style.display = "none"; };
+    heroVideo.addEventListener("error", function (e) {
+      if (e.target !== heroVideo) return;              // a <source> failing is fine
+      hideToggle();
+    }, true);
+    // NETWORK_NO_SOURCE: every candidate failed, so only the poster is showing.
+    heroVideo.addEventListener("loadstart", function () {
+      if (heroVideo.networkState === 3) hideToggle();
+    });
+    // Under prefers-reduced-motion we attach no sources at all, so there is no
+    // motion to pause either.
+    if (!heroVideo.querySelector("source")) hideToggle();
   }
 
   /* ------------------------------------------------------------------

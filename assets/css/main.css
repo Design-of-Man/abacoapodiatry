@@ -444,22 +444,6 @@ blockquote {
 }
 
 .header-cta { display: flex; align-items: center; gap: 0.7rem; flex: none; position: relative; z-index: 45; }
-.header-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45em;
-  /* Collapsing this to one line took it to 19px tall; padding restores a
-     24x24 target (WCAG 2.5.8) without changing how the bar reads. */
-  min-height: 28px;
-  padding: 0.3em 0.15em;
-  line-height: 1.15;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.header-phone .ph-icon { width: 16px; height: 16px; flex: none; color: var(--cyan); }
-.header-phone .ph-num { font-family: var(--font-head); font-weight: 700; font-size: 1.02rem; color: var(--head); }
-.header-phone:hover .ph-num,
-.header-phone:hover .ph-icon { color: var(--cyan-deep); }
 
 .nav-burger {
   position: relative;
@@ -488,9 +472,8 @@ body.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(
 body.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
 body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 1180px) {
+@media (max-width: 1079px) {
   .nav-burger { display: flex; }
-  .header-phone { display: none; }
   .site-nav {
     position: fixed;
     inset: 0;
@@ -2203,7 +2186,7 @@ a.btn-ghost { color: var(--head); }
    screens the burger instead of a crammed bar.
    Every rule is min-width guarded so none of it leaks into the mobile menu.
    -------------------------------------------------------------------------- */
-@media (min-width: 1181px) {
+@media (min-width: 1080px) {
   /* The header may run wider than body copy; the bar reads better full-width. */
   .site-header .wrap { width: min(1400px, calc(100% - 2.5rem)); gap: 1rem; }
 
@@ -2216,11 +2199,12 @@ a.btn-ghost { color: var(--head); }
   .nav a.active::after { left: 0.62em; right: 0.62em; }
 }
 
-/* The roomy bar above measures 1340px of content, so it only earns its full
-   logo and open/closed pill at 1440px and up, where the container leaves ~60px
-   of slack. Below that, trim further and drop the pill — it is repeated in the
-   footer and on every contact block. */
-@media (min-width: 1181px) and (max-width: 1439px) {
+/* With the phone number gone the bar carries ~131px less, so the roomy config
+   (full logo, open/closed pill, generous nav padding) now measures 1208px and
+   earns its keep from 1280px up; 1320 is the floor here so it keeps ~70px of
+   slack rather than squeaking in. Below that, trim and drop the pill — it is
+   repeated in the footer and on every contact block. */
+@media (min-width: 1080px) and (max-width: 1319px) {
   .site-header .wrap { gap: 0.8rem; }
   .nav a, .nav button.nav-toggle-sub { font-size: 0.86rem; padding: 0.65em 0.45em; }
   .nav a.active::after { left: 0.45em; right: 0.45em; }

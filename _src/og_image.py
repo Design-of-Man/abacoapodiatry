@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Generate the 1200x630 Open Graph share image (assets/img/og-image.png)."""
+"""Generate the 1200x630 Open Graph share image (assets/img/og-image.png).
+
+Flat RGB, no alpha: iMessage, Slack and Facebook all paint transparency onto
+their own backdrop (grey in iMessage), so a share card must carry its own
+background rather than borrowing one.
+"""
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1200, 630
 img = Image.new("RGB", (W, H), (12, 11, 8))
 d = ImageDraw.Draw(img)
 
-# Vertical navy gradient
+# Vertical gradient
 top, bottom = (12, 11, 8), (24, 21, 14)
 for y in range(H):
     t = y / H
@@ -26,38 +31,53 @@ for gx in range(0, W, 34):
     for gy in range(0, H, 34):
         d.ellipse([gx, gy, gx + 2, gy + 2], fill=(96, 86, 58))
 
-# Laser beam sweep
+# Gold sweep
 for off, col in [(-3, (232, 199, 120)), (0, (211, 172, 87)), (3, (138, 106, 42))]:
     d.line([(0, 470 + off), (W, 380 + off)], fill=col, width=2)
 
-def font(size, bold=True):
-    for name in (
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold
-        else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-    ):
-        try:
-            return ImageFont.truetype(name, size)
-        except OSError:
-            continue
-    return ImageFont.load_default()
 
-# Real practice logo
+def font(size, bold=True):
+    path = ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold
+            else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
+    try:
+        return ImageFont.truetype(path, size)
+    except OSError:
+        return ImageFont.load_default()
+
+
+def fit(text, start, max_w, bold=True):
+    """Largest size at which `text` still fits `max_w`. The headline changed
+    once already; measuring beats guessing a size that silently overflows."""
+    size = start
+    while size > 12:
+        f = font(size, bold)
+        if d.textlength(text, font=f) <= max_w:
+            return f
+        size -= 2
+    return font(12, bold)
+
+
+# Practice logo
 logo = Image.open("assets/img/logo-abacoa.png").convert("RGBA")
 lw = 430
 logo = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
 img.paste(logo, (78, 74), logo)
 
+d.text((548, 128), "FOOT & ANKLE", font=font(26), fill=(232, 199, 120))
+d.text((548, 166), "SPECIALISTS", font=font(26), fill=(232, 199, 120))
 
-d.text((540, 128), "JUPITER LASER &", font=font(26), fill=(232, 199, 120))
-d.text((540, 166), "REGENERATIVE MEDICINE", font=font(26), fill=(232, 199, 120))
+MAXW = W - 160
+l1, l2 = "Walk Without Pain Again.", "Jupiter's Foot & Ankle Specialists."
+d.text((80, 300), l1, font=fit(l1, 58, MAXW), fill=(255, 255, 255))
+d.text((80, 375), l2, font=fit(l2, 58, MAXW), fill=(232, 199, 120))
 
-d.text((80, 300), "Heal Faster. Hurt Less.", font=font(58), fill=(255, 255, 255))
-d.text((80, 375), "Without Surgery or Drugs.", font=font(58), fill=(232, 199, 120))
+sub = "MLS Laser  •  Shockwave  •  Regenerative Medicine  •  Bunions  •  Surgery"
+d.text((80, 490), sub, font=fit(sub, 26, MAXW, bold=False), fill=(202, 195, 179))
 
-d.text((80, 490), "FDA-Cleared MLS Laser Therapy  •  Shockwave  •  Regenerative Medicine",
-       font=font(26, bold=False), fill=(202, 195, 179))
-d.text((80, 540), "Jupiter, FL   •   (561) 915-1934   •   jupiterlaser.com",
-       font=font(26), fill=(255, 255, 255))
+# No domain here on purpose: the site is mid-migration between hosts, and a
+# baked-in URL is the one thing on this card that can silently go stale.
+foot = "Jupiter & Palm Beach Gardens, FL   •   (561) 915-1934"
+d.text((80, 540), foot, font=fit(foot, 26, MAXW), fill=(255, 255, 255))
 
 img.save("assets/img/og-image.png", optimize=True)
 print("Wrote assets/img/og-image.png")

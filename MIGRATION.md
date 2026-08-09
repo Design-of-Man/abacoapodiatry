@@ -60,6 +60,22 @@ This must match the Google Business Profile exactly.
    property follows the domain, not the old site. If the current SEO vendor owns the
    only verification, add owner verification now (DNS TXT record) *before* the switch.
 3. **Deploy to a temporary URL** (e.g. Netlify's `*.netlify.app`) and click through it.
+3a. **Rebuild with the production image origin.** Social preview images (`og:image`,
+   `twitter:image`, schema `image`/`logo`/`thumbnailUrl`) point at the deployment host
+   rather than the canonical domain, because before cutover `jupiterlaser.com` still
+   serves the old site — an `og:image` there 404s and scrapers fall back to whatever
+   in-page image they find, which is the transparent logo (iMessage paints it on grey).
+   Canonical URLs already point at `jupiterlaser.com`, so only the image origin needs
+   flipping:
+
+   ```bash
+   IMAGE_ORIGIN=https://jupiterlaser.com python3 _src/build.py
+   ```
+
+   Then re-scrape the card so caches update: Facebook Sharing Debugger, LinkedIn Post
+   Inspector, and for iMessage just send the link to yourself from a different thread
+   (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
+   the images still resolve, just from the Vercel host.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
 5. **Same day:** in Search Console, submit `https://jupiterlaser.com/sitemap.xml`; in
    Bing Webmaster Tools (free, imports from GSC in two clicks), do the same.

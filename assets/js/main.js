@@ -198,31 +198,6 @@
   });
 
   /* ------------------------------------------------------------------
-     Foot pain map
-     ------------------------------------------------------------------ */
-  var hotspots = $$(".hotspot");
-  if (hotspots.length) {
-    var showSpot = function (id) {
-      $$(".painmap-card").forEach(function (c) {
-        c.classList.toggle("active", c.getAttribute("data-spot") === id);
-      });
-      hotspots.forEach(function (h) {
-        h.classList.toggle("active", h.getAttribute("data-spot") === id);
-      });
-    };
-    hotspots.forEach(function (h) {
-      var activate = function () { showSpot(h.getAttribute("data-spot")); };
-      h.addEventListener("click", activate);
-      h.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
-      });
-    });
-    // show the first card by default
-    var first = $(".painmap-card");
-    if (first) showSpot(first.getAttribute("data-spot"));
-  }
-
-  /* ------------------------------------------------------------------
      "Is laser therapy right for me?" quiz
      ------------------------------------------------------------------ */
   var quiz = $("#laser-quiz");

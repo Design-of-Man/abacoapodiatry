@@ -1044,41 +1044,9 @@ details.faq.hidden { display: none; }
 /* --------------------------------------------------------------------------
    Foot pain map
    -------------------------------------------------------------------------- */
-.painmap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.5rem); align-items: center; }
-@media (max-width: 860px) { .painmap { grid-template-columns: 1fr; } }
-.painmap-figure {
-  position: relative;
-  background: none;
-  border: 0;
-  padding: 0;
-  box-shadow: none;
-}
-.painmap-figure svg { width: 100%; height: auto; display: block; }
-.painmap-stage {
-  position: relative;
-  max-width: 430px;
-  margin-inline: auto;
-}
-.painmap-stage img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.55));
-  animation: foot-float 7s ease-in-out infinite alternate;
-}
-.painmap-stage svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  animation: foot-float 7s ease-in-out infinite alternate;
-}
 @keyframes foot-float {
   from { transform: translateY(0); }
   to { transform: translateY(-12px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .painmap-stage img, .painmap-stage svg { animation: none; }
 }
 
 /* X-ray draw-in: every bone traces itself on reveal */
@@ -1110,56 +1078,11 @@ details.faq.hidden { display: none; }
 }
 
 /* Selected zone lights up */
-.zone-glow { opacity: 0; transition: opacity 0.45s ease; pointer-events: none; }
-.hotspot:hover .zone-glow, .hotspot.active .zone-glow, .hotspot:focus-visible .zone-glow { opacity: 1; }
-.hotspot { cursor: pointer; }
-.hotspot .dot {
-  fill: #ffd977;
-  stroke: #241a05;
-  stroke-width: 4;
-  filter: drop-shadow(0 0 10px rgba(255, 217, 119, 0.95))
-          drop-shadow(0 2px 5px rgba(0, 0, 0, 0.65));
-  transition: fill 0.2s ease, r 0.2s ease;
-}
-.hotspot .halo {
-  fill: none;
-  stroke: #ffd977;
-  stroke-width: 3;
-  opacity: 0.9;
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: halo 2.2s ease-out infinite;
-}
 @keyframes halo {
   0%   { transform: scale(0.55); opacity: 0.95; }
   70%  { transform: scale(2.4); opacity: 0; }
   100% { transform: scale(2.4); opacity: 0; }
 }
-.hotspot:hover .dot, .hotspot.active .dot { fill: var(--violet); }
-.hotspot.active .halo { stroke: var(--violet); }
-.painmap-panel { min-height: 320px; }
-.painmap-card {
-  background: #16140f;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 1.8rem;
-  box-shadow: var(--shadow-md);
-  display: none;
-}
-.painmap-card.active { display: block; animation: fadeUp 0.35s ease; }
-.painmap-card .tag {
-  display: inline-block;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cyan-deep);
-  background: var(--laser-soft);
-  padding: 0.35em 0.9em;
-  border-radius: 999px;
-  margin-bottom: 0.9rem;
-}
-.painmap-card ul { margin-bottom: 1.2rem; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -2165,7 +2088,7 @@ a.btn-ghost { color: var(--head); }
   .footer-disclaimer,
   .article-meta,
   .crumbs,
-  .painmap-card .tag,
+  .symptom-card .tag,
   .form-note,
   .med-note,
   .assist-note,
@@ -2252,3 +2175,29 @@ a.btn-ghost { color: var(--head); }
    text column shrink and let the address/email wrap. */
 .info-tile > * { min-width: 0; }
 .info-tile p, .info-tile a { overflow-wrap: anywhere; }
+
+
+/* Symptom guide cards. These carry the copy and condition links that used to
+   sit behind the interactive foot diagram; without hotspots driving them they
+   are all visible at once, so they need to read as a set. */
+.symptom-grid { align-items: stretch; }
+.symptom-card { display: flex; flex-direction: column; }
+.symptom-card .tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-deep);
+  border: 1px solid rgba(214, 185, 116, 0.35);
+  background: rgba(214, 185, 116, 0.08);
+  border-radius: 999px;
+  padding: 0.35em 0.9em;
+  margin-bottom: 0.9rem;
+}
+.symptom-card h3 { font-size: 1.12rem; margin-bottom: 0.5em; }
+.symptom-card ul { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+.symptom-card ul li { margin: 0; font-size: 0.92rem; }
+/* Pin the CTA to the bottom so buttons line up across cards of uneven height. */
+.symptom-card .btn { margin-top: auto; align-self: flex-start; }

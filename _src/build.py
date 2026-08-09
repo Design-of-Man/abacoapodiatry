@@ -30,6 +30,17 @@ PAGES = SRC / "pages"
 import os
 BASE_URL = os.environ.get("SITE_ORIGIN", "https://jupiterlaser.com").rstrip("/")
 
+# Social preview images must resolve on the host actually SERVING the page, not
+# on the canonical domain. Until the cutover, jupiterlaser.com still points at
+# the old site, so an og:image there 404s and scrapers fall back to whatever
+# in-page image they can find -- which is the transparent logo, and iMessage
+# paints transparency on grey. Canonical stays on the real domain so launch SEO
+# is right; only the image URLs follow the deployment.
+# At cutover: rebuild with IMAGE_ORIGIN=https://jupiterlaser.com (see MIGRATION.md).
+IMAGE_ORIGIN = os.environ.get(
+    "IMAGE_ORIGIN", "https://abacoapodiatry.vercel.app"
+).rstrip("/")
+
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
 
@@ -153,6 +164,9 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{BODY_CLASS}}", f' class="{meta["bodyclass"]}"' if meta.get("bodyclass") else "")
         .replace("{{SCHEMA}}", schema_html)
         .replace("{{CONTENT}}", content)
+        # Last, so it also reaches placeholders inside page-level schema and
+        # page bodies -- not just the shared template.
+        .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)
     )
 
     out_file.parent.mkdir(parents=True, exist_ok=True)

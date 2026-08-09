@@ -27,7 +27,7 @@
   --laser-soft: linear-gradient(120deg, rgba(232, 199, 120, 0.12), rgba(211, 172, 87, 0.12) 52%, rgba(138, 106, 42, 0.12));
 
   /* Type */
-  --font-head: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-head: "Lora", Georgia, "Times New Roman", serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
 
   /* Rhythm */

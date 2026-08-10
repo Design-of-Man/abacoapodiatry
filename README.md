@@ -35,7 +35,13 @@ Preview locally: `python3 -m http.server 8000` → http://localhost:8000
 
 ## Deploying
 
-Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `_redirects` handles the 301s automatically) or Apache-style hosting (`.htaccess` included). For GitHub Pages, use a **custom domain** (project-subpath URLs would break absolute links).
+**This repo deploys to Vercel** — project `abacoapodiatry` under the `thedesignofman` team, git-connected to `Design-of-Man/abacoapodiatry`.
+
+- Production branch is **`main`**. Pushing to `main` deploys to production; any other branch gets a preview URL.
+- **There is no build command.** Vercel serves the committed repo root as static files. `python3 _src/build.py` runs on *your* machine and its output is committed — see [Editing](#editing). A push whose generated pages weren't rebuilt and committed ships the old pages.
+- `vercel.json` carries the 301s and security/cache headers. `_redirects` (Netlify) and `.htaccess` (Apache) are kept in sync for portability but are inert on Vercel.
+
+The site remains a plain static bundle, so any static host still works. For GitHub Pages, use a **custom domain** — project-subpath URLs would break the absolute links.
 
 ## ⚠️ Pre-launch checklist (do these before pointing the domain)
 
@@ -48,15 +54,11 @@ Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `
 - [ ] **Remaining photos**: drop `dr-cedeno.jpg`, `office.jpg`, `mls-laser.jpg` into
       `assets/img/photos/` (see the README there for sizes). Until then each slot
       shows a gold monogram, never a broken image.
-- [ ] **Make the hero video durable.** The lighthouse video is currently fetched at
-      build time from a one-time Dropbox link, which will not survive future
-      rebuilds. Fix it permanently one of two ways:
-      1. In Dropbox, share `lighthouse-1440p.mp4` → "Anyone with the link" → copy the
-         URL, change `?dl=0` to `?raw=1`, and set it as a `HERO_VIDEO_URL`
-         environment variable in the Vercel project; or
-      2. Commit the file to the repo at `assets/video/lighthouse.mp4` (~5 MB).
-      With neither in place the hero falls back to the generated poster image and
-      hides the pause button — it still looks finished.
+- [x] ~~**Make the hero video durable.**~~ Done — the encodes are committed under
+      `assets/video/` (desktop + mobile, MP4 and WebM), so no deploy-time fetch is
+      involved. `_src/vercel-build.sh` and its `HERO_VIDEO_URL` variable are dead
+      leftovers from the Dropbox approach; nothing runs them (there is no build
+      command) and the variable is not read anywhere.
 - [ ] **Verify the patient reviews verbatim.** The quotes on the home and reviews
       pages are the practice's real reviews, recovered from its own
       /testimonials/ page and Healthgrades via search, so wording may be lightly

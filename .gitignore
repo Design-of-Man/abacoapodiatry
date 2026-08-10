@@ -1,0 +1,10 @@
+# Python build artifacts from _src/build.py
+__pycache__/
+*.py[cod]
+
+# Vercel CLI local link
+.vercel/
+
+# OS cruft
+.DS_Store
+Thumbs.db

@@ -29,6 +29,20 @@ whether or not the page changed. So a rebuild always dirties the sitemap. If you
 didn't touch page content, `git checkout sitemap.xml` before committing — otherwise you are
 telling search engines all 53 URLs changed when none did.
 
+## Meta values are escaped at build time
+
+`build.py` runs `title`, `desc` and the canonical through `esc()` before substituting them.
+This is load-bearing, not decoration: those values land in `<title>` (RCDATA, where a bare
+`&` starts an entity) and in `content="..."` attributes (where a literal `"` closes the
+attribute and silently truncates the value to nothing). A description in
+`_src/pages/cond-sprains.html` opens with a quoted phrase and shipped an **empty** meta
+description for exactly that reason. Write `title`/`desc` in the META block as plain text —
+real `&`, real quotes — and let the build escape them. Don't pre-escape by hand, or you get
+`&amp;amp;`.
+
+JSON-LD is emitted with `<` escaped as `<` so a schema value containing a closing
+script tag can't break out of the block.
+
 ## Deploy pipeline
 
 | | |
@@ -49,11 +63,22 @@ to the wrong base and a fresh clone checks out the wrong branch. **Always set a 
 `_redirects` (Netlify) and `.htaccess` (Apache) are maintained for portability but are inert
 on Vercel. If you add a redirect, add it to `vercel.json` or it will not take effect.
 
+`vercel.json` also sends `X-Robots-Tag: noindex, nofollow` on any `*.vercel.app` host. That
+is deliberate — see the next section. Don't widen that rule to `/(.*)` unconditionally, and
+don't delete it before the domain is attached.
+
 ## Domains are not cut over yet
 
 `jupiterlaser.com` and `abacoapodiatry.com` are **not attached to the Vercel project** — it
 serves only `*.vercel.app` hostnames. `jupiterlaser.com` still serves the client's old site.
 Read `MIGRATION.md` before doing anything that touches DNS or URLs.
+
+Because of that split the live `*.vercel.app` host serves pages canonicalised to a domain
+that returns different content. Search engines ignore a canonical whose target doesn't
+match and index the staging copy instead, so the host is blocked with `X-Robots-Tag` in
+`vercel.json`. The rule keys on hostname, so attaching the real domain lifts it with no
+cleanup step. `MIGRATION.md` step 5 has the two curls that verify it landed the right way
+round.
 
 Two build-time origins encode this split:
 

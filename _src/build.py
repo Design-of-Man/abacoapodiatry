@@ -13,11 +13,24 @@ page in _src/template.html, writes it to the site root, and regenerates
 sitemap.xml. Nothing else on the site is generated — CSS/JS/images are static.
 """
 import hashlib
+import html
 import json
 import re
 import sys
 from datetime import date
 from pathlib import Path
+
+
+def esc(value):
+    """HTML-escape a meta value before it goes into markup.
+
+    Titles and descriptions land in two hostile places: inside <title>, which is
+    RCDATA where a bare `&` starts an entity reference, and inside
+    content="..." attributes, where a literal `"` closes the attribute early and
+    silently truncates the value. Both occur in real page metadata -- an
+    apostrophe-free quote in a description is enough to destroy it.
+    """
+    return html.escape(str(value), quote=True)
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_src"
@@ -140,11 +153,15 @@ def build_page(template: str, raw: str, name: str):
             "itemListElement": items,
         })
 
-    schema_html = "".join(
-        '  <script type="application/ld+json">\n  %s\n  </script>\n'
-        % json.dumps(s, indent=2, ensure_ascii=False).replace("\n", "\n  ")
-        for s in schemas
-    )
+    def ld_json(obj):
+        # Escape `<` so a value containing `</script>` cannot terminate the block
+        # and spill schema into the document. < is valid JSON and parses back
+        # to `<`, so Google and every other consumer still read the original text.
+        body = json.dumps(obj, indent=2, ensure_ascii=False).replace("<", "\\u003c")
+        return ('  <script type="application/ld+json">\n  %s\n  </script>\n'
+                % body.replace("\n", "\n  "))
+
+    schema_html = "".join(ld_json(s) for s in schemas)
 
     path = meta["path"]
     canon = BASE_URL + "/" + path
@@ -155,9 +172,9 @@ def build_page(template: str, raw: str, name: str):
 
     html = (
         template
-        .replace("{{TITLE}}", meta["title"])
-        .replace("{{DESC}}", meta["desc"])
-        .replace("{{CANON}}", canon)
+        .replace("{{TITLE}}", esc(meta["title"]))
+        .replace("{{DESC}}", esc(meta["desc"]))
+        .replace("{{CANON}}", esc(canon))
         .replace("{{ROBOTS}}", meta.get("robots", "index, follow"))
         .replace("{{OG_TYPE}}", meta.get("ogtype", "website"))
         .replace("{{NAV}}", meta.get("nav", ""))

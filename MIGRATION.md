@@ -77,12 +77,30 @@ This must match the Google Business Profile exactly.
    (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
    the images still resolve, just from the Vercel host.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
-5. **Same day:** in Search Console, submit `https://jupiterlaser.com/sitemap.xml`; in
-   Bing Webmaster Tools (free, imports from GSC in two clicks), do the same.
-6. **Test the 301s** — hit each legacy URL and confirm it lands on the right new page.
-7. **Google Business Profile:** confirm the website link still points to
+5. **Confirm the staging block lifted.** Until cutover the site is reachable at
+   `abacoapodiatry.vercel.app`, which is public (no deployment protection) and serves
+   pages whose canonical points at `jupiterlaser.com` — a domain that still returns the
+   *old* site. A canonical whose target doesn't match gets ignored, so Google is free to
+   index the `.vercel.app` copies and have them compete with the real domain later.
+   `vercel.json` therefore sends `X-Robots-Tag: noindex, nofollow` on any `*.vercel.app`
+   host. The rule keys on hostname, so attaching the real domain lifts it automatically —
+   nothing to remember to remove. **Verify once after DNS lands:**
+
+   ```bash
+   curl -sI https://jupiterlaser.com/ | grep -i x-robots-tag   # expect: no output
+   curl -sI https://abacoapodiatry.vercel.app/ | grep -i x-robots-tag   # expect: noindex
+   ```
+
+   If the first command prints a noindex, stop and fix it before submitting the sitemap —
+   that would deindex the live site.
+6. **Same day:** in Search Console, submit `https://jupiterlaser.com/sitemap.xml`; in
+   Bing Webmaster Tools (free, imports from GSC in two clicks), do the same. Bing also
+   supports **IndexNow** for near-instant recrawls — worth wiring up once the domain is
+   live, since it needs a key file served from the real origin.
+7. **Test the 301s** — hit each legacy URL and confirm it lands on the right new page.
+8. **Google Business Profile:** confirm the website link still points to
    jupiterlaser.com, and use "Website" appointment link → `/contact/`.
-8. **Google Ads:** update any ad final URLs pointing at old deep pages to the new URLs
+9. **Google Ads:** update any ad final URLs pointing at old deep pages to the new URLs
    (or rely on the 301s, but direct links preserve Quality Score better). The new
    condition pages (`/conditions/plantar-fasciitis/` etc.) make far better ad landing
    pages than a homepage — expect Quality Score and cost-per-lead to improve.

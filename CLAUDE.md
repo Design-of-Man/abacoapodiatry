@@ -43,6 +43,20 @@ real `&`, real quotes — and let the build escape them. Don't pre-escape by han
 JSON-LD is emitted with `<` escaped as `<` so a schema value containing a closing
 script tag can't break out of the block.
 
+## Two schema fields the build adds for you
+
+Don't hand-author these in a page's META block; `build.py` fills them in.
+
+- **A `WebPage` entity**, on any page whose META declares no page-level schema of its
+  own (`*Page`, `Article`, `BlogPosting`). Built from `title`, `desc` and the canonical,
+  linked to the sitewide `#website` and `#clinic` nodes. Declare your own `MedicalWebPage`
+  and the build leaves it alone.
+- **`dateModified`**, from the last git commit that touched the page's source — or today
+  if that source has uncommitted edits. Deliberately *not* the build date: answer engines
+  weight recency, so stamping today onto all 54 pages every rebuild would assert a
+  freshness that isn't real. Outside a git checkout the field is omitted rather than
+  guessed. If you ever see all 54 pages sharing one date, that's the bug.
+
 ## Deploy pipeline
 
 | | |

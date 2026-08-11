@@ -12,13 +12,54 @@ Run `python3 _src/build.py` from the repo root (or anywhere). It wraps every
 page in _src/template.html, writes it to the site root, and regenerates
 sitemap.xml. Nothing else on the site is generated — CSS/JS/images are static.
 """
+import functools
 import hashlib
 import html
 import json
 import re
+import subprocess
 import sys
 from datetime import date
 from pathlib import Path
+
+
+def _git(*args):
+    """Run a git command from the repo root, returning stdout or "" on any failure."""
+    try:
+        r = subprocess.run(("git",) + args, cwd=str(ROOT), capture_output=True,
+                           text=True, timeout=15)
+        return r.stdout if r.returncode == 0 else ""
+    except Exception:
+        return ""
+
+
+@functools.lru_cache(maxsize=1)
+def modified_dates():
+    """Map repo-relative path -> the date its content actually last changed.
+
+    Answer engines weight recency, which is exactly why this must not be the
+    build date: stamping today onto all 54 pages every rebuild would assert a
+    freshness that isn't real, the same way a blanket sitemap lastmod does. So
+    the date comes from the last commit that touched the file, and a file with
+    uncommitted edits is dated today because it genuinely is being changed now.
+    Outside a git checkout this returns nothing and callers omit the field --
+    an absent dateModified beats a wrong one.
+    """
+    dates, cur = {}, None
+    for line in _git("log", "--name-only", "--format=%cs", "--", "_src").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", line):
+            cur = line
+        elif cur and line not in dates:
+            dates[line] = cur          # log is newest-first, so first hit wins
+    today = date.today().isoformat()
+    for line in _git("status", "--porcelain", "--", "_src").splitlines():
+        path = line[3:].strip().strip('"')
+        if path:
+            dates[path] = today
+    return dates
 
 
 def esc(value):
@@ -135,6 +176,9 @@ def build_page(template: str, raw: str, name: str):
         sys.exit(f"ERROR: bad JSON meta in {name}: {e}")
     content = raw[m.end():]
 
+    path = meta["path"]
+    canon = BASE_URL + "/" + path
+
     schemas = list(meta.get("schema", []))
     crumbs = meta.get("crumbs")
     if crumbs:
@@ -153,6 +197,46 @@ def build_page(template: str, raw: str, name: str):
             "itemListElement": items,
         })
 
+    # Fifteen pages -- the homepage, both physician pages, the services and
+    # conditions hubs among them -- described the practice and the website but
+    # never the document itself. Nothing tied the title, description and URL
+    # together as one addressable thing, so there was no node for a physician or
+    # a condition to hang off. Give any page that still lacks a page-level entity
+    # a plain WebPage built only from metadata it already declares.
+    def is_page_entity(s):
+        t = s.get("@type")
+        return any(str(k).endswith("Page") or k in ("Article", "BlogPosting")
+                   for k in (t if isinstance(t, list) else [t]))
+
+    if not any(is_page_entity(s) for s in schemas):
+        schemas.insert(0, {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": canon + "#webpage",
+            "url": canon,
+            "name": meta["title"],
+            "description": meta["desc"],
+            "inLanguage": "en-US",
+            "isPartOf": {"@id": BASE_URL + "/#website"},
+            "about": {"@id": BASE_URL + "/#clinic"},
+        })
+
+    # Freshness. 50 of the 54 pages carried no date at all, and every answer
+    # engine weights recency when picking what to cite. Only page-level entities
+    # get one: the clinic and website schemas describe the practice, not this
+    # document, and BreadcrumbList is navigation. Location pages have no file of
+    # their own -- they are generated from locations.py, so that is genuinely
+    # when their content last changed.
+    dates = modified_dates()
+    modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
+    if modified:
+        for s in schemas:
+            t = s.get("@type")
+            for kind in (t if isinstance(t, list) else [t]):
+                if str(kind).endswith("Page") or kind in ("Article", "BlogPosting"):
+                    s.setdefault("dateModified", modified)
+                    break
+
     def ld_json(obj):
         # Escape `<` so a value containing `</script>` cannot terminate the block
         # and spill schema into the document. < is valid JSON and parses back
@@ -163,8 +247,6 @@ def build_page(template: str, raw: str, name: str):
 
     schema_html = "".join(ld_json(s) for s in schemas)
 
-    path = meta["path"]
-    canon = BASE_URL + "/" + path
     if path.endswith(".html"):  # e.g. 404.html
         out_file = ROOT / path
     else:

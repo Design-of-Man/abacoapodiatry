@@ -552,6 +552,17 @@
 
   <script src="/assets/js/assistant.js?v=b906604d9e" defer></script>
 
-  <script src="/assets/js/main.js?v=2d590ad99c" defer></script>
+  <!-- Vercel Web Analytics. Cookieless, stores no IP address and sets nothing
+       that identifies a visitor, which is what makes it safe to run on a
+       medical site: page views of a condition page never attach to a person.
+       Do not swap this for a pixel-based tool without revisiting that.
+       Served first-party from /_vercel/insights/ -- no third-party origin, so
+       it survives an ad blocker and needs no CSP entry. Requires Web Analytics
+       to be enabled on the Vercel project; until it is, the script 404s
+       harmlessly and va() calls queue and are discarded. -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script src="/_vercel/insights/script.js" defer></script>
+
+  <script src="/assets/js/main.js?v=42f80d7ac5" defer></script>
 </body>
 </html>

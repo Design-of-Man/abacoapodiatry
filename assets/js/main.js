@@ -7,6 +7,44 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
   /* ------------------------------------------------------------------
+     Lead tracking
+
+     The phone is this practice's main lead channel and nothing counted it,
+     so there was no way to answer "did leads fall?" -- the question the
+     whole site is judged on. Two events are real leads (a call started, a
+     form sent); appointment_cta is the funnel step between them.
+
+     Deliberately no condition detail in the payload. Vercel already records
+     which page an event fired on, and that is aggregate and anonymous;
+     attaching "plantar fasciitis" to an individual visitor's action is the
+     line that turns analytics into a health-privacy problem. Placement only.
+     ------------------------------------------------------------------ */
+  var track = function (name, data) {
+    if (typeof window.va === "function") window.va("event", { name: name, data: data || {} });
+  };
+
+  var placementOf = function (el) {
+    if (el.closest(".call-bar, .cb-call")) return "mobile-call-bar";
+    if (el.closest(".site-header")) return "header";
+    if (el.closest(".assistant, .assist-note")) return "assistant";
+    if (el.closest("footer, .site-footer")) return "footer";
+    return "body";
+  };
+
+  // Delegated so it covers every tel: and /contact/ link on any page, including
+  // markup added later, without each template having to opt in.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("tel:") === 0) {
+      track("call_click", { placement: placementOf(a) });
+    } else if (href === "/contact/" || href === "/request-an-appointment/") {
+      track("appointment_cta", { placement: placementOf(a) });
+    }
+  }, { passive: true, capture: true });
+
+  /* ------------------------------------------------------------------
      Sticky header shadow
      ------------------------------------------------------------------ */
   var header = $(".site-header");
@@ -348,6 +386,10 @@
         if (r.ok) {
           status.className = "form-status ok";
           status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+          // Fires on confirmed delivery, not on submit, so a failed send is
+          // never counted as a lead. No field values are sent -- the visitor
+          // typed their name and symptoms into this form.
+          track("form_submit", { form: "contact" });
           form.reset();
         } else {
           throw new Error("bad status");

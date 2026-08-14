@@ -14,5 +14,14 @@ _dev/measure/node_modules/
 _dev/measure/.cdp-profile/
 _dev/measure/results/
 
+# throwaway Chrome profile the form test drives, recreated on every run.
+# 161 files of it were tracked until 2026-08-14, so every run dirtied the tree
+# with binary caches. The measure/ equivalent above was already ignored; this
+# one was missed because its name has no leading dot.
+_dev/formtest/cdp-profile/
+_dev/formtest/chrome.log
+_dev/formtest/mock.log
+
 # raw generated uploads, kept but never deployed
 _dev/atmos-raw/
+_dev/instagram-raw/

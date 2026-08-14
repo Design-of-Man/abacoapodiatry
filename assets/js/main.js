@@ -288,7 +288,7 @@
   if (heroVideo && videoToggle) {
     // Attach exactly one source so only that file is ever downloaded. Under
     // prefers-reduced-motion we attach nothing at all and leave the poster —
-    // no reason to spend 25MB of someone's data on motion they asked not to see.
+    // no reason to spend the encode on motion they asked not to see.
     if (!heroVideo.querySelector("source") && heroVideo.dataset.mp4Full) {
       var wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Save-Data is an explicit "don't spend my bandwidth", and 2g is a
@@ -297,18 +297,19 @@
       var conn = navigator.connection || {};
       var starved = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
       if (wantsMotion && !starved) {
-        // 1024, not 767. The HD encode is 25MB; at the old breakpoint every
-        // tablet and small laptop was handed it for a background flourish.
+        // 1024, not 767. The HD encode was 25MB when this breakpoint was set;
+        // it is 5.7MB now, but the tier split still earns its keep because the
+        // mobile encode is smaller again.
         var small = window.matchMedia("(max-width: 1024px)").matches;
         // MP4 first: it is the smaller file in both tiers and every mainstream
         // browser decodes H.264. The browser downloads the FIRST source it can
         // play, so normal visitors never fetch both.
         //
         // The small tier is MP4-only on purpose. WebM exists here as a fallback
-        // for builds without proprietary codecs, but the mobile WebM is 4.7MB
+        // for builds without proprietary codecs, but the mobile WebM is 4.6MB
         // against the mobile MP4's 2.2MB -- larger than the file it exists to
         // improve on. On the tier where data costs the most it earns nothing,
-        // so those browsers keep the poster instead of spending 4.7MB.
+        // so those browsers keep the poster instead of spending 4.6MB.
         (small
           ? [[heroVideo.dataset.mp4Mobile, "video/mp4"]]
           : [[heroVideo.dataset.mp4Full, "video/mp4"],
@@ -325,12 +326,13 @@
         if (kick && kick.catch) kick.catch(function () {});
       }
     }
-    // Cinematic drift — 0.75x, not 0.5x: on a 30fps source half speed lands at
-    // an effective 15fps and judders.
-    var setRate = function () { heroVideo.playbackRate = 0.75; };
-    setRate();
-    heroVideo.addEventListener("loadeddata", setRate);
-    heroVideo.addEventListener("play", setRate);
+    // The drift used to be done here with playbackRate = 0.75. On a 30fps
+    // source that plays 22.5 frames a second, and at 60Hz each frame then
+    // occupies 2.67 refreshes -- so the browser holds some frames for two
+    // refreshes and others for three. That uneven cadence is what read as
+    // judder on a slow drone pan. The encode is now slowed in the file itself
+    // with motion interpolation to a true 30fps, so it plays at 1.0x and every
+    // frame gets exactly two refreshes. Do not reintroduce playbackRate here.
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var setPaused = function (paused) {
       if (paused) {
@@ -437,23 +439,40 @@
 
 
 /* ==========================================================================
-   Dynamic layer: scroll rail, live open/closed status, stat rings, parallax.
+   Dynamic layer: scroll rail, live open/closed status, stat rings.
    Appended as its own IIFE so it can't disturb the code above.
    ========================================================================== */
 (function () {
   "use strict";
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Scroll progress rail ---- */
   var rail = document.querySelector(".scroll-rail i");
   if (rail) {
+    // Two things used to make this the worst jank on the page. It wrote
+    // style.width on every scroll event, which is a layout property, and it
+    // read scrollHeight first -- a forced synchronous reflow, every event, the
+    // whole length of the page. Now the height is cached, the write is a
+    // composited scaleX, and the work is rAF-throttled to one per frame.
+    var railH = 0;
+    var railTicking = false;
+    var measureRail = function () {
+      railH = document.documentElement.scrollHeight - window.innerHeight;
+    };
+    var paintRail = function () {
+      var p = railH > 0 ? window.scrollY / railH : 0;
+      if (p < 0) p = 0; else if (p > 1) p = 1;
+      rail.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      railTicking = false;
+    };
     var onScroll = function () {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      rail.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+      if (railTicking) return;
+      railTicking = true;
+      requestAnimationFrame(paintRail);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    onScroll();
+    window.addEventListener("resize", function () { measureRail(); onScroll(); });
+    measureRail();
+    paintRail();
   }
 
   /* ---- Live open/closed pill (visitor's own clock) ----
@@ -513,21 +532,12 @@
     }
   }
 
-  /* ---- Hero parallax drift ---- */
-  var media = document.querySelector(".hero-media");
-  if (media && !reduced) {
-    media.classList.add("parallax");
-    var ticking = false;
-    window.addEventListener("scroll", function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        var y = window.scrollY;
-        if (y < window.innerHeight * 1.2) {
-          media.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0) scale(1.06)";
-        }
-        ticking = false;
-      });
-    }, { passive: true });
-  }
+  /* ---- Hero parallax drift: removed 2026-08-14 ----
+     This transformed .hero-media on every scroll frame, and .hero-media holds
+     the playing background video. Moving and scaling a live video layer makes
+     the compositor resample every decoded frame against a changing matrix, so
+     the hero visibly stuttered while scrolling even though the handler was
+     already rAF-throttled. The drift was worth a few pixels of depth and cost
+     the smoothness of the first thing anyone sees. If it comes back, apply it
+     to .hero-glass or the beams -- never to the video. */
 })();

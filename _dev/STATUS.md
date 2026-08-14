@@ -5,12 +5,16 @@ what is still open, so a new session does not have to reconstruct it.
 
 ## The tooling that now exists
 
-Four things were built this session. A new session should know they are there before
+These were built across this pipeline. A new session should know they are there before
 reinventing any of them.
 
 | | |
 |---|---|
-| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero.** Currently fails on 2 items, both the testimonial wording check. |
+| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero. Currently passes — nothing blocking.** |
+| `_dev/verify-testimonials.py` | Refetches the practice's testimonials page and Dr. Cedeno's Healthgrades profile and string-matches every quoted span on `/reviews/` against them. Exits non-zero on any drift. Run it after touching that page. |
+| `_dev/crawl-old-site.py` | Rebuilds the old-site inventory from all four Yoast sitemaps, with titles, into `_dev/old-site-urls.tsv`. `--coverage` reports any live URL with no redirect and no matching page. Needs `jupiterlaser.com` reachable. |
+| `_dev/verify-redirects.py` | Requests all 156 old URLs against a **deployed** build and follows each to the end. Exits non-zero on anything that is not a 200. Checking `vercel.json` is not the same as checking the deployment, which is how a completely inert redirect table survived. |
+| `_src/redirect-map.tsv` | The redirect source of truth, 159 entries. `build.py` writes `vercel.json`, `_redirects`, `.htaccess` and the stubs from it. Not a dev tool, a build input. |
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
 | `_dev/image-prompts*.md`, `_dev/optimise-images.py` | 42 image prompts, one per page with no image, and the resize/WebP pipeline for the results. |
@@ -30,19 +34,22 @@ Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --
 | Pages with a diagram | 6, hand-built inline SVG |
 | Pages with no image | **0** — all 42 generated, checked and wired on 2026-08-14 |
 | Atmos image payload | 2,193KB for 42 images (4% of the 54MB of raws) |
+| Preflight | **passes** — 0 blocking items |
+| Testimonials | **9/9 verbatim** against their two sources, checked mechanically |
+| Redirect coverage | **157/157** of the old site's live URLs, from 25 before |
+| Redirects verified live | **156/156** resolve to 200 on a deployed build, tested over the wire |
 
 ## Blocked on someone else
 
 Nothing here is code. All of it gates launch.
 
 1. **Search Console** — get the vendor to grant Owner *before* terminating them. GSC does not backfill, so the decline since April only exists in their property. Separately, verify a Domain property by DNS TXT today; it cannot be revoked and the clock starts when it is verified.
-2. **The contact form delivers to nobody** until someone clicks FormSubmit's activation link on `AbacoaPodiatry@gmail.com`. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four recipients, spam included.
-3. **`/reviews/` carries 8 real patient reviews whose wording needs a verbatim check.** Recovered from `jupiterlaser.com/testimonials/` and Healthgrades via a search summarizer, so the phrasing may be lightly normalised rather than exact. Not fabricated, and not a delete-and-replace job: read each against the source and correct the wording. Blocked on the same 403 as the crawl. Gates cutover, because misquoting a real patient is its own problem.
-4. **Vercel Web Analytics is off**, so `track()` no-ops and no lead events are being recorded at all. `/_vercel/insights/script.js` 404s in production until it is enabled.
-5. **Default branch is still `claude/jupiter-laser-redesign-55fr8l`.** Should be `main`. The stale branch has 0 commits not already in `main`, so it can be deleted after. No MCP tool can change this and the REST API is blocked here; it is a manual settings change.
-6. **`jupiterlaser.com` is 403 at this environment's egress proxy.** That blocks the old-site crawl, so the redirect map is still open, and it blocked fetching an SVG the client wanted used. Allow-listing the host fixes both.
-7. **Two photos still owed**: `office.jpg` for `/contact/`, `mls-laser.jpg` for `/technology/`. The `<img>` tags were removed because they requested an asset that 404s on every page load; the PHOTO SLOT comments, monogram tiles and captions remain, so re-adding a real photo is one line. No longer blocks preflight, and does not block launch. See `_dev/photo-shotlist.md`.
-8. **The invoice** separating media spend from management fee. Google Ads shows ~$15.5k paid to Google across the period; what the vendor charged on top only exists on their invoice.
+2. **The contact form delivers to nobody** until someone submits it once on the live site and then clicks FormSubmit's activation link, which now goes to **`doctor.cedeno@jupiterlaser.com`** (changed from the Gmail on 2026-08-14). The other three addresses are `_cc` and need no activation of their own. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four, spam included.
+3. **Vercel Web Analytics is off**, so `track()` no-ops and no lead events are being recorded at all. `/_vercel/insights/script.js` 404s in production until it is enabled.
+4. **Default branch is still `claude/jupiter-laser-redesign-55fr8l`.** Should be `main`. The stale branch has 0 commits not already in `main`, so it can be deleted after. No MCP tool can change this and the REST API is blocked here; it is a manual settings change.
+5. ~~**The redirect map is unverified against a crawl.**~~ Done 2026-08-14. Crawled all four Yoast sitemaps: 157 live URLs, of which **132 had no redirect and no matching page** and would have 404'd at cutover. Now 157/157, from `_src/redirect-map.tsv`. Recheck with `_dev/crawl-old-site.py --coverage` before cutover in case the old site changed.
+6. **Two photos still owed**: `office.jpg` for `/contact/`, `mls-laser.jpg` for `/technology/`. The `<img>` tags were removed because they requested an asset that 404s on every page load; the PHOTO SLOT comments, monogram tiles and captions remain, so re-adding a real photo is one line. Does not block preflight or launch. See `_dev/photo-shotlist.md`.
+7. **The invoice** separating media spend from management fee. Google Ads shows ~$15.5k paid to Google across the period; what the vendor charged on top only exists on their invoice.
 
 ## Decisions worth not relitigating
 
@@ -51,6 +58,9 @@ Nothing here is code. All of it gates launch.
 - **The condition dropdown on the contact form stays**, carrying condition detail through a non-BAA service with an on-form disclaimer as the mitigation. Reviewed deliberately.
 - **Speculation Rules are `conservative`, not `moderate`.** A prerender fires the page's load scripts, and Web Analytics records a pageview on load; hover-triggered prerendering would inflate the numbers this site is judged on.
 - **The hero poster is frame zero of the hero video.** It cannot simply be deleted: it is the LCP element and the entire hero for reduced-motion, Save-Data, 2g and non-H.264 visitors.
+- **Redirect sources carry a trailing slash, and that is load-bearing.** `vercel.json` sets `trailingSlash: true`, so Vercel 308s `/foo` to `/foo/` *before* matching the redirect table. A slash-less source is never reached. Every source was slash-less until 2026-08-14, which made the entire array inert while looking perfectly correct in the file. `build.py` emits both forms now. Verify over the wire with `_dev/verify-redirects.py`, never by reading the JSON.
+- **Testimonials are quoted, never tidied.** Every quote on `/reviews/` is a contiguous span copied exactly, with `…` at every trim or join. Two sources contain typos and those sentences are quoted around rather than corrected, because correcting a patient's grammar is still putting words in their mouth. `_dev/verify-testimonials.py` enforces it mechanically; a careful human proofread does not, which is how the summarised versions survived as long as they did.
+- **No `aggregateRating` or `Review` schema on `/reviews/`.** The quotes are real but they are a curated selection from two sources, and marking them up as an aggregate would assert a rating this site did not compute. The stars are presentational.
 
 ## The images are done. Two lessons from doing them
 
@@ -72,6 +82,17 @@ did not.
 
 ## Immediate next step
 
-The photography the practice has to supply. `_dev/client-photo-brief.md` is written and
-ready to forward; `office.jpg` and `mls-laser.jpg` are 2 of preflight's 4 remaining
-failures, and every shot on the list also fills the thin Google Business Profile.
+**Preflight passes. Nothing in the repo blocks launch.** What is left is account work and
+one crawl, in the order that matters:
+
+1. **The contact form.** It delivers to nobody until someone submits it once on the live
+   site and then clicks FormSubmit's activation link in `AbacoaPodiatry@gmail.com`. That
+   first submission has to come from a person in a browser. Until it happens the site has
+   no working lead path at all, which makes it the only genuinely urgent item.
+2. **Search Console**, before the vendor is terminated. GSC does not backfill.
+3. **Web Analytics on**, so there is a pre-cutover baseline rather than a cliff.
+4. **The redirect crawl.** `jupiterlaser.com` is reachable now, so the 27 redirects can
+   finally be checked against the old site's real URL list instead of inferred.
+5. **The photography.** `_dev/client-photo-brief.md` is written and ready to forward. No
+   longer gates preflight, and every shot on the list also fills the thin Google Business
+   Profile.

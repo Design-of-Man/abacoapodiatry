@@ -21,8 +21,8 @@ edit _src/pages/foo.html  →  python3 _src/build.py  →  commit BOTH the sourc
 Committing only the `_src/` change ships nothing. The old generated page stays live and the
 diff looks fine, which is why this is worth stating twice.
 
-Only pages and `sitemap.xml` are generated. CSS, JS, images and video under `assets/` are
-static and edited in place.
+Pages, `sitemap.xml`, and every redirect surface are generated. CSS, JS, images and video
+under `assets/` are static and edited in place.
 
 One wrinkle: the build stamps **today's date** into every `<lastmod>` in `sitemap.xml`,
 whether or not the page changed. So a rebuild always dirties the sitemap. If your change
@@ -74,8 +74,40 @@ does not affect production (Vercel targets `main` by name), but it means a new P
 to the wrong base and a fresh clone checks out the wrong branch. **Always set a PR's base to
 `main` explicitly** until someone fixes the repo setting.
 
-`_redirects` (Netlify) and `.htaccess` (Apache) are maintained for portability but are inert
-on Vercel. If you add a redirect, add it to `vercel.json` or it will not take effect.
+**Redirects come from `_src/redirect-map.tsv` and nowhere else.** Add a line there and
+rebuild. `build.py` writes all four surfaces from it: the `redirects` array in `vercel.json`
+(the only one that runs on Vercel), `_redirects` (Netlify), `.htaccess` (Apache), and
+meta-refresh stubs for the handful of short paths listed in `STUB_PATHS`.
+
+Do not hand-edit those four. `build.py` overwrites them, which is exactly how the map got
+out of sync before: `_redirects` and `.htaccess` were regenerated from a 19-entry dict in
+`build.py` on every build, so anything written into them by hand vanished at the next
+build, silently, in the two files nobody opens.
+
+The build refuses to write a map that redirects to a missing page, chains one redirect into
+another, points at `/` in bulk, duplicates a source, or drops a trailing slash. The `/`
+rule is not style: Google reads a mass redirect to the homepage as a soft 404 and discards
+the link equity, so a "safe" catch-all to `/` is worse than the 404 it replaces. Send it to
+the section hub.
+
+**Sources carry a trailing slash, and that is load-bearing.** `vercel.json` sets
+`trailingSlash: true`, so Vercel 308s `/foo` to `/foo/` *before* it matches the redirect
+table — a slash-less source is never reached. Every source was slash-less until
+2026-08-14, which made the whole array inert while reading perfectly in the file:
+`/veins/` and `/venous-insufficiency/` returned a hard 404 in production. `build.py` emits
+both forms now. Don't "tidy" the slash away.
+
+Two checks, and they answer different questions:
+
+```
+python3 _dev/crawl-old-site.py --coverage      # is anything on the old site unmapped?
+python3 _dev/verify-redirects.py <origin>      # does every one actually resolve, live?
+```
+
+The second is the one that matters. Reading `vercel.json` tells you nothing about what the
+deployment does — that is exactly how an entirely non-functional redirect table survived,
+since the only legacy URLs anyone spot-checked were the handful with a meta-refresh stub
+behind them. Both need `jupiterlaser.com` reachable. Run both before cutover.
 
 `vercel.json` also sends `X-Robots-Tag: noindex, nofollow` on any `*.vercel.app` host. That
 is deliberate — see the next section. Don't widen that rule to `/(.*)` unconditionally, and

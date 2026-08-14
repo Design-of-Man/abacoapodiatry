@@ -1261,6 +1261,78 @@ details.faq.hidden { display: none; }
 /* --------------------------------------------------------------------------
    Prose / article
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Explanatory diagrams
+
+   Inline SVG rather than images: nothing to request, nothing to lay out late,
+   sharp at any pixel density, and it can read the site's own colour tokens so
+   it themes with the page instead of sitting on top of it. aspect-ratio holds
+   the box before paint, so a diagram never costs a layout shift.
+
+   Photographs are the wrong tool on a condition page anyway. These exist to
+   show the one thing the prose is spending a paragraph describing.
+   -------------------------------------------------------------------------- */
+.diagram {
+  margin: var(--sp-6) 0;
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.diagram svg { display: block; width: 100%; height: auto; aspect-ratio: 640 / 300; }
+.diagram figcaption {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 62ch;
+}
+
+.dg-arch   { fill: none; stroke: rgba(201, 194, 177, 0.30); stroke-width: 30; stroke-linecap: round; }
+.dg-bone   { fill: rgba(201, 194, 177, 0.30); stroke: var(--text-soft); stroke-width: 1.5; }
+.dg-fascia { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; }
+.dg-hot      { fill: rgba(245, 185, 61, 0.22); }
+.dg-hot-core { fill: var(--gold); }
+.dg-ground { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 5 6; }
+.dg-lead   { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.dg-label  { fill: var(--text-soft); font-size: 15px; font-family: inherit; }
+.dg-fascia-label { fill: var(--accent-light); font-weight: 600; }
+.dg-arch-label   { fill: var(--text); }
+
+/* Per-diagram parts. All of them lean on the same idea: muted grey is anatomy,
+   gold is whatever the page is actually about. */
+.dg-head    { fill: var(--text); font-weight: 600; }
+.dg-vessel  { fill: rgba(201, 194, 177, 0.10); stroke: var(--text-soft); stroke-width: 2; }
+.dg-valve   { fill: none; stroke: var(--text-soft); stroke-width: 4; stroke-linecap: round; }
+.dg-valve-open { stroke: var(--gold); }
+.dg-flow-up   { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-flow-down { fill: none; stroke: var(--gold); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-pool    { fill: rgba(245, 185, 61, 0.30); }
+.dg-bonebar { fill: none; stroke: var(--text-soft); stroke-width: 13; stroke-linecap: round; }
+.dg-joint   { fill: rgba(201, 194, 177, 0.30); stroke: var(--text-soft); stroke-width: 1.5; }
+.dg-joint-mid  { fill: rgba(245, 185, 61, 0.28); stroke: var(--accent); }
+.dg-joint-late { fill: rgba(245, 185, 61, 0.50); stroke: var(--gold); }
+.dg-limb    { fill: rgba(201, 194, 177, 0.08); stroke: var(--text-soft); stroke-width: 2; }
+.dg-zone    { stroke: none; }
+.dg-zone-3  { fill: rgba(245, 185, 61, 0.10); }
+.dg-zone-2  { fill: rgba(245, 185, 61, 0.18); }
+.dg-zone-1  { fill: rgba(245, 185, 61, 0.34); }
+.dg-muscle  { fill: rgba(201, 194, 177, 0.16); stroke: var(--text-soft); stroke-width: 2; }
+.dg-tendon  { fill: none; stroke: var(--accent); stroke-width: 15; stroke-linecap: round; }
+.dg-layer   { stroke: var(--line); stroke-width: 1.5; }
+.dg-layer-1 { fill: rgba(201, 194, 177, 0.05); }
+.dg-layer-2 { fill: rgba(201, 194, 177, 0.09); }
+.dg-layer-3 { fill: rgba(201, 194, 177, 0.14); }
+.dg-beam       { fill: none; stroke-width: 5; stroke-linecap: round; }
+.dg-beam-short { stroke: var(--gold); }
+.dg-beam-long  { stroke: var(--accent); }
+
+
+@media (max-width: 640px) {
+  .diagram { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+  .dg-label { font-size: 18px; }
+}
+
 /* Reading measure. --wrap-narrow is 860px, which at a 17px body puts a line of
    running text at roughly 101 characters; comfortable reading is 45-75. The
    container stays 860px so tables, figures and headings keep their width, and

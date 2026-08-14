@@ -2,7 +2,7 @@
 {
   "path": "contact/",
   "title": "Contact & Directions | Jupiter Laser & Regenerative Medicine",
-  "desc": "Book an appointment at Jupiter Laser & Regenerative Medicine — 4601 Military Trail, Suite 202, Jupiter, FL 33458. Call (561) 915-1934 or request online.",
+  "desc": "Book an appointment at Jupiter Laser & Regenerative Medicine, 4601 Military Trail, Suite 202, Jupiter, FL 33458. Call (561) 915-1934 or request online.",
   "nav": "contact",
   "priority": 0.9,
   "changefreq": "monthly",
@@ -51,12 +51,16 @@ META-->
           <div data-reveal>
             <span class="kicker">Online Request</span>
             <h2>Request your appointment</h2>
-            <p>Prefer not to call? Send us your details and our team will call you back to confirm a time — usually the same business day.</p>
+            <p>Prefer not to call? Send us your details and our team will call you back to confirm a time, usually the same business day.</p>
             <!-- FormSubmit: requests go to the practice inbox. NOTE: the very first
                  submission triggers a one-time activation email to
-                 AbacoaPodiatry@gmail.com — click it once and the form is live. -->
+                 AbacoaPodiatry@gmail.com, click it once and the form is live. -->
             <form id="contact-form" action="https://formsubmit.co/ajax/AbacoaPodiatry@gmail.com" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="New appointment request — jupiterlaser.com">
+              <input type="hidden" name="_subject" value="Appointment Request">
+              <!-- Every address here is visible in the page source. If the practice
+                   moves to a Workspace group, one address forwarding to all four is
+                   cleaner and lets people be added without a deploy. -->
+              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,angela.d@jupiterlaser.com,doctor.cedeno@jupiterlaser.com">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Abacoa Podiatry &amp; Leg Vein Center. We have your request and a member of our team will call you shortly to confirm a time. If you'd rather not wait, you can reach us directly at (561) 915-1934 during office hours. — Abacoa Podiatry &amp; Leg Vein Center, 4601 Military Trail, Suite 202, Jupiter, FL 33458">
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty" autocomplete="off">
@@ -79,7 +83,7 @@ META-->
                 </div>
                 <div class="field full"><label for="f-msg">Anything else we should know?</label><textarea id="f-msg" name="message" placeholder="How long it's bothered you, what you've tried, best times to reach you…"></textarea></div>
               </div>
-              <p class="form-note" style="margin:0.9rem 0">Please don't include sensitive medical details in this form — save those for your visit. By submitting you agree to be contacted by our office about scheduling.</p>
+              <p class="form-note" style="margin:0.9rem 0">Please don't include sensitive medical details in this form, save those for your visit. By submitting you agree to be contacted by our office about scheduling.</p>
               <button class="btn btn-primary btn-lg" type="submit">Request Appointment</button>
               <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
             </form>
@@ -96,7 +100,7 @@ META-->
             </figure>
             <div class="card" style="margin-top:1.2rem">
               <h3 style="font-size:1.05rem">Getting here</h3>
-              <p style="font-size:0.95rem"><strong>From I-95:</strong> Exit Indiantown Road, head east, turn south on Military Trail — we're at 4601, Suite 202, with free parking on site.<br><strong>From US-1:</strong> Indiantown Road west to Military Trail, turn south.<br><strong>Landmark:</strong> minutes from the Abacoa community and Jupiter Medical Center.</p>
+              <p style="font-size:0.95rem"><strong>From I-95:</strong> Exit Indiantown Road, head east, turn south on Military Trail. We're at 4601, Suite 202, with free parking on site.<br><strong>From US-1:</strong> Indiantown Road west to Military Trail, turn south.<br><strong>Landmark:</strong> minutes from the Abacoa community and Jupiter Medical Center.</p>
             </div>
           </div>
         </div>
@@ -108,7 +112,7 @@ META-->
         <div class="cta-band" data-reveal>
           <div>
             <h2>In pain right now?</h2>
-            <p>Don't fill out a form — call us. Acute problems get priority scheduling.</p>
+            <p>Don't fill out a form, call us. Acute problems get priority scheduling.</p>
           </div>
           <div class="btn-row">
             <a class="btn btn-primary btn-lg" href="tel:+15619151934">(561) 915-1934</a>

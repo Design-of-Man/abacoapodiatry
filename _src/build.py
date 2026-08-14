@@ -229,11 +229,28 @@ def build_redirects():
 
     # vercel.json carries hand-maintained headers and trailingSlash alongside the
     # redirects, so replace only the one key and leave the file otherwise intact.
+    #
+    # BOTH forms of every source, and the trailing-slash one is the one that
+    # works. vercel.json sets "trailingSlash": true, so Vercel 308s /foo to /foo/
+    # BEFORE it matches the redirect table. A source written as /foo is therefore
+    # never reached: the request arrives as /foo, gets normalised to /foo/, and
+    # /foo/ matches nothing. That is not theoretical -- every redirect in this
+    # file was slash-less until 2026-08-14, so /veins/, /varicose-veins/ and
+    # /venous-insufficiency/ all returned a hard 404 in production, and the only
+    # legacy URLs that resolved at all were the 19 with a meta-refresh stub, via
+    # the stub rather than via a 301. WordPress publishes every URL with a
+    # trailing slash, so the broken form was the only form real traffic used.
+    #
+    # The slash-less entries are kept because they cost nothing and catch a
+    # hand-typed or hand-written link if Vercel's normalisation order ever
+    # changes.
     vercel_path = ROOT / "vercel.json"
     vercel = json.loads(vercel_path.read_text(encoding="utf-8"))
-    vercel["redirects"] = [
-        {"source": old, "destination": new, "permanent": True} for old, new in pairs
-    ]
+    sources = []
+    for old, new in pairs:
+        sources.append({"source": old + "/", "destination": new, "permanent": True})
+        sources.append({"source": old, "destination": new, "permanent": True})
+    vercel["redirects"] = sources
     vercel_path.write_text(json.dumps(vercel, indent=2) + "\n", encoding="utf-8")
     return len(pairs)
 

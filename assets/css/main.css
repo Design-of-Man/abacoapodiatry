@@ -1261,6 +1261,13 @@ details.faq.hidden { display: none; }
 /* --------------------------------------------------------------------------
    Prose / article
    -------------------------------------------------------------------------- */
+/* Reading measure. --wrap-narrow is 860px, which at a 17px body puts a line of
+   running text at roughly 101 characters; comfortable reading is 45-75. The
+   container stays 860px so tables, figures and headings keep their width, and
+   only the text that gets read line after line is constrained. */
+.prose p,
+.prose li { max-width: 72ch; }
+
 .prose h2 { margin-top: 2.2em; }
 .prose h3 { margin-top: 1.8em; }
 .prose > :first-child { margin-top: 0; }

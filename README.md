@@ -93,7 +93,10 @@ Ordered by what cannot be undone if it is missed.
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
 - [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.
 - [ ] **Allow-list `jupiterlaser.com`** for the session, or the old-site crawl cannot run.
-- [ ] **Generate the 42 page images** — prompts in `_dev/image-prompts-paste.md`, pipeline in `_dev/optimise-images.py`.
+      (The image CDN `d8j0ntlcm91z4.cloudfront.net` and `higgsfield.ai` were allow-listed on
+      2026-08-14 and that unblocked the 42 images; `jupiterlaser.com` is still blocked.)
+- [x] ~~**Generate the 42 page images**~~ — done. FLUX.2 via Higgsfield, all 42 checked by eye,
+      optimised to 2.2MB total and wired in. `_dev/atmos-manifest.tsv` is the index -> slug -> job -> QC record.
 
 See [`_dev/STATUS.md`](_dev/STATUS.md) for where everything stands, what is blocked on whom,
 and the decisions that should not be relitigated.

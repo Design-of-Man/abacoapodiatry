@@ -14,6 +14,8 @@ reinventing any of them.
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
 | `_dev/image-prompts*.md`, `_dev/optimise-images.py` | 42 image prompts, one per page with no image, and the resize/WebP pipeline for the results. |
+| `_dev/atmos-manifest.tsv`, `_dev/fetch-atmos.sh` | index -> slug -> model -> job id -> URL -> QC verdict for all 42, and the script that refetches them. Regenerate one image and update its row. |
+| `_dev/client-photo-brief.md` | Client-ready note for the photography only the practice can supply. |
 
 Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --ignore-scripts lighthouse axe-core`. Both work: pypi and the npm registry are among the few hosts this environment's proxy allows.
 
@@ -26,7 +28,8 @@ Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --
 | Homepage payload | 5,582KB → 1,761KB after fixing the hero video (−68%) |
 | Em dashes | 495 → 1, from 19.4 per 1,000 words to 0.04 |
 | Pages with a diagram | 6, hand-built inline SVG |
-| Pages still with no image | 42, prompts written and waiting on generation |
+| Pages with no image | **0** — all 42 generated, checked and wired on 2026-08-14 |
+| Atmos image payload | 2,193KB for 42 images (4% of the 54MB of raws) |
 
 ## Blocked on someone else
 
@@ -49,13 +52,26 @@ Nothing here is code. All of it gates launch.
 - **Speculation Rules are `conservative`, not `moderate`.** A prerender fires the page's load scripts, and Web Analytics records a pageview on load; hover-triggered prerendering would inflate the numbers this site is judged on.
 - **The hero poster is frame zero of the hero video.** It cannot simply be deleted: it is the LCP element and the entire hero for reduced-motion, Save-Data, 2g and non-H.264 visitors.
 
+## The images are done. Two lessons from doing them
+
+**Use Higgsfield, not ViewMax.** The account already holds ~870 credits on a paid Plus
+plan; ViewMax has none. Higgsfield's image roster is a superset and it has a batch API,
+so all 42 submit in four calls. FLUX.2 won a bake-off against Nano Banana 2 and Seedream
+4.5 at roughly 1 credit an image.
+
+**Generating blind is the expensive failure.** The first full run of 42 shipped a foot in
+a high-heeled shoe, because `heel` is ambiguous in an image prompt and because nothing in
+the negative list forbade footwear. Neither was visible to the session until the CDN was
+allow-listed and the files could actually be opened. Once they could, a visual pass caught
+a Nike swoosh and a set of garbled brand stripes too. **Allow-list the image host before
+generating anything, and look at every file before wiring it.**
+
+Note on that swoosh: negative-prompting it away just produced a New Balance N. Changing the
+camera angle so the shoe's side panel leaves the frame worked where the word "unbranded"
+did not.
+
 ## Immediate next step
 
-Generate the 42 images. `_dev/image-prompts-paste.md` has them as self-contained blocks.
-Copilot works but is one-per-turn and entirely manual. A connected image MCP (ViewMax is
-$14/mo yearly, 1 credit per image) would let a session generate, check, optimise and wire
-them in without a human in the loop — worth weighing against the other client sites in the
-same pipeline, not just this one.
-
-Conditions and services first. Those are the pages patients reach from a search; the
-fifteen location pages are local-SEO surface.
+The photography the practice has to supply. `_dev/client-photo-brief.md` is written and
+ready to forward; `office.jpg` and `mls-laser.jpg` are 2 of preflight's 4 remaining
+failures, and every shot on the list also fills the thin Google Business Profile.

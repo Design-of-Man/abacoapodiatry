@@ -10,7 +10,7 @@ reinventing any of them.
 
 | | |
 |---|---|
-| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero.** Currently fails on 4 real items, which is correct. |
+| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero.** Currently fails on 2 items, both the testimonial wording check. |
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
 | `_dev/image-prompts*.md`, `_dev/optimise-images.py` | 42 image prompts, one per page with no image, and the resize/WebP pipeline for the results. |
@@ -37,11 +37,11 @@ Nothing here is code. All of it gates launch.
 
 1. **Search Console** — get the vendor to grant Owner *before* terminating them. GSC does not backfill, so the decline since April only exists in their property. Separately, verify a Domain property by DNS TXT today; it cannot be revoked and the clock starts when it is verified.
 2. **The contact form delivers to nobody** until someone clicks FormSubmit's activation link on `AbacoaPodiatry@gmail.com`. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four recipients, spam included.
-3. **`/reviews/` carries 8 unverified testimonials** on a medical site. Gates cutover. Real Google reviews are the replacement, which is why the GBP work matters.
+3. **`/reviews/` carries 8 real patient reviews whose wording needs a verbatim check.** Recovered from `jupiterlaser.com/testimonials/` and Healthgrades via a search summarizer, so the phrasing may be lightly normalised rather than exact. Not fabricated, and not a delete-and-replace job: read each against the source and correct the wording. Blocked on the same 403 as the crawl. Gates cutover, because misquoting a real patient is its own problem.
 4. **Vercel Web Analytics is off**, so `track()` no-ops and no lead events are being recorded at all. `/_vercel/insights/script.js` 404s in production until it is enabled.
 5. **Default branch is still `claude/jupiter-laser-redesign-55fr8l`.** Should be `main`. The stale branch has 0 commits not already in `main`, so it can be deleted after. No MCP tool can change this and the REST API is blocked here; it is a manual settings change.
 6. **`jupiterlaser.com` is 403 at this environment's egress proxy.** That blocks the old-site crawl, so the redirect map is still open, and it blocked fetching an SVG the client wanted used. Allow-listing the host fixes both.
-7. **Two photos** referenced but never committed: `office.jpg` on `/contact/`, `mls-laser.jpg` on `/technology/`. Preflight blocks on them. Both pages degrade gracefully via `onerror`, so nothing looks broken meanwhile.
+7. **Two photos still owed**: `office.jpg` for `/contact/`, `mls-laser.jpg` for `/technology/`. The `<img>` tags were removed because they requested an asset that 404s on every page load; the PHOTO SLOT comments, monogram tiles and captions remain, so re-adding a real photo is one line. No longer blocks preflight, and does not block launch. See `_dev/photo-shotlist.md`.
 8. **The invoice** separating media spend from management fee. Google Ads shows ~$15.5k paid to Google across the period; what the vendor charged on top only exists on their invoice.
 
 ## Decisions worth not relitigating

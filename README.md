@@ -64,7 +64,7 @@ Ordered by what cannot be undone if it is missed.
       Confirm them, and if they are wrong update `_src/template.html`,
       `_src/pages/faq.html`, `llms.txt` and the schema together — four places, easy to
       half-fix.
-- [ ] **Replace the patient testimonials on `_src/pages/reviews.html`** (marked
+- [ ] **Verify the patient testimonials on `_src/pages/reviews.html` word for word** (marked
       `LAUNCH TODO`) with verified reviews used with permission — Google Business Profile
       reviews are ideal: public, attributable and already in the practice's name. The
       homepage block was removed for the same reason and can come back once verified.

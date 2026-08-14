@@ -1403,6 +1403,13 @@ details.faq.hidden { display: none; }
 }
 .photo-portrait { aspect-ratio: 4 / 5; min-height: 0; }
 
+/* Atmospheric page images. These ship 16:9, and .photo-frame img is absolutely
+   positioned with object-fit:cover, so the box height comes entirely from CSS —
+   a min-height frame would render ~2.9:1 on desktop and ~1.2:1 on a phone,
+   cropping each image differently at every viewport. min-height:0 is required
+   or .photo-frame's base 260px becomes a floor below ~462px wide. */
+.photo-atmos { aspect-ratio: 16 / 9; min-height: 0; }
+
 /* Author box */
 .author-box {
   display: grid;

@@ -10,10 +10,12 @@ reinventing any of them.
 
 | | |
 |---|---|
-| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero.** Currently fails on 4 real items, which is correct. |
+| `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero.** Currently fails on 2 items, both the testimonial wording check. |
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
 | `_dev/image-prompts*.md`, `_dev/optimise-images.py` | 42 image prompts, one per page with no image, and the resize/WebP pipeline for the results. |
+| `_dev/atmos-manifest.tsv`, `_dev/fetch-atmos.sh` | index -> slug -> model -> job id -> URL -> QC verdict for all 42, and the script that refetches them. Regenerate one image and update its row. |
+| `_dev/client-photo-brief.md` | Client-ready note for the photography only the practice can supply. |
 
 Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --ignore-scripts lighthouse axe-core`. Both work: pypi and the npm registry are among the few hosts this environment's proxy allows.
 
@@ -26,7 +28,8 @@ Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --
 | Homepage payload | 5,582KB → 1,761KB after fixing the hero video (−68%) |
 | Em dashes | 495 → 1, from 19.4 per 1,000 words to 0.04 |
 | Pages with a diagram | 6, hand-built inline SVG |
-| Pages still with no image | 42, prompts written and waiting on generation |
+| Pages with no image | **0** — all 42 generated, checked and wired on 2026-08-14 |
+| Atmos image payload | 2,193KB for 42 images (4% of the 54MB of raws) |
 
 ## Blocked on someone else
 
@@ -34,11 +37,11 @@ Nothing here is code. All of it gates launch.
 
 1. **Search Console** — get the vendor to grant Owner *before* terminating them. GSC does not backfill, so the decline since April only exists in their property. Separately, verify a Domain property by DNS TXT today; it cannot be revoked and the clock starts when it is verified.
 2. **The contact form delivers to nobody** until someone clicks FormSubmit's activation link on `AbacoaPodiatry@gmail.com`. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four recipients, spam included.
-3. **`/reviews/` carries 8 unverified testimonials** on a medical site. Gates cutover. Real Google reviews are the replacement, which is why the GBP work matters.
+3. **`/reviews/` carries 8 real patient reviews whose wording needs a verbatim check.** Recovered from `jupiterlaser.com/testimonials/` and Healthgrades via a search summarizer, so the phrasing may be lightly normalised rather than exact. Not fabricated, and not a delete-and-replace job: read each against the source and correct the wording. Blocked on the same 403 as the crawl. Gates cutover, because misquoting a real patient is its own problem.
 4. **Vercel Web Analytics is off**, so `track()` no-ops and no lead events are being recorded at all. `/_vercel/insights/script.js` 404s in production until it is enabled.
 5. **Default branch is still `claude/jupiter-laser-redesign-55fr8l`.** Should be `main`. The stale branch has 0 commits not already in `main`, so it can be deleted after. No MCP tool can change this and the REST API is blocked here; it is a manual settings change.
 6. **`jupiterlaser.com` is 403 at this environment's egress proxy.** That blocks the old-site crawl, so the redirect map is still open, and it blocked fetching an SVG the client wanted used. Allow-listing the host fixes both.
-7. **Two photos** referenced but never committed: `office.jpg` on `/contact/`, `mls-laser.jpg` on `/technology/`. Preflight blocks on them. Both pages degrade gracefully via `onerror`, so nothing looks broken meanwhile.
+7. **Two photos still owed**: `office.jpg` for `/contact/`, `mls-laser.jpg` for `/technology/`. The `<img>` tags were removed because they requested an asset that 404s on every page load; the PHOTO SLOT comments, monogram tiles and captions remain, so re-adding a real photo is one line. No longer blocks preflight, and does not block launch. See `_dev/photo-shotlist.md`.
 8. **The invoice** separating media spend from management fee. Google Ads shows ~$15.5k paid to Google across the period; what the vendor charged on top only exists on their invoice.
 
 ## Decisions worth not relitigating
@@ -49,13 +52,26 @@ Nothing here is code. All of it gates launch.
 - **Speculation Rules are `conservative`, not `moderate`.** A prerender fires the page's load scripts, and Web Analytics records a pageview on load; hover-triggered prerendering would inflate the numbers this site is judged on.
 - **The hero poster is frame zero of the hero video.** It cannot simply be deleted: it is the LCP element and the entire hero for reduced-motion, Save-Data, 2g and non-H.264 visitors.
 
+## The images are done. Two lessons from doing them
+
+**Use Higgsfield, not ViewMax.** The account already holds ~870 credits on a paid Plus
+plan; ViewMax has none. Higgsfield's image roster is a superset and it has a batch API,
+so all 42 submit in four calls. FLUX.2 won a bake-off against Nano Banana 2 and Seedream
+4.5 at roughly 1 credit an image.
+
+**Generating blind is the expensive failure.** The first full run of 42 shipped a foot in
+a high-heeled shoe, because `heel` is ambiguous in an image prompt and because nothing in
+the negative list forbade footwear. Neither was visible to the session until the CDN was
+allow-listed and the files could actually be opened. Once they could, a visual pass caught
+a Nike swoosh and a set of garbled brand stripes too. **Allow-list the image host before
+generating anything, and look at every file before wiring it.**
+
+Note on that swoosh: negative-prompting it away just produced a New Balance N. Changing the
+camera angle so the shoe's side panel leaves the frame worked where the word "unbranded"
+did not.
+
 ## Immediate next step
 
-Generate the 42 images. `_dev/image-prompts-paste.md` has them as self-contained blocks.
-Copilot works but is one-per-turn and entirely manual. A connected image MCP (ViewMax is
-$14/mo yearly, 1 credit per image) would let a session generate, check, optimise and wire
-them in without a human in the loop — worth weighing against the other client sites in the
-same pipeline, not just this one.
-
-Conditions and services first. Those are the pages patients reach from a search; the
-fifteen location pages are local-SEO surface.
+The photography the practice has to supply. `_dev/client-photo-brief.md` is written and
+ready to forward; `office.jpg` and `mls-laser.jpg` are 2 of preflight's 4 remaining
+failures, and every shot on the list also fills the thin Google Business Profile.

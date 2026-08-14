@@ -95,12 +95,57 @@
       "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
       "destination": "/conditions/flat-feet/",
       "permanent": true
+    },
+    {
+      "source": "/veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatment",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatments",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/varicose-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/spider-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/saphenous-vein-insufficiency",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/venous-insufficiency",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
       "headers": [
         {
           "key": "X-Robots-Tag",

@@ -45,9 +45,32 @@ Every target is the closest real equivalent; **nothing redirects to `/`**, and t
 refuses a map that does. A bulk redirect to the homepage is read as a soft 404 and the link
 equity is discarded, which would waste the whole exercise.
 
-**Re-run `python3 _dev/crawl-old-site.py --coverage` immediately before cutover.** The old
-site is still live and still being edited; a post published after 2026-08-14 will not be in
-the map.
+**Verified on a live deployment, not just in the config.** `python3 _dev/verify-redirects.py
+<origin>` requests all 156 old URLs against a real build and follows each to the end:
+
+```
+  156/156 resolve to 200
+  OK -- every URL the old site publishes lands on a real page
+```
+
+That distinction earned its keep. `vercel.json` sets `trailingSlash: true`, so Vercel 308s
+`/foo` to `/foo/` **before** matching the redirect table — and every source was written
+slash-less, so the whole array was inert. `/veins/` and `/venous-insufficiency/` returned a
+hard 404 in production while the config file looked perfectly correct. The only legacy URLs
+that resolved did so through a meta-refresh stub, which is why hand-checking never caught
+it: the paths a person thinks to try are exactly the ones with a stub behind them.
+WordPress publishes every URL with a trailing slash, so the broken form was the only form
+real traffic would have used.
+
+**Before cutover, run both:**
+
+```
+python3 _dev/crawl-old-site.py --coverage        # anything new on the old site?
+python3 _dev/verify-redirects.py <origin>        # does every one actually resolve?
+```
+
+The old site is still live and still being edited; a post published after 2026-08-14 will
+not be in the map.
 
 ### 2. The phone number is the lead pipeline — it's everywhere and unchanged
 (561) 915-1934 appears in the header, footer, every CTA, the mobile sticky call bar, and

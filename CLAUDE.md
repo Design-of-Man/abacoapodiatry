@@ -90,9 +90,24 @@ rule is not style: Google reads a mass redirect to the homepage as a soft 404 an
 the link equity, so a "safe" catch-all to `/` is worse than the 404 it replaces. Send it to
 the section hub.
 
-`_dev/crawl-old-site.py` rebuilds the inventory from the old site's Yoast sitemaps;
-`--coverage` reports any live URL with no redirect and no matching page. It needs
-`jupiterlaser.com` reachable. Run it if the old site changes, and before cutover.
+**Sources carry a trailing slash, and that is load-bearing.** `vercel.json` sets
+`trailingSlash: true`, so Vercel 308s `/foo` to `/foo/` *before* it matches the redirect
+table — a slash-less source is never reached. Every source was slash-less until
+2026-08-14, which made the whole array inert while reading perfectly in the file:
+`/veins/` and `/venous-insufficiency/` returned a hard 404 in production. `build.py` emits
+both forms now. Don't "tidy" the slash away.
+
+Two checks, and they answer different questions:
+
+```
+python3 _dev/crawl-old-site.py --coverage      # is anything on the old site unmapped?
+python3 _dev/verify-redirects.py <origin>      # does every one actually resolve, live?
+```
+
+The second is the one that matters. Reading `vercel.json` tells you nothing about what the
+deployment does — that is exactly how an entirely non-functional redirect table survived,
+since the only legacy URLs anyone spot-checked were the handful with a meta-refresh stub
+behind them. Both need `jupiterlaser.com` reachable. Run both before cutover.
 
 `vercel.json` also sends `X-Robots-Tag: noindex, nofollow` on any `*.vercel.app` host. That
 is deliberate — see the next section. Don't widen that rule to `/(.*)` unconditionally, and

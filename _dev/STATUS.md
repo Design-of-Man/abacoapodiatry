@@ -13,6 +13,7 @@ reinventing any of them.
 | `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero. Currently passes — nothing blocking.** |
 | `_dev/verify-testimonials.py` | Refetches the practice's testimonials page and Dr. Cedeno's Healthgrades profile and string-matches every quoted span on `/reviews/` against them. Exits non-zero on any drift. Run it after touching that page. |
 | `_dev/crawl-old-site.py` | Rebuilds the old-site inventory from all four Yoast sitemaps, with titles, into `_dev/old-site-urls.tsv`. `--coverage` reports any live URL with no redirect and no matching page. Needs `jupiterlaser.com` reachable. |
+| `_dev/verify-redirects.py` | Requests all 156 old URLs against a **deployed** build and follows each to the end. Exits non-zero on anything that is not a 200. Checking `vercel.json` is not the same as checking the deployment, which is how a completely inert redirect table survived. |
 | `_src/redirect-map.tsv` | The redirect source of truth, 159 entries. `build.py` writes `vercel.json`, `_redirects`, `.htaccess` and the stubs from it. Not a dev tool, a build input. |
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
@@ -36,6 +37,7 @@ Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --
 | Preflight | **passes** — 0 blocking items |
 | Testimonials | **9/9 verbatim** against their two sources, checked mechanically |
 | Redirect coverage | **157/157** of the old site's live URLs, from 25 before |
+| Redirects verified live | **156/156** resolve to 200 on a deployed build, tested over the wire |
 
 ## Blocked on someone else
 
@@ -56,6 +58,7 @@ Nothing here is code. All of it gates launch.
 - **The condition dropdown on the contact form stays**, carrying condition detail through a non-BAA service with an on-form disclaimer as the mitigation. Reviewed deliberately.
 - **Speculation Rules are `conservative`, not `moderate`.** A prerender fires the page's load scripts, and Web Analytics records a pageview on load; hover-triggered prerendering would inflate the numbers this site is judged on.
 - **The hero poster is frame zero of the hero video.** It cannot simply be deleted: it is the LCP element and the entire hero for reduced-motion, Save-Data, 2g and non-H.264 visitors.
+- **Redirect sources carry a trailing slash, and that is load-bearing.** `vercel.json` sets `trailingSlash: true`, so Vercel 308s `/foo` to `/foo/` *before* matching the redirect table. A slash-less source is never reached. Every source was slash-less until 2026-08-14, which made the entire array inert while looking perfectly correct in the file. `build.py` emits both forms now. Verify over the wire with `_dev/verify-redirects.py`, never by reading the JSON.
 - **Testimonials are quoted, never tidied.** Every quote on `/reviews/` is a contiguous span copied exactly, with `…` at every trim or join. Two sources contain typos and those sentences are quoted around rather than corrected, because correcting a patient's grammar is still putting words in their mouth. `_dev/verify-testimonials.py` enforces it mechanically; a careful human proofread does not, which is how the summarised versions survived as long as they did.
 - **No `aggregateRating` or `Review` schema on `/reviews/`.** The quotes are real but they are a curated selection from two sources, and marking them up as an aggregate would assert a rating this site did not compute. The stars are presentational.
 

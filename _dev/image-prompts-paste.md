@@ -121,91 +121,91 @@ Bare feet on smooth warm stone beside a shallow pool of still water, calm and re
 ### 17. `locations-jupiter`
 
 ```
-Running shoes mid-stride on a wooden riverwalk boardwalk, turquoise inlet water blurred behind. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A runner mid-stride on a wooden riverwalk boardwalk seen from behind, turquoise inlet water blurred beyond. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 18. `locations-abacoa`
 
 ```
-Walking shoes on a paved town-centre walkway beside low landscaped planters, long late-afternoon shadows. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Two people walking away along a paved town-centre walkway beside low landscaped planters, long late-afternoon shadows. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 19. `locations-palm-beach-gardens`
 
 ```
-Court shoes on a blue pickleball court, a paddle resting against one ankle. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Two players at the far end of a blue pickleball court, paddles raised, seen from behind the near baseline. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 20. `locations-north-palm-beach`
 
 ```
-Golf shoes on closely mown fairway grass, long morning shadow, a bag strap just entering frame. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A golfer walking a closely mown fairway at distance, bag over one shoulder, long morning shadow. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 21. `locations-juno-beach`
 
 ```
-Bare feet at the waterline on hard-packed sand beside weathered pier pilings, thin wash of seawater. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A figure walking the waterline on hard-packed sand beside weathered pier pilings, seen from behind, thin wash of seawater. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 22. `locations-tequesta`
 
 ```
-Sneakers on a quiet tree-lined residential sidewalk, dappled shade from live oaks. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person walking a dog along a quiet tree-lined residential sidewalk, seen from behind, dappled shade from live oaks. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 23. `locations-hobe-sound`
 
 ```
-Worn hiking shoes on a sandy pine-scrub trail, dappled light through slash pines. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A hiker on a sandy pine-scrub trail seen from behind, dappled light through slash pines. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 24. `locations-singer-island`
 
 ```
-Bare feet on hot pale sand beside the corner of a beach towel, sea oats blurred behind. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A beachgoer walking over hot pale sand past sea oats, seen from behind, towel over one shoulder. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 25. `locations-riviera-beach`
 
 ```
-Sandals on a concrete marina walkway, boat hulls out of focus behind. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A figure walking a concrete marina walkway seen from behind, boat hulls out of focus beyond. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 26. `locations-lake-park`
 
 ```
-Boat shoes on a sun-bleached marina dock, a cleat and coiled mooring line in the foreground. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person crouched at the edge of a sun-bleached marina dock, back to camera, cleat and coiled mooring line in the foreground. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 27. `locations-west-palm-beach`
 
 ```
-Dress shoes on a downtown waterfront promenade, palm shadows striping pale pavers. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Pedestrians crossing a downtown waterfront promenade at distance, palm shadows striping pale pavers. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 28. `locations-stuart`
 
 ```
-Leather loafers on a brick historic-downtown sidewalk, striped shopfront awning shadow. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A shopper walking a brick historic-downtown sidewalk seen from behind, striped shopfront awning shadow. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 29. `locations-port-salerno`
 
 ```
-Deck boots on a working fishing dock, wet planking and coiled rope. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A dockhand coiling rope on a working fishing dock, back to camera, wet planking. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 30. `locations-palm-city`
 
 ```
-Riding boots in stirrups seen from behind and below, sandy paddock, warm low light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A rider on horseback seen from behind and below, sandy paddock, warm low light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 31. `locations`
 
 ```
-Two pairs of shoes side by side on a wooden dock, one athletic and one dress, warm evening light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Two people walking away side by side along a wooden dock, warm evening light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ## Articles and blog (5)
@@ -237,7 +237,7 @@ A bare heel resting on a folded towel, single warm directional light, close and 
 ### 36. `blog`
 
 ```
-An open notebook and a pair of running shoes on a wooden table, morning light across the page. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person reading at a wooden table beside a pair of running shoes, seen over the shoulder, morning light across the page. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ## Everything else (6)
@@ -245,36 +245,36 @@ An open notebook and a pair of running shoes on a wooden table, morning light ac
 ### 37. `about`
 
 ```
-Two pairs of shoes on a doorstep in warm evening light, one larger and one smaller, side by side. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Two people arriving at a doorstep in warm evening light, seen from behind. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 38. `new-patients`
 
 ```
-Clean sneakers on a doormat at an open front door, bright inviting daylight beyond. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A visitor stepping onto a doormat at an open front door, seen from behind, bright inviting daylight beyond. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 39. `telehealth`
 
 ```
-Feet in socks up on a sofa beside a laptop on a low table, relaxed lamp-lit evening. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person relaxed on a sofa with feet up beside a laptop on a low table, seen from behind, lamp-lit evening. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 40. `faq`
 
 ```
-Shoes slipped off beside an armchair with a mug on the floor next to them, unhurried afternoon light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person settled into an armchair with a mug on the floor beside them, seen from behind, unhurried afternoon light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 41. `media`
 
 ```
-Trainers on a wooden floor beside a notebook and a pair of headphones, soft window light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person at a wooden-floor workspace with a notebook and headphones, seen from behind, soft window light. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 42. `reviews`
 
 ```
-Shoes on a porch step in warm golden evening light, welcoming and settled. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+A person sitting on a porch step in warm golden evening light, seen from behind, welcoming and settled. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. People appear in full figure but stay anonymous: seen from behind, at a distance, or turned away and out of focus. No recognisable faces, no scrubs, lab coats or uniforms. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 

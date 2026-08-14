@@ -383,18 +383,29 @@
         body: new FormData(form),
         headers: { Accept: "application/json" }
       }).then(function (r) {
-        if (r.ok) {
-          status.className = "form-status ok";
-          status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
-          // Fires on confirmed delivery, not on submit, so a failed send is
-          // never counted as a lead. No field values are sent -- the visitor
-          // typed their name and symptoms into this form.
-          track("form_submit", { form: "contact" });
-          form.reset();
-        } else {
-          throw new Error("bad status");
-        }
+        // A 2xx only means FormSubmit accepted the request, not that anyone
+        // will receive it. It answers 200 with {"success":"false"} when the
+        // recipient address has never been activated -- so trusting the status
+        // code alone would thank the patient, fire a conversion, and drop the
+        // lead, all at once. Read the body and believe that instead.
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (data) {
+        // success comes back as the string "true" rather than a boolean.
+        var delivered = data && String(data.success).toLowerCase() === "true";
+        if (!delivered) throw new Error("not delivered");
+        status.className = "form-status ok";
+        status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+        // Fires on confirmed delivery, not on submit, so a failed send is
+        // never counted as a lead. No field values are sent -- the visitor
+        // typed their name and symptoms into this form.
+        track("form_submit", { form: "contact" });
+        form.reset();
       }).catch(function () {
+        // Anything unexpected -- non-JSON body, network failure, success:false
+        // -- lands here and sends the patient to the phone. Erring toward a
+        // visible failure is the right direction: a wasted phone call costs
+        // less than a lead that silently evaporates.
         status.className = "form-status err";
         status.textContent = "Something went wrong sending your request. Please call us at (561) 915-1934 and we'll take care of you.";
       }).finally(function () {

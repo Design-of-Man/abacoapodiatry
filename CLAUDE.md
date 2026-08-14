@@ -112,6 +112,41 @@ and nothing reads the variable. The video encodes are committed under `assets/vi
 (desktop + mobile, MP4 + WebM). Safe to delete; left in place only because removing it
 wasn't in scope for the change that found it.
 
+## The contact form is the only lead path, and it can fail silently
+
+`_src/pages/contact.html` posts to FormSubmit. The floating "Jupiter Laser Assistant" is
+*not* a second path — `assets/js/assistant.js` is keyword-matched canned answers, entirely
+client-side, and routes people to the phone or `/contact/`.
+
+Two things about FormSubmit are worth knowing before you touch that form.
+
+**It does not deliver to an address until someone clicks a confirmation link**, sent on the
+first submission to that address. Until then submissions are accepted and dropped.
+`_dev/client-form-activation.md` is the note to send the practice.
+
+**A 2xx does not mean delivered.** FormSubmit answers `200` with `{"success":"false"}` in
+exactly that unactivated case, so the handler in `assets/js/main.js` reads the JSON body
+and requires `success` to be `"true"` — note the *string*, not a boolean. Checking `r.ok`
+alone would thank the patient, fire a lead event, and drop the request, all at once. It
+did, until 2026-08-14. Anything unexpected deliberately falls to the error path and shows
+the phone number: a wasted call costs less than a lead that evaporates.
+
+`_dev/formtest/run-formtest.sh` drives headless Chrome against a fake FormSubmit that
+returns all three replies (delivered / accepted-then-dropped / 500) and asserts what the
+patient sees and whether a lead event fires. Run it after any change to that handler.
+It needs no network — everything is local.
+
+**On the condition dropdown:** "What can we help with?" collects condition detail
+alongside name and phone and sends it through a service with no BAA. Reviewed and kept
+deliberately on 2026-08-14 — the field earns its place in triage, and the on-form
+disclaimer asking patients not to add medical detail is the mitigation. If that trade
+ever gets revisited, the options are neutral labels or dropping the field.
+
+Lead events go to **Vercel Web Analytics** (`window.va`), not Google Analytics. `track()`
+no-ops when the script isn't present, which is always the case on localhost — so a local
+form test will never show an event unless you stub `window.va` the way the test harness
+does.
+
 ## Conventions
 
 - Match the surrounding code. The CSS is one design system in `assets/css/main.css`; the JS

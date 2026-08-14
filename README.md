@@ -64,12 +64,14 @@ Ordered by what cannot be undone if it is missed.
       Confirm them, and if they are wrong update `_src/template.html`,
       `_src/pages/faq.html`, `llms.txt` and the schema together — four places, easy to
       half-fix.
-- [ ] **Verify the patient testimonials on `_src/pages/reviews.html` word for word** (marked
-      `LAUNCH TODO`) with verified reviews used with permission — Google Business Profile
-      reviews are ideal: public, attributable and already in the practice's name. The
-      homepage block was removed for the same reason and can come back once verified.
-      **This gates the cutover.** Publishing patient testimonials that cannot be sourced
-      is not a polish item for a medical practice.
+- [x] ~~**Verify the patient testimonials word for word.**~~ Done on 2026-08-14, once
+      `jupiterlaser.com` came off the egress block. All nine quotes on
+      `_src/pages/reviews.html` are contiguous spans copied exactly from the practice's
+      own testimonials page or Dr. Cedeno's Healthgrades profile, with `…` marking every
+      trim or join. Re-run `python3 _dev/verify-testimonials.py` after touching that page:
+      it refetches both sources and string-matches every span, exiting non-zero on any
+      drift. Two source typos are quoted around rather than corrected, deliberately.
+      The homepage block was removed when these were unverified and can come back now.
 - [ ] **Enable Web Analytics** on the Vercel project. STILL OFF, so no lead events are being recorded at all. The lead instrumentation
       (`call_click`, `form_submit`, `appointment_cta`) is live in `assets/js/main.js` but
       collects nothing until the toggle is on; custom events need a Pro plan. Turn it on

@@ -13,3 +13,6 @@ Thumbs.db
 _dev/measure/node_modules/
 _dev/measure/.cdp-profile/
 _dev/measure/results/
+
+# raw generated uploads, kept but never deployed
+_dev/atmos-raw/

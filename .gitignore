@@ -8,3 +8,8 @@ __pycache__/
 # OS cruft
 .DS_Store
 Thumbs.db
+
+# measurement tooling, installed on demand
+_dev/measure/node_modules/
+_dev/measure/.cdp-profile/
+_dev/measure/results/

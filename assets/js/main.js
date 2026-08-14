@@ -291,17 +291,29 @@
     // no reason to spend 25MB of someone's data on motion they asked not to see.
     if (!heroVideo.querySelector("source") && heroVideo.dataset.mp4Full) {
       var wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (wantsMotion) {
-        var small = window.matchMedia("(max-width: 767px)").matches;
+      // Save-Data is an explicit "don't spend my bandwidth", and 2g is a
+      // connection that cannot afford a decorative hero at any encode. Both
+      // keep the poster, which is what the video is layered over anyway.
+      var conn = navigator.connection || {};
+      var starved = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
+      if (wantsMotion && !starved) {
+        // 1024, not 767. The HD encode is 25MB; at the old breakpoint every
+        // tablet and small laptop was handed it for a background flourish.
+        var small = window.matchMedia("(max-width: 1024px)").matches;
         // MP4 first: it is the smaller file in both tiers and every mainstream
-        // browser decodes H.264. WebM second, for builds without proprietary
-        // codecs (some Linux Firefox/Chromium) that would otherwise show only
-        // the poster. The browser downloads the FIRST source it can play, so
-        // normal visitors never fetch both.
-        [
-          [small ? heroVideo.dataset.mp4Mobile : heroVideo.dataset.mp4Full, "video/mp4"],
-          [small ? heroVideo.dataset.webmMobile : heroVideo.dataset.webmFull, "video/webm"]
-        ].forEach(function (pair) {
+        // browser decodes H.264. The browser downloads the FIRST source it can
+        // play, so normal visitors never fetch both.
+        //
+        // The small tier is MP4-only on purpose. WebM exists here as a fallback
+        // for builds without proprietary codecs, but the mobile WebM is 4.7MB
+        // against the mobile MP4's 2.2MB -- larger than the file it exists to
+        // improve on. On the tier where data costs the most it earns nothing,
+        // so those browsers keep the poster instead of spending 4.7MB.
+        (small
+          ? [[heroVideo.dataset.mp4Mobile, "video/mp4"]]
+          : [[heroVideo.dataset.mp4Full, "video/mp4"],
+             [heroVideo.dataset.webmFull, "video/webm"]]
+        ).forEach(function (pair) {
           if (!pair[0]) return;
           var s = document.createElement("source");
           s.src = pair[0];

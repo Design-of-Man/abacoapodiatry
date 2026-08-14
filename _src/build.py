@@ -97,6 +97,7 @@ IMAGE_ORIGIN = os.environ.get(
 
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
+import instagram  # noqa: E402
 
 META_RE = re.compile(r"^<!--META\s*(\{.*?\})\s*META-->\s*", re.DOTALL)
 
@@ -263,6 +264,10 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{BODY_CLASS}}", f' class="{meta["bodyclass"]}"' if meta.get("bodyclass") else "")
         .replace("{{SCHEMA}}", schema_html)
         .replace("{{CONTENT}}", content)
+        # After CONTENT, since the token lives in a page body. Returns "" when
+        # assets/img/instagram/ is empty, so the band never renders ahead of
+        # its images and preflight never sees a missing <img>.
+        .replace("{{INSTAGRAM_FEED}}", instagram.feed_html())
         # Last, so it also reaches placeholders inside page-level schema and
         # page bodies -- not just the shared template.
         .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)

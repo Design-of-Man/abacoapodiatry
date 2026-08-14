@@ -706,8 +706,18 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   left: -30%;
   width: 160%;
   height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(232, 199, 120, 0.55) 45%, rgba(138, 106, 42, 0.55) 55%, transparent);
-  filter: drop-shadow(0 0 6px rgba(232, 199, 120, 0.8));
+  /* The glow is baked into the gradient rather than applied with
+     filter: drop-shadow(). A filter on a permanently animating element 160%
+     as wide as the hero repaints that whole area every frame, forever, even
+     once the hero has scrolled away. The gradient costs nothing to composite. */
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(232, 199, 120, 0.18) 32%,
+    rgba(232, 199, 120, 0.75) 47%,
+    rgba(242, 212, 145, 0.9) 50%,
+    rgba(138, 106, 42, 0.7) 53%,
+    rgba(138, 106, 42, 0.16) 68%,
+    transparent);
   opacity: 0;
   animation: beam 9s linear infinite;
 }
@@ -2067,10 +2077,17 @@ a.btn-ghost { color: var(--head); }
 .scroll-rail i {
   display: block;
   height: 100%;
-  width: 0;
+  /* Driven by transform, not width. Width is a layout property: animating it
+     on every scroll frame forced a reflow the whole page long, and the
+     transition below kept that reflow running continuously. scaleX is
+     composited, so scrolling costs nothing. */
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
   background: linear-gradient(90deg, #b98f35, #f2d491 60%, #e9c878);
   box-shadow: 0 0 12px rgba(242, 212, 145, 0.6);
-  transition: width 0.08s linear;
+  transition: transform 0.08s linear;
 }
 
 /* Live open/closed pill — driven by the visitor's real clock */
@@ -2205,8 +2222,10 @@ a.btn-ghost { color: var(--head); }
   to   { transform: translateX(-50%); }
 }
 
-/* Hero parallax drift */
-.hero-media.parallax video, .hero-media.parallax { will-change: transform; }
+/* Hero parallax drift was removed on 2026-08-14 (see main.js). The
+   will-change: transform that lived here promoted the video to its own
+   compositor layer permanently, which cost memory on every page load for an
+   effect that no longer exists. */
 
 /* Card sheen sweep on hover */
 .card-glow { overflow: hidden; }
@@ -2368,3 +2387,93 @@ a.btn-ghost { color: var(--head); }
 .symptom-card ul li { margin: 0; font-size: 0.92rem; }
 /* Pin the CTA to the bottom so buttons line up across cards of uneven height. */
 .symptom-card .btn { margin-top: auto; align-self: flex-start; }
+
+/* ==========================================================================
+   Instagram strip (homepage)
+   Pure CSS marquee. The track holds every tile twice and translates by exactly
+   -50%, so the second copy lands where the first began and the loop has no
+   seam. Only transform is animated, so it runs on the compositor and costs
+   nothing on the main thread -- the same reason the hero parallax had to go.
+   ========================================================================== */
+.ig-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.ig-head h2 { margin: 0; }
+
+.ig-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  /* Fades the strip into the section at both edges so tiles enter and leave
+     rather than being chopped off at the viewport wall. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.ig-viewport::-webkit-scrollbar { display: none; }
+.ig-viewport:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.ig-track {
+  display: flex;
+  gap: 1.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 1.25rem;
+  width: max-content;
+  animation: ig-roll var(--ig-duration, 56s) linear infinite;
+}
+/* Hovering or tabbing into the strip stops it, so nobody has to chase a
+   moving target to read a caption. */
+.ig-viewport:hover .ig-track,
+.ig-viewport:focus-within .ig-track { animation-play-state: paused; }
+
+.ig-item {
+  position: relative;
+  flex: 0 0 auto;
+  /* Uniform height, width follows the image. A single aspect ratio sliced the
+     "After" half off the before/after collages, which are near square while
+     the clinical photos are tall. The per-tile aspect-ratio is set inline from
+     the real file dimensions so width is reserved before the image decodes. */
+  height: clamp(230px, 27vw, 320px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--mist-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+.ig-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ig-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.6rem 0.9rem 0.75rem;
+  background: linear-gradient(0deg, rgba(12, 11, 8, 0.92), transparent);
+  color: #f3efe4;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.ig-note {
+  margin: 1.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+@keyframes ig-roll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Reduced motion: no autoplay at all. The strip becomes an ordinary
+   horizontally scrollable row, which it already is underneath. */
+@media (prefers-reduced-motion: reduce) {
+  .ig-track { animation: none; }
+}

@@ -31,6 +31,14 @@ MAX_WIDTH = 1200
 TARGET_BYTES = 90_000
 SOURCES = {".png", ".jpg", ".jpeg", ".webp", ".avif"}
 
+# Other image sets have their own display size, so they get their own budget
+# rather than paying for atmos-sized detail. Keyed by directory name under
+# assets/img/. Run as:  python3 _dev/optimise-images.py instagram
+PROFILES = {
+    # Marquee tiles render about 260-300px wide, so 640 covers 2x.
+    "instagram": {"max_width": 640, "target_bytes": 60_000},
+}
+
 
 def main() -> None:
     try:
@@ -38,10 +46,22 @@ def main() -> None:
     except ImportError:
         sys.exit("Pillow missing:  pip install Pillow")
 
-    if not ATMOS.is_dir():
-        sys.exit(f"nothing to do, {ATMOS.relative_to(ROOT)} does not exist")
+    global MAX_WIDTH, TARGET_BYTES
+    src_dir, keep_dir = ATMOS, KEEP
+    if len(sys.argv) > 1:
+        name = sys.argv[1].strip("/")
+        src_dir = ROOT / "assets" / "img" / name
+        keep_dir = ROOT / "_dev" / f"{name}-raw"
+        prof = PROFILES.get(name, {})
+        MAX_WIDTH = prof.get("max_width", MAX_WIDTH)
+        TARGET_BYTES = prof.get("target_bytes", TARGET_BYTES)
 
-    raw = [p for p in sorted(ATMOS.iterdir())
+    ATMOS_LOCAL = src_dir
+    if not ATMOS_LOCAL.is_dir():
+        sys.exit(f"nothing to do, {ATMOS_LOCAL.relative_to(ROOT)} does not exist")
+
+    globals()["KEEP"] = keep_dir
+    raw = [p for p in sorted(ATMOS_LOCAL.iterdir())
            if p.is_file() and p.suffix.lower() in SOURCES
            and not p.name.endswith(".opt.webp")]
     if not raw:
@@ -65,7 +85,7 @@ def main() -> None:
             if buf.tell() <= TARGET_BYTES:
                 break
 
-        out = ATMOS / f"{src.stem}.opt.webp"
+        out = ATMOS_LOCAL / f"{src.stem}.opt.webp"
         out.write_bytes(buf.getvalue())
         shutil.move(str(src), KEEP / src.name)
 

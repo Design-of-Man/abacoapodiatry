@@ -52,17 +52,27 @@ META-->
             <span class="kicker">Online Request</span>
             <h2>Request your appointment</h2>
             <p>Prefer not to call? Send us your details and our team will call you back to confirm a time, usually the same business day.</p>
-            <!-- FormSubmit: requests go to the practice inbox. NOTE: the very first
-                 submission triggers a one-time activation email to
-                 AbacoaPodiatry@gmail.com, click it once and the form is live. -->
-            <form id="contact-form" action="https://formsubmit.co/ajax/AbacoaPodiatry@gmail.com" method="POST" novalidate>
+            <!-- FormSubmit. The address in the action is the ACTIVATION address:
+                 the first submission sends a one-time confirmation link to
+                 doctor.cedeno@jupiterlaser.com, and until someone clicks it every
+                 submission is accepted and silently dropped. Changing that address
+                 starts the activation over, so do not change it casually. The _cc
+                 addresses need no activation of their own. -->
+            <form id="contact-form" action="https://formsubmit.co/ajax/doctor.cedeno@jupiterlaser.com" method="POST" novalidate>
               <input type="hidden" name="_subject" value="Appointment Request">
               <!-- Every address here is visible in the page source. If the practice
                    moves to a Workspace group, one address forwarding to all four is
                    cleaner and lets people be added without a deploy. -->
-              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,angela.d@jupiterlaser.com,doctor.cedeno@jupiterlaser.com">
+              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,angela.d@jupiterlaser.com,AbacoaPodiatry@gmail.com">
               <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Abacoa Podiatry &amp; Leg Vein Center. We have your request and a member of our team will call you shortly to confirm a time. If you'd rather not wait, you can reach us directly at (561) 915-1934 during office hours. — Abacoa Podiatry &amp; Leg Vein Center, 4601 Military Trail, Suite 202, Jupiter, FL 33458">
+              <!-- No _autoresponse here on purpose, and it is not an oversight.
+                   FormSubmit's own docs: "autoresponse won't work with forms that
+                   are disabled reCAPTCHA and forms that are submitting through
+                   AJAX." This form is AJAX, so the field silently did nothing for
+                   as long as it was here. Leaving AJAX to regain it would be a bad
+                   trade: the AJAX response body is what lets main.js see
+                   {"success":"false"} and catch a dropped lead. Patients get the
+                   on-page confirmation and the callback promise instead. -->
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty" autocomplete="off">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>

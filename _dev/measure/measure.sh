@@ -25,7 +25,7 @@ export CHROME_PATH="${CHROME_PATH:-/opt/pw-browsers/chromium-1194/chrome-linux/c
 # Representative rather than exhaustive: the money page, a condition page and a
 # service page (the two templates that carry the long tail), the conversion
 # page, and the one page still carrying placeholder content.
-PAGES=(/ /conditions/plantar-fasciitis/ /services/mls-laser-therapy/ /contact/ /reviews/)
+PAGES=(/ /services/vein-treatment/ /conditions/plantar-fasciitis/ /contact/ /reviews/)
 
 cleanup() {
   [ -n "${SRV:-}" ] && kill "$SRV" 2>/dev/null

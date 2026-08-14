@@ -12,6 +12,8 @@ reinventing any of them.
 |---|---|
 | `_dev/preflight.py` | Hard-failing launch gate. Placeholders, missing assets, empty or duplicate meta, invalid JSON-LD, broken internal links, missing `alt`, `<h1>` count, redirect destinations. **Exits non-zero. Currently passes — nothing blocking.** |
 | `_dev/verify-testimonials.py` | Refetches the practice's testimonials page and Dr. Cedeno's Healthgrades profile and string-matches every quoted span on `/reviews/` against them. Exits non-zero on any drift. Run it after touching that page. |
+| `_dev/crawl-old-site.py` | Rebuilds the old-site inventory from all four Yoast sitemaps, with titles, into `_dev/old-site-urls.tsv`. `--coverage` reports any live URL with no redirect and no matching page. Needs `jupiterlaser.com` reachable. |
+| `_src/redirect-map.tsv` | The redirect source of truth, 159 entries. `build.py` writes `vercel.json`, `_redirects`, `.htaccess` and the stubs from it. Not a dev tool, a build input. |
 | `_dev/formtest/run-formtest.sh` | Drives headless Chrome through the contact form against a fake FormSubmit returning delivered / accepted-then-dropped / 500. Asserts what the patient sees and whether a lead event fires. Run after any change to that handler. |
 | `_dev/measure/measure.sh` | Lighthouse mobile + axe across five representative pages. `measure.sh <label>` writes to `results/<label>/`. Run the same command before and after or the delta means nothing. |
 | `_dev/image-prompts*.md`, `_dev/optimise-images.py` | 42 image prompts, one per page with no image, and the resize/WebP pipeline for the results. |
@@ -33,16 +35,17 @@ Needs `pip install Pillow imageio-ffmpeg` and `cd _dev/measure && npm install --
 | Atmos image payload | 2,193KB for 42 images (4% of the 54MB of raws) |
 | Preflight | **passes** — 0 blocking items |
 | Testimonials | **9/9 verbatim** against their two sources, checked mechanically |
+| Redirect coverage | **157/157** of the old site's live URLs, from 25 before |
 
 ## Blocked on someone else
 
 Nothing here is code. All of it gates launch.
 
 1. **Search Console** — get the vendor to grant Owner *before* terminating them. GSC does not backfill, so the decline since April only exists in their property. Separately, verify a Domain property by DNS TXT today; it cannot be revoked and the clock starts when it is verified.
-2. **The contact form delivers to nobody** until someone clicks FormSubmit's activation link on `AbacoaPodiatry@gmail.com`. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four recipients, spam included.
+2. **The contact form delivers to nobody** until someone submits it once on the live site and then clicks FormSubmit's activation link, which now goes to **`doctor.cedeno@jupiterlaser.com`** (changed from the Gmail on 2026-08-14). The other three addresses are `_cc` and need no activation of their own. Note to forward: `_dev/client-form-activation.md`. Then confirm a live submission reaches all four, spam included.
 3. **Vercel Web Analytics is off**, so `track()` no-ops and no lead events are being recorded at all. `/_vercel/insights/script.js` 404s in production until it is enabled.
 4. **Default branch is still `claude/jupiter-laser-redesign-55fr8l`.** Should be `main`. The stale branch has 0 commits not already in `main`, so it can be deleted after. No MCP tool can change this and the REST API is blocked here; it is a manual settings change.
-5. **The redirect map is still unverified against a crawl.** 27 redirects written from the sitemap and from known URLs rather than from the old site's actual URL list. `jupiterlaser.com` is reachable now, so this is doable rather than blocked.
+5. ~~**The redirect map is unverified against a crawl.**~~ Done 2026-08-14. Crawled all four Yoast sitemaps: 157 live URLs, of which **132 had no redirect and no matching page** and would have 404'd at cutover. Now 157/157, from `_src/redirect-map.tsv`. Recheck with `_dev/crawl-old-site.py --coverage` before cutover in case the old site changed.
 6. **Two photos still owed**: `office.jpg` for `/contact/`, `mls-laser.jpg` for `/technology/`. The `<img>` tags were removed because they requested an asset that 404s on every page load; the PHOTO SLOT comments, monogram tiles and captions remain, so re-adding a real photo is one line. Does not block preflight or launch. See `_dev/photo-shotlist.md`.
 7. **The invoice** separating media spend from management fee. Google Ads shows ~$15.5k paid to Google across the period; what the vendor charged on top only exists on their invoice.
 

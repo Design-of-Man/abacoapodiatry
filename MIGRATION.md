@@ -13,28 +13,41 @@ ranking this site wins is directly reducing paid spend.
 
 ## Why this redesign is migration-safe by construction
 
-### 1. URLs that already rank were kept or 301-mapped
+### 1. Every URL the old site publishes is kept or 301-mapped
 
-**Kept identical (no redirect needed — zero risk):**
+Checked against a crawl rather than asserted. `_dev/crawl-old-site.py` pulls all four Yoast
+sitemaps from `jupiterlaser.com`; `--coverage` reports anything with no redirect and no
+matching page.
 
-| Legacy URL | Status |
+| | |
 |---|---|
-| `/meet-dr-cedeno/` | same URL on new site |
-| `/telehealth/` | same URL on new site |
-| `/how-mls-laser-therapy-relieves-foot-and-ankle-pain/` | same URL on new site |
-| `/innovative-treatments-for-heel-pain-exploring-mls-laser-therapy/` | same URL on new site |
+| Live URLs on the old site | **157** |
+| Kept identical, no redirect needed | 8 |
+| 301-redirected | 149 |
+| **Uncovered** | **0** |
 
-**301-redirected (both `_redirects` for Netlify and `.htaccess` for Apache are pre-built,
-plus meta-refresh fallback stubs for any other host):**
+**This was 132 uncovered until 2026-08-14.** The original map was 27 redirects written from
+search research rather than a crawl, and it covered 17 of the 157. The other 132 — 101
+pages and posts, 30 category archives, 1 author archive — resolved on the old site and
+would have returned 404 the moment DNS moved. That is the difference between a migration
+and starting from zero, and it was invisible while `jupiterlaser.com` was blocked at the
+egress proxy.
 
-| Legacy URL | New URL |
-|---|---|
-| `/mls/` | `/services/mls-laser-therapy/` |
-| `/about-us/` | `/about/` |
-| `/regenerative-medicine/` | `/services/regenerative-medicine/` |
-| `/neuropathy-solutions/` | `/conditions/neuropathy/` |
-| `/plantar-fasciitis/` | `/conditions/plantar-fasciitis/` |
-| `/stem-cell-therapy/` | `/services/stem-cell-therapy/` |
+**Kept identical (zero risk):** `/`, `/blog/`, `/contact/`, `/services/`, `/telehealth/`,
+`/meet-dr-cedeno/`, `/how-mls-laser-therapy-relieves-foot-and-ankle-pain/`,
+`/innovative-treatments-for-heel-pain-exploring-mls-laser-therapy/`.
+
+**The other 149** are in `_src/redirect-map.tsv`, one line each with the reason for the
+target. `build.py` generates `vercel.json` (the only one Vercel reads), `_redirects`,
+`.htaccess` and the meta-refresh stubs from it, so the four cannot disagree.
+
+Every target is the closest real equivalent; **nothing redirects to `/`**, and the build
+refuses a map that does. A bulk redirect to the homepage is read as a soft 404 and the link
+equity is discarded, which would waste the whole exercise.
+
+**Re-run `python3 _dev/crawl-old-site.py --coverage` immediately before cutover.** The old
+site is still live and still being edited; a post published after 2026-08-14 will not be in
+the map.
 
 ### 2. The phone number is the lead pipeline — it's everywhere and unchanged
 (561) 915-1934 appears in the header, footer, every CTA, the mobile sticky call bar, and

@@ -45,7 +45,7 @@ Bare feet resting on a folded white towel on a bathroom floor, soft even dayligh
 ### 5. `conditions-sports-injuries`
 
 ```
-Soccer cleats mid-pivot on turf, small spray of torn grass, motion blur at the frame edges. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. Flat everyday or athletic footwear only, no high heels. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Soccer cleats mid-pivot on turf, small spray of torn grass, motion blur at the frame edges. The footwear is completely plain and unbranded: no logos, no swooshes, no stripes, no lettering, no maker's marks anywhere on the shoe. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. Flat everyday or athletic footwear only, no high heels. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 6. `conditions-sprains-strains`
@@ -71,7 +71,7 @@ Lower legs and bare feet elevated on cushions at the end of a sofa, calves and a
 ### 9. `services-shockwave-therapy`
 
 ```
-Running shoes and a foam roller on a wooden floor after a session, low sun raking across the boards. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. Framed from the knee down only: no faces, no torsos, nobody above the knee. Flat everyday or athletic footwear only, no high heels. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
+Looking straight down from directly overhead at a foam roller and a pair of plain running shoes lying on a wooden floor after a session, low sun raking across the boards. Pure top-down bird's-eye view, so only the laces, tongues and toe caps are visible and the sides of the shoes are not in frame at all. Completely plain unbranded footwear in a single flat colour, with no logos, no symbols, no letters, no stripes and no maker's marks. Editorial lifestyle photograph. Natural warm light, shallow depth of field, muted natural colour, nothing oversaturated. No people, no feet, no legs. No text, no logos, no watermarks, no medical equipment, no clinical or hospital setting. 16:9 landscape.
 ```
 
 ### 10. `services-prp-therapy`

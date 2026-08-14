@@ -128,12 +128,12 @@
     },
     {
       "source": "/saphenous-vein-insufficiency",
-      "destination": "/services/vein-treatment/",
+      "destination": "/conditions/venous-insufficiency/",
       "permanent": true
     },
     {
       "source": "/venous-insufficiency",
-      "destination": "/services/vein-treatment/",
+      "destination": "/conditions/venous-insufficiency/",
       "permanent": true
     }
   ],

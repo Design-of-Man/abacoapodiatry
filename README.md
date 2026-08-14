@@ -70,7 +70,7 @@ Ordered by what cannot be undone if it is missed.
       homepage block was removed for the same reason and can come back once verified.
       **This gates the cutover.** Publishing patient testimonials that cannot be sourced
       is not a polish item for a medical practice.
-- [ ] **Enable Web Analytics** on the Vercel project. The lead instrumentation
+- [ ] **Enable Web Analytics** on the Vercel project. STILL OFF, so no lead events are being recorded at all. The lead instrumentation
       (`call_click`, `form_submit`, `appointment_cta`) is live in `assets/js/main.js` but
       collects nothing until the toggle is on; custom events need a Pro plan. Turn it on
       *before* cutover so there is a pre-launch baseline to compare against.
@@ -91,3 +91,9 @@ Ordered by what cannot be undone if it is missed.
       analytics event only on a confirmed send.
 - [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
+- [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.
+- [ ] **Allow-list `jupiterlaser.com`** for the session, or the old-site crawl cannot run.
+- [ ] **Generate the 42 page images** — prompts in `_dev/image-prompts-paste.md`, pipeline in `_dev/optimise-images.py`.
+
+See [`_dev/STATUS.md`](_dev/STATUS.md) for where everything stands, what is blocked on whom,
+and the decisions that should not be relitigated.

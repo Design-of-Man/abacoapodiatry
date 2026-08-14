@@ -115,6 +115,23 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); font-weight: 600; }
 h4 { font-size: 1.1rem; font-weight: 600; }
 
 p { margin: 0 0 1.15em; }
+
+/* Available to screen readers, invisible on screen. Used for the corner cell of
+   the comparison tables, which labels every row but has nothing to display. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The comparison tables scroll horizontally on narrow screens; tabindex makes
+   them reachable, and a focus ring shows a keyboard user where they are. */
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--accent-mid); text-decoration-thickness: 1px; text-underline-offset: 3px; }

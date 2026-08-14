@@ -38,7 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.jpg" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=30b212acf8">
+  <link rel="stylesheet" href="/assets/css/main.css?v=33daa2846d">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -592,6 +592,21 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=265e02cfe3" defer></script>
+  <script src="/assets/js/main.js?v=595e405216" defer></script>
+  <!-- Prerender the page a visitor is about to open, so the second pageview
+       costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
+       rather than "moderate" (starts after ~200ms hover): a prerender runs the
+       page's load-time scripts, and Vercel Web Analytics records a pageview on
+       load. At "moderate" every hover would inflate the traffic numbers this
+       site is being judged on. On pointerdown the visitor has committed, so the
+       pageview is real. Chromium-only; everywhere else ignores it. -->
+  <script type="speculationrules">
+  {
+    "prerender": [{
+      "where": { "href_matches": "/*" },
+      "eagerness": "conservative"
+    }]
+  }
+  </script>
 </body>
 </html>

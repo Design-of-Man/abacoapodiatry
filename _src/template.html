@@ -424,5 +424,20 @@
   <script src="/_vercel/insights/script.js" defer></script>
 
   <script src="/assets/js/main.js" defer></script>
+  <!-- Prerender the page a visitor is about to open, so the second pageview
+       costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
+       rather than "moderate" (starts after ~200ms hover): a prerender runs the
+       page's load-time scripts, and Vercel Web Analytics records a pageview on
+       load. At "moderate" every hover would inflate the traffic numbers this
+       site is being judged on. On pointerdown the visitor has committed, so the
+       pageview is real. Chromium-only; everywhere else ignores it. -->
+  <script type="speculationrules">
+  {
+    "prerender": [{
+      "where": { "href_matches": "/*" },
+      "eagerness": "conservative"
+    }]
+  }
+  </script>
 </body>
 </html>

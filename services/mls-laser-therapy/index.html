@@ -38,7 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.jpg" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=30b212acf8">
+  <link rel="stylesheet" href="/assets/css/main.css?v=33daa2846d">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -198,7 +198,7 @@
       "@id": "https://jupiterlaser.com/#clinic"
     },
     "lastReviewed": "2026-08-07",
-    "dateModified": "2026-08-07"
+    "dateModified": "2026-08-14"
   }
   </script>
   <script type="application/ld+json">
@@ -247,7 +247,7 @@
         }
       }
     ],
-    "dateModified": "2026-08-07"
+    "dateModified": "2026-08-14"
   }
   </script>
   <script type="application/ld+json">
@@ -438,9 +438,9 @@
           <span class="kicker">Honest Comparison</span>
           <h2>MLS laser vs. the usual options</h2>
         </div>
-        <div class="table-scroll" data-reveal>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="MLS laser compared with other options" data-reveal>
           <table class="compare">
-            <thead><tr><th></th><th>MLS Laser</th><th>Cortisone Shots</th><th>Pain Medication</th><th>Surgery</th></tr></thead>
+            <thead><tr><th><span class="sr-only">Treatment aspect</span></th><th>MLS Laser</th><th>Cortisone Shots</th><th>Pain Medication</th><th>Surgery</th></tr></thead>
             <tbody>
               <tr><td><strong>Treats root cause</strong></td><td class="yes">Yes — stimulates repair</td><td class="no">No — masks inflammation</td><td class="no">No — masks pain</td><td class="yes">Sometimes</td></tr>
               <tr><td><strong>Pain during treatment</strong></td><td class="yes">None</td><td>Injection pain</td><td class="yes">None</td><td class="no">Post-op pain</td></tr>
@@ -654,6 +654,21 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=265e02cfe3" defer></script>
+  <script src="/assets/js/main.js?v=595e405216" defer></script>
+  <!-- Prerender the page a visitor is about to open, so the second pageview
+       costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
+       rather than "moderate" (starts after ~200ms hover): a prerender runs the
+       page's load-time scripts, and Vercel Web Analytics records a pageview on
+       load. At "moderate" every hover would inflate the traffic numbers this
+       site is being judged on. On pointerdown the visitor has committed, so the
+       pageview is real. Chromium-only; everywhere else ignores it. -->
+  <script type="speculationrules">
+  {
+    "prerender": [{
+      "where": { "href_matches": "/*" },
+      "eagerness": "conservative"
+    }]
+  }
+  </script>
 </body>
 </html>

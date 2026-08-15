@@ -1489,6 +1489,21 @@ details.faq.hidden { display: none; }
   padding-bottom: 0.45em;
   white-space: nowrap;
 }
+/* Office label rows. Two offices on different schedules share this list, so
+   each block needs a header or the Gardens hours read as a continuation of
+   Jupiter's -- which is the misreading that put the wrong hours in the schema
+   in the first place. No border, since it heads a group rather than being a
+   row in it. */
+.footer-hours-office {
+  border-bottom: 0 !important;
+  padding-bottom: 0.15em !important;
+  margin-top: 0.9rem;
+  color: #d6b974;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer-hours-office:first-child { margin-top: 0; }
 .footer-hours li > span { white-space: nowrap; }
 .footer-hours li > span:first-child { flex: none; }
 .footer-hours li > span:last-child { text-align: right; }
@@ -2090,36 +2105,6 @@ a.btn-ghost { color: var(--head); }
   transition: transform 0.08s linear;
 }
 
-/* Live open/closed pill — driven by the visitor's real clock */
-.live-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55em;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.45em 1em 0.45em 0.85em;
-  border-radius: 999px;
-  border: 1px solid rgba(214, 185, 116, 0.35);
-  background: rgba(214, 185, 116, 0.08);
-  color: #e4c273;
-}
-.live-status .pip {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
-  animation: pip-pulse 2s infinite;
-  flex: none;
-}
-.live-status.closed { color: #cfc6b2; border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); }
-.live-status.closed .pip { background: #9a9384; animation: none; box-shadow: none; }
-@keyframes pip-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
-  70%  { box-shadow: 0 0 0 9px rgba(74, 222, 128, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-}
 
 /* Stat panel: radial rings that draw as they scroll in */
 .statring-grid {
@@ -2245,7 +2230,6 @@ a.btn-ghost { color: var(--head); }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-rail, .ticker { display: none; }
-  .live-status .pip { animation: none; }
   .statring-dial .fill { transition: none; }
   [data-counter].counted { animation: none; }
   .card-glow::after { display: none; }

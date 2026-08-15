@@ -26,9 +26,9 @@
 
   <!-- Local SEO -->
   <meta name="geo.region" content="US-FL">
-  <meta name="geo.placename" content="Jupiter, Florida">
-  <meta name="geo.position" content="26.8934;-80.1096">
-  <meta name="ICBM" content="26.8934, -80.1096">
+  <meta name="geo.placename" content="{{GEO_PLACE}}">
+  <meta name="geo.position" content="{{GEO_POS}}">
+  <meta name="ICBM" content="{{GEO_ICBM}}">
 
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
@@ -70,20 +70,7 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8934, "longitude": -80.1096 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=4601+Military+Trail+Suite+202+Jupiter+FL+33458",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "08:00",
-        "closes": "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "08:00",
-        "closes": "14:00"
-      }
-    ],
+    "openingHoursSpecification": {{HOURS_JUP_LD}},
     "areaServed": [
       { "@type": "City", "name": "Jupiter" },
       { "@type": "City", "name": "Palm Beach Gardens" },
@@ -98,19 +85,7 @@
       "https://www.yelp.com/biz/jupiter-laser-and-regenerative-medicine-jupiter",
       "https://www.youtube.com/@abacoapodiatryandlegveincenter"
     ],
-    "department": {
-      "@type": "MedicalClinic",
-      "name": "Abacoa Podiatry & Leg Vein Center \u2014 Palm Beach Gardens",
-      "telephone": "+1-561-915-1934",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "11380 Prosperity Farms Rd, Suite 204",
-        "addressLocality": "Palm Beach Gardens",
-        "addressRegion": "FL",
-        "postalCode": "33410",
-        "addressCountry": "US"
-      }
-    },
+    "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
       {
         "@type": "Physician",
@@ -164,17 +139,7 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8412, "longitude": -80.0714 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=11380+Prosperity+Farms+Rd+Suite+204+Palm+Beach+Gardens+FL+33410",
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "08:00",
-      "closes": "17:00"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "08:00",
-      "closes": "14:00"
-    }]
+    "openingHoursSpecification": {{HOURS_PBG_LD}}
   }
   </script>
 {{SCHEMA}}
@@ -316,11 +281,9 @@
         <div>
           <h2 class="footer-h">Office Hours</h2>
           <ul class="footer-hours">
-            <li><span>Mon&ndash;Thu</span> <span>8:00 AM &ndash; 5:00 PM</span></li>
-            <li><span>Friday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
-            <li><span>Sat&ndash;Sun</span> <span>Closed</span></li>
+            {{HOURS_FOOTER}}
           </ul>
-          <p style="font-size:0.82rem;color:#8a8170;margin:0.7rem 0 0">Closed for lunch 12:30&ndash;1:30 PM &middot; Closed holidays</p>
+          <p style="font-size:0.82rem;color:#8a8170;margin:0.7rem 0 0">Jupiter closed for lunch 12:30&ndash;1:30 PM &middot; Both offices closed holidays</p>
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
@@ -333,8 +296,8 @@
     </div>
     <div class="footer-cities">
       <div class="wrap">
-        <h2>Patients travel to our Jupiter office from</h2>
-        <p class="footer-cities-note">One location on Military Trail in Jupiter, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <h2>Patients travel to our offices from</h2>
+        <p class="footer-cities-note">Two offices &mdash; Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens &mdash; serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
         <ul class="city-links">
             <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
             <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>

@@ -86,9 +86,9 @@ Ordered by what cannot be undone if it is missed.
       degrade rather than break. `dr-cedeno.jpg` is already in the repo.
 - [x] ~~**Make the hero video durable.**~~ Done — the encodes are committed under
       `assets/video/` (desktop + mobile, MP4 and WebM), so no deploy-time fetch is
-      involved. `_src/vercel-build.sh` and its `HERO_VIDEO_URL` variable are dead
-      leftovers from the Dropbox approach; nothing runs them (there is no build
-      command) and the variable is not read anywhere.
+      involved. `_src/vercel-build.sh` was deleted on 2026-08-15 — it fetched a
+      tarball of a hardcoded branch from a GitHub org this repo no longer lives in,
+      and nothing ran it.
 - [x] ~~**Wire the contact form.**~~ Done — `_src/pages/contact.html` posts to
       `formsubmit.co/ajax/AbacoaPodiatry@gmail.com`. There is no `YOUR_FORM_ID`
       left anywhere in the repo, and `assets/js/main.js` fires the `form_submit`

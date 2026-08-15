@@ -136,13 +136,21 @@ Two build-time origins encode this split:
 
 At cutover, rebuild with `IMAGE_ORIGIN=https://jupiterlaser.com`.
 
-## Known dead code
+## Opening hours
 
-`_src/vercel-build.sh` and its `HERO_VIDEO_URL` variable are leftovers from when the hero
-video was fetched from Dropbox at deploy time. Nothing runs the script (no build command)
-and nothing reads the variable. The video encodes are committed under `assets/video/`
-(desktop + mobile, MP4 + WebM). Safe to delete; left in place only because removing it
-wasn't in scope for the change that found it.
+Both offices' hours live in `_src/hours.py` and nowhere else. `build.py` renders them
+into `{{HOURS_JUP_LD}}`, `{{HOURS_PBG_LD}}`, `{{HOURS_JUP_LINE}}`, `{{HOURS_PBG_LINE}}`,
+`{{HOURS_PBG_CLOSED}}` and `{{HOURS_FOOTER}}`. Change the schedule there and rebuild;
+do not edit hours in a page or in `template.html`.
+
+Jupiter is Mon–Thu 8–5, Fri 8–2 with a 12:30–1:30 lunch closure. Palm Beach Gardens is
+**Monday and Wednesday only, 8–4:30**. They were identical in the JSON-LD until
+2026-08-15 because PBG's `openingHoursSpecification` had been copied from Jupiter's,
+while the visible copy on `/locations/` said "call for availability" — the schema and the
+page disagreed and both were wrong.
+
+Two consumers are outside the build and must be hand-edited: `assets/js/assistant.js`
+and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either drifts.
 
 ## The contact form is the only lead path, and it can fail silently
 

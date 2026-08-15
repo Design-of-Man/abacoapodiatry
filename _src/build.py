@@ -98,6 +98,7 @@ IMAGE_ORIGIN = os.environ.get(
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
 import instagram  # noqa: E402
+import hours  # noqa: E402
 
 META_RE = re.compile(r"^<!--META\s*(\{.*?\})\s*META-->\s*", re.DOTALL)
 
@@ -335,6 +336,7 @@ def build_page(template: str, raw: str, name: str):
                 % body.replace("\n", "\n  "))
 
     schema_html = "".join(ld_json(s) for s in schemas)
+    geo_pos = meta.get("geopos", "26.8934;-80.1096")
 
     if path.endswith(".html"):  # e.g. 404.html
         out_file = ROOT / path
@@ -349,6 +351,12 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{ROBOTS}}", meta.get("robots", "index, follow"))
         .replace("{{OG_TYPE}}", meta.get("ogtype", "website"))
         .replace("{{NAV}}", meta.get("nav", ""))
+        # Geo meta defaults to the Jupiter office. The Palm Beach Gardens
+        # office page overrides both, so the one page that is genuinely about
+        # a different address stops claiming Jupiter's coordinates.
+        .replace("{{GEO_PLACE}}", esc(meta.get("geoplace", "Jupiter, Florida")))
+        .replace("{{GEO_POS}}", esc(geo_pos))
+        .replace("{{GEO_ICBM}}", esc(geo_pos.replace(";", ", ")))
         .replace("{{BODY_CLASS}}", f' class="{meta["bodyclass"]}"' if meta.get("bodyclass") else "")
         .replace("{{SCHEMA}}", schema_html)
         .replace("{{CONTENT}}", content)
@@ -356,6 +364,17 @@ def build_page(template: str, raw: str, name: str):
         # assets/img/instagram/ is empty, so the band never renders ahead of
         # its images and preflight never sees a missing <img>.
         .replace("{{INSTAGRAM_FEED}}", instagram.feed_html())
+        # Opening hours, from _src/hours.py. Rendered here rather than written
+        # into each file because they appeared in eleven places and had already
+        # drifted: the Palm Beach Gardens JSON-LD asserted Jupiter's Mon-Thu
+        # 8-5 for an office that opens Monday and Wednesday. One source, so
+        # the schema and the page copy cannot disagree again.
+        .replace("{{HOURS_JUP_LD}}", hours.ld(hours.JUPITER))
+        .replace("{{HOURS_PBG_LD}}", hours.ld(hours.PALM_BEACH_GARDENS))
+        .replace("{{HOURS_JUP_LINE}}", hours.line(hours.JUPITER))
+        .replace("{{HOURS_PBG_LINE}}", hours.line(hours.PALM_BEACH_GARDENS))
+        .replace("{{HOURS_PBG_CLOSED}}", hours.closed_note(hours.PALM_BEACH_GARDENS))
+        .replace("{{HOURS_FOOTER}}", hours.footer_html())
         # Last, so it also reaches placeholders inside page-level schema and
         # page bodies -- not just the shared template.
         .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)

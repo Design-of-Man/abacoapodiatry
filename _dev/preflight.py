@@ -145,6 +145,34 @@ def main():
     if not (ROOT / ".vercelignore").exists():
         fail("config", ".vercelignore missing — _src/ and internal .md files would be served")
 
+    # --- opening hours, in the two files the build cannot reach ---------------
+    # _src/hours.py is the single source of truth and build.py renders it into
+    # every generated page. assets/js/assistant.js and llms.txt are hand-written
+    # and regenerate from nothing, so they are exactly where hours drift back
+    # out of step -- which is how the Palm Beach Gardens schema ended up
+    # asserting Jupiter's Mon-Thu 8-5 for an office open Monday and Wednesday.
+    # Matching on the distinctive closing time rather than a whole rendered
+    # string keeps this from failing on ordinary copy edits.
+    sys.path.insert(0, str(ROOT / "_src"))
+    try:
+        import hours as _hours
+    except Exception as e:                                  # pragma: no cover
+        fail("hours", f"cannot import _src/hours.py — {e}")
+    else:
+        pbg_close = _hours.PALM_BEACH_GARDENS.days["Wednesday"][1]   # "16:30"
+        pbg_12h = _hours._h12(pbg_close)                             # "4:30 PM"
+        for rel_path in ("assets/js/assistant.js", "llms.txt"):
+            f = ROOT / rel_path
+            if not f.exists():
+                fail("hours", f"{rel_path} is missing")
+                continue
+            text = f.read_text(encoding="utf-8")
+            if "Palm Beach Gardens" not in text:
+                fail("hours", f"{rel_path}: no mention of the Palm Beach Gardens office")
+            elif pbg_12h not in text and pbg_close not in text:
+                fail("hours", f"{rel_path}: Palm Beach Gardens hours are stale — "
+                              f"expected {pbg_12h} from _src/hours.py")
+
     # --- report ---------------------------------------------------------------
     print(f"preflight: {len(seen_pages)} pages checked\n")
     if notes:

@@ -154,27 +154,36 @@ and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either 
 
 ## The contact form is the only lead path, and it can fail silently
 
-`_src/pages/contact.html` posts to FormSubmit. The floating "Jupiter Laser Assistant" is
-*not* a second path — `assets/js/assistant.js` is keyword-matched canned answers, entirely
-client-side, and routes people to the phone or `/contact/`.
+`_src/pages/contact.html` posts to `/api/contact/`, our own serverless function at
+`api/contact.js`. The floating "Jupiter Laser Assistant" is *not* a second path —
+`assets/js/assistant.js` is keyword-matched canned answers, entirely client-side, and
+routes people to the phone or `/contact/`.
 
-Two things about FormSubmit are worth knowing before you touch that form.
+**It used to be FormSubmit, and it delivered nothing.** FormSubmit requires a one-time
+activation link to be clicked in the recipient's inbox before it forwards anything; until
+then it accepts every submission and drops it, answering `200` with `{"success":"false"}`.
+Nobody ever clicked it. Replaced on 2026-08-15 — do not reintroduce a third-party form
+relay whose delivery depends on someone clicking an email.
 
-**It does not deliver to an address until someone clicks a confirmation link**, sent on the
-first submission to that address. Until then submissions are accepted and dropped.
-`_dev/client-form-activation.md` is the note to send the practice.
+**The response means "stored", and nothing weaker.** `api/contact.js` writes to Supabase
+FIRST and only answers `success: "true"` if that insert succeeded; a failed write returns
+`502` and an incomplete request `400`. Email is sent afterwards, best-effort, and can never
+change the response — a broken inbox must not tell a patient their request vanished when
+the row is already safe. The handler in `assets/js/main.js` reads the JSON body and
+requires `success` to be `"true"` — note the *string*, not a boolean, kept deliberately so
+the browser logic did not have to change. Anything unexpected falls to the error path and
+shows the phone number: a wasted call costs less than a lead that evaporates.
 
-**A 2xx does not mean delivered.** FormSubmit answers `200` with `{"success":"false"}` in
-exactly that unactivated case, so the handler in `assets/js/main.js` reads the JSON body
-and requires `success` to be `"true"` — note the *string*, not a boolean. Checking `r.ok`
-alone would thank the patient, fire a lead event, and drop the request, all at once. It
-did, until 2026-08-14. Anything unexpected deliberately falls to the error path and shows
-the phone number: a wasted call costs less than a lead that evaporates.
+**Secrets live in the Vercel environment, never here.** `SUPABASE_SERVICE_ROLE_KEY`
+bypasses row-level security. `LEAD_TO` holds the office recipients, which used to be four
+staff addresses sitting in the page source. `RESEND_API_KEY` is optional: without it
+capture still works and the office reads the Supabase table.
 
-`_dev/formtest/run-formtest.sh` drives headless Chrome against a fake FormSubmit that
-returns all three replies (delivered / accepted-then-dropped / 500) and asserts what the
+`_dev/formtest/run-formtest.sh` drives headless Chrome against a fake `/api/contact` that
+returns each outcome (stored / accepted-then-dropped / 400 / 502) and asserts what the
 patient sees and whether a lead event fires. Run it after any change to that handler.
-It needs no network — everything is local.
+It needs no network — everything is local. It proves the *browser* half; the function
+itself needs a real POST against a deployment.
 
 **On the condition dropdown:** "What can we help with?" collects condition detail
 alongside name and phone and sends it through a service with no BAA. Reviewed and kept

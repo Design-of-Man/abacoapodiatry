@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Serves the real built site, plus a fake FormSubmit that can be told how to lie.
+"""Serves the real built site, plus a fake /api/contact that can be told how to lie.
+
+Proves what the PATIENT sees for each backend outcome, and whether a lead
+conversion fires. It does not prove api/contact.js itself -- that needs a real
+request against a deployment.
 
 /test/<case>  -> the real contact page with its form action pointed at /mock/<case>
-/mock/ok      -> 200 {"success":"true"}   a genuinely delivered submission
-/mock/dropped -> 200 {"success":"false"}  accepted-then-dropped: the silent failure
-/mock/down    -> 500                      endpoint broken outright
+/mock/ok      -> 200 {"success":"true"}   stored, and reported as stored
+/mock/dropped -> 200 {"success":"false"}  accepted but NOT stored: the silent failure
+/mock/invalid -> 400 {"success":"false"}  rejected: name or phone missing
+/mock/down    -> 502 {"success":"false"}  database write failed
 """
 import json
 import re
@@ -12,9 +17,10 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = "/home/user/abacoapodiatry"
 CASES = {
-    "ok":      (200, {"success": "true", "message": "sent"}),
-    "dropped": (200, {"success": "false", "message": "address not activated"}),
-    "down":    (500, {"error": "boom"}),
+    "ok":      (200, {"success": "true"}),
+    "dropped": (200, {"success": "false"}),
+    "invalid": (400, {"success": "false"}),
+    "down":    (502, {"success": "false"}),
 }
 
 
@@ -31,7 +37,7 @@ class H(SimpleHTTPRequestHandler):
             return super().do_GET()
         with open(f"{ROOT}/contact/index.html", encoding="utf-8") as f:
             html = f.read()
-        html = re.sub(r'action="https://formsubmit\.co/ajax/[^"]*"',
+        html = re.sub(r'action="/api/contact/"',
                       f'action="/mock/{m.group(1)}"', html)
         body = html.encode("utf-8")
         self.send_response(200)

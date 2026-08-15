@@ -26,9 +26,10 @@ const waitFor = (ws, pred) =>
   });
 
 const CASES = [
-  ["ok",      "delivered",              "expect SUCCESS + conversion"],
+  ["ok",      "stored",                 "expect SUCCESS + conversion"],
   ["dropped", "accepted then dropped",  "expect ERROR + no conversion"],
-  ["down",    "endpoint 500",           "expect ERROR + no conversion"],
+  ["invalid", "rejected 400",           "expect ERROR + no conversion"],
+  ["down",    "database write failed",  "expect ERROR + no conversion"],
 ];
 
 let id = 0;
@@ -107,5 +108,6 @@ for (const [kase, label, expectation] of CASES) {
   ws.close();
 }
 
-console.log(failures ? `  ${failures} case(s) FAILED` : "  all 3 cases behave correctly");
+console.log(failures ? `  ${failures} case(s) FAILED`
+                     : `  all ${CASES.length} cases behave correctly`);
 process.exit(failures ? 1 : 0);

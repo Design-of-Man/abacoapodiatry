@@ -392,16 +392,22 @@
       var btn = $('button[type="submit"]', form);
       btn.disabled = true;
       btn.textContent = "Sending…";
+      // JSON rather than FormData: Vercel's Node runtime parses
+      // application/json into req.body, and does not parse multipart.
+      var payload = {};
+      new FormData(form).forEach(function (v, k) { payload[k] = v; });
       fetch(action, {
         method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
       }).then(function (r) {
-        // A 2xx only means FormSubmit accepted the request, not that anyone
-        // will receive it. It answers 200 with {"success":"false"} when the
-        // recipient address has never been activated -- so trusting the status
-        // code alone would thank the patient, fire a conversion, and drop the
-        // lead, all at once. Read the body and believe that instead.
+        // A 2xx is still not proof on its own, and the reason is worth keeping
+        // even though the backend changed. Under FormSubmit this endpoint
+        // answered 200 with {"success":"false"} whenever the recipient address
+        // had never been activated, so trusting the status code alone would
+        // thank the patient, fire a conversion and drop the lead all at once.
+        // api/contact.js now answers success:"true" only after the request is
+        // written to the database. Read the body and believe that instead.
         if (!r.ok) throw new Error("http " + r.status);
         return r.json();
       }).then(function (data) {
@@ -416,7 +422,8 @@
         track("form_submit", { form: "contact" });
         form.reset();
       }).catch(function () {
-        // Anything unexpected -- non-JSON body, network failure, success:false
+        // Anything unexpected -- non-JSON body, network failure, a 502 because
+        // the database write failed, a 400 because the request was incomplete
         // -- lands here and sends the patient to the phone. Erring toward a
         // visible failure is the right direction: a wasted phone call costs
         // less than a lead that silently evaporates.

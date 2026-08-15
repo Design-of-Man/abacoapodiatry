@@ -90,9 +90,15 @@ Ordered by what cannot be undone if it is missed.
       tarball of a hardcoded branch from a GitHub org this repo no longer lives in,
       and nothing ran it.
 - [x] ~~**Wire the contact form.**~~ Done — `_src/pages/contact.html` posts to
-      `formsubmit.co/ajax/AbacoaPodiatry@gmail.com`. There is no `YOUR_FORM_ID`
-      left anywhere in the repo, and `assets/js/main.js` fires the `form_submit`
-      analytics event only on a confirmed send.
+      `/api/contact/`, our own serverless function, which stores every request in
+      Supabase and only then reports success. `assets/js/main.js` fires the
+      `form_submit` analytics event only on a confirmed store. FormSubmit was
+      removed on 2026-08-15 after it turned out to have delivered nothing.
+- [ ] **Set the form's environment variables on the Vercel project** (Production,
+      Preview and Development): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`,
+      `LEAD_TO`, and optionally `LEAD_FROM` + `RESEND_API_KEY` for email. Until
+      the Supabase pair is set the form returns 502 and tells patients to call.
+      Adding a variable needs a redeploy to take effect.
 - [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
 - [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.

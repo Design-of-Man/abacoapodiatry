@@ -1,5 +1,16 @@
 {
   "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/api/contact/",
+      "destination": "/api/contact"
+    }
+  ],
+  "functions": {
+    "api/contact.js": {
+      "maxDuration": 10
+    }
+  },
   "redirects": [
     {
       "source": "/about-us/",

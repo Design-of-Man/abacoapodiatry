@@ -38,7 +38,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=c13c9ca637">
+  <link rel="stylesheet" href="/assets/css/main.css?v=086a447f47">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -71,19 +71,19 @@
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8934, "longitude": -80.1096 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=4601+Military+Trail+Suite+202+Jupiter+FL+33458",
     "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-        "opens": "08:00",
-        "closes": "17:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "08:00",
-        "closes": "14:00"
-      }
-    ],
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
     "areaServed": [
       { "@type": "City", "name": "Jupiter" },
       { "@type": "City", "name": "Palm Beach Gardens" },
@@ -95,22 +95,14 @@
       { "@type": "City", "name": "West Palm Beach" }
     ],
     "sameAs": [
-      "https://www.yelp.com/biz/jupiter-laser-and-regenerative-medicine-jupiter",
-      "https://www.youtube.com/@abacoapodiatryandlegveincenter"
+      "https://www.facebook.com/AbacoaPodiatry/",
+      "https://www.instagram.com/abacoapodiatry/",
+      "https://x.com/AbacoaPodiatry",
+      "https://www.linkedin.com/company/abacoapodiatrist",
+      "https://www.youtube.com/@abacoapodiatryandlegveincenter",
+      "https://www.yelp.com/biz/jupiter-laser-and-regenerative-medicine-jupiter"
     ],
-    "department": {
-      "@type": "MedicalClinic",
-      "name": "Abacoa Podiatry & Leg Vein Center \u2014 Palm Beach Gardens",
-      "telephone": "+1-561-915-1934",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "11380 Prosperity Farms Rd, Suite 204",
-        "addressLocality": "Palm Beach Gardens",
-        "addressRegion": "FL",
-        "postalCode": "33410",
-        "addressCountry": "US"
-      }
-    },
+    "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
       {
         "@type": "Physician",
@@ -164,17 +156,20 @@
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 26.8412, "longitude": -80.0714 },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=11380+Prosperity+Farms+Rd+Suite+204+Palm+Beach+Gardens+FL+33410",
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "08:00",
-      "closes": "17:00"
-    }, {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "08:00",
-      "closes": "14:00"
-    }]
+    "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "08:00",
+          "closes": "16:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "08:00",
+          "closes": "16:30"
+        }
+      ]
   }
   </script>
   <script type="application/ld+json">
@@ -452,11 +447,17 @@
         <div>
           <h2 class="footer-h">Office Hours</h2>
           <ul class="footer-hours">
-            <li><span>Mon&ndash;Thu</span> <span>8:00 AM &ndash; 5:00 PM</span></li>
-            <li><span>Friday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
+            <li class="footer-hours-office"><span>Jupiter</span></li>
+            <li><span>Mon&ndash;Thu</span> <span>8 AM &ndash; 5 PM</span></li>
+            <li><span>Fri</span> <span>8 AM &ndash; 2 PM</span></li>
+            <li><span>Sat&ndash;Sun</span> <span>Closed</span></li>
+            <li class="footer-hours-office"><span>Palm Beach Gardens</span></li>
+            <li><span>Mon</span> <span>8 AM &ndash; 4:30 PM</span></li>
+            <li><span>Wed</span> <span>8 AM &ndash; 4:30 PM</span></li>
+            <li><span>Tue, Thu, Fri</span> <span>Closed</span></li>
             <li><span>Sat&ndash;Sun</span> <span>Closed</span></li>
           </ul>
-          <p style="font-size:0.82rem;color:#8a8170;margin:0.7rem 0 0">Closed for lunch 12:30&ndash;1:30 PM &middot; Closed holidays</p>
+          <p style="font-size:0.82rem;color:#8a8170;margin:0.7rem 0 0">Jupiter closed for lunch 12:30&ndash;1:30 PM &middot; Both offices closed holidays</p>
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
@@ -469,8 +470,8 @@
     </div>
     <div class="footer-cities">
       <div class="wrap">
-        <h2>Patients travel to our Jupiter office from</h2>
-        <p class="footer-cities-note">One location on Military Trail in Jupiter, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <h2>Patients travel to our offices from</h2>
+        <p class="footer-cities-note">Two offices &mdash; Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens &mdash; serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
         <ul class="city-links">
             <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
             <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>
@@ -550,7 +551,7 @@
     <p class="assist-note">Automated assistant, general info only, not medical advice. For urgent concerns call <a href="tel:+15619151934">(561)&nbsp;915-1934</a>.</p>
   </div>
 
-  <script src="/assets/js/assistant.js?v=b906604d9e" defer></script>
+  <script src="/assets/js/assistant.js?v=70c46a7d44" defer></script>
 
   <!-- Vercel Web Analytics. Cookieless, stores no IP address and sets nothing
        that identifies a visitor, which is what makes it safe to run on a
@@ -563,7 +564,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=5dd87f9b6d" defer></script>
+  <script src="/assets/js/main.js?v=43b5592054" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

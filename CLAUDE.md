@@ -136,37 +136,54 @@ Two build-time origins encode this split:
 
 At cutover, rebuild with `IMAGE_ORIGIN=https://jupiterlaser.com`.
 
-## Known dead code
+## Opening hours
 
-`_src/vercel-build.sh` and its `HERO_VIDEO_URL` variable are leftovers from when the hero
-video was fetched from Dropbox at deploy time. Nothing runs the script (no build command)
-and nothing reads the variable. The video encodes are committed under `assets/video/`
-(desktop + mobile, MP4 + WebM). Safe to delete; left in place only because removing it
-wasn't in scope for the change that found it.
+Both offices' hours live in `_src/hours.py` and nowhere else. `build.py` renders them
+into `{{HOURS_JUP_LD}}`, `{{HOURS_PBG_LD}}`, `{{HOURS_JUP_LINE}}`, `{{HOURS_PBG_LINE}}`,
+`{{HOURS_PBG_CLOSED}}` and `{{HOURS_FOOTER}}`. Change the schedule there and rebuild;
+do not edit hours in a page or in `template.html`.
+
+Jupiter is Mon–Thu 8–5, Fri 8–2 with a 12:30–1:30 lunch closure. Palm Beach Gardens is
+**Monday and Wednesday only, 8–4:30**. They were identical in the JSON-LD until
+2026-08-15 because PBG's `openingHoursSpecification` had been copied from Jupiter's,
+while the visible copy on `/locations/` said "call for availability" — the schema and the
+page disagreed and both were wrong.
+
+Two consumers are outside the build and must be hand-edited: `assets/js/assistant.js`
+and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either drifts.
 
 ## The contact form is the only lead path, and it can fail silently
 
-`_src/pages/contact.html` posts to FormSubmit. The floating "Jupiter Laser Assistant" is
-*not* a second path — `assets/js/assistant.js` is keyword-matched canned answers, entirely
-client-side, and routes people to the phone or `/contact/`.
+`_src/pages/contact.html` posts to `/api/contact/`, our own serverless function at
+`api/contact.js`. The floating "Jupiter Laser Assistant" is *not* a second path —
+`assets/js/assistant.js` is keyword-matched canned answers, entirely client-side, and
+routes people to the phone or `/contact/`.
 
-Two things about FormSubmit are worth knowing before you touch that form.
+**It used to be FormSubmit, and it delivered nothing.** FormSubmit requires a one-time
+activation link to be clicked in the recipient's inbox before it forwards anything; until
+then it accepts every submission and drops it, answering `200` with `{"success":"false"}`.
+Nobody ever clicked it. Replaced on 2026-08-15 — do not reintroduce a third-party form
+relay whose delivery depends on someone clicking an email.
 
-**It does not deliver to an address until someone clicks a confirmation link**, sent on the
-first submission to that address. Until then submissions are accepted and dropped.
-`_dev/client-form-activation.md` is the note to send the practice.
+**The response means "stored", and nothing weaker.** `api/contact.js` writes to Supabase
+FIRST and only answers `success: "true"` if that insert succeeded; a failed write returns
+`502` and an incomplete request `400`. Email is sent afterwards, best-effort, and can never
+change the response — a broken inbox must not tell a patient their request vanished when
+the row is already safe. The handler in `assets/js/main.js` reads the JSON body and
+requires `success` to be `"true"` — note the *string*, not a boolean, kept deliberately so
+the browser logic did not have to change. Anything unexpected falls to the error path and
+shows the phone number: a wasted call costs less than a lead that evaporates.
 
-**A 2xx does not mean delivered.** FormSubmit answers `200` with `{"success":"false"}` in
-exactly that unactivated case, so the handler in `assets/js/main.js` reads the JSON body
-and requires `success` to be `"true"` — note the *string*, not a boolean. Checking `r.ok`
-alone would thank the patient, fire a lead event, and drop the request, all at once. It
-did, until 2026-08-14. Anything unexpected deliberately falls to the error path and shows
-the phone number: a wasted call costs less than a lead that evaporates.
+**Secrets live in the Vercel environment, never here.** `SUPABASE_SERVICE_ROLE_KEY`
+bypasses row-level security. `LEAD_TO` holds the office recipients, which used to be four
+staff addresses sitting in the page source. `RESEND_API_KEY` is optional: without it
+capture still works and the office reads the Supabase table.
 
-`_dev/formtest/run-formtest.sh` drives headless Chrome against a fake FormSubmit that
-returns all three replies (delivered / accepted-then-dropped / 500) and asserts what the
+`_dev/formtest/run-formtest.sh` drives headless Chrome against a fake `/api/contact` that
+returns each outcome (stored / accepted-then-dropped / 400 / 502) and asserts what the
 patient sees and whether a lead event fires. Run it after any change to that handler.
-It needs no network — everything is local.
+It needs no network — everything is local. It proves the *browser* half; the function
+itself needs a real POST against a deployment.
 
 **On the condition dropdown:** "What can we help with?" collects condition detail
 alongside name and phone and sends it through a service with no BAA. Reviewed and kept

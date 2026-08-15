@@ -30,10 +30,12 @@ CITIES = [
      "Take <strong>US-1 North</strong> to Donald Ross Road, head west to Military Trail, then north to 4601, Suite 202. Or take I-95 to the Donald Ross exit.",
      "Golfers and tennis players from North Palm Beach keep us busy with Achilles tendonitis, plantar fasciitis, and big-toe arthritis. We get you back on course without cortisone roulette.",
      "A golfer walking a mown fairway at dawn with a bag over one shoulder"),
-    ("Palm Beach Gardens", "palm-beach-gardens", "Palm Beach County", "10–15 minutes",
-     "Head north on <strong>Military Trail</strong> past Donald Ross Road to 4601, Suite 202 — or hop on I-95 for one exit. Our sister office at 11380 Prosperity Farms Rd, Suite 204 also serves Gardens patients.",
-     "Gardens residents have two ways to reach us: the Jupiter laser suite on Military Trail, or our Abacoa Podiatry sister office right on Prosperity Farms Road. Same physician, same standards, whichever is closer.",
-     "Two players facing the net on a blue pickleball court, paddles raised"),
+# Palm Beach Gardens is deliberately NOT in this list. It is not a city we drive
+# to -- it is an office we have, so /locations/palm-beach-gardens/ is a
+# hand-written page at _src/pages/loc-palm-beach-gardens.html carrying that
+# office's own address, hours and schema. Adding it back here would build the
+# same path twice and the generated version would win, silently replacing the
+# office page with a drive-times page.
     ("Juno Beach", "juno-beach", "Palm Beach County", "about 12 minutes",
      "Take <strong>Donald Ross Road</strong> west from US-1 to Military Trail, then turn north to 4601, Suite 202.",
      "Juno Beach's pier walkers and beach runners know heel pain well. We're one straight shot down Donald Ross Road — most patients make it door to door in about twelve minutes.",
@@ -124,7 +126,7 @@ META-->
               <li><a href="/conditions/diabetic-foot-care/">Diabetic foot exams</a> &amp; prevention</li>
             </ul>
           </div>
-          <div data-reveal style="--rd:0.1s">
+          <div class="split-aside" data-reveal style="--rd:0.1s">
             <div class="card card-glow" style="position:sticky;top:100px">
               <h3>Directions from {name}</h3>
               <p style="font-size:0.97rem">{route}</p>
@@ -132,7 +134,7 @@ META-->
                 <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;origin={origin_q}&amp;destination={dest_q}" rel="noopener">Turn-by-Turn Directions</a>
               </div>
               <hr>
-              <p style="font-size:0.92rem;margin:0"><strong>Jupiter Laser &amp; Regenerative Medicine</strong><br>{dest}<br><a href="tel:+15619151934">(561) 915-1934</a><br>Mon&ndash;Thu 8&ndash;5 &middot; Fri 8&ndash;2</p>
+              <p style="font-size:0.92rem;margin:0"><strong>Jupiter Laser &amp; Regenerative Medicine</strong><br>{dest}<br><a href="tel:+15619151934">(561) 915-1934</a><br>{{{{HOURS_JUP_LINE}}}}</p>
             </div>
           </div>
         </div>

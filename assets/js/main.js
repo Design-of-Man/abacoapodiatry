@@ -392,16 +392,22 @@
       var btn = $('button[type="submit"]', form);
       btn.disabled = true;
       btn.textContent = "Sending…";
+      // JSON rather than FormData: Vercel's Node runtime parses
+      // application/json into req.body, and does not parse multipart.
+      var payload = {};
+      new FormData(form).forEach(function (v, k) { payload[k] = v; });
       fetch(action, {
         method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
       }).then(function (r) {
-        // A 2xx only means FormSubmit accepted the request, not that anyone
-        // will receive it. It answers 200 with {"success":"false"} when the
-        // recipient address has never been activated -- so trusting the status
-        // code alone would thank the patient, fire a conversion, and drop the
-        // lead, all at once. Read the body and believe that instead.
+        // A 2xx is still not proof on its own, and the reason is worth keeping
+        // even though the backend changed. Under FormSubmit this endpoint
+        // answered 200 with {"success":"false"} whenever the recipient address
+        // had never been activated, so trusting the status code alone would
+        // thank the patient, fire a conversion and drop the lead all at once.
+        // api/contact.js now answers success:"true" only after the request is
+        // written to the database. Read the body and believe that instead.
         if (!r.ok) throw new Error("http " + r.status);
         return r.json();
       }).then(function (data) {
@@ -416,7 +422,8 @@
         track("form_submit", { form: "contact" });
         form.reset();
       }).catch(function () {
-        // Anything unexpected -- non-JSON body, network failure, success:false
+        // Anything unexpected -- non-JSON body, network failure, a 502 because
+        // the database write failed, a 400 because the request was incomplete
         // -- lands here and sends the patient to the phone. Erring toward a
         // visible failure is the right direction: a wasted phone call costs
         // less than a lead that silently evaporates.
@@ -475,39 +482,23 @@
     paintRail();
   }
 
-  /* ---- Live open/closed pill (visitor's own clock) ----
-     Mon–Thu 8:00–17:00, Fri 8:00–14:00, lunch 12:30–13:30, closed weekends. */
-  var pill = document.getElementById("live-status");
-  if (pill) {
-    var render = function () {
-      var now = new Date();
-      var day = now.getDay();            // 0 Sun .. 6 Sat
-      var mins = now.getHours() * 60 + now.getMinutes();
-      var open = false, note = "Closed";
-      if (day >= 1 && day <= 5) {
-        var close = day === 5 ? 14 * 60 : 17 * 60;
-        var lunch = mins >= 12 * 60 + 30 && mins < 13 * 60 + 30;
-        if (mins >= 8 * 60 && mins < close && !lunch) {
-          open = true;
-          note = "Open now";
-        } else if (lunch) {
-          note = "Back at 1:30";
-        } else if (mins < 8 * 60) {
-          note = "Opens 8:00 AM";
-        } else {
-          note = "Closed";
-        }
-      } else {
-        note = day === 6 ? "Sat — by appt" : "Closed Sunday";
-      }
-      pill.hidden = false;
-      pill.classList.toggle("closed", !open);
-      pill.querySelector(".txt").textContent = note;
-      pill.setAttribute("title", open ? "Our office is open right now" : "Office hours: Mon–Thu 8–5, Fri 8–2");
-    };
-    render();
-    setInterval(render, 60000);
-  }
+  /* ---- Live open/closed pill: removed 2026-08-15 ----
+     This read getElementById("live-status"), and no element with that id has
+     ever existed -- not in the template, not in any page, not in locations.py.
+     It had never rendered, so its hours were never visibly wrong, which is
+     also why nobody noticed they were only ever Jupiter's.
+
+     It is not coming back in this shape. The practice now runs two offices on
+     different schedules -- Jupiter Mon-Thu 8-5 / Fri 8-2, Palm Beach Gardens
+     Mon & Wed 8-4:30 -- and a single sitewide pill has no way to know which
+     office a visitor on /services/mls-laser-therapy/ means. On a Tuesday at
+     10am it would read "Open now", which is true for Jupiter and false for the
+     Gardens. It also used the visitor's own clock rather than America/New_York,
+     so it was wrong for anyone travelling.
+
+     If it returns it belongs on the office cards on /locations/ and the Palm
+     Beach Gardens office page, reading a per-office data-hours attribute and
+     resolving time in America/New_York. */
 
   /* ---- Stat rings draw in on scroll ---- */
   var rings = Array.prototype.slice.call(document.querySelectorAll(".statring-dial .fill"));

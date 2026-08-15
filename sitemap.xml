@@ -121,6 +121,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://jupiterlaser.com/locations/palm-beach-gardens/</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://jupiterlaser.com/meet-dr-cedeno/</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -254,12 +260,6 @@
   </url>
   <url>
     <loc>https://jupiterlaser.com/locations/north-palm-beach/</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jupiterlaser.com/locations/palm-beach-gardens/</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

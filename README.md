@@ -60,12 +60,13 @@ Ordered by what cannot be undone if it is missed.
       `python3 _dev/crawl-old-site.py --coverage` immediately before cutover in case the
       old site changed in the meantime.
 - [ ] **Read [`MIGRATION.md`](MIGRATION.md)** — the no-lost-leads cutover plan
-- [ ] **Verify office hours with the office.** The site, `llms.txt` and the schema's
-      `openingHoursSpecification` all currently say Mon–Thu 8 AM–5 PM, Fri 8 AM–2 PM,
-      closed for lunch 12:30–1:30. Those came from research, not from the practice.
-      Confirm them, and if they are wrong update `_src/template.html`,
-      `_src/pages/faq.html`, `llms.txt` and the schema together — four places, easy to
-      half-fix.
+- [x] ~~**Verify office hours with the office.**~~ Confirmed with the practice on
+      2026-08-15. Jupiter is Mon–Thu 8 AM–5 PM, Fri 8 AM–2 PM, lunch 12:30–1:30.
+      **Palm Beach Gardens is Monday and Wednesday only, 8 AM–4:30 PM** — the schema
+      had been asserting Jupiter's hours for it. Hours now live once, in
+      `_src/hours.py`, and everything else renders from it, so "four places, easy to
+      half-fix" no longer applies. `_dev/preflight.py` fails if `assets/js/assistant.js`
+      or `llms.txt` drift out of step.
 - [x] ~~**Verify the patient testimonials word for word.**~~ Done on 2026-08-14, once
       `jupiterlaser.com` came off the egress block. All nine quotes on
       `_src/pages/reviews.html` are contiguous spans copied exactly from the practice's
@@ -86,14 +87,21 @@ Ordered by what cannot be undone if it is missed.
       degrade rather than break. `dr-cedeno.jpg` is already in the repo.
 - [x] ~~**Make the hero video durable.**~~ Done — the encodes are committed under
       `assets/video/` (desktop + mobile, MP4 and WebM), so no deploy-time fetch is
-      involved. `_src/vercel-build.sh` and its `HERO_VIDEO_URL` variable are dead
-      leftovers from the Dropbox approach; nothing runs them (there is no build
-      command) and the variable is not read anywhere.
+      involved. `_src/vercel-build.sh` was deleted on 2026-08-15 — it fetched a
+      tarball of a hardcoded branch from a GitHub org this repo no longer lives in,
+      and nothing ran it.
 - [x] ~~**Wire the contact form.**~~ Done — `_src/pages/contact.html` posts to
-      `formsubmit.co/ajax/AbacoaPodiatry@gmail.com`. There is no `YOUR_FORM_ID`
-      left anywhere in the repo, and `assets/js/main.js` fires the `form_submit`
-      analytics event only on a confirmed send.
-- [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
+      `/api/contact/`, our own serverless function, which stores every request in
+      Supabase and only then reports success. `assets/js/main.js` fires the
+      `form_submit` analytics event only on a confirmed store. FormSubmit was
+      removed on 2026-08-15 after it turned out to have delivered nothing.
+- [ ] **Switch on email for the contact form.** Capture already works with no
+      configuration at all — every request is stored in the Supabase `leads` table
+      via the `contact-lead` Edge Function, verified end to end. But **until
+      `RESEND_API_KEY`, `LEAD_TO` and `LEAD_FROM` are set on the Vercel project,
+      nobody is emailed and someone has to watch that table.** Adding a variable
+      needs a redeploy to take effect.
+- [x] ~~**Update `sameAs`.**~~ Done 2026-08-15 — Facebook, Instagram, X, LinkedIn, YouTube and Yelp are in `_src/template.html`. Google Business Profile URLs still owed for BOTH offices once the Palm Beach Gardens listing exists.
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
 - [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.
 - [ ] **Allow-list `jupiterlaser.com`** for the session, or the old-site crawl cannot run.

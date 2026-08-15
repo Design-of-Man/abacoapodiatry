@@ -28,6 +28,6 @@ curl --retry 15 --retry-connrefused --retry-delay 1 -sf \
   http://127.0.0.1:8767/test/ok >/dev/null || {
   echo "mock server never came up:"; tail -5 "$S/mock.log"; exit 1; }
 
-echo "=== contact form behaviour against three FormSubmit replies ==="
+echo "=== contact form behaviour against each /api/contact outcome ==="
 echo
 node "$S/formtest.mjs" http://127.0.0.1:9222

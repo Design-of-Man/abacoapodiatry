@@ -99,7 +99,7 @@ Ordered by what cannot be undone if it is missed.
       `LEAD_TO`, and optionally `LEAD_FROM` + `RESEND_API_KEY` for email. Until
       the Supabase pair is set the form returns 502 and tells patients to call.
       Adding a variable needs a redeploy to take effect.
-- [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
+- [x] ~~**Update `sameAs`.**~~ Done 2026-08-15 — Facebook, Instagram, X, LinkedIn, YouTube and Yelp are in `_src/template.html`. Google Business Profile URLs still owed for BOTH offices once the Palm Beach Gardens listing exists.
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
 - [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.
 - [ ] **Allow-list `jupiterlaser.com`** for the session, or the old-site crawl cannot run.

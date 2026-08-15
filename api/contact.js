@@ -19,12 +19,24 @@
  * would introduce an install step to the deploy. Node 24 has global fetch, so
  * PostgREST and Resend are both reachable over plain HTTP.
  *
- * Environment (set on the Vercel project, never committed):
- *   SUPABASE_URL               https://<ref>.supabase.co
- *   SUPABASE_SERVICE_ROLE_KEY  service_role key -- bypasses RLS, server only
- *   LEAD_TO                    comma-separated office recipients
- *   LEAD_FROM                  verified Resend sender
- *   RESEND_API_KEY             optional; when absent, capture still works
+ * Capture goes through a Supabase Edge Function (contact-lead) rather than
+ * straight to PostgREST, and that is on purpose. Edge Functions get
+ * SUPABASE_SERVICE_ROLE_KEY injected automatically, so the one true secret
+ * never leaves Supabase and nobody has to paste it into a hosting dashboard
+ * before the form starts working. This site's whole outage was caused by a lead
+ * path that waited on a human action; it should not ship with a new one.
+ *
+ * The publishable key below is committed deliberately. Supabase publishable
+ * keys are designed to be public and normally ship inside browser bundles, and
+ * the leads table has RLS enabled with zero policies, so this key can do
+ * nothing at all against it directly. Every write goes through the function.
+ *
+ * Environment (all OPTIONAL -- capture works with none of them set):
+ *   SUPABASE_FN_URL   override the Edge Function URL
+ *   SUPABASE_ANON_KEY override the publishable key
+ *   RESEND_API_KEY    enable email notification
+ *   LEAD_TO           comma-separated office recipients
+ *   LEAD_FROM         verified Resend sender
  */
 
 "use strict";
@@ -40,6 +52,13 @@ const LIMITS = {
 };
 
 const TIMEOUT_MS = 8000;
+
+// Supabase project "Design of Man". See the header comment on why the
+// publishable key is committed rather than held in an environment variable.
+const FN_URL = process.env.SUPABASE_FN_URL ||
+  "https://iiabylugbnmcdzqjenus.supabase.co/functions/v1/contact-lead";
+const ANON_KEY = process.env.SUPABASE_ANON_KEY ||
+  "sb_publishable_i5weJFCr68SAOsBaErXaFw_A3HrshPP";
 
 function clean(value, max) {
   if (typeof value !== "string") return "";
@@ -84,15 +103,6 @@ module.exports = async function handler(req, res) {
     return json(res, 400, NOT_OK);
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !serviceKey) {
-    // Misconfiguration, not a patient error. Fail loudly rather than pretending
-    // the request landed.
-    console.error("contact: SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is unset");
-    return json(res, 502, NOT_OK);
-  }
-
   const forwarded = req.headers["x-forwarded-for"];
   const row = {
     ...lead,
@@ -104,23 +114,24 @@ module.exports = async function handler(req, res) {
 
   // --- Durable capture. This decides the response. ---
   try {
-    const r = await fetch(`${supabaseUrl}/rest/v1/leads`, {
+    const r = await fetch(FN_URL, {
       method: "POST",
       headers: {
-        apikey: serviceKey,
-        Authorization: `Bearer ${serviceKey}`,
+        apikey: ANON_KEY,
+        Authorization: `Bearer ${ANON_KEY}`,
         "Content-Type": "application/json",
-        Prefer: "return=minimal",
       },
       body: JSON.stringify(row),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!r.ok) {
-      console.error("contact: supabase insert failed", r.status, await r.text());
+    const stored = r.ok &&
+      await r.json().then((d) => String(d && d.success) === "true").catch(() => false);
+    if (!stored) {
+      console.error("contact: capture failed", r.status);
       return json(res, 502, NOT_OK);
     }
   } catch (err) {
-    console.error("contact: supabase insert threw", err && err.message);
+    console.error("contact: capture threw", err && err.message);
     return json(res, 502, NOT_OK);
   }
 

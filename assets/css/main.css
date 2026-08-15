@@ -1,18 +1,25 @@
 /* ==========================================================================
    Jupiter Laser & Regenerative Medicine — Design System
-   Deep-space navy + laser cyan. Built for speed, clarity, and trust.
+   Near-black surfaces, gold as the accent. Built for speed, clarity, and trust.
    ========================================================================== */
 
 :root {
-  /* Color tokens */
-  --ink: #0c0b08;
-  --ink-2: #161310;
-  --ink-3: #201c15;
-  --surface: #0e0d0a;
-  --mist: #16140f;
-  --mist-2: #201c15;
-  --line: #2e2a20;
-  --line-dark: rgba(148, 199, 233, 0.16);
+  /* Surfaces. These are deliberately near-neutral.
+     They used to be warm near-blacks -- --surface was #0e0d0a and --line
+     #2e2a20, four to fourteen points more red than blue -- and since --surface
+     is the body background on all 56 pages, the whole site read brown rather
+     than black. Gold over a warm near-black desaturates into sepia, so the
+     field has to be neutral for the gold to read as gold.
+     One point of blue is kept so the black is not dead flat against warm
+     accents; do not add red here. Gold belongs on type, buttons, borders and
+     icons, not in the background. */
+  --ink: #0a0a0b;
+  --ink-2: #111112;
+  --ink-3: #18181a;
+  --surface: #080809;
+  --mist: #101011;
+  --mist-2: #161618;
+  --line: #2a2a2d;
   --text: #c9c2b1;
   --text-soft: #a49b88;
   --head: #f3efe4;
@@ -23,6 +30,10 @@
   --green: #6bd6a8;
   --red: #f09a8b;
   --laser: linear-gradient(120deg, #f2d491 0%, #d3ac57 52%, #8a6a2a 100%);
+  /* Kept but no longer used on surfaces. It is a flat 0.12 gold sheet, which is
+     the wide-low-alpha pattern that turned this site brown -- .card-icon and
+     .prose .callout now use a single flat rgba instead. Do not reintroduce it
+     as a background on anything large. */
   --laser-soft: linear-gradient(120deg, rgba(232, 199, 120, 0.12), rgba(211, 172, 87, 0.12) 52%, rgba(138, 106, 42, 0.12));
 
   /* Type */
@@ -464,7 +475,7 @@ blockquote {
   left: 50%;
   transform: translateX(-50%) translateY(8px);
   min-width: 250px;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
@@ -577,8 +588,8 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .hero {
   position: relative;
   background:
-    radial-gradient(1100px 520px at 78% -10%, rgba(211, 172, 87, 0.28), transparent 62%),
-    radial-gradient(900px 500px at 12% 110%, rgba(138, 106, 42, 0.2), transparent 60%),
+    radial-gradient(1100px 520px at 78% -10%, rgba(211, 172, 87, 0.13), transparent 62%),
+    radial-gradient(900px 500px at 12% 110%, rgba(138, 106, 42, 0.08), transparent 60%),
     linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   color: #cac3b3;
   overflow: hidden;
@@ -588,7 +599,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(214, 185, 116, 0.14) 1px, transparent 1.6px);
+  background-image: radial-gradient(rgba(214, 185, 116, 0.07) 1px, transparent 1.6px);
   background-size: 30px 30px;
   mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 75%);
   -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 75%);
@@ -800,25 +811,24 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
     /* Specular core. Tight and genuinely bright -- a wide low-alpha gold over
        near-black just desaturates into brown, so the luminance has to be
        concentrated somewhere or none of it reads as light. */
-    radial-gradient(320px 240px at 79% 17%, rgba(247, 228, 181, 0.2), transparent 72%),
-    /* Falloff around the core. */
-    radial-gradient(880px 520px at 76% 14%, rgba(214, 176, 92, 0.22), transparent 68%),
-    /* Rake across the plane, so the surface has direction instead of a blob in
-       one corner, and the type sits in the calm end of it. */
-    linear-gradient(118deg, rgba(211, 172, 87, 0.07) 0%, transparent 46%),
-    radial-gradient(680px 420px at -8% 118%, rgba(138, 106, 42, 0.18), transparent 62%),
-    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 58%, var(--ink-3) 100%);
+    radial-gradient(320px 240px at 79% 17%, rgba(247, 228, 181, 0.15), transparent 72%),
+    /* Falloff around the core. Was 0.22 across 880x520 -- the single largest
+       source of brown on the site. */
+    radial-gradient(880px 520px at 76% 14%, rgba(214, 176, 92, 0.1), transparent 68%),
+    /* The 118deg rake is deliberately gone. A 0.07 gold film across 46% of the
+       block is exactly the wide-low-alpha gold the comment above warns about,
+       and it tinted the half of the hero the type sits in. Direction now comes
+       from the core and the counter-fill alone. */
+    radial-gradient(680px 420px at -8% 118%, rgba(138, 106, 42, 0.07), transparent 62%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   color: #cac3b3;
   padding: clamp(2.8rem, 6vw, 4.6rem) 0 clamp(2.6rem, 5vw, 4rem);
   overflow: hidden;
-  /* Ends on --ink-3, lighter than the page's --surface, so the step at the
-     boundary is deliberate rather than a fade that gave up.
-
-     The lift is a warm spill, not a drop shadow. A black shadow was the first
-     thing tried here and it did nothing at all: the page below is #0e0d0a, and
-     you cannot darken near-black. On a dark theme elevation has to be spent in
-     light, so this is the lit plane bleeding onto the surface beneath it. */
-  box-shadow: 0 14px 34px -18px rgba(211, 172, 87, 0.14);
+  /* No box-shadow. The lift used to be a warm gold spill, on the reasoning that
+     you cannot darken near-black so elevation must be spent in light. True, but
+     it leaked gold onto the page below the hero, which is where the brown was
+     escaping the block that owned it. The base now ends on --ink-2 against a
+     --surface page, so the boundary still steps without any colour. */
 }
 .page-hero::before {
   /* Grain, masked to the light rather than to the top edge: it appears where the
@@ -827,7 +837,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(224, 198, 134, 0.16) 0.9px, transparent 1.4px);
+  background-image: radial-gradient(rgba(224, 198, 134, 0.08) 0.9px, transparent 1.4px);
   background-size: 22px 22px;
   mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
   -webkit-mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
@@ -866,10 +876,10 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 @media (max-width: 980px) {
   .page-hero {
     background:
-      radial-gradient(220px 170px at 96% 4%, rgba(247, 228, 181, 0.12), transparent 72%),
-      radial-gradient(560px 340px at 98% 0%, rgba(214, 176, 92, 0.14), transparent 68%),
-      radial-gradient(520px 340px at -12% 116%, rgba(138, 106, 42, 0.14), transparent 62%),
-      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 58%, var(--ink-3) 100%);
+      radial-gradient(220px 170px at 96% 4%, rgba(247, 228, 181, 0.09), transparent 72%),
+      radial-gradient(560px 340px at 98% 0%, rgba(214, 176, 92, 0.07), transparent 68%),
+      radial-gradient(520px 340px at -12% 116%, rgba(138, 106, 42, 0.06), transparent 62%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   }
   .page-hero::before {
     mask-image: radial-gradient(460px 300px at 96% 2%, rgba(0,0,0,0.7), transparent 70%);
@@ -896,7 +906,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
    Cards
    -------------------------------------------------------------------------- */
 .card {
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.8rem;
@@ -918,7 +928,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: var(--laser-soft);
+  background: rgba(211, 172, 87, 0.06);
   border: 1px solid rgba(211, 172, 87, 0.18);
   margin-bottom: 1.2rem;
 }
@@ -1065,7 +1075,7 @@ table.compare .no { color: var(--red); font-weight: 700; }
   border: 1.5px solid var(--line);
   border-radius: 999px;
   color: var(--head);
-  background: #16140f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23a49b88' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 1.1em center;
+  background: var(--mist) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23a49b88' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 1.1em center;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .faq-search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(232, 199, 120, 0.18); }
@@ -1078,7 +1088,7 @@ table.compare .no { color: var(--red); font-weight: 700; }
   padding: 0.5em 1.1em;
   border-radius: 999px;
   border: 1.5px solid var(--line);
-  background: #16140f;
+  background: var(--mist);
   color: var(--text);
   cursor: pointer;
   transition: all 0.18s ease;
@@ -1092,7 +1102,7 @@ table.compare .no { color: var(--red); font-weight: 700; }
 details.faq {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #16140f;
+  background: var(--mist);
   margin-bottom: 0.8rem;
   overflow: hidden;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -1155,7 +1165,7 @@ details.faq.hidden { display: none; }
 .testi-track::-webkit-scrollbar { display: none; }
 .testi {
   scroll-snap-align: start;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.7rem 1.8rem;
@@ -1174,7 +1184,7 @@ details.faq.hidden { display: none; }
   width: 46px; height: 46px;
   border-radius: 50%;
   border: 1.5px solid var(--line);
-  background: #16140f;
+  background: var(--mist);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -1271,7 +1281,7 @@ details.faq.hidden { display: none; }
    Quiz
    -------------------------------------------------------------------------- */
 .quiz {
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -1298,7 +1308,7 @@ details.faq.hidden { display: none; }
   transition: all 0.15s ease;
   color: var(--head);
 }
-.quiz-opt:hover { border-color: var(--accent); background: #241f15; transform: translateX(4px); }
+.quiz-opt:hover { border-color: var(--accent); background: #1c1c1f; transform: translateX(4px); }
 .quiz-result { text-align: center; }
 .quiz-result .quiz-icon { font-size: 3rem; line-height: 1; margin-bottom: 1rem; }
 .quiz-restart { margin-top: 1rem; background: none; border: 0; color: var(--text-soft); cursor: pointer; font: inherit; font-size: 0.9rem; text-decoration: underline; }
@@ -1316,7 +1326,7 @@ details.faq.hidden { display: none; }
   padding: 0.85em 1.1em;
   border: 1.5px solid var(--line);
   border-radius: 12px;
-  background: #16140f;
+  background: var(--mist);
   color: var(--head);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
@@ -1339,9 +1349,9 @@ details.faq.hidden { display: none; }
   position: relative;
   border: 1px solid rgba(214, 185, 116, 0.28);
   background:
-    radial-gradient(800px 400px at 85% 0%, rgba(232, 199, 120, 0.16), transparent 60%),
-    radial-gradient(700px 400px at 10% 100%, rgba(138, 106, 42, 0.18), transparent 60%),
-    linear-gradient(120deg, var(--ink) 0%, var(--ink-3) 100%);
+    radial-gradient(800px 400px at 85% 0%, rgba(232, 199, 120, 0.08), transparent 60%),
+    radial-gradient(700px 400px at 10% 100%, rgba(138, 106, 42, 0.07), transparent 60%),
+    linear-gradient(120deg, var(--ink) 0%, var(--ink-2) 100%);
   border-radius: var(--radius-lg);
   padding: clamp(2.2rem, 5vw, 3.6rem);
   color: #cac3b3;
@@ -1443,7 +1453,7 @@ details.faq.hidden { display: none; }
 .prose > :first-child { margin-top: 0; }
 .prose img { border-radius: var(--radius-lg); }
 .prose .callout {
-  background: var(--laser-soft);
+  background: rgba(211, 172, 87, 0.06);
   border: 1px solid rgba(211, 172, 87, 0.2);
   border-radius: var(--radius-lg);
   padding: 1.4rem 1.7rem;
@@ -1866,7 +1876,7 @@ body.assist-open .assist-fab { display: none; }
   display: flex;
   flex-direction: column;
   text-align: left;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -2007,7 +2017,7 @@ body.assist-open .assist-fab { display: none; }
   grid-template-columns: 1fr 1fr;
   gap: 1px;
   background: var(--line);
-  box-shadow: 0 -8px 24px rgba(10, 30, 53, 0.14);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
 }
 .callbar a {
   display: flex;
@@ -2061,7 +2071,7 @@ body.assist-open .assist-fab { display: none; }
   text-decoration: none;
   transition: all 0.15s ease;
 }
-.chips a:hover { border-color: var(--accent); color: var(--accent-light); background: #241f15; }
+.chips a:hover { border-color: var(--accent); color: var(--accent-light); background: #1c1c1f; }
 
 /* Alert / disclaimer */
 .med-note {
@@ -2089,7 +2099,7 @@ body.assist-open .assist-fab { display: none; }
   display: flex;
   gap: 1.1rem;
   align-items: flex-start;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.4rem 1.5rem;
@@ -2257,7 +2267,7 @@ a.btn-ghost { color: var(--head); }
   overflow: hidden;
   border-block: 1px solid var(--line);
   padding: 0.9rem 0;
-  background: #121009;
+  background: #0d0d0e;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }

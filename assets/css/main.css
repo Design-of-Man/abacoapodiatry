@@ -763,31 +763,108 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 .hero-stat span { font-size: 0.82rem; color: #a49b88; line-height: 1.4; display: block; margin-top: 0.25em; }
 
-/* Page hero (interior pages) */
+/* Page hero (interior pages)
+   ---------------------------------------------------------------------------
+   This started as a copy of .hero, which was the mistake. On the homepage that
+   background sits behind a video and a hero card and is never seen bare; here it
+   IS the whole visual, so a backdrop was doing a subject's job and every interior
+   page opened on a flat dark rectangle.
+
+   Three faults, all fixed below. The key light was centred at `85% -20%` -- above
+   the element, so `overflow: hidden` clipped the bright core and only its faint
+   tail reached the page. The grain was rgba(...,0.12) on #0c0b08, which is not a
+   texture, it is a rumour. And the block ended with no edge and no elevation, so
+   it dissolved into the next section instead of resolving.
+
+   Light is built as a source rather than a wash: a small bright specular core
+   with a broad falloff around it, and a dim counter-fill in the opposite corner
+   so the field is never one flat tone. Nothing here animates. */
 .page-hero {
   position: relative;
+  /* Lifts the block, and its shadow, above the following section. Safe: every
+     sticky or floating element in this file sits at 40-300, so this only has to
+     out-stack a plain sibling. */
+  z-index: 1;
   background:
-    radial-gradient(900px 420px at 85% -20%, rgba(211, 172, 87, 0.3), transparent 62%),
-    radial-gradient(700px 380px at 5% 130%, rgba(138, 106, 42, 0.22), transparent 60%),
-    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    /* Specular core. Tight and genuinely bright -- a wide low-alpha gold over
+       near-black just desaturates into brown, so the luminance has to be
+       concentrated somewhere or none of it reads as light. */
+    radial-gradient(320px 240px at 79% 17%, rgba(247, 228, 181, 0.2), transparent 72%),
+    /* Falloff around the core. */
+    radial-gradient(880px 520px at 76% 14%, rgba(214, 176, 92, 0.22), transparent 68%),
+    /* Rake across the plane, so the surface has direction instead of a blob in
+       one corner, and the type sits in the calm end of it. */
+    linear-gradient(118deg, rgba(211, 172, 87, 0.07) 0%, transparent 46%),
+    radial-gradient(680px 420px at -8% 118%, rgba(138, 106, 42, 0.18), transparent 62%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 58%, var(--ink-3) 100%);
   color: #cac3b3;
   padding: clamp(2.8rem, 6vw, 4.6rem) 0 clamp(2.6rem, 5vw, 4rem);
   overflow: hidden;
+  /* Ends on --ink-3, lighter than the page's --surface, so the step at the
+     boundary is deliberate rather than a fade that gave up.
+
+     The lift is a warm spill, not a drop shadow. A black shadow was the first
+     thing tried here and it did nothing at all: the page below is #0e0d0a, and
+     you cannot darken near-black. On a dark theme elevation has to be spent in
+     light, so this is the lit plane bleeding onto the surface beneath it. */
+  box-shadow: 0 14px 34px -18px rgba(211, 172, 87, 0.14);
 }
 .page-hero::before {
+  /* Grain, masked to the light rather than to the top edge: it appears where the
+     light falls and is gone in shadow, which is how texture behaves. A uniform
+     screen-door across the whole block reads as a rendering artefact. */
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(214, 185, 116, 0.12) 1px, transparent 1.6px);
-  background-size: 30px 30px;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 80%);
-  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 80%);
+  background-image: radial-gradient(rgba(224, 198, 134, 0.16) 0.9px, transparent 1.4px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
+  -webkit-mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  /* The edge. Fades to transparent at both ends so it never terminates in a hard
+     stub against the viewport. */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(211, 172, 87, 0.3) 22%,
+    rgba(242, 212, 145, 0.55) 52%,
+    rgba(211, 172, 87, 0.3) 78%,
+    transparent 100%);
   pointer-events: none;
 }
 .page-hero .wrap { position: relative; z-index: 2; }
 .page-hero h1 { color: #fff; max-width: 18em; }
-.page-hero .lede { color: #cac3b3; max-width: 44em; }
+/* 44em at this size ran to ~100 characters, well past the 45-75 that stays
+   comfortable. Tighter also makes the open right-hand side read as deliberate
+   ragged-right rather than a wide block that happens to stop short. */
+.page-hero .lede { color: #cac3b3; max-width: 34em; }
 .page-hero .btn-row { margin-top: 1.8rem; }
+/* On a wide screen the light sits well right of the text column and the worst
+   contrast in the block is 5.2:1. Narrow the viewport and the two occupy the
+   same space: at 390px the light landed straight on the breadcrumbs and took
+   #948b76 down to 3.07:1, under the 4.5 AA needs. Measured, not guessed.
+
+   So on small screens the source retreats into the top-right corner and loses
+   most of its intensity. The text column keeps the dark end of the plane, which
+   is the only part of the composition a phone actually has room for. */
+@media (max-width: 980px) {
+  .page-hero {
+    background:
+      radial-gradient(220px 170px at 96% 4%, rgba(247, 228, 181, 0.12), transparent 72%),
+      radial-gradient(560px 340px at 98% 0%, rgba(214, 176, 92, 0.14), transparent 68%),
+      radial-gradient(520px 340px at -12% 116%, rgba(138, 106, 42, 0.14), transparent 62%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 58%, var(--ink-3) 100%);
+  }
+  .page-hero::before {
+    mask-image: radial-gradient(460px 300px at 96% 2%, rgba(0,0,0,0.7), transparent 70%);
+    -webkit-mask-image: radial-gradient(460px 300px at 96% 2%, rgba(0,0,0,0.7), transparent 70%);
+  }
+}
 
 /* Breadcrumbs */
 .crumbs {

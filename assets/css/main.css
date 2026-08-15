@@ -220,6 +220,17 @@ blockquote {
   align-items: center;
 }
 .split.rev { grid-template-columns: 0.95fr 1.05fr; }
+/* Sidebar column opt-out from the centring above.
+   A sticky card needs a full-height column to travel inside, and .split centres
+   its children -- so the card floated to the middle of a tall prose column,
+   leaving 1019px of blank space above it on /services/foot-bbl/ and 590px on
+   /conditions/plantar-fasciitis/. Worse, a centred grid item shrinks to its own
+   content height, so position:sticky had no room to move and never actually
+   stuck on any page of the site despite being written on all 18 of them.
+   Stretch gives the column the full row height: the card starts at the top and
+   follows the reader down, which is what the markup always asked for.
+   Inert below 900px, where .split collapses to one column. */
+.split-aside { align-self: stretch; }
 @media (max-width: 900px) {
   .split, .split.rev { grid-template-columns: 1fr; }
 }

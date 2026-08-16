@@ -22,17 +22,34 @@
      Mobile nav + dropdowns
      ------------------------------------------------------------------ */
   var burger = $(".nav-burger");
+
+  /* Every close path routes through these two helpers. Closing used to be done
+     by stripping the class alone, which left aria-expanded="true" on the burger
+     and on any open submenu button — so a screen reader announced the menu as
+     open long after it had slid away. */
+  function closeSubmenus() {
+    $$(".nav > li.open").forEach(function (o) {
+      o.classList.remove("open");
+      var t = $(".nav-toggle-sub", o);
+      if (t) t.setAttribute("aria-expanded", "false");
+    });
+  }
+  function closeNav() {
+    document.body.classList.remove("nav-open");
+    if (burger) burger.setAttribute("aria-expanded", "false");
+    closeSubmenus();
+  }
+
   if (burger) {
     burger.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      if (!open) closeSubmenus();
     });
   }
   // Close mobile nav when a link is chosen
   $$(".site-nav a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      document.body.classList.remove("nav-open");
-    });
+    a.addEventListener("click", closeNav);
   });
   // Submenu toggles (mobile tap + keyboard)
   $$(".nav-toggle-sub").forEach(function (btn) {
@@ -40,22 +57,30 @@
       e.preventDefault();
       var li = btn.closest("li");
       var wasOpen = li.classList.contains("open");
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
+      closeSubmenus();
       li.classList.toggle("open", !wasOpen);
       btn.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
     });
   });
   document.addEventListener("click", function (e) {
-    if (!e.target.closest(".nav")) {
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
-    }
+    if (!e.target.closest(".nav")) closeSubmenus();
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      document.body.classList.remove("nav-open");
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
+      var wasOpen = document.body.classList.contains("nav-open");
+      closeNav();
+      // Escape must hand focus back to the control that opened the panel,
+      // otherwise focus is left on a node that is now visibility:hidden.
+      if (wasOpen && burger) burger.focus();
     }
   });
+  /* Rotating a phone with the menu open used to leave body.nav-open set. Past
+     1080px the panel reverts to the desktop bar, so the state was invisible but
+     still reported as expanded. */
+  var deskQuery = window.matchMedia("(min-width: 1080px)");
+  var onDesktop = function (e) { if (e.matches) closeNav(); };
+  if (deskQuery.addEventListener) deskQuery.addEventListener("change", onDesktop);
+  else if (deskQuery.addListener) deskQuery.addListener(onDesktop);
 
   /* ------------------------------------------------------------------
      Active nav highlighting (from body[data-nav])
@@ -368,6 +393,48 @@
   $$("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+  /* ------------------------------------------------------------------
+     Horizontally scrolling comparison tables
+     table.compare carries min-width:640px, so below ~700px it scrolls inside
+     .table-scroll. Two things were missing: the region was unreachable by
+     keyboard (a scroll container needs to be focusable to be scrolled without
+     a mouse — WCAG 2.1.1), and nothing on screen said it scrolled, so on a
+     phone the table simply looked cropped at the right edge.
+     ------------------------------------------------------------------ */
+  $$(".table-scroll").forEach(function (box) {
+    // The hint is injected rather than authored into each page so all three
+    // comparison tables stay in step. aria-hidden: the region label already
+    // tells assistive tech the table scrolls, so this would only repeat it.
+    var hint = document.createElement("p");
+    hint.className = "table-hint";
+    hint.setAttribute("aria-hidden", "true");
+    hint.textContent = "Swipe the table sideways to compare →";
+    if (box.parentNode) box.parentNode.insertBefore(hint, box.nextSibling);
+
+    var sync = function () {
+      var scrollable = box.scrollWidth > box.clientWidth + 1;
+      box.toggleAttribute("data-scrollable", scrollable);
+      if (scrollable) {
+        if (!box.hasAttribute("tabindex")) box.setAttribute("tabindex", "0");
+        box.setAttribute("role", "region");
+        if (!box.hasAttribute("aria-label")) {
+          // Name the region after the heading it sits under, so a screen
+          // reader announces "Comparison table: <heading>" rather than "region".
+          var h = box.closest("section, article, div.wrap");
+          var head = h && h.querySelector("h2, h3");
+          box.setAttribute("aria-label", head
+            ? "Comparison table: " + head.textContent.trim()
+            : "Comparison table, scrolls horizontally");
+        }
+      } else {
+        box.removeAttribute("tabindex");
+        box.removeAttribute("role");
+      }
+    };
+    sync();
+    window.addEventListener("resize", sync, { passive: true });
+  });
+
 })();
 
 

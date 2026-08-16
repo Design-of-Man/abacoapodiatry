@@ -2079,25 +2079,12 @@ a.btn-ghost { color: var(--head); }
 .site-footer .logo-wordmark { width: 230px; }
 
 
-/* Legibility floor: nothing renders below 12px at any width. Applied
-   globally rather than under a mobile breakpoint — tablets at 768px fell
-   through a max-width:760px rule and kept 11.5px text. */
-@media (max-width: 1100px) {
-  .footer-bottom,
-  .footer-bottom a,
-  .footer-disclaimer,
-  .article-meta,
-  .crumbs,
-  .symptom-card .tag,
-  .form-note,
-  .med-note,
-  .assist-note,
-  .assist-note a {
-    font-size: 0.8rem;
-    line-height: 1.55;
-  }
-  .logo-tag { font-size: 0.75rem; }
-}
+/* Legibility floor: nothing renders below 12px at any width.
+   This was previously wrapped in @media (max-width: 1100px), which contradicted
+   its own comment — every desktop width fell straight through it and kept
+   11.52px on the assistant note and the symptom-card tags. It is unconditional
+   now, and it lives at the end of the stylesheet (see "Legibility floor" below)
+   so that later component rules can't quietly undercut it on source order. */
 
 
 /* --------------------------------------------------------------------------
@@ -2201,3 +2188,108 @@ a.btn-ghost { color: var(--head); }
 .symptom-card ul li { margin: 0; font-size: 0.92rem; }
 /* Pin the CTA to the bottom so buttons line up across cards of uneven height. */
 .symptom-card .btn { margin-top: auto; align-self: flex-start; }
+
+
+/* --------------------------------------------------------------------------
+   Legibility floor
+   Nothing renders below 12px, at any width. Kept at the end of the file on
+   purpose: .symptom-card .tag sets 0.72rem (11.52px) further up, and a rule of
+   equal specificity only wins if it comes last.
+   -------------------------------------------------------------------------- */
+.footer-bottom,
+.footer-bottom a,
+.footer-disclaimer,
+.article-meta,
+.crumbs,
+.symptom-card .tag,
+.form-note,
+.med-note,
+.assist-note,
+.assist-note a {
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+.logo-tag { font-size: 0.75rem; }
+
+
+/* --------------------------------------------------------------------------
+   Touch targets
+   Measured on a 390px viewport: the footer link columns rendered 18px-tall
+   targets, the city list 16px, the legal row 15px and the breadcrumbs 20px —
+   all of them stacked close enough that a thumb lands between two links as
+   easily as on one. WCAG 2.5.8 asks for 24x24 CSS px; Apple and Google both ask
+   for 44px on anything that behaves like a button.
+
+   So the rules split by what the control actually is:
+     - real controls (buttons, chips, arrow links, the call bar) get 44px;
+     - dense secondary link lists get a 24px box plus padding, which both
+       enlarges the target and opens up the gap between neighbours.
+
+   Scoped to coarse pointers and to <=980px so the desktop layout — where a
+   mouse makes an 18px row perfectly clickable — is untouched.
+   -------------------------------------------------------------------------- */
+@media (max-width: 980px), (pointer: coarse) {
+  /* Controls: full 44px. inline-flex + centring keeps the label optically
+     centred as the box grows, so nothing shifts visually. */
+  .btn-sm,
+  .faq-cat,
+  .link-arrow,
+  .callbar a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .link-arrow { justify-content: flex-start; }
+
+  /* Dense link lists: make the whole row tappable rather than just the glyphs.
+     Negative inline margin keeps the text optically flush with the column edge
+     while the padded box extends past it. */
+  .site-footer .footer-grid ul li a,
+  .footer-contact li a,
+  .city-links a,
+  .symptom-card ul li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0.25rem 0.4rem;
+    margin-inline: -0.4rem;
+  }
+  /* The gap between neighbours matters as much as the box: 2.5.8 passes an
+     undersized target when no other target sits within its 24px circle. */
+  .site-footer .footer-grid ul li { margin-bottom: 0.15em; }
+  .city-links { gap: 0.35rem 1.6rem; }
+  .symptom-card ul li + li { margin-top: 0.1rem; }
+
+  /* Legal row and breadcrumbs: same treatment, smaller box — these sit on one
+     line with wide horizontal gaps, so only the vertical axis is short. */
+  .footer-bottom a,
+  .crumbs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+  }
+  .footer-bottom .wrap { gap: 0.4rem 2rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Scrollable comparison tables
+   main.js marks a .table-scroll that genuinely overflows with [data-scrollable]
+   and adds the caption below it. A gradient fade over the right edge was tried
+   first and dropped: the table cells are opaque, so any overlay inside the
+   scroll container is painted underneath them, and moving it outside would mean
+   wrapping all three tables in an extra element for a cue that a plain sentence
+   states more clearly.
+   -------------------------------------------------------------------------- */
+.table-scroll:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+.table-hint {
+  display: none;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin: 0.55rem 0 0;
+}
+@media (max-width: 760px) {
+  /* Only worth saying on the widths where the table is actually clipped. */
+  .table-scroll[data-scrollable] + .table-hint { display: block; }
+}

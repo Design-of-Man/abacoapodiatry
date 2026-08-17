@@ -206,6 +206,27 @@ def build_redirects():
         if not (ROOT / dest.strip("/") / "index.html").exists() and dest != "/":
             sys.exit(f"ERROR: redirect destination {dest} is not a page on this site")
 
+    # ...and a source must NOT be a real page. Vercel matches the redirect table
+    # before serving a static file, so a URL that is both ships as a page nobody
+    # can reach: the file is right there in the repo and every request to it 301s
+    # away. Nothing else in this build would notice -- the page renders, the
+    # redirect resolves, and both checks above pass.
+    #
+    # This is the failure mode of porting an old post back onto its original URL
+    # (which is the point of keeping the URL: no redirect, no lost ranking) while
+    # leaving its row in the map. STUB_PATHS are the deliberate exception -- the
+    # loop below writes a meta-refresh stub *at* the source path on purpose.
+    for src, dst in pairs:
+        if src in STUB_PATHS:
+            continue
+        if (ROOT / src.strip("/") / "index.html").exists():
+            sys.exit(
+                f"ERROR: {src} is both a redirect source and a built page.\n"
+                f"  The redirect wins, so the page is unreachable and its {dst} target\n"
+                f"  gets the traffic. Either delete the {src} row from\n"
+                f"  {REDIRECT_MAP.name}, or delete the page that builds to {src}."
+            )
+
     for old, new in pairs:
         if old not in STUB_PATHS:
             continue

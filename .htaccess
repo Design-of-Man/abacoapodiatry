@@ -106,7 +106,6 @@ RewriteRule ^sports-injuries-and-foot-health-how-to-prevent-and-treat-common-iss
 RewriteRule ^sports-injury-signs-that-need-medical-attention/?$ /conditions/sports-injuries/ [R=301,L]
 RewriteRule ^the-complete-guide-to-sports-injury-prevention-and-treatment/?$ /conditions/sports-injuries/ [R=301,L]
 RewriteRule ^is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/?$ /services/foot-ankle-surgery/ [R=301,L]
-RewriteRule ^comprehensive-guide-to-treating-plantar-warts/?$ /conditions/ [R=301,L]
 RewriteRule ^why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results/?$ /conditions/ [R=301,L]
 RewriteRule ^foot-bbl-jupiter-fl/?$ /services/foot-bbl/ [R=301,L]
 RewriteRule ^the-advantages-of-telemedicine/?$ /telehealth/ [R=301,L]

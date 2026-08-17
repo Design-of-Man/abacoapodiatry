@@ -1,4 +1,4 @@
-﻿# Old jupiterlaser.com URL -> its closest equivalent on the new site.
+# Old jupiterlaser.com URL -> its closest equivalent on the new site.
 #
 # Source of truth. _dev/gen-redirects.py writes vercel.json, _redirects and
 # .htaccess from this file, so the three can never drift apart. Edit here, then
@@ -149,7 +149,6 @@ old	destination	why
 
 # ---- Posts: surgery, warts, telehealth, general ----------------------------
 /is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits	/services/foot-ankle-surgery/	topic match
-/comprehensive-guide-to-treating-plantar-warts	/conditions/	warts have no dedicated page
 /why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results	/conditions/	warts have no dedicated page
 /foot-bbl-jupiter-fl	/services/foot-bbl/	topic match
 /the-advantages-of-telemedicine	/telehealth/	topic match

@@ -503,16 +503,6 @@
       "permanent": true
     },
     {
-      "source": "/types-of-bunion-surgery-which-procedure-is-right-for-you/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/types-of-bunion-surgery-which-procedure-is-right-for-you",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
       "source": "/understanding-bunions-causes-symptoms-and-effective-treatments/",
       "destination": "/conditions/bunions/",
       "permanent": true
@@ -539,16 +529,6 @@
     },
     {
       "source": "/advancements-in-diabetic-foot-care",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/common-diabetic-foot-problems/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/common-diabetic-foot-problems",
       "destination": "/conditions/diabetic-foot-care/",
       "permanent": true
     },

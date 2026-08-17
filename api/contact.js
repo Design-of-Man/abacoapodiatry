@@ -172,10 +172,25 @@ module.exports = async function handler(req, res) {
       });
       if (!mail.ok) {
         console.error("contact: resend failed", mail.status, await mail.text());
+      } else {
+        console.log("contact: lead stored and notification sent");
       }
     } catch (err) {
       console.error("contact: resend threw", err && err.message);
     }
+  } else {
+    // Say so out loud. Skipping notification is a supported state -- capture
+    // still works and the office can read the table -- but it is indistinguishable
+    // from a working one in the logs, because a block that never runs logs
+    // nothing. That silence is exactly how this site went months with a lead
+    // path nobody was being told about: the patient saw the success message, the
+    // row was written, and the only missing piece left no trace anywhere.
+    const missing = ["RESEND_API_KEY", "LEAD_TO", "LEAD_FROM"]
+      .filter((k) => !process.env[k]);
+    console.warn(
+      "contact: lead stored but NO email sent -- unset: " + missing.join(", ") +
+      ". Someone must be reading the Supabase leads table."
+    );
   }
 
   return json(res, 200, OK);

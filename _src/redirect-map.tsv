@@ -65,7 +65,6 @@ old	destination	why
 /minimally-invasive-bunion-surgery-jupiter	/conditions/bunions/	topic match
 /signs-you-might-need-bunion-surgery-what-to-expect	/conditions/bunions/	topic match
 /what-to-expect-before-during-and-after-bunion-surgery-in-jupiter	/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/	same before/during/after ground as the ported recovery-tips article, avoids duplicating it
-/understanding-bunions-causes-symptoms-and-effective-treatments	/conditions/bunions/	topic match
 
 # ---- Posts: diabetic foot --------------------------------------------------
 # advancements-in-diabetic-foot-care, preventing-complications-a-guide-to-
@@ -98,7 +97,6 @@ old	destination	why
 /effective-solutions-for-chronic-venous-insufficiency	/conditions/venous-insufficiency/	condition, not procedure
 /how-compression-therapy-can-alleviate-symptoms-of-vein-disease	/conditions/venous-insufficiency/	conservative care sits on the condition page
 /how-laser-vein-therapy-treats-varicose-veins-without-downtime	/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/	same EVLT explainer as the ported article, avoids duplicating it
-/leg-pain-venous-insufficiency-jupiter	/conditions/venous-insufficiency/	symptom-led, condition page
 /radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins	/services/vein-treatment/	procedure
 /spider-vein-treatment-before-and-after-what-to-expect	/services/vein-treatment/	procedure
 /vein-treatment-jupiter-fl	/services/vein-treatment/	procedure

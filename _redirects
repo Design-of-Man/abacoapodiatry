@@ -51,8 +51,8 @@
 /services/foot-bbl-treatment-jupiter-fl/ /services/foot-bbl/ 301!
 /sports-injuries /conditions/sports-injuries/ 301!
 /sports-injuries/ /conditions/sports-injuries/ 301!
-/stem-cell-therapy /services/stem-cell-therapy/ 301!
-/stem-cell-therapy/ /services/stem-cell-therapy/ 301!
+/stem-cell-therapy /services/regenerative-medicine/ 301!
+/stem-cell-therapy/ /services/regenerative-medicine/ 301!
 /terms /privacy/ 301!
 /terms/ /privacy/ 301!
 /testimonials /reviews/ 301!
@@ -193,8 +193,8 @@
 /category/regenerative-medicine/ /services/regenerative-medicine/ 301!
 /category/sports-injuries /conditions/sports-injuries/ 301!
 /category/sports-injuries/ /conditions/sports-injuries/ 301!
-/category/stem-cell-therapy /services/stem-cell-therapy/ 301!
-/category/stem-cell-therapy/ /services/stem-cell-therapy/ 301!
+/category/stem-cell-therapy /services/regenerative-medicine/ 301!
+/category/stem-cell-therapy/ /services/regenerative-medicine/ 301!
 /category/surgical-wounds /services/wound-care/ 301!
 /category/surgical-wounds/ /services/wound-care/ 301!
 /category/uncategorized /blog/ 301!
@@ -233,3 +233,5 @@
 /venous-insufficiency/ /conditions/venous-insufficiency/ 301!
 /flat-feet-flatfoot-types-causes-treatment /conditions/flat-feet/ 301!
 /flat-feet-flatfoot-types-causes-treatment/ /conditions/flat-feet/ 301!
+/services/stem-cell-therapy /services/regenerative-medicine/ 301!
+/services/stem-cell-therapy/ /services/regenerative-medicine/ 301!

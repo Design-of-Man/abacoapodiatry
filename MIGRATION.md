@@ -102,23 +102,36 @@ This must match the Google Business Profile exactly.
    property follows the domain, not the old site. If the current SEO vendor owns the
    only verification, add owner verification now (DNS TXT record) *before* the switch.
 3. **Deploy to a temporary URL** (e.g. Netlify's `*.netlify.app`) and click through it.
-3a. **Rebuild with the production image origin.** Social preview images (`og:image`,
-   `twitter:image`, schema `image`/`logo`/`thumbnailUrl`) point at the deployment host
-   rather than the canonical domain, because before cutover `jupiterlaser.com` still
-   serves the old site — an `og:image` there 404s and scrapers fall back to whatever
-   in-page image they find, which is the transparent logo (iMessage paints it on grey).
-   Canonical URLs already point at `jupiterlaser.com`, so only the image origin needs
-   flipping:
+3a. ~~**Rebuild with the production image origin.**~~ Done 2026-08-18. Social preview
+   images (`og:image`, `twitter:image`, schema `image`/`logo`/`thumbnailUrl`) used to
+   point at the deployment host, because before cutover `jupiterlaser.com` still served
+   the old site — an `og:image` there 404s and scrapers fall back to whatever in-page
+   image they find, which is the transparent logo (iMessage paints it on grey).
+   `IMAGE_ORIGIN` now defaults to `SITE_ORIGIN`, so a plain build produces the real
+   domain and this cannot silently revert.
 
-   ```bash
-   IMAGE_ORIGIN=https://jupiterlaser.com python3 _src/build.py
-   ```
+   **Merge that rebuild only once DNS resolves**, not before — until then those image
+   URLs point at a domain still serving the old site.
 
-   Then re-scrape the card so caches update: Facebook Sharing Debugger, LinkedIn Post
-   Inspector, and for iMessage just send the link to yourself from a different thread
-   (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
-   the images still resolve, just from the Vercel host.
+   After DNS lands, re-scrape the card so caches update: Facebook Sharing Debugger,
+   LinkedIn Post Inspector, and for iMessage send the link to yourself from a different
+   thread (Apple caches per-URL).
+3b. **Set the apex as production in Vercel, and redirect `www` to it.** Adding both
+   domains makes Vercel offer `www` as primary with the apex 308ing to it, which is
+   backwards here: canonicals, all 101 sitemap URLs, `robots.txt` and schema `@id`s all
+   use the apex, and the old site 301'd `www` to the apex too. Left the default way,
+   every URL Google has indexed redirects to a host whose canonical points back at the
+   URL it came from.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
+   **Change only the A record and the `www` record — do not move the nameservers.** DNS
+   is at GoDaddy (`ns59/ns60.domaincontrol.com`) and email is Microsoft 365
+   (`MX → jupiterlaser-com.mail.protection.outlook.com`); repointing nameservers at
+   Vercel drops the MX records and takes the practice's email down with them.
+
+   | Type | Name | Value |
+   |---|---|---|
+   | A | `@` | `76.76.21.21` |
+   | CNAME | `www` | `cname.vercel-dns.com` |
 4a. **Re-activate FormSubmit on the new domain.** The contact form posts to FormSubmit
    (`_src/pages/contact.html`, see that file's comment for why and the full history).
    FormSubmit ties its one-time activation to the exact domain a submission comes from —

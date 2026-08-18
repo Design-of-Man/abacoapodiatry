@@ -84,16 +84,19 @@ PAGES = SRC / "pages"
 import os
 BASE_URL = os.environ.get("SITE_ORIGIN", "https://jupiterlaser.com").rstrip("/")
 
-# Social preview images must resolve on the host actually SERVING the page, not
-# on the canonical domain. Until the cutover, jupiterlaser.com still points at
-# the old site, so an og:image there 404s and scrapers fall back to whatever
-# in-page image they can find -- which is the transparent logo, and iMessage
-# paints transparency on grey. Canonical stays on the real domain so launch SEO
-# is right; only the image URLs follow the deployment.
-# At cutover: rebuild with IMAGE_ORIGIN=https://jupiterlaser.com (see MIGRATION.md).
-IMAGE_ORIGIN = os.environ.get(
-    "IMAGE_ORIGIN", "https://abacoapodiatry.vercel.app"
-).rstrip("/")
+# Social preview images must resolve on the host actually SERVING the page.
+#
+# Before the 2026-08-18 cutover this defaulted to the *.vercel.app host,
+# because jupiterlaser.com still served the client's old site: an og:image
+# there 404'd and scrapers fell back to whatever in-page image they could
+# find, which is the transparent logo, and iMessage paints transparency on
+# grey. That is no longer true -- the domain now serves this site, so the
+# default is the real domain and a plain `python3 _src/build.py` no longer
+# silently reverts the cutover.
+#
+# Override only to preview on a host that is not the canonical domain:
+#     IMAGE_ORIGIN=https://abacoapodiatry.vercel.app python3 _src/build.py
+IMAGE_ORIGIN = os.environ.get("IMAGE_ORIGIN", BASE_URL).rstrip("/")
 
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402

@@ -126,15 +126,26 @@ match and index the staging copy instead, so the host is blocked with `X-Robots-
 cleanup step. `MIGRATION.md` step 5 has the two curls that verify it landed the right way
 round.
 
-Two build-time origins encode this split:
+Two build-time origins exist, and since the 2026-08-18 cutover they both default to the
+real domain:
 
-- `SITE_ORIGIN` (default `https://jupiterlaser.com`) drives canonicals, schema `@id`s and the
-  sitemap — the real future domain, so launch SEO is correct now.
-- `IMAGE_ORIGIN` (default `https://abacoapodiatry.vercel.app`) drives only OpenGraph/Twitter
-  images, which must resolve on the host actually serving the page. Pointing these at the
-  canonical domain before cutover makes link previews fall back to the transparent logo.
+- `SITE_ORIGIN` (default `https://jupiterlaser.com`) drives canonicals, schema `@id`s and
+  the sitemap.
+- `IMAGE_ORIGIN` (defaults to `SITE_ORIGIN`) drives only OpenGraph/Twitter images, which
+  must resolve on the host actually serving the page.
 
-At cutover, rebuild with `IMAGE_ORIGIN=https://jupiterlaser.com`.
+They were split because before cutover `jupiterlaser.com` still served the client's old
+site, so an `og:image` there 404'd and scrapers fell back to the transparent logo (which
+iMessage paints on grey). That is no longer the case, and the default was changed so a
+plain `python3 _src/build.py` cannot silently revert the cutover.
+
+Override `IMAGE_ORIGIN` only to preview on a host that is not the canonical domain.
+
+**`www` vs apex is load-bearing.** Everything here — canonicals, all 101 sitemap URLs,
+`robots.txt`, schema `@id`s — uses the apex, and so did the old site (`www` 301'd to
+apex). Vercel must serve the apex as production and redirect `www` to it. The reverse,
+which is Vercel's default when both are added, makes every indexed URL redirect to a host
+whose canonical points back at the one you started from.
 
 ## Opening hours
 

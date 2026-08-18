@@ -228,26 +228,25 @@ blockquote {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  /* Was align-items:center. A centred grid row sizes to its tallest column,
+     then drops every shorter column into the middle of that row -- so any
+     pairing where one side runs noticeably longer than the other (a brief
+     bio next to a tall photo + stacked cards on /meet-dr-cedeno/, four
+     short info-tiles next to long-form prose on /about/ and /contact/)
+     opened with a large blank gap above the short column that read as a
+     broken page, not a design choice. Two content columns are a document,
+     not a centred graphic pairing: they should start together at the top
+     the way a reader expects, the same as any other multi-column text
+     layout. Where columns are close in height already (home.html's short
+     paired sections) start and center render identically, so this has no
+     visible effect there. */
+  align-items: start;
 }
 .split.rev { grid-template-columns: 0.95fr 1.05fr; }
-/* Sidebar column opt-out from the centring above.
-   A sticky card needs a full-height column to travel inside, and .split centres
-   its children -- so the card floated to the middle of a tall prose column,
-   leaving 1019px of blank space above it on /services/foot-bbl/ and 590px on
-   /conditions/plantar-fasciitis/. Worse, a centred grid item shrinks to its own
-   content height, so position:sticky had no room to move and never actually
-   stuck on any page of the site despite being written on all 18 of them.
-   Stretch gives the column the full row height: the card starts at the top and
-   follows the reader down, which is what the markup always asked for.
-   Inert below 900px, where .split collapses to one column. */
+/* Sidebar column that needs to travel the full row height (a sticky card).
+   align-items:start alone would size it to its own content and give
+   position:sticky no room to move, so it still needs an explicit stretch. */
 .split-aside { align-self: stretch; }
-/* Opt out of the centring the other way: when the prose column is shorter
-   than its sidebar (e.g. a brief bio next to a tall photo + stacked cards),
-   .split's align-items:center drops it into the middle of the row, leaving a
-   large blank gap above it that reads as a layout bug. Pinning it to the top
-   is what a reader expects -- text starts where its heading is. */
-.split-top { align-self: start; }
 @media (max-width: 900px) {
   .split, .split.rev { grid-template-columns: 1fr; }
 }

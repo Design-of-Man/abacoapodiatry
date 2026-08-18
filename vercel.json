@@ -1181,6 +1181,26 @@
       "source": "/services/stem-cell-therapy",
       "destination": "/services/regenerative-medicine/",
       "permanent": true
+    },
+    {
+      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
     }
   ],
   "headers": [

@@ -373,16 +373,6 @@
       "permanent": true
     },
     {
-      "source": "/mls-laser-therapy-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/mls-laser-therapy-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices/",
       "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
@@ -673,16 +663,6 @@
       "permanent": true
     },
     {
-      "source": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
       "source": "/laser-therapy-inflammation-foot-pain/",
       "destination": "/services/mls-laser-therapy/",
       "permanent": true
@@ -849,16 +829,6 @@
     },
     {
       "source": "/how-to-manage-and-treat-wounds-caused-by-radiation-therapy",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-take-care-of-surgical-wounds-at-home-to-prevent-infection/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-take-care-of-surgical-wounds-at-home-to-prevent-infection",
       "destination": "/services/wound-care/",
       "permanent": true
     },

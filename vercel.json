@@ -383,16 +383,6 @@
       "permanent": true
     },
     {
-      "source": "/prevent-achilles-tendonitis-coming-back/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/prevent-achilles-tendonitis-coming-back",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices/",
       "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
@@ -710,16 +700,6 @@
     {
       "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it",
       "destination": "/blog/laser-therapy-vs-cortisone-injections/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-during-prp-therapy-for-plantar-fasciitis-a-step-by-step-guide/",
-      "destination": "/services/prp-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-during-prp-therapy-for-plantar-fasciitis-a-step-by-step-guide",
-      "destination": "/services/prp-therapy/",
       "permanent": true
     },
     {

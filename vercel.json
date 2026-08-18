@@ -423,16 +423,6 @@
       "permanent": true
     },
     {
-      "source": "/is-bunionplasty-best-procedure-for-you/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/is-bunionplasty-best-procedure-for-you",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
       "source": "/is-lapiplasty-bunion-surgery-right-for-you/",
       "destination": "/conditions/bunions/",
       "permanent": true
@@ -614,12 +604,12 @@
     },
     {
       "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support/",
-      "destination": "/conditions/flat-feet/",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
       "permanent": true
     },
     {
       "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support",
-      "destination": "/conditions/flat-feet/",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
       "permanent": true
     },
     {
@@ -789,16 +779,6 @@
     },
     {
       "source": "/vein-treatment-jupiter-fl",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-with-sclerotherapy-before-and-after-insights/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-with-sclerotherapy-before-and-after-insights",
       "destination": "/services/vein-treatment/",
       "permanent": true
     },

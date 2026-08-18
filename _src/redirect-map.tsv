@@ -55,19 +55,17 @@ old	destination	why
 # ---- Posts: Achilles -------------------------------------------------------
 /achilles-tendon-treatment-jupiter	/conditions/achilles-tendonitis/	topic match
 /how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis	/mls-laser-therapy-achilles-tendonitis/	same topic as the ported MLS/Achilles article, avoids duplicating it
-/is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis	/conditions/achilles-tendonitis/	topic match
-/recovering-from-achilles-tendon-injuries-best-practices	/conditions/achilles-tendonitis/	topic match
-/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained	/conditions/achilles-tendonitis/	topic match
+/recovering-from-achilles-tendon-injuries-best-practices	/mls-laser-therapy-achilles-tendonitis/	same recovery-best-practices ground as ported Achilles articles, avoids duplicating them
+/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained	/achilles-tendonitis-symptoms-causes-treatment/	same symptoms/causes ground as the ported article, avoids duplicating it
 
 # ---- Posts: bunions --------------------------------------------------------
-/bunion-pain-relief-treatment-options	/conditions/bunions/	topic match
 /bunions-what-are-symptoms-causes-treatment	/conditions/bunions/	topic match
 /foot-bone-correctors-do-they-really-work-or-is-surgery-better	/conditions/bunions/	bone correctors are marketed for bunions
 /is-lapiplasty-bunion-surgery-right-for-you	/conditions/bunions/	topic match
 /minimally-invasive-bunion-surgery-jupiter	/conditions/bunions/	topic match
 /signs-you-might-need-bunion-surgery-what-to-expect	/conditions/bunions/	topic match
+/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter	/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/	same before/during/after ground as the ported recovery-tips article, avoids duplicating it
 /understanding-bunions-causes-symptoms-and-effective-treatments	/conditions/bunions/	topic match
-/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter	/conditions/bunions/	topic match
 
 # ---- Posts: diabetic foot --------------------------------------------------
 /advancements-in-diabetic-foot-care	/conditions/diabetic-foot-care/	topic match
@@ -77,7 +75,6 @@ old	destination	why
 
 # ---- Posts: ankle and arthritis --------------------------------------------
 /ankle-arthritis-jupiter	/conditions/arthritis/	topic match
-/ankle-pain-common-causes-treatments-and-preventions	/conditions/	broad survey, no single page matches
 /high-ankle-injury-symptoms-what-to-watch-for-early	/conditions/sprains-strains/	high ankle sprain
 
 # ---- Posts: flat feet and orthotics ----------------------------------------
@@ -120,7 +117,6 @@ old	destination	why
 /the-complete-guide-to-sports-injury-prevention-and-treatment	/conditions/sports-injuries/	topic match
 
 # ---- Posts: surgery, warts, telehealth, general ----------------------------
-/why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results	/conditions/	warts have no dedicated page
 /foot-bbl-jupiter-fl	/services/foot-bbl/	topic match
 /the-advantages-of-telemedicine	/telehealth/	topic match
 /the-benefits-of-telemedicine	/telehealth/	topic match

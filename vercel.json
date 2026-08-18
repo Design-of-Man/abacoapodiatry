@@ -343,43 +343,23 @@
       "permanent": true
     },
     {
-      "source": "/is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
       "permanent": true
     },
     {
       "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/bunion-pain-relief-treatment-options/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/bunion-pain-relief-treatment-options",
-      "destination": "/conditions/bunions/",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
       "permanent": true
     },
     {
@@ -433,22 +413,22 @@
       "permanent": true
     },
     {
+      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
+      "permanent": true
+    },
+    {
       "source": "/understanding-bunions-causes-symptoms-and-effective-treatments/",
       "destination": "/conditions/bunions/",
       "permanent": true
     },
     {
       "source": "/understanding-bunions-causes-symptoms-and-effective-treatments",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter",
       "destination": "/conditions/bunions/",
       "permanent": true
     },
@@ -500,16 +480,6 @@
     {
       "source": "/ankle-arthritis-jupiter",
       "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-pain-common-causes-treatments-and-preventions/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-pain-common-causes-treatments-and-preventions",
-      "destination": "/conditions/",
       "permanent": true
     },
     {
@@ -770,16 +740,6 @@
     {
       "source": "/the-complete-guide-to-sports-injury-prevention-and-treatment",
       "destination": "/conditions/sports-injuries/",
-      "permanent": true
-    },
-    {
-      "source": "/why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results",
-      "destination": "/conditions/",
       "permanent": true
     },
     {

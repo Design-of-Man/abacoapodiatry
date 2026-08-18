@@ -4,10 +4,16 @@ The owner's worry — "if we replace the site, my leads disappear" — is legiti
 migrations lose rankings when old URLs die, tracking breaks, or Google Business Profile
 links go stale. This plan removes each of those risks. Follow it in order.
 
-**Context worth knowing:** Search Console already shows a steady decline since April.
-That means the *current* site is bleeding visibility — the risk of a careful migration is
-lower than the risk of standing still. And at ~$5,500/mo in Google Ads, every organic
-ranking this site wins is directly reducing paid spend.
+**Context worth knowing:** the domain property in Search Console (`sc-domain:jupiterlaser.com`,
+verified 2026-08-17) shows the opposite of a decline — clicks and impressions both roughly
+2.5x'd over the last two 90-day windows. The "steady decline since April" this section used
+to claim came from the previous vendor's reporting and does not hold up against the real
+account; don't repeat it. The migration is still the right call, just not for that reason —
+see the redirect coverage and the content-parity work in `_dev/STATUS.md` instead.
+
+Google Ads spend is **$3k–3.9k/mo** per the owner's actual billing (confirmed 2026-08-18),
+not the ~$5,500/mo this section used to state. Every organic ranking this site wins still
+directly reduces paid spend — that logic holds regardless of the exact figure.
 
 ---
 

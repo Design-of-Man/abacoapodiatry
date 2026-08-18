@@ -393,16 +393,6 @@
       "permanent": true
     },
     {
-      "source": "/returning-physical-activity-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/returning-physical-activity-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained/",
       "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
@@ -743,16 +733,6 @@
       "permanent": true
     },
     {
-      "source": "/top-5-myths-about-laser-therapy-for-foot-pain/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/top-5-myths-about-laser-therapy-for-foot-pain",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
       "source": "/why-laser-therapy-is-the-future-of-foot-and-ankle-treatments/",
       "destination": "/services/mls-laser-therapy/",
       "permanent": true
@@ -889,16 +869,6 @@
     },
     {
       "source": "/how-can-wound-care-specialists-tailor-treatment-plans-for-different-types-of-wounds",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-laser-therapy-can-improve-wound-healing-and-reduce-scarring/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-laser-therapy-can-improve-wound-healing-and-reduce-scarring",
       "destination": "/services/wound-care/",
       "permanent": true
     },

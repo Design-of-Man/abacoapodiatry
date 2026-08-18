@@ -134,7 +134,7 @@ META-->
                 <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;origin={origin_q}&amp;destination={dest_q}" rel="noopener">Turn-by-Turn Directions</a>
               </div>
               <hr>
-              <p style="font-size:0.92rem;margin:0"><strong>Jupiter Laser &amp; Regenerative Medicine</strong><br>{dest}<br><a href="tel:+15619151934">(561) 915-1934</a><br>{{{{HOURS_JUP_LINE}}}}</p>
+              <p style="font-size:0.92rem;margin:0"><strong>Abacoa Podiatry &amp; Leg Vein Center</strong><br>{dest}<br><a href="tel:+15619151934">(561) 915-1934</a><br>{{{{HOURS_JUP_LINE}}}}</p>
             </div>
           </div>
         </div>

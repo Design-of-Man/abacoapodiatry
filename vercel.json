@@ -633,23 +633,13 @@
       "permanent": true
     },
     {
-      "source": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
       "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime/",
-      "destination": "/services/vein-treatment/",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
       "permanent": true
     },
     {
       "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime",
-      "destination": "/services/vein-treatment/",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
       "permanent": true
     },
     {
@@ -683,16 +673,6 @@
       "permanent": true
     },
     {
-      "source": "/the-role-of-vein-ligation-in-treating-severe-varicose-veins/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-vein-ligation-in-treating-severe-varicose-veins",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
       "source": "/vein-treatment-jupiter-fl/",
       "destination": "/services/vein-treatment/",
       "permanent": true
@@ -719,16 +699,6 @@
     },
     {
       "source": "/how-can-wound-care-specialists-tailor-treatment-plans-for-different-types-of-wounds",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-manage-and-treat-wounds-caused-by-radiation-therapy/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-manage-and-treat-wounds-caused-by-radiation-therapy",
       "destination": "/services/wound-care/",
       "permanent": true
     },

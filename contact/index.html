@@ -339,6 +339,18 @@
                  FormSubmit's format in the first place. -->
             <form id="contact-form" action="https://formsubmit.co/ajax/nicholasbkashuba@gmail.com" method="POST" novalidate>
               <input type="hidden" name="_subject" value="New Patient">
+              <!-- The office is CC'd rather than made the primary recipient, on
+                   purpose. FormSubmit's activation is per recipient address, so
+                   promoting a staff address to primary would put the form back in
+                   the never-activated state that silently ate every lead before
+                   2026-08-15 -- until somebody in the office found and clicked the
+                   link. The activated address stays primary and the office rides
+                   along on CC, which needs no activation.
+
+                   Move a staff address into the action only with someone standing
+                   by to click the activation email, and only after confirming a
+                   real submission arrives. -->
+              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,angela.d@jupiterlaser.com,doctor.cedeno@jupiterlaser.com">
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>

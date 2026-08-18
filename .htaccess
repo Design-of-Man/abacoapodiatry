@@ -118,6 +118,8 @@ RewriteRule ^spider-veins/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^venous-insufficiency/?$ /conditions/venous-insufficiency/ [R=301,L]
 RewriteRule ^flat-feet-flatfoot-types-causes-treatment/?$ /conditions/flat-feet/ [R=301,L]
 RewriteRule ^services/stem-cell-therapy/?$ /services/regenerative-medicine/ [R=301,L]
+RewriteRule ^the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries/?$ /services/regenerative-medicine/ [R=301,L]
+RewriteRule ^how-can-stem-cell-therapy-benefit-leg-injuries/?$ /services/regenerative-medicine/ [R=301,L]
 
 # Serve custom 404
 ErrorDocument 404 /404.html

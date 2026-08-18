@@ -1,4 +1,4 @@
-/* Jupiter Laser & Regenerative Medicine — site interactivity
+/* Abacoa Podiatry & Leg Vein Center — site interactivity
    Vanilla JS, no dependencies. Loaded with `defer`. */
 (function () {
   "use strict";

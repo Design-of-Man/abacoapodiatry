@@ -1652,6 +1652,36 @@ details.faq.hidden { display: none; }
 .footer-hours li > span:first-child { flex: none; }
 .footer-hours li > span:last-child { text-align: right; }
 .footer-hours span:last-child { color: #ded6c3; font-weight: 500; }
+/* Social row. 44px boxes because these are real controls, which is the rule
+   the touch-target pass set for buttons and the call bar -- an icon link in a
+   dense footer is exactly where a thumb lands between two targets. */
+.footer-social {
+  border-top: 1px solid rgba(214, 185, 116, 0.12);
+  padding: 1.2rem 0 0.2rem;
+}
+.footer-social .wrap {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #a49b88;
+  border: 1px solid rgba(214, 185, 116, 0.22);
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.footer-social a:hover {
+  color: var(--accent-light);
+  border-color: rgba(214, 185, 116, 0.55);
+  transform: translateY(-2px);
+}
+.footer-social svg { width: 20px; height: 20px; }
+
 .footer-bottom {
   border-top: 1px solid rgba(214, 185, 116, 0.12);
   padding: 1.4rem 0 1.6rem;

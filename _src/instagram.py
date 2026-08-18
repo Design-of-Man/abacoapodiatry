@@ -24,7 +24,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 IMG_DIR = ROOT / "assets" / "img" / "instagram"
 
 HANDLE = "@abacoapodiatry"
-PROFILE_URL = "https://www.instagram.com/abacoapodiatry/"
+PROFILE_URL = "https://www.instagram.com/bunionboss_abacoapodiatry/"
 
 # slug, width, height, alt (for a screen reader), caption (visible label)
 #

@@ -317,22 +317,27 @@
             <span class="kicker">Online Request</span>
             <h2>Request your appointment</h2>
             <p>Prefer not to call? Send us your details and our team will call you back to confirm a time, usually the same business day.</p>
-            <!-- Posts to our own serverless function, api/contact.js, which
-                 writes the request to Supabase and only then answers. It
-                 replaced FormSubmit on 2026-08-15: FormSubmit needs a one-time
-                 activation link clicked in the recipient's inbox before it
-                 forwards anything, nobody ever clicked it, and until then it
-                 accepted every submission and dropped it. The site looked like
-                 it was taking bookings and was taking none.
+            <!-- Reverted to FormSubmit on 2026-08-18, by explicit client request
+                 after being told the history below. Recipient is temporarily
+                 nicholasbkashuba@gmail.com so he can click FormSubmit's one-time
+                 activation link; once clicked, repoint this at Dr. Cedeno's and
+                 the rest of the office's addresses.
 
-                 The trailing slash on the action is load-bearing. vercel.json
-                 sets trailingSlash:true, so /api/contact would be normalised on
-                 the way in; posting to the slashed form goes straight through
-                 the rewrite to the function.
+                 FormSubmit was removed on 2026-08-15 because it silently dropped
+                 every lead: it requires that one-time activation-link click
+                 before it forwards anything, and until clicked it accepts every
+                 submission and answers success while delivering nothing. That
+                 failure mode is back by choice, not by accident -- do not "fix"
+                 this back to api/contact.js without asking first.
 
-                 Recipients are no longer listed here -- they live in the LEAD_TO
-                 environment variable, off the public page. -->
-            <form id="contact-form" action="/api/contact/" method="POST" novalidate>
+                 api/contact.js (the Supabase-backed function this replaced) is
+                 left in the repo, unused, in case of a future revert.
+
+                 No JS changes needed: assets/js/main.js's success check
+                 (String(data.success) === "true") already matches FormSubmit's
+                 own response shape -- that contract was built to mirror
+                 FormSubmit's format in the first place. -->
+            <form id="contact-form" action="https://formsubmit.co/ajax/nicholasbkashuba@gmail.com" method="POST" novalidate>
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>

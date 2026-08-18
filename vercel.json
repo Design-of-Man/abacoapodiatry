@@ -334,12 +334,12 @@
     },
     {
       "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
@@ -419,16 +419,6 @@
     },
     {
       "source": "/minimally-invasive-bunion-surgery-jupiter",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect",
       "destination": "/conditions/bunions/",
       "permanent": true
     },
@@ -593,16 +583,6 @@
       "permanent": true
     },
     {
-      "source": "/plantar-fasciitis-in-athletes-recovery-strategies-and-performance-tips/",
-      "destination": "/conditions/plantar-fasciitis/",
-      "permanent": true
-    },
-    {
-      "source": "/plantar-fasciitis-in-athletes-recovery-strategies-and-performance-tips",
-      "destination": "/conditions/plantar-fasciitis/",
-      "permanent": true
-    },
-    {
       "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
       "destination": "/blog/laser-therapy-vs-cortisone-injections/",
       "permanent": true
@@ -613,23 +593,13 @@
       "permanent": true
     },
     {
-      "source": "/laser-therapy-inflammation-foot-pain/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/laser-therapy-inflammation-foot-pain",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
       "source": "/laser-treatment-sports-injuries-feet-ankles/",
-      "destination": "/services/mls-laser-therapy/",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
       "permanent": true
     },
     {
       "source": "/laser-treatment-sports-injuries-feet-ankles",
-      "destination": "/services/mls-laser-therapy/",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
       "permanent": true
     },
     {
@@ -793,16 +763,6 @@
       "permanent": true
     },
     {
-      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries/",
-      "destination": "/services/stem-cell-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries",
-      "destination": "/services/stem-cell-therapy/",
-      "permanent": true
-    },
-    {
       "source": "/preventing-and-treating-sports-related-foot-injuries/",
       "destination": "/conditions/sports-injuries/",
       "permanent": true
@@ -840,16 +800,6 @@
     {
       "source": "/the-complete-guide-to-sports-injury-prevention-and-treatment",
       "destination": "/conditions/sports-injuries/",
-      "permanent": true
-    },
-    {
-      "source": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits",
-      "destination": "/services/foot-ankle-surgery/",
       "permanent": true
     },
     {

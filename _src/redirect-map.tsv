@@ -54,7 +54,7 @@ old	destination	why
 
 # ---- Posts: Achilles -------------------------------------------------------
 /achilles-tendon-treatment-jupiter	/conditions/achilles-tendonitis/	topic match
-/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis	/conditions/achilles-tendonitis/	topic match
+/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis	/mls-laser-therapy-achilles-tendonitis/	same topic as the ported MLS/Achilles article, avoids duplicating it
 /is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis	/conditions/achilles-tendonitis/	topic match
 /recovering-from-achilles-tendon-injuries-best-practices	/conditions/achilles-tendonitis/	topic match
 /what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained	/conditions/achilles-tendonitis/	topic match
@@ -65,7 +65,6 @@ old	destination	why
 /foot-bone-correctors-do-they-really-work-or-is-surgery-better	/conditions/bunions/	bone correctors are marketed for bunions
 /is-lapiplasty-bunion-surgery-right-for-you	/conditions/bunions/	topic match
 /minimally-invasive-bunion-surgery-jupiter	/conditions/bunions/	topic match
-/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect	/conditions/bunions/	topic match
 /signs-you-might-need-bunion-surgery-what-to-expect	/conditions/bunions/	topic match
 /understanding-bunions-causes-symptoms-and-effective-treatments	/conditions/bunions/	topic match
 /what-to-expect-before-during-and-after-bunion-surgery-in-jupiter	/conditions/bunions/	topic match
@@ -90,12 +89,10 @@ old	destination	why
 
 # ---- Posts: plantar fasciitis and heel -------------------------------------
 /pain-science-plantar-fasciitis	/conditions/plantar-fasciitis/	topic match
-/plantar-fasciitis-in-athletes-recovery-strategies-and-performance-tips	/conditions/plantar-fasciitis/	topic match
 /plantar-fasciitis-steroid-injection-when-to-consider-it	/blog/laser-therapy-vs-cortisone-injections/	same question, and the new post answers it directly
 
 # ---- Posts: laser ----------------------------------------------------------
-/laser-therapy-inflammation-foot-pain	/services/mls-laser-therapy/	topic match
-/laser-treatment-sports-injuries-feet-ankles	/services/mls-laser-therapy/	topic match
+/laser-treatment-sports-injuries-feet-ankles	/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/	same topic as the ported sports-recovery article, avoids duplicating it
 /mls-laser-therapy-benefits-pain-relief	/services/mls-laser-therapy/	topic match
 
 # ---- Posts: veins ----------------------------------------------------------
@@ -118,7 +115,6 @@ old	destination	why
 # ---- Posts: regenerative and stem cell -------------------------------------
 /how-regenerative-medicine-is-changing-the-game-in-sports-injury-recovery	/services/regenerative-medicine/	topic match
 /regenerative-medicine-in-podiatry	/services/regenerative-medicine/	topic match
-/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries	/services/stem-cell-therapy/	topic match
 
 # ---- Posts: sports ---------------------------------------------------------
 /preventing-and-treating-sports-related-foot-injuries	/conditions/sports-injuries/	topic match
@@ -127,7 +123,6 @@ old	destination	why
 /the-complete-guide-to-sports-injury-prevention-and-treatment	/conditions/sports-injuries/	topic match
 
 # ---- Posts: surgery, warts, telehealth, general ----------------------------
-/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits	/services/foot-ankle-surgery/	topic match
 /why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results	/conditions/	warts have no dedicated page
 /foot-bbl-jupiter-fl	/services/foot-bbl/	topic match
 /the-advantages-of-telemedicine	/telehealth/	topic match

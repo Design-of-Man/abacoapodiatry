@@ -333,26 +333,6 @@
       "permanent": true
     },
     {
-      "source": "/achilles-tendonitis-symptoms-causes-treatment/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/achilles-tendonitis-symptoms-causes-treatment",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/how-advanced-diagnostic-tools-help-in-accurate-assessment-of-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/how-advanced-diagnostic-tools-help-in-accurate-assessment-of-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis/",
       "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
@@ -543,16 +523,6 @@
       "permanent": true
     },
     {
-      "source": "/factors-that-affect-how-long-an-ankle-implant-will-last/",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/factors-that-affect-how-long-an-ankle-implant-will-last",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
       "source": "/high-ankle-injury-symptoms-what-to-watch-for-early/",
       "destination": "/conditions/sprains-strains/",
       "permanent": true
@@ -590,16 +560,6 @@
     {
       "source": "/flat-feet-in-adults-vs-children-causes-symptoms-and-solutions",
       "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-use-custom-orthotics-to-manage-hammer-toe-pain/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-use-custom-orthotics-to-manage-hammer-toe-pain",
-      "destination": "/conditions/",
       "permanent": true
     },
     {
@@ -679,16 +639,6 @@
     },
     {
       "source": "/mls-laser-therapy-benefits-pain-relief",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/why-laser-therapy-is-the-future-of-foot-and-ankle-treatments/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/why-laser-therapy-is-the-future-of-foot-and-ankle-treatments",
       "destination": "/services/mls-laser-therapy/",
       "permanent": true
     },
@@ -820,16 +770,6 @@
     {
       "source": "/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida",
       "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries/",
-      "destination": "/services/stem-cell-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries",
-      "destination": "/services/stem-cell-therapy/",
       "permanent": true
     },
     {
@@ -999,16 +939,6 @@
     },
     {
       "source": "/best-running-shoes-2026-jupiter-podiatrist",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/cold-vs-warm-therapy-for-foot-pain-which-one-works-best/",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/cold-vs-warm-therapy-for-foot-pain-which-one-works-best",
       "destination": "/blog/",
       "permanent": true
     },

@@ -119,6 +119,17 @@ This must match the Google Business Profile exactly.
    (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
    the images still resolve, just from the Vercel host.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
+4a. **Re-activate FormSubmit on the new domain.** The contact form posts to FormSubmit
+   (`_src/pages/contact.html`, see that file's comment for why and the full history).
+   FormSubmit ties its one-time activation to the exact domain a submission comes from —
+   the Vercel preview URL and `jupiterlaser.com` are different domains as far as it's
+   concerned, so the preview being activated does **not** carry over. The first real
+   submission from `jupiterlaser.com` will silently fail exactly like the original bug
+   this file exists to prevent, until someone clicks the new activation email. **Submit one
+   test entry through the live `jupiterlaser.com/contact/` form immediately after DNS
+   lands, before announcing the site is live**, and click the activation link that
+   arrives at the current recipient. Do not skip this — it is the same failure mode,
+   reintroduced by the domain change itself.
 5. **Confirm the staging block lifted.** Until cutover the site is reachable at
    `abacoapodiatry.vercel.app`, which is public (no deployment protection) and serves
    pages whose canonical points at `jupiterlaser.com` — a domain that still returns the

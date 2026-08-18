@@ -127,7 +127,6 @@ STUB_PATHS = {
     "/service-areas", "/bbl", "/bunion", "/flat-feet", "/wound-care",
     "/foot-ankle-surgery", "/providers", "/request-an-appointment", "/videos",
     "/flat-feet-flatfoot-types-causes-treatment",
-    "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
 }
 
 

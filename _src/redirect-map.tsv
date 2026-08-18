@@ -83,14 +83,12 @@ old	destination	why
 # ---- Posts: ankle and arthritis --------------------------------------------
 /ankle-arthritis-jupiter	/conditions/arthritis/	topic match
 /ankle-pain-common-causes-treatments-and-preventions	/conditions/	broad survey, no single page matches
-/best-guide-to-first-metatarsophalangeal-joint-arthritis	/conditions/arthritis/	big-toe joint arthritis
 /factors-that-affect-how-long-an-ankle-implant-will-last	/services/foot-ankle-surgery/	implant longevity is a surgical question
 /high-ankle-injury-symptoms-what-to-watch-for-early	/conditions/sprains-strains/	high ankle sprain
 
 # ---- Posts: flat feet and orthotics ----------------------------------------
 /custom-orthotics-benefits-for-foot-and-ankle-health	/conditions/flat-feet/	orthotics are the arch-support answer
 /custom-orthotics-jupiter	/conditions/flat-feet/	orthotics are the arch-support answer
-/flat-feet-achilles-pain-best-shoes-stretches-relief-tips	/conditions/flat-feet/	flat feet is the primary subject
 /flat-feet-in-adults-vs-children-causes-symptoms-and-solutions	/conditions/flat-feet/	topic match
 /how-to-use-custom-orthotics-to-manage-hammer-toe-pain	/conditions/	hammer toe has no dedicated page
 /impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support	/conditions/flat-feet/	topic match
@@ -116,7 +114,6 @@ old	destination	why
 /leg-pain-venous-insufficiency-jupiter	/conditions/venous-insufficiency/	symptom-led, condition page
 /radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins	/services/vein-treatment/	procedure
 /spider-vein-treatment-before-and-after-what-to-expect	/services/vein-treatment/	procedure
-/the-role-of-physical-therapy-in-treating-leg-vein-problems	/conditions/venous-insufficiency/	conservative care
 /the-role-of-vein-ligation-in-treating-severe-varicose-veins	/services/vein-treatment/	procedure
 /vein-treatment-jupiter-fl	/services/vein-treatment/	procedure
 /what-to-expect-with-sclerotherapy-before-and-after-insights	/services/vein-treatment/	procedure
@@ -206,4 +203,3 @@ old	destination	why
 # already mapped correctly before the crawl, so they are listed here only to
 # keep the original map's entries together.
 /flat-feet-flatfoot-types-causes-treatment	/conditions/flat-feet/	live post; flat feet is the subject
-/physical-therapy-and-rehabilitation-after-flat-foot-surgery	/conditions/flat-feet/	live post; post-op flat foot rehab

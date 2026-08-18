@@ -563,16 +563,6 @@
       "permanent": true
     },
     {
-      "source": "/best-guide-to-first-metatarsophalangeal-joint-arthritis/",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/best-guide-to-first-metatarsophalangeal-joint-arthritis",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
       "source": "/factors-that-affect-how-long-an-ankle-implant-will-last/",
       "destination": "/services/foot-ankle-surgery/",
       "permanent": true
@@ -609,16 +599,6 @@
     },
     {
       "source": "/custom-orthotics-jupiter",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     },
@@ -810,16 +790,6 @@
     {
       "source": "/spider-vein-treatment-before-and-after-what-to-expect",
       "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-physical-therapy-in-treating-leg-vein-problems/",
-      "destination": "/conditions/venous-insufficiency/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-physical-therapy-in-treating-leg-vein-problems",
-      "destination": "/conditions/venous-insufficiency/",
       "permanent": true
     },
     {
@@ -1509,16 +1479,6 @@
     },
     {
       "source": "/flat-feet-flatfoot-types-causes-treatment",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery/",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     }

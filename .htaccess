@@ -56,12 +56,10 @@ RewriteRule ^the-crucial-importance-of-managing-diabetic-foot-complications-prev
 RewriteRule ^understand-the-common-diabetic-foot-problems-before-its-too-late/?$ /conditions/diabetic-foot-care/ [R=301,L]
 RewriteRule ^ankle-arthritis-jupiter/?$ /conditions/arthritis/ [R=301,L]
 RewriteRule ^ankle-pain-common-causes-treatments-and-preventions/?$ /conditions/ [R=301,L]
-RewriteRule ^best-guide-to-first-metatarsophalangeal-joint-arthritis/?$ /conditions/arthritis/ [R=301,L]
 RewriteRule ^factors-that-affect-how-long-an-ankle-implant-will-last/?$ /services/foot-ankle-surgery/ [R=301,L]
 RewriteRule ^high-ankle-injury-symptoms-what-to-watch-for-early/?$ /conditions/sprains-strains/ [R=301,L]
 RewriteRule ^custom-orthotics-benefits-for-foot-and-ankle-health/?$ /conditions/flat-feet/ [R=301,L]
 RewriteRule ^custom-orthotics-jupiter/?$ /conditions/flat-feet/ [R=301,L]
-RewriteRule ^flat-feet-achilles-pain-best-shoes-stretches-relief-tips/?$ /conditions/flat-feet/ [R=301,L]
 RewriteRule ^flat-feet-in-adults-vs-children-causes-symptoms-and-solutions/?$ /conditions/flat-feet/ [R=301,L]
 RewriteRule ^how-to-use-custom-orthotics-to-manage-hammer-toe-pain/?$ /conditions/ [R=301,L]
 RewriteRule ^impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support/?$ /conditions/flat-feet/ [R=301,L]
@@ -81,7 +79,6 @@ RewriteRule ^how-laser-vein-therapy-treats-varicose-veins-without-downtime/?$ /s
 RewriteRule ^leg-pain-venous-insufficiency-jupiter/?$ /conditions/venous-insufficiency/ [R=301,L]
 RewriteRule ^radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^spider-vein-treatment-before-and-after-what-to-expect/?$ /services/vein-treatment/ [R=301,L]
-RewriteRule ^the-role-of-physical-therapy-in-treating-leg-vein-problems/?$ /conditions/venous-insufficiency/ [R=301,L]
 RewriteRule ^the-role-of-vein-ligation-in-treating-severe-varicose-veins/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^vein-treatment-jupiter-fl/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^what-to-expect-with-sclerotherapy-before-and-after-insights/?$ /services/vein-treatment/ [R=301,L]
@@ -151,7 +148,6 @@ RewriteRule ^varicose-veins/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^spider-veins/?$ /services/vein-treatment/ [R=301,L]
 RewriteRule ^venous-insufficiency/?$ /conditions/venous-insufficiency/ [R=301,L]
 RewriteRule ^flat-feet-flatfoot-types-causes-treatment/?$ /conditions/flat-feet/ [R=301,L]
-RewriteRule ^physical-therapy-and-rehabilitation-after-flat-foot-surgery/?$ /conditions/flat-feet/ [R=301,L]
 
 # Serve custom 404
 ErrorDocument 404 /404.html

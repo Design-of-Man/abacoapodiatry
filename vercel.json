@@ -264,12 +264,12 @@
     },
     {
       "source": "/stem-cell-therapy/",
-      "destination": "/services/stem-cell-therapy/",
+      "destination": "/services/regenerative-medicine/",
       "permanent": true
     },
     {
       "source": "/stem-cell-therapy",
-      "destination": "/services/stem-cell-therapy/",
+      "destination": "/services/regenerative-medicine/",
       "permanent": true
     },
     {
@@ -974,12 +974,12 @@
     },
     {
       "source": "/category/stem-cell-therapy/",
-      "destination": "/services/stem-cell-therapy/",
+      "destination": "/services/regenerative-medicine/",
       "permanent": true
     },
     {
       "source": "/category/stem-cell-therapy",
-      "destination": "/services/stem-cell-therapy/",
+      "destination": "/services/regenerative-medicine/",
       "permanent": true
     },
     {
@@ -1170,6 +1170,16 @@
     {
       "source": "/flat-feet-flatfoot-types-causes-treatment",
       "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/services/stem-cell-therapy/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/services/stem-cell-therapy",
+      "destination": "/services/regenerative-medicine/",
       "permanent": true
     }
   ],

@@ -140,7 +140,7 @@
     {
       id: "regen",
       match: ["prp", "platelet", "stem cell", "regenerative", "injection", "biologic"],
-      a: "We offer <strong>PRP</strong> (your own concentrated growth factors) and <strong>regenerative cell therapies</strong> for tendons, fascia, and joints that have stopped healing — honest, surgeon-supervised, and only recommended when the evidence supports it for your diagnosis.<ul><li><a href='/services/prp-therapy/'>PRP therapy</a></li><li><a href='/services/stem-cell-therapy/'>Stem cell therapy</a></li></ul>",
+      a: "We offer <strong>PRP</strong> (your own concentrated growth factors) and <strong>regenerative cell therapies</strong> for tendons, fascia, and joints that have stopped healing — honest, surgeon-supervised, and only recommended when the evidence supports it for your diagnosis.<ul><li><a href='/services/prp-therapy/'>PRP therapy</a></li><li><a href='/services/regenerative-medicine/'>Stem cell therapy</a></li></ul>",
       chips: ["How much does it cost?", "Book an appointment"]
     },
     {

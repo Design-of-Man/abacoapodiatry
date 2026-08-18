@@ -4,37 +4,79 @@ The owner's worry — "if we replace the site, my leads disappear" — is legiti
 migrations lose rankings when old URLs die, tracking breaks, or Google Business Profile
 links go stale. This plan removes each of those risks. Follow it in order.
 
-**Context worth knowing:** Search Console already shows a steady decline since April.
-That means the *current* site is bleeding visibility — the risk of a careful migration is
-lower than the risk of standing still. And at ~$5,500/mo in Google Ads, every organic
-ranking this site wins is directly reducing paid spend.
+**Context worth knowing:** the domain property in Search Console (`sc-domain:jupiterlaser.com`,
+verified 2026-08-17) shows the opposite of a decline — clicks and impressions both roughly
+2.5x'd over the last two 90-day windows. The "steady decline since April" this section used
+to claim came from the previous vendor's reporting and does not hold up against the real
+account; don't repeat it. The migration is still the right call, just not for that reason —
+see the redirect coverage and the content-parity work in `_dev/STATUS.md` instead.
+
+Google Ads spend is **$3k–3.9k/mo** per the owner's actual billing (confirmed 2026-08-18),
+not the ~$5,500/mo this section used to state. Every organic ranking this site wins still
+directly reduces paid spend — that logic holds regardless of the exact figure.
 
 ---
 
 ## Why this redesign is migration-safe by construction
 
-### 1. URLs that already rank were kept or 301-mapped
+### 1. Every URL the old site publishes is kept or 301-mapped
 
-**Kept identical (no redirect needed — zero risk):**
+Checked against a crawl rather than asserted. `_dev/crawl-old-site.py` pulls all four Yoast
+sitemaps from `jupiterlaser.com`; `--coverage` reports anything with no redirect and no
+matching page.
 
-| Legacy URL | Status |
+| | |
 |---|---|
-| `/meet-dr-cedeno/` | same URL on new site |
-| `/telehealth/` | same URL on new site |
-| `/how-mls-laser-therapy-relieves-foot-and-ankle-pain/` | same URL on new site |
-| `/innovative-treatments-for-heel-pain-exploring-mls-laser-therapy/` | same URL on new site |
+| Live URLs on the old site | **157** |
+| Kept identical, no redirect needed | 8 |
+| 301-redirected | 149 |
+| **Uncovered** | **0** |
 
-**301-redirected (both `_redirects` for Netlify and `.htaccess` for Apache are pre-built,
-plus meta-refresh fallback stubs for any other host):**
+**This was 132 uncovered until 2026-08-14.** The original map was 27 redirects written from
+search research rather than a crawl, and it covered 17 of the 157. The other 132 — 101
+pages and posts, 30 category archives, 1 author archive — resolved on the old site and
+would have returned 404 the moment DNS moved. That is the difference between a migration
+and starting from zero, and it was invisible while `jupiterlaser.com` was blocked at the
+egress proxy.
 
-| Legacy URL | New URL |
-|---|---|
-| `/mls/` | `/services/mls-laser-therapy/` |
-| `/about-us/` | `/about/` |
-| `/regenerative-medicine/` | `/services/regenerative-medicine/` |
-| `/neuropathy-solutions/` | `/conditions/neuropathy/` |
-| `/plantar-fasciitis/` | `/conditions/plantar-fasciitis/` |
-| `/stem-cell-therapy/` | `/services/stem-cell-therapy/` |
+**Kept identical (zero risk):** `/`, `/blog/`, `/contact/`, `/services/`, `/telehealth/`,
+`/meet-dr-cedeno/`, `/how-mls-laser-therapy-relieves-foot-and-ankle-pain/`,
+`/innovative-treatments-for-heel-pain-exploring-mls-laser-therapy/`.
+
+**The other 149** are in `_src/redirect-map.tsv`, one line each with the reason for the
+target. `build.py` generates `vercel.json` (the only one Vercel reads), `_redirects`,
+`.htaccess` and the meta-refresh stubs from it, so the four cannot disagree.
+
+Every target is the closest real equivalent; **nothing redirects to `/`**, and the build
+refuses a map that does. A bulk redirect to the homepage is read as a soft 404 and the link
+equity is discarded, which would waste the whole exercise.
+
+**Verified on a live deployment, not just in the config.** `python3 _dev/verify-redirects.py
+<origin>` requests all 156 old URLs against a real build and follows each to the end:
+
+```
+  156/156 resolve to 200
+  OK -- every URL the old site publishes lands on a real page
+```
+
+That distinction earned its keep. `vercel.json` sets `trailingSlash: true`, so Vercel 308s
+`/foo` to `/foo/` **before** matching the redirect table — and every source was written
+slash-less, so the whole array was inert. `/veins/` and `/venous-insufficiency/` returned a
+hard 404 in production while the config file looked perfectly correct. The only legacy URLs
+that resolved did so through a meta-refresh stub, which is why hand-checking never caught
+it: the paths a person thinks to try are exactly the ones with a stub behind them.
+WordPress publishes every URL with a trailing slash, so the broken form was the only form
+real traffic would have used.
+
+**Before cutover, run both:**
+
+```
+python3 _dev/crawl-old-site.py --coverage        # anything new on the old site?
+python3 _dev/verify-redirects.py <origin>        # does every one actually resolve?
+```
+
+The old site is still live and still being edited; a post published after 2026-08-14 will
+not be in the map.
 
 ### 2. The phone number is the lead pipeline — it's everywhere and unchanged
 (561) 915-1934 appears in the header, footer, every CTA, the mobile sticky call bar, and
@@ -77,12 +119,41 @@ This must match the Google Business Profile exactly.
    (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
    the images still resolve, just from the Vercel host.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
-5. **Same day:** in Search Console, submit `https://jupiterlaser.com/sitemap.xml`; in
-   Bing Webmaster Tools (free, imports from GSC in two clicks), do the same.
-6. **Test the 301s** — hit each legacy URL and confirm it lands on the right new page.
-7. **Google Business Profile:** confirm the website link still points to
+4a. **Re-activate FormSubmit on the new domain.** The contact form posts to FormSubmit
+   (`_src/pages/contact.html`, see that file's comment for why and the full history).
+   FormSubmit ties its one-time activation to the exact domain a submission comes from —
+   the Vercel preview URL and `jupiterlaser.com` are different domains as far as it's
+   concerned, so the preview being activated does **not** carry over. The first real
+   submission from `jupiterlaser.com` will silently fail exactly like the original bug
+   this file exists to prevent, until someone clicks the new activation email. **Submit one
+   test entry through the live `jupiterlaser.com/contact/` form immediately after DNS
+   lands, before announcing the site is live**, and click the activation link that
+   arrives at the current recipient. Do not skip this — it is the same failure mode,
+   reintroduced by the domain change itself.
+5. **Confirm the staging block lifted.** Until cutover the site is reachable at
+   `abacoapodiatry.vercel.app`, which is public (no deployment protection) and serves
+   pages whose canonical points at `jupiterlaser.com` — a domain that still returns the
+   *old* site. A canonical whose target doesn't match gets ignored, so Google is free to
+   index the `.vercel.app` copies and have them compete with the real domain later.
+   `vercel.json` therefore sends `X-Robots-Tag: noindex, nofollow` on any `*.vercel.app`
+   host. The rule keys on hostname, so attaching the real domain lifts it automatically —
+   nothing to remember to remove. **Verify once after DNS lands:**
+
+   ```bash
+   curl -sI https://jupiterlaser.com/ | grep -i x-robots-tag   # expect: no output
+   curl -sI https://abacoapodiatry.vercel.app/ | grep -i x-robots-tag   # expect: noindex
+   ```
+
+   If the first command prints a noindex, stop and fix it before submitting the sitemap —
+   that would deindex the live site.
+6. **Same day:** in Search Console, submit `https://jupiterlaser.com/sitemap.xml`; in
+   Bing Webmaster Tools (free, imports from GSC in two clicks), do the same. Bing also
+   supports **IndexNow** for near-instant recrawls — worth wiring up once the domain is
+   live, since it needs a key file served from the real origin.
+7. **Test the 301s** — hit each legacy URL and confirm it lands on the right new page.
+8. **Google Business Profile:** confirm the website link still points to
    jupiterlaser.com, and use "Website" appointment link → `/contact/`.
-8. **Google Ads:** update any ad final URLs pointing at old deep pages to the new URLs
+9. **Google Ads:** update any ad final URLs pointing at old deep pages to the new URLs
    (or rely on the 301s, but direct links preserve Quality Score better). The new
    condition pages (`/conditions/plantar-fasciitis/` etc.) make far better ad landing
    pages than a homepage — expect Quality Score and cost-per-lead to improve.

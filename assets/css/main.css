@@ -1,29 +1,39 @@
 /* ==========================================================================
    Jupiter Laser & Regenerative Medicine — Design System
-   Deep-space navy + laser cyan. Built for speed, clarity, and trust.
+   Near-black surfaces, gold as the accent. Built for speed, clarity, and trust.
    ========================================================================== */
 
 :root {
-  /* Color tokens */
-  --ink: #0c0b08;
-  --ink-2: #161310;
-  --ink-3: #201c15;
-  --surface: #0e0d0a;
-  --mist: #16140f;
-  --mist-2: #201c15;
-  --line: #2e2a20;
-  --line-dark: rgba(148, 199, 233, 0.16);
+  /* Surfaces. These are deliberately near-neutral.
+     They used to be warm near-blacks -- --surface was #0e0d0a and --line
+     #2e2a20, four to fourteen points more red than blue -- and since --surface
+     is the body background on all 56 pages, the whole site read brown rather
+     than black. Gold over a warm near-black desaturates into sepia, so the
+     field has to be neutral for the gold to read as gold.
+     One point of blue is kept so the black is not dead flat against warm
+     accents; do not add red here. Gold belongs on type, buttons, borders and
+     icons, not in the background. */
+  --ink: #0a0a0b;
+  --ink-2: #111112;
+  --ink-3: #18181a;
+  --surface: #080809;
+  --mist: #101011;
+  --mist-2: #161618;
+  --line: #2a2a2d;
   --text: #c9c2b1;
   --text-soft: #a49b88;
   --head: #f3efe4;
-  --cyan: #d3ac57;
-  --cyan-deep: #f2d491;
-  --blue: #e4c273;
-  --violet: #8a6a2a;
+  --accent: #d3ac57;
+  --accent-light: #f2d491;
+  --accent-mid: #e4c273;
   --gold: #f5b93d;
   --green: #6bd6a8;
   --red: #f09a8b;
   --laser: linear-gradient(120deg, #f2d491 0%, #d3ac57 52%, #8a6a2a 100%);
+  /* Kept but no longer used on surfaces. It is a flat 0.12 gold sheet, which is
+     the wide-low-alpha pattern that turned this site brown -- .card-icon and
+     .prose .callout now use a single flat rgba instead. Do not reintroduce it
+     as a background on anything large. */
   --laser-soft: linear-gradient(120deg, rgba(232, 199, 120, 0.12), rgba(211, 172, 87, 0.12) 52%, rgba(138, 106, 42, 0.12));
 
   /* Type */
@@ -39,6 +49,35 @@
   --wrap: 1180px;
   --wrap-narrow: 860px;
   --header-h: 76px;
+
+  /* Type scale below body.
+     Headings were already on a sensible scale; everything under body size was
+     not. There were roughly twenty values between 0.72 and 0.95rem -- 0.84,
+     0.85, 0.86, 0.88, 0.9, 0.92, 0.94, 0.95 -- differences too small to read as
+     hierarchy but large enough to stop anything looking deliberate. Three steps
+     is enough for secondary text, captions and labels. */
+  --fs-sm: 0.9375rem;   /* 15px - card body, secondary prose */
+  --fs-xs: 0.8125rem;   /* 13px - captions, footnotes, meta */
+  --fs-2xs: 0.6875rem;  /* 11px - kickers and uppercase labels */
+
+  /* Spacing scale. Same problem as type: 0.5/0.55, 0.7/0.8/0.9,
+     1.0/1.1/1.2/1.4 were all in use with no system behind them. */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+
+  /* Section rhythm. Every .section used to get identical padding, so a major
+     section and a minor one carried equal weight and the page read as one long
+     undifferentiated column -- the actual cause of "too much", more than word
+     count was. Three tiers give the page a pulse. */
+  --section-y: clamp(3rem, 6vw, 4.75rem);
+  --section-y-major: clamp(4.25rem, 9vw, 7rem);
+  --section-y-tight: clamp(2rem, 4vw, 3rem);
 }
 
 /* --------------------------------------------------------------------------
@@ -87,10 +126,27 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); font-weight: 600; }
 h4 { font-size: 1.1rem; font-weight: 600; }
 
 p { margin: 0 0 1.15em; }
+
+/* Available to screen readers, invisible on screen. Used for the corner cell of
+   the comparison tables, which labels every row but has nothing to display. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The comparison tables scroll horizontally on narrow screens; tabindex makes
+   them reachable, and a focus ring shows a keyboard user where they are. */
+.table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 p:last-child { margin-bottom: 0; }
 
-a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--cyan-deep); }
+a { color: var(--accent-mid); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent-light); }
 
 ul, ol { padding-left: 1.35em; margin: 0 0 1.2em; }
 li { margin-bottom: 0.45em; }
@@ -114,7 +170,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
 blockquote {
   margin: 1.6em 0;
   padding: 1.1em 1.4em;
-  border-left: 4px solid var(--cyan);
+  border-left: 4px solid var(--accent);
   background: var(--mist);
   border-radius: 0 var(--radius) var(--radius) 0;
   font-size: 1.05em;
@@ -125,7 +181,7 @@ blockquote {
 
 /* Focus visibility */
 :focus-visible {
-  outline: 3px solid var(--cyan);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -148,8 +204,9 @@ blockquote {
 .wrap { width: min(var(--wrap), calc(100% - 2.5rem)); margin-inline: auto; }
 .wrap-narrow { width: min(var(--wrap-narrow), calc(100% - 2.5rem)); margin-inline: auto; }
 
-.section { padding: clamp(3.4rem, 7vw, 5.5rem) 0; }
-.section-tight { padding: clamp(2.2rem, 5vw, 3.6rem) 0; }
+.section { padding: var(--section-y) 0; }
+.section-major { padding: var(--section-y-major) 0; }
+.section-tight { padding: var(--section-y-tight) 0; }
 .section-mist { background: var(--mist); }
 .section-dark { background: var(--ink); color: #cac3b3; }
 .section-dark h2, .section-dark h3, .section-dark h4 { color: #fff; }
@@ -171,9 +228,25 @@ blockquote {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  /* Was align-items:center. A centred grid row sizes to its tallest column,
+     then drops every shorter column into the middle of that row -- so any
+     pairing where one side runs noticeably longer than the other (a brief
+     bio next to a tall photo + stacked cards on /meet-dr-cedeno/, four
+     short info-tiles next to long-form prose on /about/ and /contact/)
+     opened with a large blank gap above the short column that read as a
+     broken page, not a design choice. Two content columns are a document,
+     not a centred graphic pairing: they should start together at the top
+     the way a reader expects, the same as any other multi-column text
+     layout. Where columns are close in height already (home.html's short
+     paired sections) start and center render identically, so this has no
+     visible effect there. */
+  align-items: start;
 }
 .split.rev { grid-template-columns: 0.95fr 1.05fr; }
+/* Sidebar column that needs to travel the full row height (a sticky card).
+   align-items:start alone would size it to its own content and give
+   position:sticky no room to move, so it still needs an explicit stretch. */
+.split-aside { align-self: stretch; }
 @media (max-width: 900px) {
   .split, .split.rev { grid-template-columns: 1fr; }
 }
@@ -210,7 +283,7 @@ blockquote {
   max-width: 46em;
 }
 .center .lede { margin-inline: auto; }
-.section-head { max-width: 780px; margin: 0 auto 2.8rem; text-align: center; }
+.section-head { max-width: 780px; margin: 0 auto var(--sp-7); text-align: center; }
 
 /* --------------------------------------------------------------------------
    Buttons
@@ -252,7 +325,7 @@ blockquote {
   color: var(--head);
   border-color: var(--line);
 }
-.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan-deep); transform: translateY(-2px); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-2px); }
 
 .section-dark .btn-ghost, .hero .btn-ghost,
 .page-hero .btn-ghost, .cta-band .btn-ghost {
@@ -384,8 +457,8 @@ blockquote {
   gap: 0.35em;
   transition: background 0.15s ease, color 0.15s ease;
 }
-.nav a:hover, .nav button.nav-toggle-sub:hover { background: var(--mist); color: var(--cyan-deep); }
-.nav a.active { color: var(--cyan-deep); }
+.nav a:hover, .nav button.nav-toggle-sub:hover { background: var(--mist); color: var(--accent-light); }
+.nav a.active { color: var(--accent-light); }
 .nav a.active::after {
   content: "";
   display: block;
@@ -407,7 +480,7 @@ blockquote {
   left: 50%;
   transform: translateX(-50%) translateY(8px);
   min-width: 250px;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
@@ -437,7 +510,7 @@ blockquote {
 }
 .subnav .subnav-all {
   font-weight: 700;
-  color: var(--cyan-deep);
+  color: var(--accent-light);
   border-bottom: 1px solid var(--line);
   border-radius: 9px 9px 0 0;
   margin-bottom: 0.3rem;
@@ -520,8 +593,8 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .hero {
   position: relative;
   background:
-    radial-gradient(1100px 520px at 78% -10%, rgba(211, 172, 87, 0.28), transparent 62%),
-    radial-gradient(900px 500px at 12% 110%, rgba(138, 106, 42, 0.2), transparent 60%),
+    radial-gradient(1100px 520px at 78% -10%, rgba(211, 172, 87, 0.13), transparent 62%),
+    radial-gradient(900px 500px at 12% 110%, rgba(138, 106, 42, 0.08), transparent 60%),
     linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   color: #cac3b3;
   overflow: hidden;
@@ -531,7 +604,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(214, 185, 116, 0.14) 1px, transparent 1.6px);
+  background-image: radial-gradient(rgba(214, 185, 116, 0.07) 1px, transparent 1.6px);
   background-size: 30px 30px;
   mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 75%);
   -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 75%);
@@ -604,7 +677,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   inset: 0;
   overflow: hidden;
   z-index: 0;
-  background: url("/assets/img/hero-poster.jpg") 50% 74%/cover no-repeat #0c0b08;
+  background: url("/assets/img/hero-poster.webp") 50% 74%/cover no-repeat #0c0b08;
 }
 .hero-media video {
   width: 100%;
@@ -660,8 +733,18 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   left: -30%;
   width: 160%;
   height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(232, 199, 120, 0.55) 45%, rgba(138, 106, 42, 0.55) 55%, transparent);
-  filter: drop-shadow(0 0 6px rgba(232, 199, 120, 0.8));
+  /* The glow is baked into the gradient rather than applied with
+     filter: drop-shadow(). A filter on a permanently animating element 160%
+     as wide as the hero repaints that whole area every frame, forever, even
+     once the hero has scrolled away. The gradient costs nothing to composite. */
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(232, 199, 120, 0.18) 32%,
+    rgba(232, 199, 120, 0.75) 47%,
+    rgba(242, 212, 145, 0.9) 50%,
+    rgba(138, 106, 42, 0.7) 53%,
+    rgba(138, 106, 42, 0.16) 68%,
+    transparent);
   opacity: 0;
   animation: beam 9s linear infinite;
 }
@@ -707,31 +790,111 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 .hero-stat span { font-size: 0.82rem; color: #a49b88; line-height: 1.4; display: block; margin-top: 0.25em; }
 
-/* Page hero (interior pages) */
+/* Page hero (interior pages)
+   ---------------------------------------------------------------------------
+   This started as a copy of .hero, which was the mistake. On the homepage that
+   background sits behind a video and a hero card and is never seen bare; here it
+   IS the whole visual, so a backdrop was doing a subject's job and every interior
+   page opened on a flat dark rectangle.
+
+   Three faults, all fixed below. The key light was centred at `85% -20%` -- above
+   the element, so `overflow: hidden` clipped the bright core and only its faint
+   tail reached the page. The grain was rgba(...,0.12) on #0c0b08, which is not a
+   texture, it is a rumour. And the block ended with no edge and no elevation, so
+   it dissolved into the next section instead of resolving.
+
+   Light is built as a source rather than a wash: a small bright specular core
+   with a broad falloff around it, and a dim counter-fill in the opposite corner
+   so the field is never one flat tone. Nothing here animates. */
 .page-hero {
   position: relative;
+  /* Lifts the block, and its shadow, above the following section. Safe: every
+     sticky or floating element in this file sits at 40-300, so this only has to
+     out-stack a plain sibling. */
+  z-index: 1;
   background:
-    radial-gradient(900px 420px at 85% -20%, rgba(211, 172, 87, 0.3), transparent 62%),
-    radial-gradient(700px 380px at 5% 130%, rgba(138, 106, 42, 0.22), transparent 60%),
+    /* Specular core. Tight and genuinely bright -- a wide low-alpha gold over
+       near-black just desaturates into brown, so the luminance has to be
+       concentrated somewhere or none of it reads as light. */
+    radial-gradient(360px 260px at 79% 15%, rgba(247, 228, 181, 0.19), transparent 72%),
+    /* Second, dimmer glow low-left. Keeps the block from reading as a single
+       spotlight on an otherwise flat field -- two sources, same rule as the
+       core: small and bright rather than wide and washed. */
+    radial-gradient(260px 200px at 6% 92%, rgba(211, 172, 87, 0.09), transparent 70%),
+    /* Falloff around the core. Was 0.22 across 880x520 -- the single largest
+       source of brown on the site. */
+    radial-gradient(880px 520px at 76% 14%, rgba(214, 176, 92, 0.1), transparent 68%),
+    /* The 118deg rake is deliberately gone. A 0.07 gold film across 46% of the
+       block is exactly the wide-low-alpha gold the comment above warns about,
+       and it tinted the half of the hero the type sits in. Direction now comes
+       from the core and the counter-fill alone. */
+    radial-gradient(680px 420px at -8% 118%, rgba(138, 106, 42, 0.07), transparent 62%),
     linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   color: #cac3b3;
   padding: clamp(2.8rem, 6vw, 4.6rem) 0 clamp(2.6rem, 5vw, 4rem);
   overflow: hidden;
+  /* No box-shadow. The lift used to be a warm gold spill, on the reasoning that
+     you cannot darken near-black so elevation must be spent in light. True, but
+     it leaked gold onto the page below the hero, which is where the brown was
+     escaping the block that owned it. The base now ends on --ink-2 against a
+     --surface page, so the boundary still steps without any colour. */
 }
 .page-hero::before {
+  /* Grain, masked to the light rather than to the top edge: it appears where the
+     light falls and is gone in shadow, which is how texture behaves. A uniform
+     screen-door across the whole block reads as a rendering artefact. */
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(214, 185, 116, 0.12) 1px, transparent 1.6px);
-  background-size: 30px 30px;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 80%);
-  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.85), transparent 80%);
+  background-image: radial-gradient(rgba(224, 198, 134, 0.08) 0.9px, transparent 1.4px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
+  -webkit-mask-image: radial-gradient(700px 440px at 76% 14%, rgba(0,0,0,0.85), transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  /* The edge. Fades to transparent at both ends so it never terminates in a hard
+     stub against the viewport. */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(211, 172, 87, 0.3) 22%,
+    rgba(242, 212, 145, 0.55) 52%,
+    rgba(211, 172, 87, 0.3) 78%,
+    transparent 100%);
   pointer-events: none;
 }
 .page-hero .wrap { position: relative; z-index: 2; }
 .page-hero h1 { color: #fff; max-width: 18em; }
-.page-hero .lede { color: #cac3b3; max-width: 44em; }
+/* 44em at this size ran to ~100 characters, well past the 45-75 that stays
+   comfortable. Tighter also makes the open right-hand side read as deliberate
+   ragged-right rather than a wide block that happens to stop short. */
+.page-hero .lede { color: #cac3b3; max-width: 34em; }
 .page-hero .btn-row { margin-top: 1.8rem; }
+/* On a wide screen the light sits well right of the text column and the worst
+   contrast in the block is 5.2:1. Narrow the viewport and the two occupy the
+   same space: at 390px the light landed straight on the breadcrumbs and took
+   #948b76 down to 3.07:1, under the 4.5 AA needs. Measured, not guessed.
+
+   So on small screens the source retreats into the top-right corner and loses
+   most of its intensity. The text column keeps the dark end of the plane, which
+   is the only part of the composition a phone actually has room for. */
+@media (max-width: 980px) {
+  .page-hero {
+    background:
+      radial-gradient(220px 170px at 96% 4%, rgba(247, 228, 181, 0.09), transparent 72%),
+      radial-gradient(560px 340px at 98% 0%, rgba(214, 176, 92, 0.07), transparent 68%),
+      radial-gradient(520px 340px at -12% 116%, rgba(138, 106, 42, 0.06), transparent 62%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  }
+  .page-hero::before {
+    mask-image: radial-gradient(460px 300px at 96% 2%, rgba(0,0,0,0.7), transparent 70%);
+    -webkit-mask-image: radial-gradient(460px 300px at 96% 2%, rgba(0,0,0,0.7), transparent 70%);
+  }
+}
 
 /* Breadcrumbs */
 .crumbs {
@@ -752,7 +915,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
    Cards
    -------------------------------------------------------------------------- */
 .card {
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.8rem;
@@ -765,8 +928,8 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: #d6b974; }
 .card h3 a { color: inherit; text-decoration: none; }
 .card h3 a::after { content: ""; position: absolute; inset: 0; }
-.card p { font-size: 0.97rem; }
-.card .link-arrow { margin-top: auto; font-size: 0.94rem; position: relative; z-index: 2; }
+.card p { font-size: var(--fs-sm); }
+.card .link-arrow { margin-top: auto; font-size: var(--fs-sm); position: relative; z-index: 2; }
 
 .card-icon {
   width: 54px;
@@ -774,11 +937,11 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: var(--laser-soft);
+  background: rgba(211, 172, 87, 0.06);
   border: 1px solid rgba(211, 172, 87, 0.18);
   margin-bottom: 1.2rem;
 }
-.card-icon svg { width: 27px; height: 27px; color: var(--blue); }
+.card-icon svg { width: 27px; height: 27px; color: var(--accent-mid); }
 
 .card-glow::before {
   content: "";
@@ -836,9 +999,21 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 
 /* Stat band */
-.stats-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+.stats-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; text-align: center; }
 @media (max-width: 860px) { .stats-band { grid-template-columns: repeat(2, 1fr); } }
+.stat {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(214, 185, 116, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.stat:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35); border-color: rgba(214, 185, 116, 0.55); }
 .stat b {
+  order: 1;
   font-family: var(--font-head);
   font-size: clamp(2.1rem, 4vw, 3rem);
   font-weight: 700;
@@ -849,8 +1024,18 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   color: transparent;
   line-height: 1.1;
 }
-.stat span { display: block; margin-top: 0.4em; font-size: 0.92rem; color: var(--text-soft); }
+.stat::after {
+  content: "";
+  order: 2;
+  width: 26px;
+  height: 2px;
+  background: var(--laser);
+  border-radius: 2px;
+  margin: 0.7em 0;
+}
+.stat span { order: 3; display: block; font-size: 0.92rem; color: var(--text-soft); }
 .section-dark .stat span { color: #a49b88; }
+.section:not(.section-dark) .stat { background: var(--mist); border-color: var(--line); }
 
 /* Steps / timeline */
 .steps { list-style: none; padding: 0; margin: 0; counter-reset: step; display: grid; gap: 0; position: relative; }
@@ -921,10 +1106,10 @@ table.compare .no { color: var(--red); font-weight: 700; }
   border: 1.5px solid var(--line);
   border-radius: 999px;
   color: var(--head);
-  background: #16140f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23a49b88' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 1.1em center;
+  background: var(--mist) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23a49b88' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 1.1em center;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.faq-search:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 4px rgba(232, 199, 120, 0.18); }
+.faq-search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(232, 199, 120, 0.18); }
 
 .faq-cats { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.1rem; }
 .faq-cat {
@@ -934,12 +1119,12 @@ table.compare .no { color: var(--red); font-weight: 700; }
   padding: 0.5em 1.1em;
   border-radius: 999px;
   border: 1.5px solid var(--line);
-  background: #16140f;
+  background: var(--mist);
   color: var(--text);
   cursor: pointer;
   transition: all 0.18s ease;
 }
-.faq-cat:hover { border-color: var(--cyan); color: var(--cyan-deep); }
+.faq-cat:hover { border-color: var(--accent); color: var(--accent-light); }
 .faq-cat.active { background: linear-gradient(120deg, #e9c878, #b98f35); color: #201703; border-color: transparent; }
 
 .faq-group-title { margin: 2.6rem 0 1.1rem; font-size: 1.3rem; }
@@ -948,7 +1133,7 @@ table.compare .no { color: var(--red); font-weight: 700; }
 details.faq {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #16140f;
+  background: var(--mist);
   margin-bottom: 0.8rem;
   overflow: hidden;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -969,7 +1154,7 @@ details.faq summary {
   transition: color 0.15s ease;
 }
 details.faq summary::-webkit-details-marker { display: none; }
-details.faq summary:hover { color: var(--cyan-deep); }
+details.faq summary:hover { color: var(--accent-light); }
 details.faq summary::after {
   content: "";
   flex: none;
@@ -1011,7 +1196,7 @@ details.faq.hidden { display: none; }
 .testi-track::-webkit-scrollbar { display: none; }
 .testi {
   scroll-snap-align: start;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.7rem 1.8rem;
@@ -1030,7 +1215,7 @@ details.faq.hidden { display: none; }
   width: 46px; height: 46px;
   border-radius: 50%;
   border: 1.5px solid var(--line);
-  background: #16140f;
+  background: var(--mist);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -1038,7 +1223,7 @@ details.faq.hidden { display: none; }
   color: var(--head);
   transition: all 0.18s ease;
 }
-.testi-btn:hover { border-color: var(--cyan); color: var(--cyan-deep); transform: translateY(-2px); }
+.testi-btn:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-2px); }
 .section-dark .testi-btn { background: rgba(255,255,255,0.06); border-color: rgba(214,185,116,0.3); color: #fff; }
 
 /* --------------------------------------------------------------------------
@@ -1089,10 +1274,45 @@ details.faq.hidden { display: none; }
 }
 
 /* --------------------------------------------------------------------------
+   Hero entrance
+
+   The supporting content settles in around the headline on load. The <h1> is
+   deliberately excluded: fading text from opacity 0 postpones the moment the
+   browser counts it as painted, and the headline is a Largest Contentful Paint
+   candidate. Animating it would trade a measured ranking signal for an effect
+   nobody asked for. So the headline is simply there, and everything else
+   arrives around it -- which reads as more deliberate than sliding the whole
+   block anyway.
+
+   Gated on .js: the class is set by the inline script in <head>, so a browser
+   that never runs it renders the hero at full opacity instead of an empty box.
+   Transform and opacity only, so nothing reflows and no CLS is introduced.
+   -------------------------------------------------------------------------- */
+.js .hero-glass > .kicker,
+.js .hero-glass > .lede,
+.js .hero-glass > .hero-badges,
+.js .hero-glass > .btn-row {
+  animation: fadeUp 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.js .hero-glass > .kicker      { animation-delay: 0.05s; }
+.js .hero-glass > .lede        { animation-delay: 0.14s; }
+.js .hero-glass > .hero-badges { animation-delay: 0.22s; }
+.js .hero-glass > .btn-row     { animation-delay: 0.30s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-glass > .kicker,
+  .js .hero-glass > .lede,
+  .js .hero-glass > .hero-badges,
+  .js .hero-glass > .btn-row {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Quiz
    -------------------------------------------------------------------------- */
 .quiz {
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -1119,7 +1339,7 @@ details.faq.hidden { display: none; }
   transition: all 0.15s ease;
   color: var(--head);
 }
-.quiz-opt:hover { border-color: var(--cyan); background: #241f15; transform: translateX(4px); }
+.quiz-opt:hover { border-color: var(--accent); background: #1c1c1f; transform: translateX(4px); }
 .quiz-result { text-align: center; }
 .quiz-result .quiz-icon { font-size: 3rem; line-height: 1; margin-bottom: 1rem; }
 .quiz-restart { margin-top: 1rem; background: none; border: 0; color: var(--text-soft); cursor: pointer; font: inherit; font-size: 0.9rem; text-decoration: underline; }
@@ -1137,14 +1357,14 @@ details.faq.hidden { display: none; }
   padding: 0.85em 1.1em;
   border: 1.5px solid var(--line);
   border-radius: 12px;
-  background: #16140f;
+  background: var(--mist);
   color: var(--head);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
-  border-color: var(--cyan);
+  border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(232, 199, 120, 0.16);
 }
 .field textarea { min-height: 130px; resize: vertical; }
@@ -1160,9 +1380,9 @@ details.faq.hidden { display: none; }
   position: relative;
   border: 1px solid rgba(214, 185, 116, 0.28);
   background:
-    radial-gradient(800px 400px at 85% 0%, rgba(232, 199, 120, 0.16), transparent 60%),
-    radial-gradient(700px 400px at 10% 100%, rgba(138, 106, 42, 0.18), transparent 60%),
-    linear-gradient(120deg, var(--ink) 0%, var(--ink-3) 100%);
+    radial-gradient(800px 400px at 85% 0%, rgba(232, 199, 120, 0.08), transparent 60%),
+    radial-gradient(700px 400px at 10% 100%, rgba(138, 106, 42, 0.07), transparent 60%),
+    linear-gradient(120deg, var(--ink) 0%, var(--ink-2) 100%);
   border-radius: var(--radius-lg);
   padding: clamp(2.2rem, 5vw, 3.6rem);
   color: #cac3b3;
@@ -1180,12 +1400,93 @@ details.faq.hidden { display: none; }
 /* --------------------------------------------------------------------------
    Prose / article
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Explanatory diagrams
+
+   Inline SVG rather than images: nothing to request, nothing to lay out late,
+   sharp at any pixel density, and it can read the site's own colour tokens so
+   it themes with the page instead of sitting on top of it. aspect-ratio holds
+   the box before paint, so a diagram never costs a layout shift.
+
+   Photographs are the wrong tool on a condition page anyway. These exist to
+   show the one thing the prose is spending a paragraph describing.
+   -------------------------------------------------------------------------- */
+.diagram {
+  margin: var(--sp-6) 0;
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.diagram svg { display: block; width: 100%; height: auto; aspect-ratio: 640 / 300; }
+.diagram figcaption {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 62ch;
+}
+
+.dg-arch   { fill: none; stroke: rgba(201, 194, 177, 0.30); stroke-width: 30; stroke-linecap: round; }
+.dg-bone   { fill: rgba(201, 194, 177, 0.30); stroke: var(--text-soft); stroke-width: 1.5; }
+.dg-fascia { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; }
+.dg-hot      { fill: rgba(245, 185, 61, 0.22); }
+.dg-hot-core { fill: var(--gold); }
+.dg-ground { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 5 6; }
+.dg-lead   { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.dg-label  { fill: var(--text-soft); font-size: 15px; font-family: inherit; }
+.dg-fascia-label { fill: var(--accent-light); font-weight: 600; }
+.dg-arch-label   { fill: var(--text); }
+
+/* Per-diagram parts. All of them lean on the same idea: muted grey is anatomy,
+   gold is whatever the page is actually about. */
+.dg-head    { fill: var(--text); font-weight: 600; }
+.dg-vessel  { fill: rgba(201, 194, 177, 0.10); stroke: var(--text-soft); stroke-width: 2; }
+.dg-valve   { fill: none; stroke: var(--text-soft); stroke-width: 4; stroke-linecap: round; }
+.dg-valve-open { stroke: var(--gold); }
+.dg-flow-up   { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-flow-down { fill: none; stroke: var(--gold); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-pool    { fill: rgba(245, 185, 61, 0.30); }
+.dg-bonebar { fill: none; stroke: var(--text-soft); stroke-width: 13; stroke-linecap: round; }
+.dg-joint   { fill: rgba(201, 194, 177, 0.30); stroke: var(--text-soft); stroke-width: 1.5; }
+.dg-joint-mid  { fill: rgba(245, 185, 61, 0.28); stroke: var(--accent); }
+.dg-joint-late { fill: rgba(245, 185, 61, 0.50); stroke: var(--gold); }
+.dg-limb    { fill: rgba(201, 194, 177, 0.08); stroke: var(--text-soft); stroke-width: 2; }
+.dg-zone    { stroke: none; }
+.dg-zone-3  { fill: rgba(245, 185, 61, 0.10); }
+.dg-zone-2  { fill: rgba(245, 185, 61, 0.18); }
+.dg-zone-1  { fill: rgba(245, 185, 61, 0.34); }
+.dg-muscle  { fill: rgba(201, 194, 177, 0.16); stroke: var(--text-soft); stroke-width: 2; }
+.dg-tendon  { fill: none; stroke: var(--accent); stroke-width: 15; stroke-linecap: round; }
+.dg-layer   { stroke: var(--line); stroke-width: 1.5; }
+.dg-layer-1 { fill: rgba(201, 194, 177, 0.05); }
+.dg-layer-2 { fill: rgba(201, 194, 177, 0.09); }
+.dg-layer-3 { fill: rgba(201, 194, 177, 0.14); }
+.dg-beam       { fill: none; stroke-width: 5; stroke-linecap: round; }
+.dg-beam-short { stroke: var(--gold); }
+.dg-beam-long  { stroke: var(--accent); }
+.dg-foot { fill: rgba(201, 194, 177, 0.08); stroke: var(--text-soft); stroke-width: 2; }
+.dg-toe  { fill: none; stroke: var(--text-soft); stroke-width: 10; stroke-linecap: round; }
+
+
+@media (max-width: 640px) {
+  .diagram { padding: var(--sp-4) var(--sp-3) var(--sp-3); }
+  .dg-label { font-size: 18px; }
+}
+
+/* Reading measure. --wrap-narrow is 860px, which at a 17px body puts a line of
+   running text at roughly 101 characters; comfortable reading is 45-75. The
+   container stays 860px so tables, figures and headings keep their width, and
+   only the text that gets read line after line is constrained. */
+.prose p,
+.prose li { max-width: 72ch; }
+
 .prose h2 { margin-top: 2.2em; }
 .prose h3 { margin-top: 1.8em; }
 .prose > :first-child { margin-top: 0; }
 .prose img { border-radius: var(--radius-lg); }
 .prose .callout {
-  background: var(--laser-soft);
+  background: rgba(211, 172, 87, 0.06);
   border: 1px solid rgba(211, 172, 87, 0.2);
   border-radius: var(--radius-lg);
   padding: 1.4rem 1.7rem;
@@ -1243,6 +1544,13 @@ details.faq.hidden { display: none; }
 }
 .photo-portrait { aspect-ratio: 4 / 5; min-height: 0; }
 
+/* Atmospheric page images. These ship 16:9, and .photo-frame img is absolutely
+   positioned with object-fit:cover, so the box height comes entirely from CSS —
+   a min-height frame would render ~2.9:1 on desktop and ~1.2:1 on a phone,
+   cropping each image differently at every viewport. min-height:0 is required
+   or .photo-frame's base 260px becomes a floor below ~462px wide. */
+.photo-atmos { aspect-ratio: 16 / 9; min-height: 0; }
+
 /* Author box */
 .author-box {
   display: grid;
@@ -1269,6 +1577,19 @@ details.faq.hidden { display: none; }
 }
 .author-box h4 { margin-bottom: 0.2em; }
 .author-box p { font-size: 0.93rem; margin: 0; }
+
+/* Avatar with a real photo. The monogram renders first as the fallback base
+   (same pattern as .photo-frame), and the <img> covers it and removes itself
+   on error, so a missing file never shows a broken image. */
+.avatar-photo { position: relative; overflow: hidden; }
+.avatar-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* --------------------------------------------------------------------------
    Footer
@@ -1312,6 +1633,21 @@ details.faq.hidden { display: none; }
   padding-bottom: 0.45em;
   white-space: nowrap;
 }
+/* Office label rows. Two offices on different schedules share this list, so
+   each block needs a header or the Gardens hours read as a continuation of
+   Jupiter's -- which is the misreading that put the wrong hours in the schema
+   in the first place. No border, since it heads a group rather than being a
+   row in it. */
+.footer-hours-office {
+  border-bottom: 0 !important;
+  padding-bottom: 0.15em !important;
+  margin-top: 0.9rem;
+  color: #d6b974;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer-hours-office:first-child { margin-top: 0; }
 .footer-hours li > span { white-space: nowrap; }
 .footer-hours li > span:first-child { flex: none; }
 .footer-hours li > span:last-child { text-align: right; }
@@ -1508,7 +1844,7 @@ body.assist-open .assist-fab { display: none; }
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.assist-chip:hover { border-color: var(--cyan); color: var(--cyan-deep); }
+.assist-chip:hover { border-color: var(--accent); color: var(--accent-light); }
 
 .assist-form {
   display: flex;
@@ -1524,7 +1860,7 @@ body.assist-open .assist-fab { display: none; }
   border: 1.5px solid var(--line);
   border-radius: 999px;
 }
-.assist-form input:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(232,199,120,0.25); }
+.assist-form input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,199,120,0.25); }
 .assist-form button {
   width: 44px; height: 44px;
   flex: none;
@@ -1586,7 +1922,7 @@ body.assist-open .assist-fab { display: none; }
   display: flex;
   flex-direction: column;
   text-align: left;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1727,7 +2063,7 @@ body.assist-open .assist-fab { display: none; }
   grid-template-columns: 1fr 1fr;
   gap: 1px;
   background: var(--line);
-  box-shadow: 0 -8px 24px rgba(10, 30, 53, 0.14);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
 }
 .callbar a {
   display: flex;
@@ -1781,7 +2117,7 @@ body.assist-open .assist-fab { display: none; }
   text-decoration: none;
   transition: all 0.15s ease;
 }
-.chips a:hover { border-color: var(--cyan); color: var(--cyan-deep); background: #241f15; }
+.chips a:hover { border-color: var(--accent); color: var(--accent-light); background: #1c1c1f; }
 
 /* Alert / disclaimer */
 .med-note {
@@ -1809,7 +2145,7 @@ body.assist-open .assist-fab { display: none; }
   display: flex;
   gap: 1.1rem;
   align-items: flex-start;
-  background: #16140f;
+  background: var(--mist);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 1.4rem 1.5rem;
@@ -1900,42 +2236,19 @@ a.btn-ghost { color: var(--head); }
 .scroll-rail i {
   display: block;
   height: 100%;
-  width: 0;
+  /* Driven by transform, not width. Width is a layout property: animating it
+     on every scroll frame forced a reflow the whole page long, and the
+     transition below kept that reflow running continuously. scaleX is
+     composited, so scrolling costs nothing. */
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
   background: linear-gradient(90deg, #b98f35, #f2d491 60%, #e9c878);
   box-shadow: 0 0 12px rgba(242, 212, 145, 0.6);
-  transition: width 0.08s linear;
+  transition: transform 0.08s linear;
 }
 
-/* Live open/closed pill — driven by the visitor's real clock */
-.live-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55em;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.45em 1em 0.45em 0.85em;
-  border-radius: 999px;
-  border: 1px solid rgba(214, 185, 116, 0.35);
-  background: rgba(214, 185, 116, 0.08);
-  color: #e4c273;
-}
-.live-status .pip {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
-  animation: pip-pulse 2s infinite;
-  flex: none;
-}
-.live-status.closed { color: #cfc6b2; border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); }
-.live-status.closed .pip { background: #9a9384; animation: none; box-shadow: none; }
-@keyframes pip-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
-  70%  { box-shadow: 0 0 0 9px rgba(74, 222, 128, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-}
 
 /* Stat panel: radial rings that draw as they scroll in */
 .statring-grid {
@@ -2000,7 +2313,7 @@ a.btn-ghost { color: var(--head); }
   overflow: hidden;
   border-block: 1px solid var(--line);
   padding: 0.9rem 0;
-  background: #121009;
+  background: #0d0d0e;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -2038,8 +2351,10 @@ a.btn-ghost { color: var(--head); }
   to   { transform: translateX(-50%); }
 }
 
-/* Hero parallax drift */
-.hero-media.parallax video, .hero-media.parallax { will-change: transform; }
+/* Hero parallax drift was removed on 2026-08-14 (see main.js). The
+   will-change: transform that lived here promoted the video to its own
+   compositor layer permanently, which cost memory on every page load for an
+   effect that no longer exists. */
 
 /* Card sheen sweep on hover */
 .card-glow { overflow: hidden; }
@@ -2059,7 +2374,6 @@ a.btn-ghost { color: var(--head); }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-rail, .ticker { display: none; }
-  .live-status .pip { animation: none; }
   .statring-dial .fill { transition: none; }
   [data-counter].counted { animation: none; }
   .card-glow::after { display: none; }
@@ -2176,7 +2490,7 @@ a.btn-ghost { color: var(--head); }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cyan-deep);
+  color: var(--accent-light);
   border: 1px solid rgba(214, 185, 116, 0.35);
   background: rgba(214, 185, 116, 0.08);
   border-radius: 999px;
@@ -2292,4 +2606,95 @@ a.btn-ghost { color: var(--head); }
 @media (max-width: 760px) {
   /* Only worth saying on the widths where the table is actually clipped. */
   .table-scroll[data-scrollable] + .table-hint { display: block; }
+}
+
+
+/* ==========================================================================
+   Instagram strip (homepage)
+   Pure CSS marquee. The track holds every tile twice and translates by exactly
+   -50%, so the second copy lands where the first began and the loop has no
+   seam. Only transform is animated, so it runs on the compositor and costs
+   nothing on the main thread -- the same reason the hero parallax had to go.
+   ========================================================================== */
+.ig-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.ig-head h2 { margin: 0; }
+
+.ig-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  /* Fades the strip into the section at both edges so tiles enter and leave
+     rather than being chopped off at the viewport wall. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.ig-viewport::-webkit-scrollbar { display: none; }
+.ig-viewport:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.ig-track {
+  display: flex;
+  gap: 1.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 1.25rem;
+  width: max-content;
+  animation: ig-roll var(--ig-duration, 56s) linear infinite;
+}
+/* Hovering or tabbing into the strip stops it, so nobody has to chase a
+   moving target to read a caption. */
+.ig-viewport:hover .ig-track,
+.ig-viewport:focus-within .ig-track { animation-play-state: paused; }
+
+.ig-item {
+  position: relative;
+  flex: 0 0 auto;
+  /* Uniform height, width follows the image. A single aspect ratio sliced the
+     "After" half off the before/after collages, which are near square while
+     the clinical photos are tall. The per-tile aspect-ratio is set inline from
+     the real file dimensions so width is reserved before the image decodes. */
+  height: clamp(230px, 27vw, 320px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--mist-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+.ig-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ig-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.6rem 0.9rem 0.75rem;
+  background: linear-gradient(0deg, rgba(12, 11, 8, 0.92), transparent);
+  color: #f3efe4;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.ig-note {
+  margin: 1.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+@keyframes ig-roll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Reduced motion: no autoplay at all. The strip becomes an ordinary
+   horizontally scrollable row, which it already is underneath. */
+@media (prefers-reduced-motion: reduce) {
+  .ig-track { animation: none; }
 }

@@ -1,9 +1,20 @@
 {
   "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/api/contact/",
+      "destination": "/api/contact"
+    }
+  ],
+  "functions": {
+    "api/contact.js": {
+      "maxDuration": 10
+    }
+  },
   "redirects": [
     {
-      "source": "/mls",
-      "destination": "/services/mls-laser-therapy/",
+      "source": "/about-us/",
+      "destination": "/about/",
       "permanent": true
     },
     {
@@ -12,43 +23,58 @@
       "permanent": true
     },
     {
-      "source": "/regenerative-medicine",
-      "destination": "/services/regenerative-medicine/",
+      "source": "/accessibility-disclaimer/",
+      "destination": "/accessibility/",
       "permanent": true
     },
     {
-      "source": "/neuropathy-solutions",
-      "destination": "/conditions/neuropathy/",
+      "source": "/accessibility-disclaimer",
+      "destination": "/accessibility/",
       "permanent": true
     },
     {
-      "source": "/plantar-fasciitis",
-      "destination": "/conditions/plantar-fasciitis/",
+      "source": "/achilles-tendonitis-treatment/",
+      "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
     },
     {
-      "source": "/stem-cell-therapy",
-      "destination": "/services/stem-cell-therapy/",
+      "source": "/achilles-tendonitis-treatment",
+      "destination": "/conditions/achilles-tendonitis/",
       "permanent": true
     },
     {
-      "source": "/testimonials",
-      "destination": "/reviews/",
+      "source": "/ankle/",
+      "destination": "/services/foot-ankle-surgery/",
       "permanent": true
     },
     {
-      "source": "/what-we-do",
-      "destination": "/services/",
+      "source": "/ankle",
+      "destination": "/services/foot-ankle-surgery/",
       "permanent": true
     },
     {
-      "source": "/service-areas",
-      "destination": "/locations/",
+      "source": "/ankle-arthroscopy/",
+      "destination": "/services/foot-ankle-surgery/",
       "permanent": true
     },
     {
-      "source": "/bbl",
-      "destination": "/services/foot-bbl/",
+      "source": "/ankle-arthroscopy",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/ankle-replacement-surgery/",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/ankle-replacement-surgery",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/bunion/",
+      "destination": "/conditions/bunions/",
       "permanent": true
     },
     {
@@ -57,18 +83,128 @@
       "permanent": true
     },
     {
+      "source": "/bunionplasty-procedure-jupiter-fl/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/bunionplasty-procedure-jupiter-fl",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/cysts-warts/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/cysts-warts",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/diabetic-foot-care/",
+      "destination": "/conditions/diabetic-foot-care/",
+      "permanent": true
+    },
+    {
+      "source": "/diabetic-foot-care",
+      "destination": "/conditions/diabetic-foot-care/",
+      "permanent": true
+    },
+    {
+      "source": "/dr-isin-a-mustafa/",
+      "destination": "/meet-dr-mustafa/",
+      "permanent": true
+    },
+    {
+      "source": "/dr-isin-a-mustafa",
+      "destination": "/meet-dr-mustafa/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
       "source": "/flat-feet",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     },
     {
-      "source": "/wound-care",
-      "destination": "/services/wound-care/",
+      "source": "/fractures-breaks/",
+      "destination": "/conditions/sprains-strains/",
       "permanent": true
     },
     {
-      "source": "/foot-ankle-surgery",
-      "destination": "/services/foot-ankle-surgery/",
+      "source": "/fractures-breaks",
+      "destination": "/conditions/sprains-strains/",
+      "permanent": true
+    },
+    {
+      "source": "/metatarsalgia/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/metatarsalgia",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/mls/",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/mls",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/neuropathy-solutions/",
+      "destination": "/conditions/neuropathy/",
+      "permanent": true
+    },
+    {
+      "source": "/neuropathy-solutions",
+      "destination": "/conditions/neuropathy/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fasciitis/",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fasciitis",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-plate/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-plate",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/policy/",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/policy",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/providers/",
+      "destination": "/about/",
       "permanent": true
     },
     {
@@ -77,8 +213,98 @@
       "permanent": true
     },
     {
+      "source": "/regenerative-medicine/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/regenerative-medicine",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/request-an-appointment/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
       "source": "/request-an-appointment",
       "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/saphenous-vein-insufficiency/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/saphenous-vein-insufficiency",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/services/foot-bbl-treatment-jupiter-fl/",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/services/foot-bbl-treatment-jupiter-fl",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injuries/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injuries",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/stem-cell-therapy/",
+      "destination": "/services/stem-cell-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/stem-cell-therapy",
+      "destination": "/services/stem-cell-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials/",
+      "destination": "/reviews/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials",
+      "destination": "/reviews/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatment/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatment",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/videos/",
+      "destination": "/media/",
       "permanent": true
     },
     {
@@ -87,17 +313,882 @@
       "permanent": true
     },
     {
-      "source": "/flat-feet-flatfoot-types-causes-treatment",
+      "source": "/wound-care/",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/wound-care",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/achilles-tendon-treatment-jupiter/",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/achilles-tendon-treatment-jupiter",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/recovering-from-achilles-tendon-injuries-best-practices/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/recovering-from-achilles-tendon-injuries-best-practices",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained/",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/bunions-what-are-symptoms-causes-treatment/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/bunions-what-are-symptoms-causes-treatment",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-bone-correctors-do-they-really-work-or-is-surgery-better/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-bone-correctors-do-they-really-work-or-is-surgery-better",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/is-lapiplasty-bunion-surgery-right-for-you/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/is-lapiplasty-bunion-surgery-right-for-you",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/minimally-invasive-bunion-surgery-jupiter/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/minimally-invasive-bunion-surgery-jupiter",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/signs-you-might-need-bunion-surgery-what-to-expect/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/signs-you-might-need-bunion-surgery-what-to-expect",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
+      "permanent": true
+    },
+    {
+      "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late/",
+      "destination": "/common-diabetic-foot-problems/",
+      "permanent": true
+    },
+    {
+      "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late",
+      "destination": "/common-diabetic-foot-problems/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-orthotics-benefits-for-foot-and-ankle-health/",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     },
     {
-      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
+      "source": "/custom-orthotics-benefits-for-foot-and-ankle-health",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-orthotics-jupiter/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-orthotics-jupiter",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet-in-adults-vs-children-causes-symptoms-and-solutions/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet-in-adults-vs-children-causes-symptoms-and-solutions",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support/",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
+      "permanent": true
+    },
+    {
+      "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
+      "permanent": true
+    },
+    {
+      "source": "/understanding-flat-foot-causes-symptoms-diagnosis/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/understanding-flat-foot-causes-symptoms-diagnosis",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/pain-science-plantar-fasciitis/",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/pain-science-plantar-fasciitis",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
+      "destination": "/blog/laser-therapy-vs-cortisone-injections/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it",
+      "destination": "/blog/laser-therapy-vs-cortisone-injections/",
+      "permanent": true
+    },
+    {
+      "source": "/laser-treatment-sports-injuries-feet-ankles/",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
+      "permanent": true
+    },
+    {
+      "source": "/laser-treatment-sports-injuries-feet-ankles",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
+      "permanent": true
+    },
+    {
+      "source": "/mls-laser-therapy-benefits-pain-relief/",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/mls-laser-therapy-benefits-pain-relief",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/effective-solutions-for-chronic-venous-insufficiency/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/effective-solutions-for-chronic-venous-insufficiency",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/how-compression-therapy-can-alleviate-symptoms-of-vein-disease/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/how-compression-therapy-can-alleviate-symptoms-of-vein-disease",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime/",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
+      "permanent": true
+    },
+    {
+      "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
+      "permanent": true
+    },
+    {
+      "source": "/radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/spider-vein-treatment-before-and-after-what-to-expect/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/spider-vein-treatment-before-and-after-what-to-expect",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatment-jupiter-fl/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatment-jupiter-fl",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-peripheral-artery-disease/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-peripheral-artery-disease",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/how-can-wound-care-specialists-tailor-treatment-plans-for-different-types-of-wounds/",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/how-can-wound-care-specialists-tailor-treatment-plans-for-different-types-of-wounds",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida/",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/how-regenerative-medicine-is-changing-the-game-in-sports-injury-recovery/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/how-regenerative-medicine-is-changing-the-game-in-sports-injury-recovery",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/regenerative-medicine-in-podiatry/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/regenerative-medicine-in-podiatry",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/preventing-and-treating-sports-related-foot-injuries/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/preventing-and-treating-sports-related-foot-injuries",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injuries-and-foot-health-how-to-prevent-and-treat-common-issues/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injuries-and-foot-health-how-to-prevent-and-treat-common-issues",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injury-signs-that-need-medical-attention/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/sports-injury-signs-that-need-medical-attention",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/the-complete-guide-to-sports-injury-prevention-and-treatment/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/the-complete-guide-to-sports-injury-prevention-and-treatment",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-bbl-jupiter-fl/",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-bbl-jupiter-fl",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/the-advantages-of-telemedicine/",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/the-advantages-of-telemedicine",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/the-benefits-of-telemedicine/",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/the-benefits-of-telemedicine",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-during-a-telehealth-appointment/",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-expect-during-a-telehealth-appointment",
+      "destination": "/telehealth/",
+      "permanent": true
+    },
+    {
+      "source": "/podiatrist-jupiter-first-visit/",
+      "destination": "/new-patients/",
+      "permanent": true
+    },
+    {
+      "source": "/podiatrist-jupiter-first-visit",
+      "destination": "/new-patients/",
+      "permanent": true
+    },
+    {
+      "source": "/progressive-podiatry-new-era-foot-ankle-care/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/progressive-podiatry-new-era-foot-ankle-care",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/why-choose-a-podiatrist-in-jupiter-fl-for-chronic-foot-conditions/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/why-choose-a-podiatrist-in-jupiter-fl-for-chronic-foot-conditions",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/best-running-shoes-2026-jupiter-podiatrist/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/best-running-shoes-2026-jupiter-podiatrist",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles/",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles-tendon-injuries/",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles-tendon-injuries",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles-tendonitis/",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/achilles-tendonitis",
+      "destination": "/conditions/achilles-tendonitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/ankle-pain/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/ankle-pain",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/bunion/",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/bunion",
+      "destination": "/conditions/bunions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/diabetic-foot-care/",
+      "destination": "/conditions/diabetic-foot-care/",
+      "permanent": true
+    },
+    {
+      "source": "/category/diabetic-foot-care",
+      "destination": "/conditions/diabetic-foot-care/",
+      "permanent": true
+    },
+    {
+      "source": "/category/flat-feet/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/category/flat-feet",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/category/foot-ankle/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/foot-ankle",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/foot-treatments/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/category/foot-treatments",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/category/hammer-toe/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/hammer-toe",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/injury-prevention-and-treatment/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/category/injury-prevention-and-treatment",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/category/laser-therapy/",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/category/laser-therapy",
+      "destination": "/services/mls-laser-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/category/mis/",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/category/mis",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/category/peripheral-artery-disease/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/category/peripheral-artery-disease",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/category/plantar-fasciitis/",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/plantar-fasciitis",
+      "destination": "/conditions/plantar-fasciitis/",
+      "permanent": true
+    },
+    {
+      "source": "/category/plantar-warts/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/plantar-warts",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/category/podiatrist/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/category/podiatrist",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/category/podiatry-foot-surgery/",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/category/podiatry-foot-surgery",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/category/press/",
+      "destination": "/media/",
+      "permanent": true
+    },
+    {
+      "source": "/category/press",
+      "destination": "/media/",
+      "permanent": true
+    },
+    {
+      "source": "/category/press-release/",
+      "destination": "/media/",
+      "permanent": true
+    },
+    {
+      "source": "/category/press-release",
+      "destination": "/media/",
+      "permanent": true
+    },
+    {
+      "source": "/category/regenerative-medicine/",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/category/regenerative-medicine",
+      "destination": "/services/regenerative-medicine/",
+      "permanent": true
+    },
+    {
+      "source": "/category/sports-injuries/",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/category/sports-injuries",
+      "destination": "/conditions/sports-injuries/",
+      "permanent": true
+    },
+    {
+      "source": "/category/stem-cell-therapy/",
+      "destination": "/services/stem-cell-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/category/stem-cell-therapy",
+      "destination": "/services/stem-cell-therapy/",
+      "permanent": true
+    },
+    {
+      "source": "/category/surgical-wounds/",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/category/surgical-wounds",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/category/uncategorized/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/category/uncategorized",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/category/varicose-veins/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/varicose-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/vein/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/vein",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/vein-treatments/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/vein-treatments",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/category/venous/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/category/venous",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/category/wound-care/",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/category/wound-care",
+      "destination": "/services/wound-care/",
+      "permanent": true
+    },
+    {
+      "source": "/author/admin/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/author/admin",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/what-we-do/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/what-we-do",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/service-areas/",
+      "destination": "/locations/",
+      "permanent": true
+    },
+    {
+      "source": "/service-areas",
+      "destination": "/locations/",
+      "permanent": true
+    },
+    {
+      "source": "/bbl/",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/bbl",
+      "destination": "/services/foot-bbl/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-ankle-surgery/",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/foot-ankle-surgery",
+      "destination": "/services/foot-ankle-surgery/",
+      "permanent": true
+    },
+    {
+      "source": "/veins/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatments/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/vein-treatments",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/varicose-veins/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/varicose-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/spider-veins/",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/spider-veins",
+      "destination": "/services/vein-treatment/",
+      "permanent": true
+    },
+    {
+      "source": "/venous-insufficiency/",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/venous-insufficiency",
+      "destination": "/conditions/venous-insufficiency/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet-flatfoot-types-causes-treatment/",
+      "destination": "/conditions/flat-feet/",
+      "permanent": true
+    },
+    {
+      "source": "/flat-feet-flatfoot-types-causes-treatment",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

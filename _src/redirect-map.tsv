@@ -68,14 +68,16 @@ old	destination	why
 /understanding-bunions-causes-symptoms-and-effective-treatments	/conditions/bunions/	topic match
 
 # ---- Posts: diabetic foot --------------------------------------------------
-/advancements-in-diabetic-foot-care	/conditions/diabetic-foot-care/	topic match
-/preventing-complications-a-guide-to-diabetic-foot-care	/conditions/diabetic-foot-care/	topic match
-/the-crucial-importance-of-managing-diabetic-foot-complications-prevention-and-care-tips	/conditions/diabetic-foot-care/	topic match
-/understand-the-common-diabetic-foot-problems-before-its-too-late	/conditions/diabetic-foot-care/	topic match
+# advancements-in-diabetic-foot-care, preventing-complications-a-guide-to-
+# diabetic-foot-care and the-crucial-importance-of-managing-diabetic-foot-
+# complications-prevention-and-care-tips are ported (now real pages at their
+# original slugs, each with its own angle) -- no redirect row needed.
+/understand-the-common-diabetic-foot-problems-before-its-too-late	/common-diabetic-foot-problems/	same common-problems ground as the ported article, avoids duplicating it
 
 # ---- Posts: ankle and arthritis --------------------------------------------
-/ankle-arthritis-jupiter	/conditions/arthritis/	topic match
-/high-ankle-injury-symptoms-what-to-watch-for-early	/conditions/sprains-strains/	high ankle sprain
+# ankle-arthritis-jupiter and high-ankle-injury-symptoms-what-to-watch-for-
+# early are ported (now real pages at their original slugs) -- no redirect
+# row needed.
 
 # ---- Posts: flat feet and orthotics ----------------------------------------
 /custom-orthotics-benefits-for-foot-and-ankle-health	/conditions/flat-feet/	orthotics are the arch-support answer

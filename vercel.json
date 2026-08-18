@@ -433,63 +433,13 @@
       "permanent": true
     },
     {
-      "source": "/advancements-in-diabetic-foot-care/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/advancements-in-diabetic-foot-care",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/preventing-complications-a-guide-to-diabetic-foot-care/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/preventing-complications-a-guide-to-diabetic-foot-care",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/the-crucial-importance-of-managing-diabetic-foot-complications-prevention-and-care-tips/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/the-crucial-importance-of-managing-diabetic-foot-complications-prevention-and-care-tips",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
       "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late/",
-      "destination": "/conditions/diabetic-foot-care/",
+      "destination": "/common-diabetic-foot-problems/",
       "permanent": true
     },
     {
       "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-arthritis-jupiter/",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-arthritis-jupiter",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/high-ankle-injury-symptoms-what-to-watch-for-early/",
-      "destination": "/conditions/sprains-strains/",
-      "permanent": true
-    },
-    {
-      "source": "/high-ankle-injury-symptoms-what-to-watch-for-early",
-      "destination": "/conditions/sprains-strains/",
+      "destination": "/common-diabetic-foot-problems/",
       "permanent": true
     },
     {

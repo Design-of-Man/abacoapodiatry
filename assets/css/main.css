@@ -228,19 +228,24 @@ blockquote {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  /* Was align-items:center. A centred grid row sizes to its tallest column,
+     then drops every shorter column into the middle of that row -- so any
+     pairing where one side runs noticeably longer than the other (a brief
+     bio next to a tall photo + stacked cards on /meet-dr-cedeno/, four
+     short info-tiles next to long-form prose on /about/ and /contact/)
+     opened with a large blank gap above the short column that read as a
+     broken page, not a design choice. Two content columns are a document,
+     not a centred graphic pairing: they should start together at the top
+     the way a reader expects, the same as any other multi-column text
+     layout. Where columns are close in height already (home.html's short
+     paired sections) start and center render identically, so this has no
+     visible effect there. */
+  align-items: start;
 }
 .split.rev { grid-template-columns: 0.95fr 1.05fr; }
-/* Sidebar column opt-out from the centring above.
-   A sticky card needs a full-height column to travel inside, and .split centres
-   its children -- so the card floated to the middle of a tall prose column,
-   leaving 1019px of blank space above it on /services/foot-bbl/ and 590px on
-   /conditions/plantar-fasciitis/. Worse, a centred grid item shrinks to its own
-   content height, so position:sticky had no room to move and never actually
-   stuck on any page of the site despite being written on all 18 of them.
-   Stretch gives the column the full row height: the card starts at the top and
-   follows the reader down, which is what the markup always asked for.
-   Inert below 900px, where .split collapses to one column. */
+/* Sidebar column that needs to travel the full row height (a sticky card).
+   align-items:start alone would size it to its own content and give
+   position:sticky no room to move, so it still needs an explicit stretch. */
 .split-aside { align-self: stretch; }
 @media (max-width: 900px) {
   .split, .split.rev { grid-template-columns: 1fr; }
@@ -811,7 +816,11 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
     /* Specular core. Tight and genuinely bright -- a wide low-alpha gold over
        near-black just desaturates into brown, so the luminance has to be
        concentrated somewhere or none of it reads as light. */
-    radial-gradient(320px 240px at 79% 17%, rgba(247, 228, 181, 0.15), transparent 72%),
+    radial-gradient(360px 260px at 79% 15%, rgba(247, 228, 181, 0.19), transparent 72%),
+    /* Second, dimmer glow low-left. Keeps the block from reading as a single
+       spotlight on an otherwise flat field -- two sources, same rule as the
+       core: small and bright rather than wide and washed. */
+    radial-gradient(260px 200px at 6% 92%, rgba(211, 172, 87, 0.09), transparent 70%),
     /* Falloff around the core. Was 0.22 across 880x520 -- the single largest
        source of brown on the site. */
     radial-gradient(880px 520px at 76% 14%, rgba(214, 176, 92, 0.1), transparent 68%),
@@ -990,9 +999,21 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 
 /* Stat band */
-.stats-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+.stats-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; text-align: center; }
 @media (max-width: 860px) { .stats-band { grid-template-columns: repeat(2, 1fr); } }
+.stat {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(214, 185, 116, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.stat:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35); border-color: rgba(214, 185, 116, 0.55); }
 .stat b {
+  order: 1;
   font-family: var(--font-head);
   font-size: clamp(2.1rem, 4vw, 3rem);
   font-weight: 700;
@@ -1003,8 +1024,18 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   color: transparent;
   line-height: 1.1;
 }
-.stat span { display: block; margin-top: 0.4em; font-size: 0.92rem; color: var(--text-soft); }
+.stat::after {
+  content: "";
+  order: 2;
+  width: 26px;
+  height: 2px;
+  background: var(--laser);
+  border-radius: 2px;
+  margin: 0.7em 0;
+}
+.stat span { order: 3; display: block; font-size: 0.92rem; color: var(--text-soft); }
 .section-dark .stat span { color: #a49b88; }
+.section:not(.section-dark) .stat { background: var(--mist); border-color: var(--line); }
 
 /* Steps / timeline */
 .steps { list-style: none; padding: 0; margin: 0; counter-reset: step; display: grid; gap: 0; position: relative; }
@@ -1434,6 +1465,8 @@ details.faq.hidden { display: none; }
 .dg-beam       { fill: none; stroke-width: 5; stroke-linecap: round; }
 .dg-beam-short { stroke: var(--gold); }
 .dg-beam-long  { stroke: var(--accent); }
+.dg-foot { fill: rgba(201, 194, 177, 0.08); stroke: var(--text-soft); stroke-width: 2; }
+.dg-toe  { fill: none; stroke: var(--text-soft); stroke-width: 10; stroke-linecap: round; }
 
 
 @media (max-width: 640px) {
@@ -1544,6 +1577,19 @@ details.faq.hidden { display: none; }
 }
 .author-box h4 { margin-bottom: 0.2em; }
 .author-box p { font-size: 0.93rem; margin: 0; }
+
+/* Avatar with a real photo. The monogram renders first as the fallback base
+   (same pattern as .photo-frame), and the <img> covers it and removes itself
+   on error, so a missing file never shows a broken image. */
+.avatar-photo { position: relative; overflow: hidden; }
+.avatar-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* --------------------------------------------------------------------------
    Footer

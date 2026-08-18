@@ -333,103 +333,33 @@
       "permanent": true
     },
     {
-      "source": "/achilles-tendonitis-symptoms-causes-treatment/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/achilles-tendonitis-symptoms-causes-treatment",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/how-advanced-diagnostic-tools-help-in-accurate-assessment-of-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/how-advanced-diagnostic-tools-help-in-accurate-assessment-of-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
       "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/is-your-achilles-tendon-pain-due-to-tendonitis-or-tendinosis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/mls-laser-therapy-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/mls-laser-therapy-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/prevent-achilles-tendonitis-coming-back/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/prevent-achilles-tendonitis-coming-back",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/recovering-from-achilles-tendon-injuries-best-practices",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/returning-physical-activity-achilles-tendonitis/",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/returning-physical-activity-achilles-tendonitis",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/mls-laser-therapy-achilles-tendonitis/",
       "permanent": true
     },
     {
       "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained/",
-      "destination": "/conditions/achilles-tendonitis/",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
       "permanent": true
     },
     {
       "source": "/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained",
-      "destination": "/conditions/achilles-tendonitis/",
-      "permanent": true
-    },
-    {
-      "source": "/bunion-pain-relief-treatment-options/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/bunion-pain-relief-treatment-options",
-      "destination": "/conditions/bunions/",
+      "destination": "/achilles-tendonitis-symptoms-causes-treatment/",
       "permanent": true
     },
     {
@@ -449,16 +379,6 @@
     },
     {
       "source": "/foot-bone-correctors-do-they-really-work-or-is-surgery-better",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/is-bunionplasty-best-procedure-for-you/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/is-bunionplasty-best-procedure-for-you",
       "destination": "/conditions/bunions/",
       "permanent": true
     },
@@ -483,16 +403,6 @@
       "permanent": true
     },
     {
-      "source": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
       "source": "/signs-you-might-need-bunion-surgery-what-to-expect/",
       "destination": "/conditions/bunions/",
       "permanent": true
@@ -503,133 +413,23 @@
       "permanent": true
     },
     {
-      "source": "/types-of-bunion-surgery-which-procedure-is-right-for-you/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/types-of-bunion-surgery-which-procedure-is-right-for-you",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/understanding-bunions-causes-symptoms-and-effective-treatments/",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/understanding-bunions-causes-symptoms-and-effective-treatments",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
       "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/",
-      "destination": "/conditions/bunions/",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
       "permanent": true
     },
     {
       "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter",
-      "destination": "/conditions/bunions/",
-      "permanent": true
-    },
-    {
-      "source": "/advancements-in-diabetic-foot-care/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/advancements-in-diabetic-foot-care",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/common-diabetic-foot-problems/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/common-diabetic-foot-problems",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/preventing-complications-a-guide-to-diabetic-foot-care/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/preventing-complications-a-guide-to-diabetic-foot-care",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/the-crucial-importance-of-managing-diabetic-foot-complications-prevention-and-care-tips/",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/the-crucial-importance-of-managing-diabetic-foot-complications-prevention-and-care-tips",
-      "destination": "/conditions/diabetic-foot-care/",
+      "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
       "permanent": true
     },
     {
       "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late/",
-      "destination": "/conditions/diabetic-foot-care/",
+      "destination": "/common-diabetic-foot-problems/",
       "permanent": true
     },
     {
       "source": "/understand-the-common-diabetic-foot-problems-before-its-too-late",
-      "destination": "/conditions/diabetic-foot-care/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-arthritis-jupiter/",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-arthritis-jupiter",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-pain-common-causes-treatments-and-preventions/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/ankle-pain-common-causes-treatments-and-preventions",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/best-guide-to-first-metatarsophalangeal-joint-arthritis/",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/best-guide-to-first-metatarsophalangeal-joint-arthritis",
-      "destination": "/conditions/arthritis/",
-      "permanent": true
-    },
-    {
-      "source": "/factors-that-affect-how-long-an-ankle-implant-will-last/",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/factors-that-affect-how-long-an-ankle-implant-will-last",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/high-ankle-injury-symptoms-what-to-watch-for-early/",
-      "destination": "/conditions/sprains-strains/",
-      "permanent": true
-    },
-    {
-      "source": "/high-ankle-injury-symptoms-what-to-watch-for-early",
-      "destination": "/conditions/sprains-strains/",
+      "destination": "/common-diabetic-foot-problems/",
       "permanent": true
     },
     {
@@ -653,16 +453,6 @@
       "permanent": true
     },
     {
-      "source": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
       "source": "/flat-feet-in-adults-vs-children-causes-symptoms-and-solutions/",
       "destination": "/conditions/flat-feet/",
       "permanent": true
@@ -673,23 +463,13 @@
       "permanent": true
     },
     {
-      "source": "/how-to-use-custom-orthotics-to-manage-hammer-toe-pain/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-use-custom-orthotics-to-manage-hammer-toe-pain",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
       "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support/",
-      "destination": "/conditions/flat-feet/",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
       "permanent": true
     },
     {
       "source": "/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support",
-      "destination": "/conditions/flat-feet/",
+      "destination": "/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/",
       "permanent": true
     },
     {
@@ -713,16 +493,6 @@
       "permanent": true
     },
     {
-      "source": "/plantar-fasciitis-in-athletes-recovery-strategies-and-performance-tips/",
-      "destination": "/conditions/plantar-fasciitis/",
-      "permanent": true
-    },
-    {
-      "source": "/plantar-fasciitis-in-athletes-recovery-strategies-and-performance-tips",
-      "destination": "/conditions/plantar-fasciitis/",
-      "permanent": true
-    },
-    {
       "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
       "destination": "/blog/laser-therapy-vs-cortisone-injections/",
       "permanent": true
@@ -733,43 +503,13 @@
       "permanent": true
     },
     {
-      "source": "/what-to-expect-during-prp-therapy-for-plantar-fasciitis-a-step-by-step-guide/",
-      "destination": "/services/prp-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-during-prp-therapy-for-plantar-fasciitis-a-step-by-step-guide",
-      "destination": "/services/prp-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/laser-therapy-inflammation-foot-pain/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/laser-therapy-inflammation-foot-pain",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
       "source": "/laser-treatment-sports-injuries-feet-ankles/",
-      "destination": "/services/mls-laser-therapy/",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
       "permanent": true
     },
     {
       "source": "/laser-treatment-sports-injuries-feet-ankles",
-      "destination": "/services/mls-laser-therapy/",
+      "destination": "/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/",
       "permanent": true
     },
     {
@@ -779,26 +519,6 @@
     },
     {
       "source": "/mls-laser-therapy-benefits-pain-relief",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/top-5-myths-about-laser-therapy-for-foot-pain/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/top-5-myths-about-laser-therapy-for-foot-pain",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/why-laser-therapy-is-the-future-of-foot-and-ankle-treatments/",
-      "destination": "/services/mls-laser-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/why-laser-therapy-is-the-future-of-foot-and-ankle-treatments",
       "destination": "/services/mls-laser-therapy/",
       "permanent": true
     },
@@ -823,33 +543,13 @@
       "permanent": true
     },
     {
-      "source": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
       "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime/",
-      "destination": "/services/vein-treatment/",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
       "permanent": true
     },
     {
       "source": "/how-laser-vein-therapy-treats-varicose-veins-without-downtime",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/leg-pain-venous-insufficiency-jupiter/",
-      "destination": "/conditions/venous-insufficiency/",
-      "permanent": true
-    },
-    {
-      "source": "/leg-pain-venous-insufficiency-jupiter",
-      "destination": "/conditions/venous-insufficiency/",
+      "destination": "/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/",
       "permanent": true
     },
     {
@@ -873,42 +573,12 @@
       "permanent": true
     },
     {
-      "source": "/the-role-of-physical-therapy-in-treating-leg-vein-problems/",
-      "destination": "/conditions/venous-insufficiency/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-physical-therapy-in-treating-leg-vein-problems",
-      "destination": "/conditions/venous-insufficiency/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-vein-ligation-in-treating-severe-varicose-veins/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-vein-ligation-in-treating-severe-varicose-veins",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
       "source": "/vein-treatment-jupiter-fl/",
       "destination": "/services/vein-treatment/",
       "permanent": true
     },
     {
       "source": "/vein-treatment-jupiter-fl",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-with-sclerotherapy-before-and-after-insights/",
-      "destination": "/services/vein-treatment/",
-      "permanent": true
-    },
-    {
-      "source": "/what-to-expect-with-sclerotherapy-before-and-after-insights",
       "destination": "/services/vein-treatment/",
       "permanent": true
     },
@@ -933,36 +603,6 @@
       "permanent": true
     },
     {
-      "source": "/how-laser-therapy-can-improve-wound-healing-and-reduce-scarring/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-laser-therapy-can-improve-wound-healing-and-reduce-scarring",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-manage-and-treat-wounds-caused-by-radiation-therapy/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-manage-and-treat-wounds-caused-by-radiation-therapy",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-take-care-of-surgical-wounds-at-home-to-prevent-infection/",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-take-care-of-surgical-wounds-at-home-to-prevent-infection",
-      "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
       "source": "/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida/",
       "destination": "/services/wound-care/",
       "permanent": true
@@ -970,16 +610,6 @@
     {
       "source": "/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida",
       "destination": "/services/wound-care/",
-      "permanent": true
-    },
-    {
-      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries/",
-      "destination": "/services/stem-cell-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/how-can-stem-cell-therapy-benefit-leg-injuries",
-      "destination": "/services/stem-cell-therapy/",
       "permanent": true
     },
     {
@@ -1000,16 +630,6 @@
     {
       "source": "/regenerative-medicine-in-podiatry",
       "destination": "/services/regenerative-medicine/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries/",
-      "destination": "/services/stem-cell-therapy/",
-      "permanent": true
-    },
-    {
-      "source": "/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries",
-      "destination": "/services/stem-cell-therapy/",
       "permanent": true
     },
     {
@@ -1050,36 +670,6 @@
     {
       "source": "/the-complete-guide-to-sports-injury-prevention-and-treatment",
       "destination": "/conditions/sports-injuries/",
-      "permanent": true
-    },
-    {
-      "source": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits",
-      "destination": "/services/foot-ankle-surgery/",
-      "permanent": true
-    },
-    {
-      "source": "/comprehensive-guide-to-treating-plantar-warts/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/comprehensive-guide-to-treating-plantar-warts",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results/",
-      "destination": "/conditions/",
-      "permanent": true
-    },
-    {
-      "source": "/why-warts-keep-coming-back-effective-laser-treatments-for-lasting-results",
-      "destination": "/conditions/",
       "permanent": true
     },
     {
@@ -1159,16 +749,6 @@
     },
     {
       "source": "/best-running-shoes-2026-jupiter-podiatrist",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/cold-vs-warm-therapy-for-foot-pain-which-one-works-best/",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/cold-vs-warm-therapy-for-foot-pain-which-one-works-best",
       "destination": "/blog/",
       "permanent": true
     },
@@ -1589,16 +1169,6 @@
     },
     {
       "source": "/flat-feet-flatfoot-types-causes-treatment",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery/",
-      "destination": "/conditions/flat-feet/",
-      "permanent": true
-    },
-    {
-      "source": "/physical-therapy-and-rehabilitation-after-flat-foot-surgery",
       "destination": "/conditions/flat-feet/",
       "permanent": true
     }

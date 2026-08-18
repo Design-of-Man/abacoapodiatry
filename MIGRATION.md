@@ -4,10 +4,16 @@ The owner's worry — "if we replace the site, my leads disappear" — is legiti
 migrations lose rankings when old URLs die, tracking breaks, or Google Business Profile
 links go stale. This plan removes each of those risks. Follow it in order.
 
-**Context worth knowing:** Search Console already shows a steady decline since April.
-That means the *current* site is bleeding visibility — the risk of a careful migration is
-lower than the risk of standing still. And at ~$5,500/mo in Google Ads, every organic
-ranking this site wins is directly reducing paid spend.
+**Context worth knowing:** the domain property in Search Console (`sc-domain:jupiterlaser.com`,
+verified 2026-08-17) shows the opposite of a decline — clicks and impressions both roughly
+2.5x'd over the last two 90-day windows. The "steady decline since April" this section used
+to claim came from the previous vendor's reporting and does not hold up against the real
+account; don't repeat it. The migration is still the right call, just not for that reason —
+see the redirect coverage and the content-parity work in `_dev/STATUS.md` instead.
+
+Google Ads spend is **$3k–3.9k/mo** per the owner's actual billing (confirmed 2026-08-18),
+not the ~$5,500/mo this section used to state. Every organic ranking this site wins still
+directly reduces paid spend — that logic holds regardless of the exact figure.
 
 ---
 
@@ -113,6 +119,17 @@ This must match the Google Business Profile exactly.
    (Apple caches per-URL). Leaving this step undone is cosmetic, not an SEO problem —
    the images still resolve, just from the Vercel host.
 4. **Point DNS** at the new host. TLS certificate auto-provisions on Netlify/Vercel.
+4a. **Re-activate FormSubmit on the new domain.** The contact form posts to FormSubmit
+   (`_src/pages/contact.html`, see that file's comment for why and the full history).
+   FormSubmit ties its one-time activation to the exact domain a submission comes from —
+   the Vercel preview URL and `jupiterlaser.com` are different domains as far as it's
+   concerned, so the preview being activated does **not** carry over. The first real
+   submission from `jupiterlaser.com` will silently fail exactly like the original bug
+   this file exists to prevent, until someone clicks the new activation email. **Submit one
+   test entry through the live `jupiterlaser.com/contact/` form immediately after DNS
+   lands, before announcing the site is live**, and click the activation link that
+   arrives at the current recipient. Do not skip this — it is the same failure mode,
+   reintroduced by the domain change itself.
 5. **Confirm the staging block lifted.** Until cutover the site is reachable at
    `abacoapodiatry.vercel.app`, which is public (no deployment protection) and serves
    pages whose canonical points at `jupiterlaser.com` — a domain that still returns the

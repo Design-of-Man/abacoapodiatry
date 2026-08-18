@@ -53,6 +53,12 @@ const LIMITS = {
 
 const TIMEOUT_MS = 8000;
 
+// Which UI submitted the lead. Allowlisted so a stray/garbage value can't
+// pollute the Supabase column -- anything not on the list quietly becomes the
+// historical default so old callers (and anyone omitting the field) keep
+// working exactly as before.
+const SOURCES = ["contact-form", "assistant"];
+
 // Supabase project "Design of Man". See the header comment on why the
 // publishable key is committed rather than held in an environment variable.
 const FN_URL = process.env.SUPABASE_FN_URL ||
@@ -103,11 +109,13 @@ module.exports = async function handler(req, res) {
     return json(res, 400, NOT_OK);
   }
 
+  const source = SOURCES.includes(body.source) ? body.source : "contact-form";
+
   const forwarded = req.headers["x-forwarded-for"];
   const row = {
     ...lead,
     site: "jupiterlaser.com",
-    source: "contact-form",
+    source: source,
     user_agent: clean(req.headers["user-agent"], 500) || null,
     ip: (typeof forwarded === "string" ? forwarded.split(",")[0].trim() : "") || null,
   };
@@ -172,10 +180,25 @@ module.exports = async function handler(req, res) {
       });
       if (!mail.ok) {
         console.error("contact: resend failed", mail.status, await mail.text());
+      } else {
+        console.log("contact: lead stored and notification sent");
       }
     } catch (err) {
       console.error("contact: resend threw", err && err.message);
     }
+  } else {
+    // Say so out loud. Skipping notification is a supported state -- capture
+    // still works and the office can read the table -- but it is indistinguishable
+    // from a working one in the logs, because a block that never runs logs
+    // nothing. That silence is exactly how this site went months with a lead
+    // path nobody was being told about: the patient saw the success message, the
+    // row was written, and the only missing piece left no trace anywhere.
+    const missing = ["RESEND_API_KEY", "LEAD_TO", "LEAD_FROM"]
+      .filter((k) => !process.env[k]);
+    console.warn(
+      "contact: lead stored but NO email sent -- unset: " + missing.join(", ") +
+      ". Someone must be reading the Supabase leads table."
+    );
   }
 
   return json(res, 200, OK);

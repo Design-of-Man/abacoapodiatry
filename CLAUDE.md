@@ -154,16 +154,24 @@ and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either 
 
 ## The contact form is the only lead path, and it can fail silently
 
-`_src/pages/contact.html` posts to `/api/contact/`, our own serverless function at
-`api/contact.js`. The floating "Jupiter Laser Assistant" is *not* a second path —
-`assets/js/assistant.js` is keyword-matched canned answers, entirely client-side, and
-routes people to the phone or `/contact/`.
+`_src/pages/contact.html` posts to FormSubmit (`https://formsubmit.co/ajax/...`) again as
+of 2026-08-18, by explicit, informed client request — see below. The assistant's own lead
+capture (`assets/js/assistant.js`) still posts to `/api/contact/` (Supabase), unchanged.
 
-**It used to be FormSubmit, and it delivered nothing.** FormSubmit requires a one-time
-activation link to be clicked in the recipient's inbox before it forwards anything; until
-then it accepts every submission and drops it, answering `200` with `{"success":"false"}`.
-Nobody ever clicked it. Replaced on 2026-08-15 — do not reintroduce a third-party form
-relay whose delivery depends on someone clicking an email.
+**It used to be FormSubmit, and it delivered nothing — read this before touching the form
+again.** FormSubmit requires a one-time activation link to be clicked in the recipient's
+inbox before it forwards anything; until then it accepts every submission and drops it,
+answering `200` with `{"success":"false"}`. Nobody ever clicked it, and the site looked
+like it was taking bookings while taking none. Replaced with `api/contact.js` (Supabase)
+on 2026-08-15 for exactly that reason.
+
+**It's back on 2026-08-18, deliberately.** The client asked for FormSubmit specifically,
+was told this history first, and confirmed anyway. Recipient is temporarily
+`nicholasbkashuba@gmail.com` so he can click the activation link himself; it gets
+repointed at Dr. Cedeno's and the rest of the office's addresses once that's done.
+`api/contact.js` is untouched and still in the repo for a future revert. **Do not silently
+switch the form back to `/api/contact/` citing this file** — that decision is the client's
+to make, not a bug to fix.
 
 **The response means "stored", and nothing weaker.** `api/contact.js` writes to Supabase
 FIRST and only answers `success: "true"` if that insert succeeded; a failed write returns

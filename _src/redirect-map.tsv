@@ -1,0 +1,184 @@
+# Old jupiterlaser.com URL -> its closest equivalent on the new site.
+#
+# Source of truth. _dev/gen-redirects.py writes vercel.json, _redirects and
+# .htaccess from this file, so the three can never drift apart. Edit here, then
+# run the generator. Do not hand-edit the three outputs.
+#
+# Built from a real crawl of all four Yoast sitemaps (_dev/crawl-old-site.py),
+# not from guessing slugs: 157 live URLs, of which 8 already exist unchanged on
+# the new site and 149 need a target. Before this, 27 redirects covered 17 of
+# them and 132 URLs would have 404'd the moment DNS moved.
+#
+# The rule that matters: redirect to the closest *equivalent*, never to / in
+# bulk. Google treats a mass redirect to the homepage as a soft 404 and discards
+# the link equity, which is the whole thing a redirect exists to carry. Nothing
+# in this file targets /. Where no specific page exists, the section hub is the
+# honest answer -- a reader landing on /conditions/ from a hammer-toe article
+# has somewhere to go; one landing on / does not.
+#
+# Columns: old path (no trailing slash) <TAB> destination <TAB> why
+old	destination	why
+
+# ---- Pages: services and conditions the old site had as top-level -----------
+/about-us	/about/	direct equivalent
+/accessibility-disclaimer	/accessibility/	direct equivalent
+/achilles-tendonitis-treatment	/conditions/achilles-tendonitis/	direct equivalent
+/ankle	/services/foot-ankle-surgery/	old page was "Ankle Surgery Jupiter"
+/ankle-arthroscopy	/services/foot-ankle-surgery/	specific procedure, surgery page covers it
+/ankle-replacement-surgery	/services/foot-ankle-surgery/	specific procedure, surgery page covers it
+/bunion	/conditions/bunions/	direct equivalent
+/bunionplasty-procedure-jupiter-fl	/conditions/bunions/	branded bunion procedure
+/cysts-warts	/conditions/	no dedicated page; hub lists what is treated
+/diabetic-foot-care	/conditions/diabetic-foot-care/	direct equivalent
+/dr-isin-a-mustafa	/meet-dr-mustafa/	direct equivalent
+/flat-feet	/conditions/flat-feet/	direct equivalent
+/fractures-breaks	/conditions/sprains-strains/	nearest acute-injury page
+/metatarsalgia	/conditions/	forefoot pain, no dedicated page
+/mls	/services/mls-laser-therapy/	direct equivalent
+/neuropathy-solutions	/conditions/neuropathy/	direct equivalent
+/plantar-fasciitis	/conditions/plantar-fasciitis/	direct equivalent
+/plantar-plate	/conditions/	no dedicated page
+/policy	/privacy/	direct equivalent
+/providers	/about/	both doctors are on the about page
+/regenerative-medicine	/services/regenerative-medicine/	direct equivalent
+/request-an-appointment	/contact/	direct equivalent
+/saphenous-vein-insufficiency	/conditions/venous-insufficiency/	page written from this one
+/services/foot-bbl-treatment-jupiter-fl	/services/foot-bbl/	direct equivalent
+/sports-injuries	/conditions/sports-injuries/	direct equivalent
+/stem-cell-therapy	/services/regenerative-medicine/	stem cell page withdrawn 2026-08-18; regen is the closest live page
+/terms	/privacy/	no separate terms page; privacy is the legal page
+/testimonials	/reviews/	direct equivalent
+/vein-treatment	/services/vein-treatment/	direct equivalent
+/videos	/media/	direct equivalent
+/wound-care	/services/wound-care/	direct equivalent
+
+# ---- Posts: Achilles -------------------------------------------------------
+/achilles-tendon-treatment-jupiter	/conditions/achilles-tendonitis/	topic match
+/how-laser-therapy-can-speed-up-the-healing-of-achilles-tendonitis	/mls-laser-therapy-achilles-tendonitis/	same topic as the ported MLS/Achilles article, avoids duplicating it
+/recovering-from-achilles-tendon-injuries-best-practices	/mls-laser-therapy-achilles-tendonitis/	same recovery-best-practices ground as ported Achilles articles, avoids duplicating them
+/what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explained	/achilles-tendonitis-symptoms-causes-treatment/	same symptoms/causes ground as the ported article, avoids duplicating it
+
+# ---- Posts: bunions --------------------------------------------------------
+/bunions-what-are-symptoms-causes-treatment	/conditions/bunions/	topic match
+/foot-bone-correctors-do-they-really-work-or-is-surgery-better	/conditions/bunions/	bone correctors are marketed for bunions
+/is-lapiplasty-bunion-surgery-right-for-you	/conditions/bunions/	topic match
+/minimally-invasive-bunion-surgery-jupiter	/conditions/bunions/	topic match
+/signs-you-might-need-bunion-surgery-what-to-expect	/conditions/bunions/	topic match
+/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter	/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/	same before/during/after ground as the ported recovery-tips article, avoids duplicating it
+
+# ---- Posts: diabetic foot --------------------------------------------------
+# advancements-in-diabetic-foot-care, preventing-complications-a-guide-to-
+# diabetic-foot-care and the-crucial-importance-of-managing-diabetic-foot-
+# complications-prevention-and-care-tips are ported (now real pages at their
+# original slugs, each with its own angle) -- no redirect row needed.
+/understand-the-common-diabetic-foot-problems-before-its-too-late	/common-diabetic-foot-problems/	same common-problems ground as the ported article, avoids duplicating it
+
+# ---- Posts: ankle and arthritis --------------------------------------------
+# ankle-arthritis-jupiter and high-ankle-injury-symptoms-what-to-watch-for-
+# early are ported (now real pages at their original slugs) -- no redirect
+# row needed.
+
+# ---- Posts: flat feet and orthotics ----------------------------------------
+/custom-orthotics-benefits-for-foot-and-ankle-health	/conditions/flat-feet/	orthotics are the arch-support answer
+/custom-orthotics-jupiter	/conditions/flat-feet/	orthotics are the arch-support answer
+/flat-feet-in-adults-vs-children-causes-symptoms-and-solutions	/conditions/flat-feet/	topic match
+/impact-of-footwear-on-flat-feet-choosing-the-right-shoes-for-support	/flat-feet-achilles-pain-best-shoes-stretches-relief-tips/	same footwear/support question, specific article not a hub
+/understanding-flat-foot-causes-symptoms-diagnosis	/conditions/flat-feet/	topic match
+
+# ---- Posts: plantar fasciitis and heel -------------------------------------
+/pain-science-plantar-fasciitis	/conditions/plantar-fasciitis/	topic match
+/plantar-fasciitis-steroid-injection-when-to-consider-it	/blog/laser-therapy-vs-cortisone-injections/	same question, and the new post answers it directly
+
+# ---- Posts: laser ----------------------------------------------------------
+/laser-treatment-sports-injuries-feet-ankles	/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/	same topic as the ported sports-recovery article, avoids duplicating it
+/mls-laser-therapy-benefits-pain-relief	/services/mls-laser-therapy/	topic match
+
+# ---- Posts: veins ----------------------------------------------------------
+/effective-solutions-for-chronic-venous-insufficiency	/conditions/venous-insufficiency/	condition, not procedure
+/how-compression-therapy-can-alleviate-symptoms-of-vein-disease	/conditions/venous-insufficiency/	conservative care sits on the condition page
+/how-laser-vein-therapy-treats-varicose-veins-without-downtime	/how-endovenous-laser-therapy-evlt-works-a-comprehensive-overview/	same EVLT explainer as the ported article, avoids duplicating it
+/radiofrequency-ablation-rfa-explained-how-it-treats-varicose-veins	/services/vein-treatment/	procedure
+/spider-vein-treatment-before-and-after-what-to-expect	/services/vein-treatment/	procedure
+/vein-treatment-jupiter-fl	/services/vein-treatment/	procedure
+/what-is-peripheral-artery-disease	/conditions/venous-insufficiency/	nearest vascular page; PAD has none
+
+# ---- Posts: wound care -----------------------------------------------------
+/how-can-wound-care-specialists-tailor-treatment-plans-for-different-types-of-wounds	/services/wound-care/	topic match
+/what-to-expect-during-burn-wound-care-treatment-in-jupiter-florida	/services/wound-care/	topic match
+
+# ---- Posts: regenerative and stem cell -------------------------------------
+/how-regenerative-medicine-is-changing-the-game-in-sports-injury-recovery	/services/regenerative-medicine/	topic match
+/regenerative-medicine-in-podiatry	/services/regenerative-medicine/	topic match
+
+# ---- Posts: sports ---------------------------------------------------------
+/preventing-and-treating-sports-related-foot-injuries	/conditions/sports-injuries/	topic match
+/sports-injuries-and-foot-health-how-to-prevent-and-treat-common-issues	/conditions/sports-injuries/	topic match
+/sports-injury-signs-that-need-medical-attention	/conditions/sports-injuries/	topic match
+/the-complete-guide-to-sports-injury-prevention-and-treatment	/conditions/sports-injuries/	topic match
+
+# ---- Posts: surgery, warts, telehealth, general ----------------------------
+/foot-bbl-jupiter-fl	/services/foot-bbl/	topic match
+/the-advantages-of-telemedicine	/telehealth/	topic match
+/the-benefits-of-telemedicine	/telehealth/	topic match
+/what-to-expect-during-a-telehealth-appointment	/telehealth/	topic match
+/podiatrist-jupiter-first-visit	/new-patients/	what to expect on a first visit
+/progressive-podiatry-new-era-foot-ankle-care	/about/	practice philosophy
+/why-choose-a-podiatrist-in-jupiter-fl-for-chronic-foot-conditions	/about/	practice positioning
+/best-running-shoes-2026-jupiter-podiatrist	/blog/	footwear roundup, no matching page
+
+# ---- Category archives -----------------------------------------------------
+/category/achilles	/conditions/achilles-tendonitis/	archive of Achilles posts
+/category/achilles-tendon-injuries	/conditions/achilles-tendonitis/	archive of Achilles posts
+/category/achilles-tendonitis	/conditions/achilles-tendonitis/	archive of Achilles posts
+/category/ankle-pain	/conditions/	no single ankle-pain page
+/category/bunion	/conditions/bunions/	archive of bunion posts
+/category/diabetic-foot-care	/conditions/diabetic-foot-care/	archive
+/category/flat-feet	/conditions/flat-feet/	archive
+/category/foot-ankle	/conditions/	broad archive, conditions hub
+/category/foot-treatments	/services/	broad archive, services hub
+/category/hammer-toe	/conditions/	hammer toe has no dedicated page
+/category/injury-prevention-and-treatment	/conditions/sports-injuries/	archive maps to sports injuries
+/category/laser-therapy	/services/mls-laser-therapy/	archive
+/category/mis	/services/foot-ankle-surgery/	minimally invasive surgery
+/category/peripheral-artery-disease	/conditions/venous-insufficiency/	nearest vascular page
+/category/plantar-fasciitis	/conditions/plantar-fasciitis/	archive
+/category/plantar-warts	/conditions/	warts have no dedicated page
+/category/podiatrist	/about/	archive about the practice
+/category/podiatry-foot-surgery	/services/foot-ankle-surgery/	archive
+/category/press	/media/	press coverage lives on the media page
+/category/press-release	/media/	press coverage lives on the media page
+/category/regenerative-medicine	/services/regenerative-medicine/	archive
+/category/sports-injuries	/conditions/sports-injuries/	archive
+/category/stem-cell-therapy	/services/regenerative-medicine/	archive; stem cell page withdrawn 2026-08-18
+/category/surgical-wounds	/services/wound-care/	archive
+/category/uncategorized	/blog/	no topic, blog index is the honest target
+/category/varicose-veins	/services/vein-treatment/	archive
+/category/vein	/services/vein-treatment/	archive
+/category/vein-treatments	/services/vein-treatment/	archive
+/category/venous	/conditions/venous-insufficiency/	condition rather than procedure
+/category/wound-care	/services/wound-care/	archive
+
+# ---- Author archive --------------------------------------------------------
+/author/admin	/about/	single-author WordPress archive
+
+# ---- Kept from the original hand-written map --------------------------------
+# These match no URL in the sitemap, so they are either already-removed pages or
+# shorthand someone may have linked. They cost nothing and may catch a backlink.
+/what-we-do	/services/	not in sitemap; kept from the original map
+/service-areas	/locations/	not in sitemap; kept from the original map
+/bbl	/services/foot-bbl/	not in sitemap; kept from the original map
+/foot-ankle-surgery	/services/foot-ankle-surgery/	not in sitemap; kept from the original map
+/veins	/services/vein-treatment/	not in sitemap; kept from the original map
+/vein	/services/vein-treatment/	not in sitemap; kept from the original map
+/vein-treatments	/services/vein-treatment/	not in sitemap; kept from the original map
+/varicose-veins	/services/vein-treatment/	not in sitemap; kept from the original map
+/spider-veins	/services/vein-treatment/	not in sitemap; kept from the original map
+/venous-insufficiency	/conditions/venous-insufficiency/	not in sitemap; kept from the original map
+
+# These two ARE live posts in the sitemap, unlike the block above. They were
+# already mapped correctly before the crawl, so they are listed here only to
+# keep the original map's entries together.
+/flat-feet-flatfoot-types-causes-treatment	/conditions/flat-feet/	live post; flat feet is the subject
+/services/stem-cell-therapy	/services/regenerative-medicine/	page withdrawn 2026-08-18, parked in _src/pages-disabled/
+/the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries	/services/regenerative-medicine/	article withdrawn 2026-08-18, parked in _src/pages-disabled/
+/how-can-stem-cell-therapy-benefit-leg-injuries	/services/regenerative-medicine/	article withdrawn 2026-08-18, parked in _src/pages-disabled/

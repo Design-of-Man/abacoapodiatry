@@ -1,10 +1,48 @@
-/* Jupiter Laser & Regenerative Medicine — site interactivity
+/* Abacoa Podiatry & Leg Vein Center — site interactivity
    Vanilla JS, no dependencies. Loaded with `defer`. */
 (function () {
   "use strict";
 
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
+
+  /* ------------------------------------------------------------------
+     Lead tracking
+
+     The phone is this practice's main lead channel and nothing counted it,
+     so there was no way to answer "did leads fall?" -- the question the
+     whole site is judged on. Two events are real leads (a call started, a
+     form sent); appointment_cta is the funnel step between them.
+
+     Deliberately no condition detail in the payload. Vercel already records
+     which page an event fired on, and that is aggregate and anonymous;
+     attaching "plantar fasciitis" to an individual visitor's action is the
+     line that turns analytics into a health-privacy problem. Placement only.
+     ------------------------------------------------------------------ */
+  var track = function (name, data) {
+    if (typeof window.va === "function") window.va("event", { name: name, data: data || {} });
+  };
+
+  var placementOf = function (el) {
+    if (el.closest(".call-bar, .cb-call")) return "mobile-call-bar";
+    if (el.closest(".site-header")) return "header";
+    if (el.closest(".assistant, .assist-note")) return "assistant";
+    if (el.closest("footer, .site-footer")) return "footer";
+    return "body";
+  };
+
+  // Delegated so it covers every tel: and /contact/ link on any page, including
+  // markup added later, without each template having to opt in.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("tel:") === 0) {
+      track("call_click", { placement: placementOf(a) });
+    } else if (href === "/contact/" || href === "/request-an-appointment/") {
+      track("appointment_cta", { placement: placementOf(a) });
+    }
+  }, { passive: true, capture: true });
 
   /* ------------------------------------------------------------------
      Sticky header shadow
@@ -22,17 +60,34 @@
      Mobile nav + dropdowns
      ------------------------------------------------------------------ */
   var burger = $(".nav-burger");
+
+  /* Every close path routes through these two helpers. Closing used to be done
+     by stripping the class alone, which left aria-expanded="true" on the burger
+     and on any open submenu button — so a screen reader announced the menu as
+     open long after it had slid away. */
+  function closeSubmenus() {
+    $$(".nav > li.open").forEach(function (o) {
+      o.classList.remove("open");
+      var t = $(".nav-toggle-sub", o);
+      if (t) t.setAttribute("aria-expanded", "false");
+    });
+  }
+  function closeNav() {
+    document.body.classList.remove("nav-open");
+    if (burger) burger.setAttribute("aria-expanded", "false");
+    closeSubmenus();
+  }
+
   if (burger) {
     burger.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      if (!open) closeSubmenus();
     });
   }
   // Close mobile nav when a link is chosen
   $$(".site-nav a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      document.body.classList.remove("nav-open");
-    });
+    a.addEventListener("click", closeNav);
   });
   // Submenu toggles (mobile tap + keyboard)
   $$(".nav-toggle-sub").forEach(function (btn) {
@@ -40,22 +95,30 @@
       e.preventDefault();
       var li = btn.closest("li");
       var wasOpen = li.classList.contains("open");
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
+      closeSubmenus();
       li.classList.toggle("open", !wasOpen);
       btn.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
     });
   });
   document.addEventListener("click", function (e) {
-    if (!e.target.closest(".nav")) {
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
-    }
+    if (!e.target.closest(".nav")) closeSubmenus();
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      document.body.classList.remove("nav-open");
-      $$(".nav > li.open").forEach(function (o) { o.classList.remove("open"); });
+      var wasOpen = document.body.classList.contains("nav-open");
+      closeNav();
+      // Escape must hand focus back to the control that opened the panel,
+      // otherwise focus is left on a node that is now visibility:hidden.
+      if (wasOpen && burger) burger.focus();
     }
   });
+  /* Rotating a phone with the menu open used to leave body.nav-open set. Past
+     1080px the panel reverts to the desktop bar, so the state was invisible but
+     still reported as expanded. */
+  var deskQuery = window.matchMedia("(min-width: 1080px)");
+  var onDesktop = function (e) { if (e.matches) closeNav(); };
+  if (deskQuery.addEventListener) deskQuery.addEventListener("change", onDesktop);
+  else if (deskQuery.addListener) deskQuery.addListener(onDesktop);
 
   /* ------------------------------------------------------------------
      Active nav highlighting (from body[data-nav])
@@ -250,20 +313,33 @@
   if (heroVideo && videoToggle) {
     // Attach exactly one source so only that file is ever downloaded. Under
     // prefers-reduced-motion we attach nothing at all and leave the poster —
-    // no reason to spend 25MB of someone's data on motion they asked not to see.
+    // no reason to spend the encode on motion they asked not to see.
     if (!heroVideo.querySelector("source") && heroVideo.dataset.mp4Full) {
       var wantsMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (wantsMotion) {
-        var small = window.matchMedia("(max-width: 767px)").matches;
+      // Save-Data is an explicit "don't spend my bandwidth", and 2g is a
+      // connection that cannot afford a decorative hero at any encode. Both
+      // keep the poster, which is what the video is layered over anyway.
+      var conn = navigator.connection || {};
+      var starved = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
+      if (wantsMotion && !starved) {
+        // 1024, not 767. The HD encode was 25MB when this breakpoint was set;
+        // it is 5.7MB now, but the tier split still earns its keep because the
+        // mobile encode is smaller again.
+        var small = window.matchMedia("(max-width: 1024px)").matches;
         // MP4 first: it is the smaller file in both tiers and every mainstream
-        // browser decodes H.264. WebM second, for builds without proprietary
-        // codecs (some Linux Firefox/Chromium) that would otherwise show only
-        // the poster. The browser downloads the FIRST source it can play, so
-        // normal visitors never fetch both.
-        [
-          [small ? heroVideo.dataset.mp4Mobile : heroVideo.dataset.mp4Full, "video/mp4"],
-          [small ? heroVideo.dataset.webmMobile : heroVideo.dataset.webmFull, "video/webm"]
-        ].forEach(function (pair) {
+        // browser decodes H.264. The browser downloads the FIRST source it can
+        // play, so normal visitors never fetch both.
+        //
+        // The small tier is MP4-only on purpose. WebM exists here as a fallback
+        // for builds without proprietary codecs, but the mobile WebM is 4.6MB
+        // against the mobile MP4's 2.2MB -- larger than the file it exists to
+        // improve on. On the tier where data costs the most it earns nothing,
+        // so those browsers keep the poster instead of spending 4.6MB.
+        (small
+          ? [[heroVideo.dataset.mp4Mobile, "video/mp4"]]
+          : [[heroVideo.dataset.mp4Full, "video/mp4"],
+             [heroVideo.dataset.webmFull, "video/webm"]]
+        ).forEach(function (pair) {
           if (!pair[0]) return;
           var s = document.createElement("source");
           s.src = pair[0];
@@ -275,12 +351,13 @@
         if (kick && kick.catch) kick.catch(function () {});
       }
     }
-    // Cinematic drift — 0.75x, not 0.5x: on a 30fps source half speed lands at
-    // an effective 15fps and judders.
-    var setRate = function () { heroVideo.playbackRate = 0.75; };
-    setRate();
-    heroVideo.addEventListener("loadeddata", setRate);
-    heroVideo.addEventListener("play", setRate);
+    // The drift used to be done here with playbackRate = 0.75. On a 30fps
+    // source that plays 22.5 frames a second, and at 60Hz each frame then
+    // occupies 2.67 refreshes -- so the browser holds some frames for two
+    // refreshes and others for three. That uneven cadence is what read as
+    // judder on a slow drone pan. The encode is now slowed in the file itself
+    // with motion interpolation to a true 30fps, so it plays at 1.0x and every
+    // frame gets exactly two refreshes. Do not reintroduce playbackRate here.
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var setPaused = function (paused) {
       if (paused) {
@@ -340,19 +417,41 @@
       var btn = $('button[type="submit"]', form);
       btn.disabled = true;
       btn.textContent = "Sending…";
+      // JSON rather than FormData: Vercel's Node runtime parses
+      // application/json into req.body, and does not parse multipart.
+      var payload = {};
+      new FormData(form).forEach(function (v, k) { payload[k] = v; });
       fetch(action, {
         method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
       }).then(function (r) {
-        if (r.ok) {
-          status.className = "form-status ok";
-          status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
-          form.reset();
-        } else {
-          throw new Error("bad status");
-        }
+        // A 2xx is still not proof on its own, and the reason is worth keeping
+        // even though the backend changed. Under FormSubmit this endpoint
+        // answered 200 with {"success":"false"} whenever the recipient address
+        // had never been activated, so trusting the status code alone would
+        // thank the patient, fire a conversion and drop the lead all at once.
+        // api/contact.js now answers success:"true" only after the request is
+        // written to the database. Read the body and believe that instead.
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (data) {
+        // success comes back as the string "true" rather than a boolean.
+        var delivered = data && String(data.success).toLowerCase() === "true";
+        if (!delivered) throw new Error("not delivered");
+        status.className = "form-status ok";
+        status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+        // Fires on confirmed delivery, not on submit, so a failed send is
+        // never counted as a lead. No field values are sent -- the visitor
+        // typed their name and symptoms into this form.
+        track("form_submit", { form: "contact" });
+        form.reset();
       }).catch(function () {
+        // Anything unexpected -- non-JSON body, network failure, a 502 because
+        // the database write failed, a 400 because the request was incomplete
+        // -- lands here and sends the patient to the phone. Erring toward a
+        // visible failure is the right direction: a wasted phone call costs
+        // less than a lead that silently evaporates.
         status.className = "form-status err";
         status.textContent = "Something went wrong sending your request. Please call us at (561) 915-1934 and we'll take care of you.";
       }).finally(function () {
@@ -368,62 +467,105 @@
   $$("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+  /* ------------------------------------------------------------------
+     Horizontally scrolling comparison tables
+     table.compare carries min-width:640px, so below ~700px it scrolls inside
+     .table-scroll. Two things were missing: the region was unreachable by
+     keyboard (a scroll container needs to be focusable to be scrolled without
+     a mouse — WCAG 2.1.1), and nothing on screen said it scrolled, so on a
+     phone the table simply looked cropped at the right edge.
+     ------------------------------------------------------------------ */
+  $$(".table-scroll").forEach(function (box) {
+    // The hint is injected rather than authored into each page so all three
+    // comparison tables stay in step. aria-hidden: the region label already
+    // tells assistive tech the table scrolls, so this would only repeat it.
+    var hint = document.createElement("p");
+    hint.className = "table-hint";
+    hint.setAttribute("aria-hidden", "true");
+    hint.textContent = "Swipe the table sideways to compare →";
+    if (box.parentNode) box.parentNode.insertBefore(hint, box.nextSibling);
+
+    var sync = function () {
+      var scrollable = box.scrollWidth > box.clientWidth + 1;
+      box.toggleAttribute("data-scrollable", scrollable);
+      if (scrollable) {
+        if (!box.hasAttribute("tabindex")) box.setAttribute("tabindex", "0");
+        box.setAttribute("role", "region");
+        if (!box.hasAttribute("aria-label")) {
+          // Name the region after the heading it sits under, so a screen
+          // reader announces "Comparison table: <heading>" rather than "region".
+          var h = box.closest("section, article, div.wrap");
+          var head = h && h.querySelector("h2, h3");
+          box.setAttribute("aria-label", head
+            ? "Comparison table: " + head.textContent.trim()
+            : "Comparison table, scrolls horizontally");
+        }
+      } else {
+        box.removeAttribute("tabindex");
+        box.removeAttribute("role");
+      }
+    };
+    sync();
+    window.addEventListener("resize", sync, { passive: true });
+  });
+
 })();
 
 
 /* ==========================================================================
-   Dynamic layer: scroll rail, live open/closed status, stat rings, parallax.
+   Dynamic layer: scroll rail, live open/closed status, stat rings.
    Appended as its own IIFE so it can't disturb the code above.
    ========================================================================== */
 (function () {
   "use strict";
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Scroll progress rail ---- */
   var rail = document.querySelector(".scroll-rail i");
   if (rail) {
+    // Two things used to make this the worst jank on the page. It wrote
+    // style.width on every scroll event, which is a layout property, and it
+    // read scrollHeight first -- a forced synchronous reflow, every event, the
+    // whole length of the page. Now the height is cached, the write is a
+    // composited scaleX, and the work is rAF-throttled to one per frame.
+    var railH = 0;
+    var railTicking = false;
+    var measureRail = function () {
+      railH = document.documentElement.scrollHeight - window.innerHeight;
+    };
+    var paintRail = function () {
+      var p = railH > 0 ? window.scrollY / railH : 0;
+      if (p < 0) p = 0; else if (p > 1) p = 1;
+      rail.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      railTicking = false;
+    };
     var onScroll = function () {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      rail.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+      if (railTicking) return;
+      railTicking = true;
+      requestAnimationFrame(paintRail);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    onScroll();
+    window.addEventListener("resize", function () { measureRail(); onScroll(); });
+    measureRail();
+    paintRail();
   }
 
-  /* ---- Live open/closed pill (visitor's own clock) ----
-     Mon–Thu 8:00–17:00, Fri 8:00–14:00, lunch 12:30–13:30, closed weekends. */
-  var pill = document.getElementById("live-status");
-  if (pill) {
-    var render = function () {
-      var now = new Date();
-      var day = now.getDay();            // 0 Sun .. 6 Sat
-      var mins = now.getHours() * 60 + now.getMinutes();
-      var open = false, note = "Closed";
-      if (day >= 1 && day <= 5) {
-        var close = day === 5 ? 14 * 60 : 17 * 60;
-        var lunch = mins >= 12 * 60 + 30 && mins < 13 * 60 + 30;
-        if (mins >= 8 * 60 && mins < close && !lunch) {
-          open = true;
-          note = "Open now";
-        } else if (lunch) {
-          note = "Back at 1:30";
-        } else if (mins < 8 * 60) {
-          note = "Opens 8:00 AM";
-        } else {
-          note = "Closed";
-        }
-      } else {
-        note = day === 6 ? "Sat — by appt" : "Closed Sunday";
-      }
-      pill.hidden = false;
-      pill.classList.toggle("closed", !open);
-      pill.querySelector(".txt").textContent = note;
-      pill.setAttribute("title", open ? "Our office is open right now" : "Office hours: Mon–Thu 8–5, Fri 8–2");
-    };
-    render();
-    setInterval(render, 60000);
-  }
+  /* ---- Live open/closed pill: removed 2026-08-15 ----
+     This read getElementById("live-status"), and no element with that id has
+     ever existed -- not in the template, not in any page, not in locations.py.
+     It had never rendered, so its hours were never visibly wrong, which is
+     also why nobody noticed they were only ever Jupiter's.
+
+     It is not coming back in this shape. The practice now runs two offices on
+     different schedules -- Jupiter Mon-Thu 8-5 / Fri 8-2, Palm Beach Gardens
+     Mon & Wed 8-4:30 -- and a single sitewide pill has no way to know which
+     office a visitor on /services/mls-laser-therapy/ means. On a Tuesday at
+     10am it would read "Open now", which is true for Jupiter and false for the
+     Gardens. It also used the visitor's own clock rather than America/New_York,
+     so it was wrong for anyone travelling.
+
+     If it returns it belongs on the office cards on /locations/ and the Palm
+     Beach Gardens office page, reading a per-office data-hours attribute and
+     resolving time in America/New_York. */
 
   /* ---- Stat rings draw in on scroll ---- */
   var rings = Array.prototype.slice.call(document.querySelectorAll(".statring-dial .fill"));
@@ -448,21 +590,12 @@
     }
   }
 
-  /* ---- Hero parallax drift ---- */
-  var media = document.querySelector(".hero-media");
-  if (media && !reduced) {
-    media.classList.add("parallax");
-    var ticking = false;
-    window.addEventListener("scroll", function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        var y = window.scrollY;
-        if (y < window.innerHeight * 1.2) {
-          media.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0) scale(1.06)";
-        }
-        ticking = false;
-      });
-    }, { passive: true });
-  }
+  /* ---- Hero parallax drift: removed 2026-08-14 ----
+     This transformed .hero-media on every scroll frame, and .hero-media holds
+     the playing background video. Moving and scaling a live video layer makes
+     the compositor resample every decoded frame against a changing matrix, so
+     the hero visibly stuttered while scrolling even though the handler was
+     already rAF-throttled. The drift was worth a few pixels of depth and cost
+     the smoothness of the first thing anyone sees. If it comes back, apply it
+     to .hero-glass or the beams -- never to the video. */
 })();

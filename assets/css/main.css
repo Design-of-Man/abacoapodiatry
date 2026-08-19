@@ -1398,6 +1398,56 @@ details.faq.hidden { display: none; }
 .cta-band .btn-row { flex: none; }
 
 /* --------------------------------------------------------------------------
+   Welcome banner (new-provider announcement)
+   -------------------------------------------------------------------------- */
+.welcome-banner {
+  position: relative;
+  border: 1px solid rgba(214, 185, 116, 0.28);
+  background:
+    radial-gradient(800px 400px at 85% 0%, rgba(232, 199, 120, 0.16), transparent 60%),
+    radial-gradient(700px 400px at 10% 100%, rgba(138, 106, 42, 0.18), transparent 60%),
+    linear-gradient(120deg, var(--ink) 0%, var(--ink-3) 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 1.3fr;
+  align-items: stretch;
+  gap: 0;
+}
+@media (max-width: 720px) { .welcome-banner { grid-template-columns: 1fr; } }
+.welcome-banner-photo {
+  position: relative;
+  width: 220px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e9c878, #b98f35);
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 720px) { .welcome-banner-photo { width: 100%; aspect-ratio: 16 / 9; } }
+.welcome-banner-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.welcome-banner-photo .monogram {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #201703;
+}
+.welcome-banner-copy {
+  padding: clamp(2rem, 4vw, 2.8rem) clamp(1.8rem, 4vw, 2.8rem);
+  color: #cac3b3;
+}
+.welcome-banner-copy h2 { color: #fff; margin: 0.2em 0 0.5em; }
+.welcome-banner-copy p { margin: 0 0 1.4rem; }
+.welcome-banner-copy .btn-row { flex-wrap: wrap; }
+
+/* --------------------------------------------------------------------------
    Prose / article
    -------------------------------------------------------------------------- */
 /* --------------------------------------------------------------------------

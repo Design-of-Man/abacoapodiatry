@@ -1266,6 +1266,15 @@ details.faq.hidden { display: none; }
 }
 .photo-portrait { aspect-ratio: 4 / 5; min-height: 0; }
 
+.about-photo {
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.about-photo img { width: 100%; height: auto; display: block; }
+
 /* Author box */
 .author-box {
   display: grid;
@@ -2059,6 +2068,60 @@ a.btn-ghost { color: var(--head); }
 @keyframes ticker-slide {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* Instagram strip — rolling photo feed pinned to the bottom of the hero */
+.ig-strip {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(0deg, rgba(12, 11, 8, 0.88), rgba(12, 11, 8, 0.5) 75%, transparent);
+}
+.ig-strip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  flex: none;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #f2d491;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ig-strip-label .ic, .ig-strip-label svg { width: 1.1em; height: 1.1em; flex: none; }
+.ig-strip-label:hover { color: #fff; }
+.ig-strip-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 94%, transparent);
+}
+.ig-strip-track {
+  display: flex;
+  gap: 0.6rem;
+  width: max-content;
+  animation: ticker-slide 26s linear infinite;
+}
+.ig-strip:hover .ig-strip-track, .ig-strip:focus-within .ig-strip-track { animation-play-state: paused; }
+.ig-strip-track img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(214, 185, 116, 0.35);
+  display: block;
+}
+@media (max-width: 640px) {
+  .ig-strip-label .txt { display: none; }
+  .ig-strip-track img { width: 46px; height: 46px; }
 }
 
 /* Hero parallax drift */

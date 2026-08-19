@@ -1065,6 +1065,45 @@ details.faq.hidden { display: none; }
 .section-dark .testi-btn { background: rgba(255,255,255,0.06); border-color: rgba(214,185,116,0.3); color: #fff; }
 
 /* --------------------------------------------------------------------------
+   From the Practice — scrollable feed of recent/clinical photos
+   -------------------------------------------------------------------------- */
+.section-head .btn { margin-top: 1.2rem; }
+.feed-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(280px, 68%);
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.4rem 0.2rem 1rem;
+  scrollbar-width: none;
+}
+.feed-track::-webkit-scrollbar { display: none; }
+.feed-track:focus-visible { outline: 3px solid #f2d491; outline-offset: 4px; border-radius: var(--radius-lg); }
+.feed-card {
+  scroll-snap-align: start;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(214, 185, 116, 0.22);
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+}
+.feed-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.feed-card figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.2rem 1rem 0.9rem;
+  background: linear-gradient(0deg, rgba(12,11,8,0.9), transparent);
+  color: #f7f4ec;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.feed-disclaimer { font-size: 0.82rem; color: var(--text-soft); text-align: center; margin: 0.6rem auto 0; max-width: 46em; }
+.section-dark .feed-disclaimer { color: #a49b88; }
+
+/* --------------------------------------------------------------------------
    Foot pain map
    -------------------------------------------------------------------------- */
 @keyframes foot-float {

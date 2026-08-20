@@ -72,20 +72,26 @@ META-->
                  (String(data.success) === "true") already matches FormSubmit's
                  own response shape -- that contract was built to mirror
                  FormSubmit's format in the first place. -->
-            <form id="contact-form" action="https://formsubmit.co/ajax/nicholasbkashuba@gmail.com" method="POST" novalidate>
+            <form id="contact-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST" novalidate>
               <input type="hidden" name="_subject" value="New Patient">
-              <!-- The office is CC'd rather than made the primary recipient, on
-                   purpose. FormSubmit's activation is per recipient address, so
-                   promoting a staff address to primary would put the form back in
-                   the never-activated state that silently ate every lead before
-                   2026-08-15 -- until somebody in the office found and clicked the
-                   link. The activated address stays primary and the office rides
-                   along on CC, which needs no activation.
+              <!-- Handed over to the office on 2026-08-18. angela.d@ is the
+                   primary recipient; the rest ride on _cc, which needs no
+                   activation of its own.
 
-                   Move a staff address into the action only with someone standing
-                   by to click the activation email, and only after confirming a
-                   real submission arrives. -->
-              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,angela.d@jupiterlaser.com,doctor.cedeno@jupiterlaser.com">
+                   FormSubmit binds activation to the address in the action URL,
+                   so this handover minted a fresh activation requirement and was
+                   done with Angela standing by to click it. Until that click,
+                   every submission is accepted, answered success:false, and
+                   dropped -- the failure that silently ate every lead before
+                   2026-08-15. Anyone changing the action again is re-arming that
+                   trap: do it only with the new recipient at their inbox, and
+                   confirm a real submission arrives before walking away.
+
+                   nicholasbkashuba@gmail.com stays on CC deliberately. It is the
+                   address that was activated first and it belongs to the person
+                   who would notice leads drying up, which is how a silent failure
+                   gets caught in days rather than months. -->
+              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,doctor.cedeno@jupiterlaser.com,nicholasbkashuba@gmail.com">
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>

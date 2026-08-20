@@ -931,6 +931,30 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .card p { font-size: var(--fs-sm); }
 .card .link-arrow { margin-top: auto; font-size: var(--fs-sm); position: relative; z-index: 2; }
 
+/* --------------------------------------------------------------------------
+   Certification badges
+   -------------------------------------------------------------------------- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.1rem;
+}
+.cert-tile {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.cert-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #d6b974; }
+.cert-tile img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.cert-caption { margin-top: 0.6rem; font-size: 0.82rem; color: var(--text-soft); text-align: center; line-height: 1.35; }
+
 .card-icon {
   width: 54px;
   height: 54px;

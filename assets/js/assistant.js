@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var PHONE_HTML = '<a href="tel:+15619151934">(561) 915-1934</a>';
+  var PHONE_HTML = '<a href="tel:+15616244800">(561) 624-4800</a>';
 
   /* Each topic: match terms (any hit scores), answer HTML, follow-up chips. */
   var TOPICS = [

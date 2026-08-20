@@ -74,7 +74,7 @@ PAGE_TMPL = """<!--META
 {{
   "path": "locations/{slug}/",
   "title": "Podiatrist for {name}, FL | Abacoa Podiatry",
-  "desc": "Foot & ankle care for {name}, FL — {drive} from our Jupiter office. MLS laser, shockwave & regenerative medicine. Call (561) 915-1934.",
+  "desc": "Foot & ankle care for {name}, FL — {drive} from our Jupiter office. MLS laser, shockwave & regenerative medicine. Call (561) 624-4800.",
   "nav": "about",
   "priority": 0.6,
   "crumbs": [["Locations", "/locations/"], ["{name}", null]],
@@ -105,7 +105,7 @@ META-->
         <p class="lede">FDA-cleared MLS laser therapy, shockwave, and regenerative medicine — the treatments {name} residents can't find around the corner, {drive} away on Military Trail in Jupiter.</p>
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href="/contact/">Book Your Evaluation</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+          <a class="btn btn-ghost btn-lg" href="tel:+15616244800">(561) 624-4800</a>
         </div>
       </div>
     </section>
@@ -134,7 +134,7 @@ META-->
                 <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;origin={origin_q}&amp;destination={dest_q}" rel="noopener">Turn-by-Turn Directions</a>
               </div>
               <hr>
-              <p style="font-size:0.92rem;margin:0"><strong>Abacoa Podiatry &amp; Leg Vein Center</strong><br>{dest}<br><a href="tel:+15619151934">(561) 915-1934</a><br>{{{{HOURS_JUP_LINE}}}}</p>
+              <p style="font-size:0.92rem;margin:0"><strong>Abacoa Podiatry &amp; Leg Vein Center</strong><br>{dest}<br><a href="tel:+15616244800">(561) 624-4800</a><br>{{{{HOURS_JUP_LINE}}}}</p>
             </div>
           </div>
         </div>
@@ -160,7 +160,7 @@ META-->
           </div>
           <div class="btn-row">
             <a class="btn btn-primary btn-lg" href="/contact/">Book Appointment</a>
-            <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+            <a class="btn btn-ghost btn-lg" href="tel:+15616244800">(561) 624-4800</a>
           </div>
         </div>
       </div>

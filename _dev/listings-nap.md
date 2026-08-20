@@ -23,7 +23,7 @@ Jupiter, with Palm Beach Gardens as a `department` and a child entity carrying
 | Name | `Abacoa Podiatry & Leg Vein Center` |
 | Street | `4601 Military Trail, Suite 202` |
 | City / State / ZIP | `Jupiter`, `FL`, `33458` |
-| Phone | `(561) 915-1934` |
+| Phone | `(561) 624-4800` |
 | Website | `https://jupiterlaser.com` *(after cutover — see MIGRATION.md)* |
 | Geo | `26.8934, -80.1096` |
 
@@ -34,7 +34,7 @@ Jupiter, with Palm Beach Gardens as a `department` and a child entity carrying
 | Name | `Abacoa Podiatry & Leg Vein Center — Palm Beach Gardens` |
 | Street | `11380 Prosperity Farms Rd, Suite 204` |
 | City / State / ZIP | `Palm Beach Gardens`, `FL`, `33410` |
-| Phone | `(561) 915-1934` *(same line)* |
+| Phone | `(561) 624-4800` *(same line)* |
 | Website | `https://jupiterlaser.com/locations/palm-beach-gardens/` |
 | Geo | `26.8412, -80.0714` |
 

@@ -177,12 +177,21 @@ like it was taking bookings while taking none. Replaced with `api/contact.js` (S
 on 2026-08-15 for exactly that reason.
 
 **It's back on 2026-08-18, deliberately.** The client asked for FormSubmit specifically,
-was told this history first, and confirmed anyway. Recipient is temporarily
-`nicholasbkashuba@gmail.com` so he can click the activation link himself; it gets
-repointed at Dr. Cedeno's and the rest of the office's addresses once that's done.
-`api/contact.js` is untouched and still in the repo for a future revert. **Do not silently
-switch the form back to `/api/contact/` citing this file** — that decision is the client's
-to make, not a bug to fix.
+was told this history first, and confirmed anyway. `api/contact.js` is untouched and still
+in the repo for a future revert. **Do not silently switch the form back to `/api/contact/`
+citing this file** — that decision is the client's to make, not a bug to fix.
+
+**Recipients, as of the 2026-08-18 handover:** `angela.d@jupiterlaser.com` is primary, with
+`janice.j@`, `doctor.cedeno@` and `nicholasbkashuba@gmail.com` on `_cc`. The owner's Gmail
+stays on CC on purpose — it was the first address activated, and it belongs to the person
+who would notice leads drying up.
+
+**Changing the primary recipient re-arms the trap.** FormSubmit binds activation to the one
+address in the action URL, so every change to it mints a *new* activation requirement, and
+until someone clicks that link every submission is accepted, answered `success:false`, and
+dropped. CC addresses need no activation, which is why extra recipients belong there. Change
+the action only with the new recipient at their inbox, and confirm a real submission arrives
+before walking away.
 
 **The response means "stored", and nothing weaker.** `api/contact.js` writes to Supabase
 FIRST and only answers `success: "true"` if that insert succeeded; a failed write returns

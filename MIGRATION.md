@@ -4,12 +4,42 @@ The owner's worry — "if we replace the site, my leads disappear" — is legiti
 migrations lose rankings when old URLs die, tracking breaks, or Google Business Profile
 links go stale. This plan removes each of those risks. Follow it in order.
 
-**Context worth knowing:** the domain property in Search Console (`sc-domain:jupiterlaser.com`,
-verified 2026-08-17) shows the opposite of a decline — clicks and impressions both roughly
-2.5x'd over the last two 90-day windows. The "steady decline since April" this section used
-to claim came from the previous vendor's reporting and does not hold up against the real
-account; don't repeat it. The migration is still the right call, just not for that reason —
-see the redirect coverage and the content-parity work in `_dev/STATUS.md` instead.
+**Context worth knowing — corrected 2026-08-24.** This section previously said the account
+had "roughly 2.5x'd over the last two 90-day windows" and instructed the reader not to
+repeat the decline claim. **That was a windowing artifact and the decline is real.**
+
+`gsc.py compare --days 90` does return +97% clicks / +86% impressions. But the property
+holds no data before **2026-04-18**, so that comparison puts 90 days of data against 36:
+
+| | previous window | current window |
+|---|---|---|
+| days *with data* | 36 | 90 |
+| clicks | 1,143 | 2,252 |
+| impressions | 212,049 | 395,107 |
+| **clicks per day with data** | **31.8** | **25.0** — down 21% |
+| **impressions per day with data** | **5,890** | **4,390** — down 25% |
+
+Average position moved 12.1 → 14.3, which is worse, and the original table already
+flagged it — it was read as growth anyway.
+
+Normalised per day, the monthly series is a steady four-month slide that starts well
+before the migration:
+
+| month | impressions/day | avg position |
+|---|---|---|
+| Apr (from 18th) | 6,345 | 10.9 |
+| May | 5,998 | 12.8 |
+| Jun | 5,212 | 12.7 |
+| Jul | 3,751 | 15.3 |
+| Aug 1–16 | 3,254 | 17.3 |
+
+So the previous vendor's "steady decline since April" was **right**, and this file was
+telling everyone to ignore it. Any window that starts before 2026-04-18 is missing data,
+not measuring zero — the same trap as reading a Vercel Analytics start date as a traffic
+collapse. Compare per day with data, or keep both windows inside the property's history.
+
+The migration is still the right call, and the redirect coverage below still holds
+(`_dev/verify-redirects.py` reports 156/156 resolving to 200 as of 2026-08-24).
 
 Google Ads spend is **$3k–3.9k/mo** per the owner's actual billing (confirmed 2026-08-18),
 not the ~$5,500/mo this section used to state. Every organic ranking this site wins still

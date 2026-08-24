@@ -71,6 +71,12 @@ JUPITER = Office(
     # rendering as a third line that mixed a Jupiter-only note with a
     # site-wide one ("Jupiter lunch closure 12:30-1:30 · Weekends closed"),
     # which read as one statement about both offices.
+    #
+    # Saturday is concierge-appointment-only here too (owner, 2026-08-24) --
+    # the same arrangement as Palm Beach Gardens, and for the same reason it
+    # lives in `special` rather than `days`: no fixed public hours were given,
+    # so no OpeningHoursSpecification is asserted for it.
+    special={"Saturday": "Concierge appointments only"},
 )
 
 # Updated 2026-08-21: open Mon/Tue/Wed 8-4:30 and Fri 8-2, closed Thursday

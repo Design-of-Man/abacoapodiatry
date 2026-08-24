@@ -35,13 +35,22 @@ class Office:
     as an OpeningHoursSpecification -- schema.org has no "closed" entry, and
     inventing one with opens == closes reads as open-for-zero-minutes rather
     than shut.
+
+    `special` maps a day name to a short label for a day that is not open to
+    walk-in/call-in booking on a fixed public schedule (e.g. "By concierge
+    appointment only"). It is kept out of `days` on purpose: we were not given
+    actual opening/closing times for it, and asserting an OpeningHoursSpecification
+    with invented times would repeat the exact class of error this file exists
+    to prevent. Special days are shown in prose and the footer, but never in
+    the schema.org hours block.
     """
 
-    def __init__(self, key, label, days, lunch=None):
+    def __init__(self, key, label, days, lunch=None, special=None):
         self.key = key
         self.label = label
         self.days = days
         self.lunch = lunch          # (start, end) or None
+        self.special = special or {}  # day name -> label, excluded from schema
 
     @property
     def open_days(self):
@@ -58,20 +67,35 @@ JUPITER = Office(
         "Thursday": ("08:00", "17:00"),
         "Friday": ("08:00", "14:00"),
     },
-    lunch=("12:30", "13:30"),
+    # Lunch closure removed 2026-08-24 at the owner's instruction: it was
+    # rendering as a third line that mixed a Jupiter-only note with a
+    # site-wide one ("Jupiter lunch closure 12:30-1:30 · Weekends closed"),
+    # which read as one statement about both offices.
+    #
+    # Saturday is concierge-appointment-only here too (owner, 2026-08-24) --
+    # the same arrangement as Palm Beach Gardens, and for the same reason it
+    # lives in `special` rather than `days`: no fixed public hours were given,
+    # so no OpeningHoursSpecification is asserted for it.
+    special={"Saturday": "Concierge appointments only"},
 )
 
-# Confirmed with the practice on 2026-08-15. Two days a week, and no lunch
-# closure was given -- so none is asserted. Do not "tidy" this by copying
-# Jupiter's lunch break across; that guess is exactly the bug this file exists
-# to prevent.
+# Updated 2026-08-21: open Mon/Tue/Wed 8-4:30 and Fri 8-2, closed Thursday
+# and Sunday. Saturday is concierge-appointment-only -- no public walk-in/
+# call-in hours were given for it, so it lives in `special`, not `days`; see
+# the Office docstring for why that distinction is not just tidiness. No
+# lunch closure was given -- so none is asserted. Do not "tidy" this by
+# copying Jupiter's lunch break across; that guess is exactly the bug this
+# file exists to prevent.
 PALM_BEACH_GARDENS = Office(
     key="pbg",
     label="Palm Beach Gardens",
     days={
         "Monday": ("08:00", "16:30"),
+        "Tuesday": ("08:00", "16:30"),
         "Wednesday": ("08:00", "16:30"),
+        "Friday": ("08:00", "14:00"),
     },
+    special={"Saturday": "Concierge appointments only"},
 )
 
 OFFICES = [JUPITER, PALM_BEACH_GARDENS]
@@ -142,17 +166,30 @@ def plain(office):
 
 
 def closed_note(office):
-    """Human note about what is closed, HTML-escaped."""
-    shut = [d for d in _ORDER if d not in office.days]
-    if not shut:
-        return ""
+    """Human note about what is closed, HTML-escaped.
+
+    Special days (see the Office docstring) are genuinely open on some basis,
+    just not a fixed public schedule, so they are never folded into "Closed"
+    -- they get their own clause appended instead.
+    """
+    shut = [d for d in _ORDER if d not in office.days and d not in office.special]
     weekend = {"Saturday", "Sunday"}
-    bits = [_ABBR[d] for d in shut if d not in weekend]
+    bits = []
     if weekend.issubset(set(shut)):
+        bits = [_ABBR[d] for d in shut if d not in weekend]
         bits.append("weekends")
-    if len(bits) == 1:
-        return "Closed " + bits[0]
-    return "Closed " + ", ".join(bits[:-1]) + " &amp; " + bits[-1]
+    else:
+        # Only bundle as "weekends" when both days are actually shut; a lone
+        # closed Sunday (Saturday held out as special) must still be named,
+        # not silently dropped the way a blanket weekend filter would.
+        bits = [_ABBR[d] for d in shut]
+    note = ""
+    if bits:
+        note = "Closed " + bits[0] if len(bits) == 1 else "Closed " + ", ".join(bits[:-1]) + " &amp; " + bits[-1]
+    specials = " &middot; ".join(f"{_ABBR[d]}: {label}" for d, label in office.special.items() if d in _ORDER)
+    if note and specials:
+        return f"{note} &middot; {specials}"
+    return note or specials
 
 
 def ld(office, indent=6):
@@ -197,15 +234,22 @@ def footer_rows(office):
     for start, end, (opens, closes) in _runs(office):
         rows.append(f'<li><span>{_run_label(start, end, "&ndash;")}</span> '
                     f'<span>{_h12(opens)} &ndash; {_h12(closes)}</span></li>')
-    shut = [d for d in _ORDER if d not in office.days]
+    shut = [d for d in _ORDER if d not in office.days and d not in office.special]
     if shut:
         weekend = {"Saturday", "Sunday"}
-        weekdays = [_ABBR[d] for d in shut if d not in weekend]
-        if weekdays:
-            rows.append(f'<li><span>{", ".join(weekdays)}</span> '
-                        f'<span>Closed</span></li>')
         if weekend.issubset(set(shut)):
+            weekdays = [_ABBR[d] for d in shut if d not in weekend]
+            if weekdays:
+                rows.append(f'<li><span>{", ".join(weekdays)}</span> '
+                            f'<span>Closed</span></li>')
             rows.append('<li><span>Sat&ndash;Sun</span> <span>Closed</span></li>')
+        else:
+            # A lone closed weekend day (the other held out as `special`)
+            # must still get its own row rather than being filtered away.
+            rows.append(f'<li><span>{", ".join(_ABBR[d] for d in shut)}</span> '
+                        f'<span>Closed</span></li>')
+    for day, label in office.special.items():
+        rows.append(f'<li><span>{_ABBR[day]}</span> <span>{label}</span></li>')
     return rows
 
 

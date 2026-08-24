@@ -76,7 +76,7 @@ d.text((80, 490), sub, font=fit(sub, 26, MAXW, bold=False), fill=(202, 195, 179)
 
 # No domain here on purpose: the site is mid-migration between hosts, and a
 # baked-in URL is the one thing on this card that can silently go stale.
-foot = "Jupiter & Palm Beach Gardens, FL   •   (561) 624-4800"
+foot = "Jupiter & Palm Beach Gardens, FL   •   (561) 915-1934"
 d.text((80, 540), foot, font=fit(foot, 26, MAXW), fill=(255, 255, 255))
 
 img.save("assets/img/og-image.png", optimize=True)

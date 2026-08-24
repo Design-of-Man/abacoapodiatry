@@ -67,7 +67,10 @@ JUPITER = Office(
         "Thursday": ("08:00", "17:00"),
         "Friday": ("08:00", "14:00"),
     },
-    lunch=("12:30", "13:30"),
+    # Lunch closure removed 2026-08-24 at the owner's instruction: it was
+    # rendering as a third line that mixed a Jupiter-only note with a
+    # site-wide one ("Jupiter lunch closure 12:30-1:30 · Weekends closed"),
+    # which read as one statement about both offices.
 )
 
 # Updated 2026-08-21: open Mon/Tue/Wed 8-4:30 and Fri 8-2, closed Thursday

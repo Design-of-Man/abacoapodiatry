@@ -329,6 +329,41 @@
   }
 
   /* ------------------------------------------------------------------
+     Conversion tracking (GA4 + Vercel Analytics)
+     Fire-and-forget: a blocked/missing gtag or window.va must never throw
+     or delay the tel: navigation / form submission it's attached to.
+     ------------------------------------------------------------------ */
+  var track = function (name, data) {
+    try {
+      if (typeof gtag === "function") {
+        gtag("event", name, {
+          event_category: "engagement",
+          event_label: data.path,
+          location_id: data.location_id
+        });
+      }
+    } catch (e) {}
+    try {
+      if (window.va) {
+        window.va("event", { name: name, data: data });
+      }
+    } catch (e) {}
+  };
+
+  // One delegated listener for every tel: link (~57 of them across header,
+  // hero, sticky call bar, footer and page body) rather than 57 handlers.
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!link) return;
+    var locEl = link.closest("[data-call-location]");
+    var locationId = locEl
+      ? locEl.getAttribute("data-call-location")
+      : (link.closest("[id]") || {}).id || "unknown";
+    track("click_to_call", { path: window.location.pathname, location_id: locationId });
+    // No preventDefault, no delay — the tel: link must dial normally.
+  });
+
+  /* ------------------------------------------------------------------
      Contact form (Formspree-style endpoint; graceful fallback)
      ------------------------------------------------------------------ */
   var form = $("#contact-form");
@@ -349,6 +384,7 @@
           status.className = "form-status ok";
           status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
           form.reset();
+          track("contact_form_submit", { path: window.location.pathname });
         } else {
           throw new Error("bad status");
         }

@@ -102,6 +102,7 @@ sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
 import instagram  # noqa: E402
 import hours  # noqa: E402
+import reviews  # noqa: E402
 
 META_RE = re.compile(r"^<!--META\s*(\{.*?\})\s*META-->\s*", re.DOTALL)
 
@@ -430,6 +431,10 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{HOURS_PBG_LINE}}", hours.line(hours.PALM_BEACH_GARDENS))
         .replace("{{HOURS_PBG_CLOSED}}", hours.closed_note(hours.PALM_BEACH_GARDENS))
         .replace("{{HOURS_FOOTER}}", hours.footer_html())
+
+        # Review count/rating, from _src/reviews.py -- a dated snapshot,
+        # not a live fetch. See that file before touching this.
+        .replace("{{REVIEW_LD_CLINIC}}", reviews.aggregate_rating_property("https://jupiterlaser.com/#clinic"))
         # Last, so it also reaches placeholders inside page-level schema and
         # page bodies -- not just the shared template.
         .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)

@@ -72,7 +72,14 @@ META-->
                  own response shape -- that contract was built to mirror
                  FormSubmit's format in the first place. -->
             <form id="contact-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST" novalidate>
+              <!-- Subject is overwritten to "New Patient (from website)" by
+                   main.js at submit time, and a verified=yes field added.
+                   A bot posting straight to FormSubmit never runs that script,
+                   so its email keeps this bare subject. Nothing is blocked
+                   either way; the office sorts by subject. -->
               <input type="hidden" name="_subject" value="New Patient">
+              <input type="hidden" name="verified" value="">
+              <input type="hidden" name="flags" value="">
               <!-- Handed over to the office on 2026-08-18. angela.d@ is the
                    primary recipient; the rest ride on _cc, which needs no
                    activation of its own.

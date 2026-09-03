@@ -28,7 +28,7 @@ old	destination	why
 /ankle-replacement-surgery	/services/foot-ankle-surgery/	specific procedure, surgery page covers it
 /bunion	/conditions/bunions/	direct equivalent
 /bunionplasty-procedure-jupiter-fl	/conditions/bunions/	branded bunion procedure
-/cysts-warts	/conditions/	no dedicated page; hub lists what is treated
+/cysts-warts	/conditions/plantar-warts/	direct equivalent since 2026-09-03; was the conditions hub
 /diabetic-foot-care	/conditions/diabetic-foot-care/	direct equivalent
 /dr-isin-a-mustafa	/meet-dr-mustafa/	direct equivalent
 /flat-feet	/conditions/flat-feet/	direct equivalent
@@ -87,7 +87,6 @@ old	destination	why
 
 # ---- Posts: plantar fasciitis and heel -------------------------------------
 /pain-science-plantar-fasciitis	/conditions/plantar-fasciitis/	topic match
-/plantar-fasciitis-steroid-injection-when-to-consider-it	/blog/laser-therapy-vs-cortisone-injections/	same question, and the new post answers it directly
 
 # ---- Posts: laser ----------------------------------------------------------
 /laser-treatment-sports-injuries-feet-ankles	/effective-laser-therapy-for-sports-injuries-speed-up-your-recovery-time/	same topic as the ported sports-recovery article, avoids duplicating it

@@ -75,10 +75,10 @@ Ordered by what cannot be undone if it is missed.
       it refetches both sources and string-matches every span, exiting non-zero on any
       drift. Two source typos are quoted around rather than corrected, deliberately.
       The homepage block was removed when these were unverified and can come back now.
-- [ ] **Enable Web Analytics** on the Vercel project. STILL OFF, so no lead events are being recorded at all. The lead instrumentation
-      (`call_click`, `form_submit`, `appointment_cta`) is live in `assets/js/main.js` but
-      collects nothing until the toggle is on; custom events need a Pro plan. Turn it on
-      *before* cutover so there is a pre-launch baseline to compare against.
+- [x] **Enable Web Analytics** on the Vercel project. On since 2026-08-20; `call_click`,
+      `form_submit` and `appointment_cta` are recording (first two weeks: 41 / 15 / 49).
+      The same three events are mirrored into GA4 (`G-0JJYDN1063`) as of 2026-09-03 so
+      they can be imported into Google Ads as conversions.
 - [ ] **Confirm services offered** (telehealth page, PRP, stem cell) match what the practice currently offers
 - [x] ~~Add real photos~~ — Dr. Cedeno, Dr. Mustafa and the logo are installed.
 - [ ] **Remaining photos**: drop `office.jpg` and `mls-laser.jpg` into

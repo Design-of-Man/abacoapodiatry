@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=139ce89af0">
+  <link rel="stylesheet" href="/assets/css/main.css?v=026e98a7df">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -191,7 +191,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-08-25"
+    "dateModified": "2026-09-03"
   }
   </script>
   <script type="application/ld+json">
@@ -347,7 +347,14 @@
                  own response shape -- that contract was built to mirror
                  FormSubmit's format in the first place. -->
             <form id="contact-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST" novalidate>
+              <!-- Subject is overwritten to "New Patient (from website)" by
+                   main.js at submit time, and a verified=yes field added.
+                   A bot posting straight to FormSubmit never runs that script,
+                   so its email keeps this bare subject. Nothing is blocked
+                   either way; the office sorts by subject. -->
               <input type="hidden" name="_subject" value="New Patient">
+              <input type="hidden" name="verified" value="">
+              <input type="hidden" name="flags" value="">
               <!-- Handed over to the office on 2026-08-18. angela.d@ is the
                    primary recipient; the rest ride on _cc, which needs no
                    activation of its own.
@@ -624,7 +631,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=a6b035298a" defer></script>
+  <script src="/assets/js/main.js?v=7274995b91" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

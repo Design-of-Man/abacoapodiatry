@@ -21,6 +21,11 @@
      ------------------------------------------------------------------ */
   var track = function (name, data) {
     if (typeof window.va === "function") window.va("event", { name: name, data: data || {} });
+    // Mirror into GA4 (gtag is loaded sitewide from template.html) so the same
+    // three events can be imported into Google Ads as conversions. Ads today
+    // optimises on call-extension taps alone and sees nothing that happens on
+    // the site. Same payload rules: placement only, never a field value.
+    if (typeof window.gtag === "function") window.gtag("event", name, data || {});
   };
 
   var placementOf = function (el) {
@@ -409,6 +414,7 @@
      Contact form (Formspree-style endpoint; graceful fallback)
      ------------------------------------------------------------------ */
   var form = $("#contact-form");
+  var pageLoadedAt = Date.now();
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -421,6 +427,23 @@
       // application/json into req.body, and does not parse multipart.
       var payload = {};
       new FormData(form).forEach(function (v, k) { payload[k] = v; });
+      // Spam labelling, never spam blocking. In the first 17 days on FormSubmit
+      // roughly 25 of 28 submissions were bots, and they POST to FormSubmit
+      // directly without ever running this script. Nothing here rejects a
+      // submission -- a missed real lead costs far more than a read spam
+      // email. Instead a submission that came through the page announces
+      // itself: the subject changes and a verified field is set. A bot that
+      // skipped the browser keeps the bare "New Patient" subject and no
+      // verified field, so the office can sort the inbox by subject.
+      payload._subject = "New Patient (from website)";
+      payload.verified = "yes";
+      var flags = [];
+      var secs = (Date.now() - pageLoadedAt) / 1000;
+      if (secs < 4) flags.push("filled in under 4s");
+      var digits = String(payload.phone || "").replace(/\D/g, "");
+      if (!(digits.length === 10 || (digits.length === 11 && digits.charAt(0) === "1"))) flags.push("phone not a 10-digit US number");
+      if (/https?:\/\/|www\./i.test(String(payload.message || ""))) flags.push("message contains a link");
+      payload.flags = flags.length ? flags.join("; ") : "none";
       fetch(action, {
         method: "POST",
         body: JSON.stringify(payload),

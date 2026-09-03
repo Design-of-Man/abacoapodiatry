@@ -73,7 +73,7 @@ CITIES = [
 PAGE_TMPL = """<!--META
 {{
   "path": "locations/{slug}/",
-  "title": "Podiatrist for {name}, FL | Abacoa Podiatry",
+  "title": "Podiatrist Near {name}, FL | Abacoa Podiatry & Leg Vein Center",
   "desc": "Foot & ankle care for {name}, FL — {drive} from our Jupiter office. MLS laser, shockwave & regenerative medicine. Call (561) 915-1934.",
   "nav": "about",
   "priority": 0.6,

@@ -2802,3 +2802,12 @@ a.btn-ghost { color: var(--head); }
 @media (prefers-reduced-motion: reduce) {
   .ig-track { animation: none; }
 }
+
+/* In-article lead block, injected by build.py after the second heading of every
+   legacy post. The 44 ported posts carry most of the site's search traffic and
+   produced 1 of 49 appointment clicks in the first two weeks: readers finished
+   the article and left. Flat, no card chrome, so it reads as part of the prose. */
+.article-cta { margin: 2rem 0; padding: 1.25rem 1.4rem; border-left: 4px solid var(--gold, #c9a45c); background: rgba(201,164,92,0.08); }
+.article-cta p { margin: 0 0 0.8rem; font-size: 1rem; }
+.article-cta .btn-row { margin: 0; gap: 0.6rem; }
+@media (max-width: 600px) { .article-cta .btn-row .btn { width: 100%; text-align: center; } }

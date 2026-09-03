@@ -279,6 +279,36 @@ def build_redirects():
     return len(pairs)
 
 
+ARTICLE_CTA = """
+        <aside class="article-cta" aria-label="Book an appointment">
+          <p><strong>Dealing with this in Jupiter or Palm Beach Gardens?</strong> Dr. Cedeno and Dr. Mustafa see new patients within days, and most treatment here is non-surgical. Call <a href="tel:+15619151934">(561) 915-1934</a> or request a visit online.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="/contact/">Request an Appointment</a>
+          </div>
+        </aside>
+"""
+
+_H2_RE = re.compile(r"<h2[\s>]")
+
+
+def inject_article_cta(content: str) -> str:
+    """Drop a lead block before the second <h2> of a ported blog post.
+
+    The 44 legacy posts earn most of the site's search clicks and produced 1 of
+    49 appointment clicks in the first two weeks after cutover: the reader
+    finished (or skimmed) and left, because the only call to action sat below
+    the last section. One block, after the reader has committed to the
+    article, before the meat. Posts with fewer than two sections are left alone.
+    """
+    if 'class="article-cta"' in content:
+        return content
+    hits = list(_H2_RE.finditer(content))
+    if len(hits) < 2:
+        return content
+    at = hits[1].start()
+    return content[:at] + ARTICLE_CTA.lstrip("\n") + "        " + content[at:]
+
+
 def build_page(template: str, raw: str, name: str):
     m = META_RE.match(raw)
     if not m:
@@ -288,6 +318,8 @@ def build_page(template: str, raw: str, name: str):
     except json.JSONDecodeError as e:
         sys.exit(f"ERROR: bad JSON meta in {name}: {e}")
     content = raw[m.end():]
+    if name.startswith("post-"):
+        content = inject_article_cta(content)
 
     path = meta["path"]
     canon = BASE_URL + "/" + path

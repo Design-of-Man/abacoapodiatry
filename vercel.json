@@ -94,12 +94,12 @@
     },
     {
       "source": "/cysts-warts/",
-      "destination": "/conditions/",
+      "destination": "/conditions/plantar-warts/",
       "permanent": true
     },
     {
       "source": "/cysts-warts",
-      "destination": "/conditions/",
+      "destination": "/conditions/plantar-warts/",
       "permanent": true
     },
     {
@@ -490,16 +490,6 @@
     {
       "source": "/pain-science-plantar-fasciitis",
       "destination": "/conditions/plantar-fasciitis/",
-      "permanent": true
-    },
-    {
-      "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
-      "destination": "/blog/laser-therapy-vs-cortisone-injections/",
-      "permanent": true
-    },
-    {
-      "source": "/plantar-fasciitis-steroid-injection-when-to-consider-it",
-      "destination": "/blog/laser-therapy-vs-cortisone-injections/",
       "permanent": true
     },
     {

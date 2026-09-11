@@ -1,0 +1,30 @@
+# Vercel serves the committed repo root as static files — there is no build
+# command — so anything left in the deployment is publicly fetchable at the
+# site's domain. Only the generated output belongs there.
+#
+# Verify after changing this: /MIGRATION.md must 404 while /, /sitemap.xml,
+# /llms.txt, /robots.txt and /assets/css/main.css still resolve.
+
+# Page sources, the builder, and the dead Dropbox-era deploy script.
+# The finished pages are committed at the repo root; these are how they're made.
+_src/
+
+# Internal tooling — the preflight gate.
+_dev/
+
+# Internal documentation. MIGRATION.md is the reason this file exists: it
+# carries the client's ad spend, their Search Console history and the owner's
+# own words about the business. None of that should ever be reachable at
+# jupiterlaser.com/MIGRATION.md.
+#
+# Public text files are .txt/.xml (llms.txt, robots.txt, sitemap.xml) and are
+# unaffected by this rule.
+*.md
+
+# Portability files for other hosts. Inert on Vercel, which reads vercel.json.
+_redirects
+.htaccess
+
+# OS and editor noise
+.DS_Store
+Thumbs.db

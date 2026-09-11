@@ -410,6 +410,9 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{CANON}}", esc(canon))
         .replace("{{ROBOTS}}", meta.get("robots", "index, follow"))
         .replace("{{OG_TYPE}}", meta.get("ogtype", "website"))
+        # Per-page share card. Pages that don't set one get the practice card.
+        .replace("{{OG_IMAGE}}",
+                 IMAGE_ORIGIN + meta.get("ogimage", "/assets/img/og-image.png"))
         .replace("{{NAV}}", meta.get("nav", ""))
         # Geo meta defaults to the Jupiter office. The Palm Beach Gardens
         # office page overrides both, so the one page that is genuinely about

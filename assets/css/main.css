@@ -2865,3 +2865,15 @@ a.btn-ghost { color: var(--head); }
 .article-cta p { margin: 0 0 0.8rem; font-size: 1rem; }
 .article-cta .btn-row { margin: 0; gap: 0.6rem; }
 @media (max-width: 600px) { .article-cta .btn-row .btn { width: 100%; text-align: center; } }
+
+/* Centred page hero, opt-in per page via <body class="hero-centered">.
+   The /hotworx/ event hero is a standalone invitation rather than the top of an
+   article, so it reads better centred, like the poster it is promoting. Scoped
+   by body class on purpose: every other .page-hero on the site stays left
+   aligned, and a global change here would restyle 100+ pages.
+   .kicker and .crumbs are inline-flex/flex, so they need the explicit centring
+   rather than inheriting text-align. */
+.hero-centered .page-hero .wrap { text-align: center; }
+.hero-centered .page-hero .crumbs,
+.hero-centered .page-hero .btn-row { justify-content: center; }
+.hero-centered .page-hero .lede { margin-inline: auto; max-width: 48ch; }

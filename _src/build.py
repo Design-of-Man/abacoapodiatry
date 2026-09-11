@@ -375,6 +375,10 @@ def build_page(template: str, raw: str, name: str):
     # when their content last changed.
     dates = modified_dates()
     modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
+    # Carried out on meta so the sitemap can report the same honest date this
+    # page's own dateModified reports. Two answers for one question is how they
+    # drift apart.
+    meta["modified"] = modified
     if modified:
         for s in schemas:
             t = s.get("@type")
@@ -469,7 +473,6 @@ def main():
         sys.exit("ERROR: no pages found in _src/pages/")
 
     sitemap_rows = []
-    today = date.today().isoformat()
     sources = [(p.name, p.read_text(encoding="utf-8")) for p in pages]
     sources += list(location_pages())
     for name, raw in sources:
@@ -481,14 +484,29 @@ def main():
                 BASE_URL + "/" + meta["path"],
                 meta.get("priority", 0.7),
                 meta.get("changefreq", "monthly"),
+                meta.get("modified"),
             ))
 
     sitemap_rows.sort(key=lambda r: (-r[1], r[0]))
-    urls = "\n".join(
-        f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{today}</lastmod>\n"
-        f"    <changefreq>{freq}</changefreq>\n    <priority>{pri:.1f}</priority>\n  </url>"
-        for loc, pri, freq in sitemap_rows
-    )
+
+    # <lastmod> is the date the page's SOURCE last changed, not the date of this
+    # build. Stamping today onto all 104 URLs every rebuild -- which is what this
+    # did until now -- tells answer engines the entire site changes daily, which
+    # is the "blanket sitemap lastmod" that modified_dates() above exists to
+    # avoid, and it is noise Google learns to ignore. It also meant every
+    # scheduled rebuild committed a 104-line diff saying nothing.
+    #
+    # A page with no known date omits the element rather than guessing: outside a
+    # git checkout modified_dates() returns nothing, and an absent lastmod beats
+    # a wrong one. Same rule the dateModified block above follows.
+    # regenortho/build.py:85 (page_lastmod) already works this way.
+    def row(loc, pri, freq, mod):
+        lastmod = f"    <lastmod>{mod}</lastmod>\n" if mod else ""
+        return (f"  <url>\n    <loc>{loc}</loc>\n{lastmod}"
+                f"    <changefreq>{freq}</changefreq>\n"
+                f"    <priority>{pri:.1f}</priority>\n  </url>")
+
+    urls = "\n".join(row(*r) for r in sitemap_rows)
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

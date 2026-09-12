@@ -1,0 +1,61 @@
+name: Rebuild on content change
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_src/pages/**"
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history, not a shallow clone. _src/build.py's modified_dates()
+          # runs `git log --name-only --format=%cs -- _src` to derive each
+          # page's dateModified from its last real commit. A shallow checkout
+          # has no parent to diff against, so git attributes every file in the
+          # tree to the shallow boundary commit -- every page would get the
+          # same wrong date.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build
+        run: python3 _src/build.py
+
+      - name: Revert sitemap-only noise
+        run: |
+          # build.py stamps today's date into every sitemap.xml lastmod row
+          # on every run, regardless of what changed. Repo convention
+          # (see recent commit history) is to revert a sitemap-only diff so
+          # a content push that didn't touch any page doesn't produce a
+          # commit whose only effect is bumping every date in the sitemap.
+          if git diff --name-only -- . ':!sitemap.xml' | grep -q .; then
+            echo "Real output changed alongside sitemap.xml -- keeping it."
+          else
+            echo "Only sitemap.xml changed -- reverting it."
+            git checkout -- sitemap.xml
+          fi
+
+      - name: Commit and push regenerated output
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Rebuild after _src/pages content change
+
+Automated rebuild triggered by a push to _src/pages/**.
+
+Co-authored-by: Claude <noreply@anthropic.com>"
+          git push

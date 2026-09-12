@@ -33,8 +33,8 @@ python3 _src/event_hotworx_reminders.py
 
 ## Google Business Profile — "Event" post
 
-Do this on **each** participating business's profile. Same event, four listings, four
-audiences. It's free and it surfaces in Maps and in local searches.
+Do this on **each** participating business's profile. Same event, three listings,
+three audiences. It's free and it surfaces in Maps and in local searches.
 
 **Where:** Google Business Profile → Promote → Add event.
 
@@ -55,14 +55,14 @@ Sweat. Recover. Stand. — Free Foot & Ankle Q&A
 ```
 Bring us the foot question you've been putting off.
 
-Tuesday, September 15 at 4:00 PM, Dr. Orlando Cedeno is at HOTWORX Palm Beach
+Tuesday, September 15 at 4:00 PM, Dr. Isin A. Mustafa is at HOTWORX Palm Beach
 Gardens (3980 Northlake Blvd) to answer questions in person — no appointment, no
 paperwork, no cost.
 
 Ask about custom orthotics built from your own foot, shockwave and cold laser for
 heel pain that won't quit, or laser treatment for fungal nails and spider veins.
 
-Joined by RegenOrtho Palm Beach, Elite Sports Medicine, and HOTWORX. Snacks and
+Joined by RegenOrtho Palm Beach and HOTWORX. Snacks and
 refreshments provided. Drop in any time after 4:00.
 
 Questions, or to save a spot for the IV night: (561) 915-1934
@@ -78,7 +78,7 @@ Blvd. Come talk with us about peptides and biologics, physician-directed
 regenerative care, and clinician-supervised IV wellness and NAD+ drips — and put
 your name down for the upcoming IV night.
 
-Joined by Abacoa Podiatry, Elite Sports Medicine, and HOTWORX. Snacks and
+Joined by Abacoa Podiatry and HOTWORX. Snacks and
 refreshments provided. Free to attend, drop in any time.
 
 Questions or IV night sign-ups: (561) 915-1934
@@ -89,8 +89,8 @@ Questions or IV night sign-ups: (561) 915-1934
 ```
 We're opening the studio.
 
-Tuesday, September 15 at 4:00 PM, we're hosting Abacoa Podiatry, RegenOrtho Palm
-Beach, and Elite Sports Medicine at 3980 Northlake Blvd. Bring your questions
+Tuesday, September 15 at 4:00 PM, we're hosting Abacoa Podiatry and RegenOrtho Palm
+Beach at 3980 Northlake Blvd. Bring your questions
 about recovery, training through pain, orthotics, heel pain, and IV wellness.
 
 Never tried infrared sauna training? Sessions run 15 to 45 minutes — ask us about
@@ -99,26 +99,13 @@ your first one while you're here.
 Snacks and refreshments provided. Free, and you don't need to work out to come.
 ```
 
-### Details text — Elite Sports Medicine
-
-```
-Training through something that hurts?
-
-Tuesday, September 15 at 4:00 PM at HOTWORX Palm Beach Gardens, 3980 Northlake
-Blvd. We're there with Abacoa Podiatry and RegenOrtho Palm Beach to answer
-questions about injuries that keep coming back, getting back to activity, and
-what's actually worth treating.
-
-Free to attend. Snacks and refreshments provided. Drop in any time after 4:00.
-```
-
 ---
 
 ## Facebook Event
 
 Create it on the **Abacoa Podiatry** page, then add HOTWORX Palm Beach Gardens,
-RegenOrtho Palm Beach, and Elite Sports Medicine as **co-hosts** — that is the whole
-point. Co-hosting puts the event in front of all four audiences instead of one, and
+and RegenOrtho Palm Beach as **co-hosts** — that is the whole
+point. Co-hosting puts the event in front of all three audiences instead of one, and
 Facebook sends attendees an automatic reminder the day before and again at the hour.
 
 | Field | Value |
@@ -133,15 +120,14 @@ Facebook sends attendees an automatic reminder the day before and again at the h
 Description:
 
 ```
-One afternoon. Four practices. Bring your questions.
+One afternoon. Three practices. Bring your questions.
 
-Dr. Orlando Cedeno of Abacoa Podiatry will be in the studio answering foot and
+Dr. Isin A. Mustafa of Abacoa Podiatry will be in the studio answering foot and
 ankle questions in person — custom orthotics, heel pain, shockwave and cold laser,
 fungal nails, spider veins. No appointment, no paperwork, no cost.
 
 RegenOrtho Palm Beach on peptides, biologics, IV wellness and NAD+ (sign up for the
-IV night while you're there). Elite Sports Medicine on training through pain and
-getting back to activity. HOTWORX on infrared sauna training — sessions run 15 to
+IV night while you're there). HOTWORX on infrared sauna training — sessions run 15 to
 45 minutes, ask about trying your first one.
 
 Snacks and refreshments provided. Come at 4:00 or come at 5:15 — it runs as an open
@@ -161,7 +147,7 @@ Gardens area, weighted toward anyone seen for heel pain, orthotics, or nail conc
 **SMS** (keep it under 320 characters so it doesn't split badly):
 
 ```
-Abacoa Podiatry: Dr. Cedeno is doing a free open Q&A this Tuesday 9/15 at 4 PM at
+Abacoa Podiatry: Dr. Mustafa is doing a free open Q&A this Tuesday 9/15 at 4 PM at
 HOTWORX Palm Beach Gardens, 3980 Northlake Blvd. Bring any foot question — orthotics,
 heel pain, nails. Snacks provided, no appointment needed. Details: [link]
 Reply STOP to opt out.
@@ -170,7 +156,7 @@ Reply STOP to opt out.
 **Email subject lines** — pick one:
 
 - Free foot & ankle Q&A this Tuesday — bring your questions
-- Dr. Cedeno is answering questions Tuesday at 4 (no appointment)
+- Dr. Mustafa is answering questions Tuesday at 4 (no appointment)
 - That foot thing you've been meaning to ask about
 
 ---
@@ -180,12 +166,11 @@ Reply STOP to opt out.
 ```
 The foot question you've been putting off? Tuesday. 4 PM. Free.
 
-Dr. Cedeno is at HOTWORX Palm Beach Gardens answering foot and ankle questions in
+Dr. Mustafa is at HOTWORX Palm Beach Gardens answering foot and ankle questions in
 person — orthotics, heel pain, shockwave and cold laser, fungal nails, spider veins.
 No appointment. No paperwork. No cost.
 
-Plus @regenortho on peptides, IV wellness and NAD+, and Elite Sports Medicine on
-training through pain.
+Plus RegenOrtho Palm Beach on peptides, IV wellness and NAD+.
 
 Snacks and refreshments. Come any time after 4.
 3980 Northlake Blvd · Questions: (561) 915-1934
@@ -197,7 +182,7 @@ Snacks and refreshments. Come any time after 4.
 ## Story text (run one a day until Tuesday)
 
 Add the **countdown sticker** to each, and the **location sticker** for HOTWORX
-Palm Beach Gardens. All four businesses should reshare each other's.
+Palm Beach Gardens. All three businesses should reshare each other's.
 
 1. `4 days out. Bring us your worst foot question.`
 2. `Free. Tuesday. 4 PM. No appointment.`
@@ -250,3 +235,27 @@ offered to send.
 **Reminder graphics** are generated by `_src/event_hotworx_reminders.py` at
 1080×1350 and live in `assets/img/events/`. Reposting the poster four times in
 four days reads as spam, so each reminder has its own card.
+
+---
+
+## ⚠️ Correction, 2026-09-12 (from Rose)
+
+Two facts changed after the first posts had already gone out:
+
+1. **Dr. Mustafa is representing Abacoa at this event, not Dr. Cedeno.**
+2. **Elite Sports Medicine is not attending at all.**
+
+Everything above has been corrected. Also corrected: the `/hotworx/` landing page,
+and the two social posts that had not yet fired.
+
+**Not corrected, and it cannot be from here: the poster artwork still carries the
+Elite Sports Medicine logo.** `hotworx-sept-15.jpg` is the client's own design, so
+it is theirs to change. Until it is redrawn, the poster advertises a business that
+will not be there — which affects the printable flyer and the link-preview card
+built from it, since both embed the poster. Worth getting a corrected poster from
+whoever designed it, then rerunning the two generator scripts.
+
+**Also already published with the old facts** (see section 8): the Friday launch
+posts on Facebook and Instagram, the three Google Business posts, and the Saturday
+10am reminder. Those name Dr. Cedeno and/or Elite. Post Bridge cannot edit a post
+once it has published — they have to be edited or deleted by hand on each platform.

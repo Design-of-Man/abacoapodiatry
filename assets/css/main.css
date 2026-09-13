@@ -2877,3 +2877,43 @@ a.btn-ghost { color: var(--head); }
 .hero-centered .page-hero .crumbs,
 .hero-centered .page-hero .btn-row { justify-content: center; }
 .hero-centered .page-hero .lede { margin-inline: auto; max-width: 48ch; }
+
+/* ---- /hotworx/ event page (body.event-page) -------------------------------
+   Page-scoped on purpose: .info-tile and .page-hero are sitewide components
+   used on home, about and contact, and none of this should reach them. */
+
+/* The three key facts lift onto the seam of the hero instead of sitting in a
+   section of their own -- when/where/cost answer the hero, they aren't a new
+   topic. z-index clears .page-hero, which sets 1. */
+.event-page .event-facts {
+  padding-top: 0;
+  margin-top: clamp(-3.25rem, -4vw, -2rem);
+  position: relative;
+  z-index: 2;
+}
+/* Overlapping only reads as overlap with a lightness step and real elevation:
+   --mist sits within a point of the hero's --ink-2 base. */
+.event-page .event-facts .info-tile {
+  background: var(--mist-2);
+  box-shadow: var(--shadow-md);
+}
+
+/* Invert the tile hierarchy here. Sitewide, .info-tile's <h3> is the loudest
+   thing in the tile, which is right on a contact block where the label ("Call
+   or Text") IS the action. Here the labels are When / Where / Cost -- pure
+   scaffolding -- and the values carry the entire page, so the label drops to a
+   small uppercase support line and the value takes the weight. */
+.event-page .event-facts .info-tile h3 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 0.5em;
+}
+.event-page .event-facts .info-tile p {
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: #efe9dc;
+}

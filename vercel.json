@@ -1191,6 +1191,16 @@
       "source": "/how-can-stem-cell-therapy-benefit-leg-injuries",
       "destination": "/services/regenerative-medicine/",
       "permanent": true
+    },
+    {
+      "source": "/personal-injury/",
+      "destination": "/conditions/auto-accident/",
+      "permanent": true
+    },
+    {
+      "source": "/personal-injury",
+      "destination": "/conditions/auto-accident/",
+      "permanent": true
     }
   ],
   "headers": [

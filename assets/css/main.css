@@ -785,16 +785,27 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 
 .hero-glass {
-  background: rgb(var(--c-ink-warm) / 0.66);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Scrim .84 and a 6px blur, not .66 and 10px.
+     The hero headline was reported as looking blurry. The glyphs were never
+     the problem -- rendering them with and without -webkit-font-smoothing and
+     with and without this backdrop-filter produces identical letterforms. What
+     was soft is what sits BEHIND them: a 10px backdrop blur under a 66% scrim
+     turns the brightest part of the drone shot (sky and open water, directly
+     behind the headline) into a pale grey haze, and white-on-haze with gold
+     under it reads as mush. The gold line measured about 2.5:1 against the
+     brightest backdrop, under the 3:1 WCAG floor for large text.
+     Darkening the scrim and easing the blur fixes the contrast and, as a
+     bonus, lets the photograph behind read as a photograph rather than fog. */
+  background: rgb(var(--c-ink-warm) / 0.84);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgb(var(--c-accent-warm) / 0.28);
   border-radius: var(--radius-lg);
   padding: clamp(1.6rem, 3.5vw, 2.6rem);
   box-shadow: 0 30px 80px rgb(var(--c-black) / 0.45);
 }
-@supports not (backdrop-filter: blur(10px)) {
-  .hero-glass { background: rgb(var(--c-ink-warm) / 0.85); }
+@supports not (backdrop-filter: blur(6px)) {
+  .hero-glass { background: rgb(var(--c-ink-warm) / 0.92); }
 }
 
 .hero-media {

@@ -100,6 +100,27 @@
   --section-y-major: clamp(4.25rem, 9vw, 7rem);
   --section-y-tight: clamp(2rem, 4vw, 3rem);
 
+  /* Motion. Durations and easings were written out at each call site, so no
+     two things on the page moved quite alike. One curve for entrances, one
+     for state changes, three durations. --rd is the per-element reveal delay
+     that the stagger below reads. */
+  --ease-entrance: cubic-bezier(0.2, 0.65, 0.3, 1);
+  --ease-state: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-reveal: 700ms;
+  --reveal-shift: 26px;
+
+  /* Reveal stagger. The source pages carried 95 inline --rd values across
+     nine variants -- 0.05 0.06 0.08 0.1 0.10 0.12 0.15 0.16 0.18 -- with
+     0.1s and 0.10s both in use for the same delay. Four steps is enough to
+     read as a cascade; past ~250ms the last card feels broken rather than
+     staggered. */
+  --stagger-1: 60ms;
+  --stagger-2: 120ms;
+  --stagger-3: 180ms;
+  --stagger-4: 240ms;
+
   /* ---- Colour channels -------------------------------------------------
      Alpha variants compose from these instead of being written out. This
      stylesheet carried 130 distinct literal colours, most of them the same
@@ -746,6 +767,27 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .hero.has-video .hero-glass .lede { margin-inline: auto; }
 .hero.has-video .hero-badges { justify-content: center; }
 .hero.has-video .hero-glass .btn-row { justify-content: center; }
+/* On a 390x844 phone this hero ran to 955px and put the booking CTA at y=820
+   -- below the fold, on the one action the page exists for. The cause is a
+   centred 60-word lede inside 128px of vertical padding. Nothing is cut: the
+   block is set flush left (centred ragged text of that length is both harder
+   to read and taller than the same copy set left) and the rhythm is tightened
+   until the primary button lands on the first screen. */
+@media (max-width: 640px) {
+  .hero.has-video .hero-inner {
+    text-align: left;
+    padding: 1.75rem 0 2rem;
+  }
+  .hero.has-video .hero-glass .lede { margin-inline: 0; }
+  .hero.has-video .hero-badges,
+  .hero.has-video .hero-glass .btn-row { justify-content: flex-start; }
+  .hero-glass { padding: 1.25rem 1.15rem 1.4rem; }
+  .hero h1 { margin-bottom: 0.32em; }
+  .hero .lede { line-height: 1.55; }
+  .hero-badges { margin: 1rem 0 1.15rem; gap: 0.45rem; }
+  .hero .btn-row { gap: 0.6rem; }
+}
+
 .hero-glass {
   background: rgb(var(--c-ink-warm) / 0.66);
   backdrop-filter: blur(10px);
@@ -2281,10 +2323,16 @@ body.assist-open .assist-fab { display: none; }
    visible instead of being permanently stuck at opacity:0 (WCAG 1.4.3/4.1). */
 .js [data-reveal] {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.65, 0.3, 1), transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
+  transform: translateY(var(--reveal-shift));
+  transition: opacity var(--dur-reveal) var(--ease-entrance),
+              transform var(--dur-reveal) var(--ease-entrance);
   transition-delay: var(--rd, 0s);
+  will-change: opacity, transform;
 }
+/* Drop the compositor hint once the element has arrived -- a layer that is
+   never going to change again is just video memory held for nothing. */
+.js [data-reveal].revealed { will-change: auto; }
+
 .js [data-reveal].revealed { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1; transform: none; }

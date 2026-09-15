@@ -126,7 +126,7 @@ META-->
               <li><a href="/conditions/diabetic-foot-care/">Diabetic foot exams</a> &amp; prevention</li>
             </ul>
           </div>
-          <div class="split-aside" data-reveal style="--rd:0.1s">
+          <div class="split-aside" data-reveal style="--rd:var(--stagger-2)">
             <div class="card card-glow" style="position:sticky;top:100px">
               <h3>Directions from {name}</h3>
               <p style="font-size:0.97rem">{route}</p>

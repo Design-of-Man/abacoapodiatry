@@ -17,6 +17,7 @@ import hashlib
 import html
 import json
 import re
+import struct
 import subprocess
 import sys
 from datetime import date
@@ -180,6 +181,7 @@ REDIRECT_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Moved: {target} | Abacoa Podiatry</title>
   <meta http-equiv="refresh" content="0; url={target}">
   <link rel="canonical" href="{base}{target}">
@@ -447,9 +449,216 @@ def build_page(template: str, raw: str, name: str):
         .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)
     )
 
+    html = apply_dimensions(apply_focal(html))
+
     out_file.parent.mkdir(parents=True, exist_ok=True)
     out_file.write_text(html, encoding="utf-8")
     return meta
+
+
+
+# ---------------------------------------------------------------------------
+# Photographic focal points.
+#
+# Every photo on this site is drawn with object-fit: cover, which crops the
+# image to whatever box it lands in. With no focal point the crop is taken from
+# the dead centre, and the centre is the wrong place for most of this library:
+# the lifestyle shots put the subject's head in the upper third (a centre crop
+# beheads them on mobile, where the frame is nearly square) and the clinical
+# foot photography puts the subject in the lower half (a centre crop cuts the
+# toes off). Both only bite at narrow widths, which is why they survived.
+#
+# One map, applied to every emitted page by apply_focal() below, so a photo's
+# focal point is stated once no matter which of the 30 source pages uses it.
+# Values are object-position: <x> <y>.
+# ---------------------------------------------------------------------------
+
+# Subject is a standing/walking person -- protect the head.
+_FOCAL_FIGURE = "50% 35%"
+# Subject is feet, ankles or lower leg -- protect the foot.
+_FOCAL_FEET = "50% 62%"
+
+FOCAL = {
+    # --- lifestyle scenes with a whole person in frame ---
+    "atmos/about": _FOCAL_FIGURE,
+    "atmos/blog": _FOCAL_FIGURE,
+    "atmos/faq": _FOCAL_FIGURE,
+    "atmos/reviews": _FOCAL_FIGURE,
+    "atmos/media": _FOCAL_FIGURE,
+    "atmos/telehealth": _FOCAL_FIGURE,
+    "atmos/new-patients": _FOCAL_FEET,
+    "atmos/locations": _FOCAL_FIGURE,
+    "atmos/conditions": _FOCAL_FEET,
+
+    # --- foot and ankle close-ups ---
+    "atmos/conditions-arthritis": _FOCAL_FEET,
+    "atmos/conditions-diabetic-foot-care": _FOCAL_FEET,
+    "atmos/conditions-flat-feet": _FOCAL_FEET,
+    "atmos/conditions-heel-pain": _FOCAL_FEET,
+    "atmos/conditions-sports-injuries": _FOCAL_FEET,
+    "atmos/conditions-sprains-strains": _FOCAL_FEET,
+    "atmos/services-foot-ankle-surgery": _FOCAL_FEET,
+    "atmos/services-foot-bbl": _FOCAL_FEET,
+    "atmos/services-prp-therapy": _FOCAL_FEET,
+    "atmos/services-regenerative-medicine": _FOCAL_FEET,
+    "atmos/services-shockwave-therapy": _FOCAL_FEET,
+    "atmos/services-stem-cell-therapy": _FOCAL_FEET,
+    "atmos/services-vein-treatment": _FOCAL_FEET,
+    "atmos/services-wound-care": _FOCAL_FEET,
+    "atmos/services": _FOCAL_FEET,
+    "atmos/blog-5-signs-your-heel-pain-is-plantar-fasciitis": _FOCAL_FEET,
+    "atmos/blog-laser-therapy-vs-cortisone-injections": _FOCAL_FEET,
+    "atmos/how-mls-laser-therapy-relieves-foot-and-ankle-pain": _FOCAL_FEET,
+    "atmos/innovative-treatments-for-heel-pain-exploring-mls-laser-therapy": _FOCAL_FEET,
+
+    # --- portraits: the face sits high in a 4:5 frame ---
+    "photos/dr-cedeno": "50% 22%",
+    "photos/dr-mustafa": "50% 18%",
+    "photos/dr-mustafa-profile": "22% 40%",
+    "photos/mls-laser": "50% 50%",
+
+    # --- clinical feed: Dr. Cedeno's face is upper-left in the OR shot ---
+    "instagram/dr-cedeno-surgery": "30% 28%",
+    "instagram/dr-cedeno-imaging": "50% 35%",
+    "instagram/dr-cedeno-profile": "50% 28%",
+    "instagram/dr-mustafa-regenerative": "50% 30%",
+}
+
+# Every location page uses the same walking-figure composition.
+_FOCAL_DEFAULTS = (("/atmos/locations-", _FOCAL_FIGURE),
+                   ("/atmos/", _FOCAL_FEET),
+                   ("/instagram/", "50% 50%"),
+                   ("/photos/", "50% 30%"))
+
+_IMG_RE = re.compile(r"<img\b[^>]*?>", re.I)
+
+
+def _focal_for(src: str):
+    """Focal point for an image URL, or None if it is not a photograph.
+
+    Logos, icons, certification badges and generated event art are not cropped
+    to a frame, so they get nothing -- an object-position on them is noise.
+    """
+    for key, val in FOCAL.items():
+        if key in src:
+            return val
+    for prefix, val in _FOCAL_DEFAULTS:
+        if prefix in src:
+            return val
+    return None
+
+
+def apply_focal(html: str) -> str:
+    """Stamp object-position onto every photographic <img> in a page."""
+    def one(m):
+        tag = m.group(0)
+        src = re.search(r'src="([^"]*)"', tag)
+        if not src:
+            return tag
+        focal = _focal_for(src.group(1))
+        if not focal or "object-position" in tag:
+            return tag
+        decl = f"object-position:{focal}"
+        style = re.search(r'style="([^"]*)"', tag)
+        if style:
+            merged = style.group(1).rstrip("; ") + ";" + decl
+            return tag[:style.start(1)] + merged + tag[style.end(1):]
+        return tag[:-1].rstrip() + f' style="{decl}">'
+    return _IMG_RE.sub(one, html)
+
+
+
+# ---------------------------------------------------------------------------
+# Intrinsic image dimensions.
+#
+# An <img> with no width/height has no aspect ratio until it decodes, so the
+# page reflows around it when it lands -- Cumulative Layout Shift, and the
+# worst of it on the slow connections that need the site most. Most images
+# here already carry the attributes; the certification badges and two
+# portraits did not.
+#
+# Read from the file rather than typed in, so they cannot drift from the asset.
+# Deliberately not using Pillow: build.py runs in CI with the stdlib only.
+# ---------------------------------------------------------------------------
+
+
+def _img_size(path: Path):
+    """(width, height) for png/gif/jpeg/webp, or None. Header parse only."""
+    try:
+        b = path.read_bytes()
+    except OSError:
+        return None
+    if b[:8] == b"\x89PNG\r\n\x1a\n":
+        return struct.unpack(">II", b[16:24])
+    if b[:6] in (b"GIF87a", b"GIF89a"):
+        return struct.unpack("<HH", b[6:10])
+    if b[:4] == b"RIFF" and b[8:12] == b"WEBP":
+        c = b[12:16]
+        if c == b"VP8 ":
+            return struct.unpack("<HH", b[26:30])
+        if c == b"VP8L":
+            n = int.from_bytes(b[21:25], "little")
+            return (n & 0x3FFF) + 1, ((n >> 14) & 0x3FFF) + 1
+        if c == b"VP8X":
+            return (int.from_bytes(b[24:27], "little") + 1,
+                    int.from_bytes(b[27:30], "little") + 1)
+        return None
+    if b[:2] == b"\xff\xd8":                       # JPEG: walk to a SOF marker
+        i = 2
+        while i < len(b) - 9:
+            if b[i] != 0xFF:
+                i += 1
+                continue
+            m = b[i + 1]
+            if m in (0xD8, 0xD9) or 0xD0 <= m <= 0xD7 or m == 0xFF:
+                i += 2
+                continue
+            seg = int.from_bytes(b[i + 2:i + 4], "big")
+            if m in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                     0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                h, w = struct.unpack(">HH", b[i + 5:i + 9])
+                return w, h
+            i += 2 + seg
+    return None
+
+
+def _svg_size(path: Path):
+    """(width, height) from an SVG's own width/height, else its viewBox.
+
+    An SVG scales to its box, but the attributes still give the browser a ratio
+    to reserve before the file arrives, which is the whole point here."""
+    try:
+        head = path.read_text(errors="ignore")[:2000]
+    except OSError:
+        return None
+    w = re.search(r'\bwidth="(\d+(?:\.\d+)?)(?:px)?"', head)
+    h = re.search(r'\bheight="(\d+(?:\.\d+)?)(?:px)?"', head)
+    if w and h:
+        return int(float(w.group(1))), int(float(h.group(1)))
+    vb = re.search(r'viewBox="[\d.\-]+[ ,]+[\d.\-]+[ ,]+([\d.]+)[ ,]+([\d.]+)"', head)
+    if vb:
+        return int(float(vb.group(1))), int(float(vb.group(2)))
+    return None
+
+
+def apply_dimensions(html: str) -> str:
+    """Add width/height to any local <img> that is missing them."""
+    def one(m):
+        tag = m.group(0)
+        if re.search(r"\bwidth=", tag) and re.search(r"\bheight=", tag):
+            return tag
+        src = re.search(r'src="([^"]*)"', tag)
+        if not src or not src.group(1).startswith("/"):
+            return tag
+        rel = src.group(1).split("?")[0].lstrip("/")
+        if rel.endswith(".svg"):
+            size = _svg_size(ROOT / rel)              # ratio comes from viewBox
+        else:
+            size = _img_size(ROOT / rel)
+        if not size:
+            return tag
+        return tag[:-1].rstrip() + f' width="{size[0]}" height="{size[1]}">'
+    return _IMG_RE.sub(one, html)
 
 
 def asset_versions():
@@ -457,7 +666,7 @@ def asset_versions():
     caches the moment a file's content changes — without this, visitors can
     get new HTML with months-old CSS."""
     out = {}
-    for rel in ["assets/css/main.css", "assets/js/main.js",
+    for rel in ["assets/css/main.css", "assets/css/fonts.css", "assets/js/main.js",
                 "assets/js/assistant.js", "assets/js/media.js"]:
         f = ROOT / rel
         if f.exists():

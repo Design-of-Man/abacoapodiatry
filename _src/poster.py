@@ -29,15 +29,25 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 VIDEO = ROOT / "assets" / "video" / "lighthouse-hd.mp4"
 OUT = ROOT / "assets" / "img" / "hero-poster.webp"
-# 1280x720 rather than full size: this sits behind the hero's dark glass
-# panel and is replaced by video within a second, so pixel-peeping detail
-# buys nothing while the bytes come straight off the LCP.
-WIDTH, HEIGHT = 1280, 720
-# The old drawn poster was 47KB. Drone footage of foliage and water will not
-# compress that far without visible blocking -- at 1920x1080 JPEG it needed
-# quality 43 and 152KB. WebP at 1280x720 lands near 88KB and still looks right,
-# which is the trade worth making to stop shipping a cartoon.
-TARGET_BYTES = 95_000
+# Full source resolution (1920x1080), not the 1280x720 this used to write.
+#
+# The old reasoning was that the poster "is replaced by video within a second,
+# so pixel-peeping detail buys nothing". That holds for the common case and
+# ignores the three cases listed at the top of this file: under
+# prefers-reduced-motion, under Save-Data or 2g, and in a browser that cannot
+# play the sources, no video is ever attached and this image IS the hero,
+# permanently. At 1280 wide it was being upscaled 2.25x across a 1440px hero on
+# a 2x display, and the client reported the hero as blurry -- correctly.
+#
+# 1920x1080 is the source ceiling; the video itself is 1080p, so anything
+# larger would be invented detail, not recovered detail.
+WIDTH, HEIGHT = 1920, 1080
+# Drone footage of foliage and water does not compress cheaply. WebP at
+# 1920x1080 lands near 165KB at a quality that holds up on a 2x display; the
+# 1280x720 version was 85KB. ~80KB more on the LCP is the cost of a hero that
+# is not visibly soft, and it is still a smaller payload than the hero video
+# it sits in front of by more than an order of magnitude.
+TARGET_BYTES = 180_000
 
 
 def ffmpeg() -> str:

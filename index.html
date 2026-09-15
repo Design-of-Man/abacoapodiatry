@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=ccc2917790">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -200,7 +204,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-11"
+    "dateModified": "2026-09-15"
   }
   </script>
 
@@ -344,7 +348,7 @@
               <a class="link-arrow" href="/reviews/">Reviews</a>
             </div>
           </div>
-          <div data-reveal style="--rd:0.15s">
+          <div data-reveal style="--rd:var(--stagger-3)">
             <div class="statring-grid" style="background:var(--mist);border:1px solid var(--line);border-radius:var(--radius-lg);padding:2.2rem">
               <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
                 <linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1">
@@ -390,7 +394,7 @@
       <div class="wrap">
         <div class="welcome-banner" data-reveal>
           <div class="welcome-banner-photo">
-            <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM" width="900" height="1125" onerror="this.remove()">
+            <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM" width="900" height="1125" onerror="this.remove()" style="object-position:50% 18%">
             <span class="monogram" aria-hidden="true">IM</span>
           </div>
           <div class="welcome-banner-copy">
@@ -421,7 +425,7 @@
             <p>Our flagship treatment. Dual synchronized wavelengths of FDA-cleared laser energy reduce pain and inflammation while accelerating tissue repair. Painlessly, in 10&ndash;15 minute sessions.</p>
             <span class="link-arrow">Explore MLS laser</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></svg></div>
             <h3><a href="/services/shockwave-therapy/">Shockwave Therapy (EPAT)</a></h3>
             <p>Acoustic pressure waves break up chronic scar tissue and jump-start stalled healing. A proven, non-invasive answer for stubborn plantar fasciitis and tendon pain.</p>
@@ -433,13 +437,13 @@
             <p>Concentrated growth factors from your own blood, precisely injected to accelerate healing in tendons, fascia, and joints. Natural, safe, and backed by research.</p>
             <span class="link-arrow">Explore PRP</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.6 8.5 2.6 4.5 6.5 4.5c2.2 0 3.7 1.2 4.5 2.5.8-1.3 2.3-2.5 4.5-2.5 3.9 0 5.9 4 4 7.5C19 16.5 12 21 12 21Z"/><path d="M3 12h4l2-3 3 6 2-3h5"/></svg></div>
             <h3><a href="/services/regenerative-medicine/">Regenerative Medicine</a></h3>
             <p>The bigger picture: how we combine laser, shockwave, PRP, and cell therapies into complete healing programs for chronic foot and ankle conditions.</p>
             <span class="link-arrow">See the full approach</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.16s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-4)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.2V4Z"/><path d="M8 9h8M8 12h5"/></svg></div>
             <h3><a href="/conditions/diabetic-foot-care/">Diabetic Foot &amp; Podiatric Care</a></h3>
             <p>Complete podiatric care through our parent practice, Abacoa Podiatry. That covers diabetic foot care, wound prevention, and surgical treatment when it's truly needed.</p>
@@ -534,7 +538,7 @@
               <a class="link-arrow" href="/technology/">See our technology</a>
             </div>
           </div>
-          <div data-reveal style="--rd:0.12s">
+          <div data-reveal style="--rd:var(--stagger-3)">
             <ol class="steps">
               <li><h3>Evaluation &amp; diagnosis</h3><p>We examine your foot and ankle, review imaging if needed, and pinpoint the true pain generator.</p></li>
               <li><h3>Custom treatment plan</h3><p>Most conditions call for 6&ndash;12 laser sessions, 2&ndash;3 times per week, sometimes combined with shockwave or regenerative therapy.</p></li>
@@ -614,82 +618,82 @@
         <ul class="ig-track" style="--ig-duration:56s">
           <li class="ig-item" style="aspect-ratio:640/588">
             <img src="/assets/img/instagram/bunion-xray-before-after.opt.webp" alt="Before and after X-rays of a bunion correction, the realigned bones held with surgical screws"
-                 width="640" height="588" loading="lazy" decoding="async">
+                 width="640" height="588" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Bunion correction, before &amp; after</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/mis-bunion-before.opt.webp" alt="A foot photographed before minimally invasive bunion surgery, showing the bump at the base of the big toe"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Before minimally invasive bunion surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/788">
             <img src="/assets/img/instagram/mis-bunion-3-weeks.opt.webp" alt="The same foot three weeks after minimally invasive bunion surgery, with small healed incision marks"
-                 width="640" height="788" loading="lazy" decoding="async">
+                 width="640" height="788" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Three weeks after surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/583">
             <img src="/assets/img/instagram/toenail-before-after.opt.webp" alt="Before and after photographs of toenail treatment, showing clearer nail growing in"
-                 width="640" height="583" loading="lazy" decoding="async">
+                 width="640" height="583" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Toenail restoration progress</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/669">
             <img src="/assets/img/instagram/dr-cedeno-surgery.opt.webp" alt="Dr. Cedeno in the operating room during a foot reconstruction, an external fixation frame in place"
-                 width="640" height="669" loading="lazy" decoding="async">
+                 width="640" height="669" loading="lazy" decoding="async" style="object-position:30% 28%">
             <span class="ig-cap">Dr. Cedeno in reconstruction surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/723">
             <img src="/assets/img/instagram/dr-cedeno-imaging.opt.webp" alt="Dr. Cedeno positioning a mobile imaging arm in the operating room"
-                 width="640" height="723" loading="lazy" decoding="async">
+                 width="640" height="723" loading="lazy" decoding="async" style="object-position:50% 35%">
             <span class="ig-cap">Imaging during a procedure</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/dr-cedeno-profile.opt.webp" alt="A profile card introducing Dr. Cedeno, podiatrist and foot and ankle surgeon"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 28%">
             <span class="ig-cap">Meet Dr. Cedeno</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/dr-mustafa-regenerative.opt.webp" alt="A profile card for Dr. Isin A. Mustafa introducing regenerative care for ankles and feet"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 30%">
             <span class="ig-cap">Regenerative care with Dr. Mustafa</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/588" aria-hidden="true">
             <img src="/assets/img/instagram/bunion-xray-before-after.opt.webp" alt="Before and after X-rays of a bunion correction, the realigned bones held with surgical screws"
-                 width="640" height="588" loading="lazy" decoding="async">
+                 width="640" height="588" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Bunion correction, before &amp; after</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/mis-bunion-before.opt.webp" alt="A foot photographed before minimally invasive bunion surgery, showing the bump at the base of the big toe"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Before minimally invasive bunion surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/788" aria-hidden="true">
             <img src="/assets/img/instagram/mis-bunion-3-weeks.opt.webp" alt="The same foot three weeks after minimally invasive bunion surgery, with small healed incision marks"
-                 width="640" height="788" loading="lazy" decoding="async">
+                 width="640" height="788" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Three weeks after surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/583" aria-hidden="true">
             <img src="/assets/img/instagram/toenail-before-after.opt.webp" alt="Before and after photographs of toenail treatment, showing clearer nail growing in"
-                 width="640" height="583" loading="lazy" decoding="async">
+                 width="640" height="583" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Toenail restoration progress</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/669" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-surgery.opt.webp" alt="Dr. Cedeno in the operating room during a foot reconstruction, an external fixation frame in place"
-                 width="640" height="669" loading="lazy" decoding="async">
+                 width="640" height="669" loading="lazy" decoding="async" style="object-position:30% 28%">
             <span class="ig-cap">Dr. Cedeno in reconstruction surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/723" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-imaging.opt.webp" alt="Dr. Cedeno positioning a mobile imaging arm in the operating room"
-                 width="640" height="723" loading="lazy" decoding="async">
+                 width="640" height="723" loading="lazy" decoding="async" style="object-position:50% 35%">
             <span class="ig-cap">Imaging during a procedure</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-profile.opt.webp" alt="A profile card introducing Dr. Cedeno, podiatrist and foot and ankle surgeon"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 28%">
             <span class="ig-cap">Meet Dr. Cedeno</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/dr-mustafa-regenerative.opt.webp" alt="A profile card for Dr. Isin A. Mustafa introducing regenerative care for ankles and feet"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 30%">
             <span class="ig-cap">Regenerative care with Dr. Mustafa</span>
           </li>
         </ul>
@@ -915,7 +919,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

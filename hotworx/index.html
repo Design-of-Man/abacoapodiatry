@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=ccc2917790">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -200,7 +204,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-13"
+    "dateModified": "2026-09-15"
   }
   </script>
   <script type="application/ld+json">
@@ -394,7 +398,7 @@
             <h3>Feet that hurt after workouts</h3>
             <p>Arch pain, Achilles trouble, forefoot burning, <a href="/conditions/sports-injuries/">sports injuries</a> that keep coming back. If training is what brings it on, say so &mdash; that changes the answer.</p>
           </div>
-          <div data-reveal style="--rd:0.12s">
+          <div data-reveal style="--rd:var(--stagger-3)">
             <!-- Not .photo-frame: that frame crops to a landscape box, and this
                  is a portrait poster that has to be readable whole. -->
             <figure style="margin:0;position:sticky;top:100px">
@@ -419,12 +423,12 @@
             <p>Dr. Isin A. Mustafa, DPM, MSHS, foot and ankle surgeon. Custom orthotics built from your foot, shockwave and cold laser for heel pain, and laser treatment for fungal nails and spider veins.</p>
             <a class="link-arrow" href="/meet-dr-mustafa/">Meet Dr. Mustafa</a>
           </div>
-          <div class="card card-dark" data-reveal style="--rd:0.08s">
+          <div class="card card-dark" data-reveal style="--rd:var(--stagger-2)">
             <h3>RegenOrtho Palm Beach</h3>
             <p>Physician-directed regenerative care &mdash; peptides and biologics &mdash; plus clinician-supervised IV wellness and NAD+ drips. Sign up at the event for the upcoming IV night.</p>
             <a class="link-arrow" href="https://www.regenorthopb.com/" rel="noopener">regenorthopb.com</a>
           </div>
-          <div class="card card-dark" data-reveal style="--rd:0.16s">
+          <div class="card card-dark" data-reveal style="--rd:var(--stagger-4)">
             <h3>HOTWORX Palm Beach Gardens</h3>
             <p>Infrared sauna training. Sessions run 15 to 45 minutes. Ask about trying your first session while you're there &mdash; you'll already be standing in the studio.</p>
             <a class="link-arrow" href="https://www.hotworx.net/studio/palm-beach-gardens-northlake-commons" rel="noopener">hotworx.net &mdash; Northlake Commons studio</a>
@@ -692,7 +696,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

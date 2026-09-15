@@ -769,18 +769,14 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 .hero.has-video .hero-glass .btn-row { justify-content: center; }
 /* On a 390x844 phone this hero ran to 955px and put the booking CTA at y=820
    -- below the fold, on the one action the page exists for. The cause is a
-   centred 60-word lede inside 128px of vertical padding. Nothing is cut: the
-   block is set flush left (centred ragged text of that length is both harder
-   to read and taller than the same copy set left) and the rhythm is tightened
-   until the primary button lands on the first screen. */
+   centred 60-word lede inside 128px of vertical padding.
+
+   The centred composition is kept: it is the brand's hero and reads as
+   deliberate. Only the rhythm is tightened -- padding, leading and the gaps
+   around the badges -- which is where the wasted height actually was. No copy
+   is cut. */
 @media (max-width: 640px) {
-  .hero.has-video .hero-inner {
-    text-align: left;
-    padding: 1.75rem 0 2rem;
-  }
-  .hero.has-video .hero-glass .lede { margin-inline: 0; }
-  .hero.has-video .hero-badges,
-  .hero.has-video .hero-glass .btn-row { justify-content: flex-start; }
+  .hero.has-video .hero-inner { padding: 1.75rem 0 2rem; }
   .hero-glass { padding: 1.25rem 1.15rem 1.4rem; }
   .hero h1 { margin-bottom: 0.32em; }
   .hero .lede { line-height: 1.55; }

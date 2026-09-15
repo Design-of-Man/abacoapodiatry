@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=ccc2917790">
+  <link rel="stylesheet" href="/assets/css/main.css?v=5cc531abb9">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -398,7 +402,7 @@
             <!-- PHOTO SLOT: add assets/img/photos/dr-mustafa.jpg and it appears here. -->
             <figure class="photo-frame photo-portrait" style="margin:0 0 1.2rem">
               <span class="monogram" aria-hidden="true">IM</span>
-              <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM, foot and ankle surgeon" width="900" height="1125" onerror="this.remove()">
+              <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM, foot and ankle surgeon" width="900" height="1125" onerror="this.remove()" style="object-position:50% 18%">
               <figcaption class="cap">Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS &middot; Foot &amp; Ankle Surgeon</figcaption>
             </figure>
             <div class="card card-glow">
@@ -432,37 +436,37 @@
         <div class="cert-grid">
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/abpm.png" alt="American Board of Podiatric Medicine" loading="lazy">
+              <img src="/assets/img/certifications/abpm.png" alt="American Board of Podiatric Medicine" loading="lazy" width="200" height="200">
             </div>
             <p class="cert-caption">American Board of Podiatric Medicine — Board Verified</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/abfas.png" alt="American Board of Foot and Ankle Surgery" loading="lazy">
+              <img src="/assets/img/certifications/abfas.png" alt="American Board of Foot and Ankle Surgery" loading="lazy" width="600" height="204">
             </div>
             <p class="cert-caption">American Board of Foot and Ankle Surgery — Board Certified, Foot Surgery</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/acfas.jpg" alt="American College of Foot and Ankle Surgeons" loading="lazy">
+              <img src="/assets/img/certifications/acfas.jpg" alt="American College of Foot and Ankle Surgeons" loading="lazy" width="738" height="218">
             </div>
             <p class="cert-caption">American College of Foot and Ankle Surgeons</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/acpps.jpg" alt="American College of Podiatric Physicians &amp; Surgeons" loading="lazy">
+              <img src="/assets/img/certifications/acpps.jpg" alt="American College of Podiatric Physicians &amp; Surgeons" loading="lazy" width="418" height="420">
             </div>
             <p class="cert-caption">American College of Podiatric Physicians &amp; Surgeons</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/amifas.jpg" alt="Academy of Minimally Invasive Foot &amp; Ankle Surgery" loading="lazy">
+              <img src="/assets/img/certifications/amifas.jpg" alt="Academy of Minimally Invasive Foot &amp; Ankle Surgery" loading="lazy" width="960" height="640">
             </div>
             <p class="cert-caption">Academy of Minimally Invasive Foot &amp; Ankle Surgery</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/apma.jpg" alt="American Podiatric Medical Association" loading="lazy">
+              <img src="/assets/img/certifications/apma.jpg" alt="American Podiatric Medical Association" loading="lazy" width="792" height="302">
             </div>
             <p class="cert-caption">American Podiatric Medical Association</p>
           </div>
@@ -682,7 +686,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

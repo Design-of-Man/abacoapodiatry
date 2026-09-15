@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=ccc2917790">
+  <link rel="stylesheet" href="/assets/css/main.css?v=5cc531abb9">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -457,7 +461,7 @@
             <!-- PHOTO SLOT: add assets/img/photos/dr-cedeno.jpg and it appears here. -->
             <figure class="photo-frame photo-portrait" style="margin:0 0 1.2rem">
               <span class="monogram" aria-hidden="true">OC</span>
-              <img src="/assets/img/photos/dr-cedeno.jpg" alt="Dr. Orlando Cedeno, DPM, board-certified foot and ankle surgeon" width="900" height="1125" onerror="this.remove()">
+              <img src="/assets/img/photos/dr-cedeno.jpg" alt="Dr. Orlando Cedeno, DPM, board-certified foot and ankle surgeon" width="900" height="1125" onerror="this.remove()" style="object-position:50% 22%">
               <figcaption class="cap">Orlando Cedeno, DPM &middot; Board-Certified Foot &amp; Ankle Surgeon</figcaption>
             </figure>
             <div class="card card-glow">
@@ -498,37 +502,37 @@
         <div class="cert-grid">
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/abfas.png" alt="American Board of Foot and Ankle Surgery" loading="lazy">
+              <img src="/assets/img/certifications/abfas.png" alt="American Board of Foot and Ankle Surgery" loading="lazy" width="600" height="204">
             </div>
             <p class="cert-caption">American Board of Foot and Ankle Surgery — Board Certified</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/acfas-cedeno.svg" alt="American College of Foot and Ankle Surgeons" style="filter:invert(1)" loading="lazy">
+              <img src="/assets/img/certifications/acfas-cedeno.svg" alt="American College of Foot and Ankle Surgeons" style="filter:invert(1)" loading="lazy" width="228" height="51">
             </div>
             <p class="cert-caption">American College of Foot and Ankle Surgeons — Board Certified</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/apwca.png" alt="American Professional Wound Care Association" style="filter:invert(1)" loading="lazy">
+              <img src="/assets/img/certifications/apwca.png" alt="American Professional Wound Care Association" style="filter:invert(1)" loading="lazy" width="546" height="90">
             </div>
             <p class="cert-caption">American Professional Wound Care Association — Board Certified, Wound Care</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/aens.png" alt="Association of Extremity Nerve Surgeons" loading="lazy">
+              <img src="/assets/img/certifications/aens.png" alt="Association of Extremity Nerve Surgeons" loading="lazy" width="94" height="94">
             </div>
             <p class="cert-caption">Association of Extremity Nerve Surgeons — Member</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/avls.png" alt="American Vein &amp; Lymphatic Society" loading="lazy">
+              <img src="/assets/img/certifications/avls.png" alt="American Vein &amp; Lymphatic Society" loading="lazy" width="309" height="138">
             </div>
             <p class="cert-caption">American Vein &amp; Lymphatic Society — Member</p>
           </div>
           <div>
             <div class="cert-tile">
-              <img src="/assets/img/certifications/fpma.svg" alt="Florida Podiatric Medical Association" loading="lazy">
+              <img src="/assets/img/certifications/fpma.svg" alt="Florida Podiatric Medical Association" loading="lazy" width="218" height="94">
             </div>
             <p class="cert-caption">Florida Podiatric Medical Association — Member</p>
           </div>
@@ -748,7 +752,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

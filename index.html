@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=ccc2917790">
+  <link rel="stylesheet" href="/assets/css/main.css?v=5cc531abb9">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -390,7 +394,7 @@
       <div class="wrap">
         <div class="welcome-banner" data-reveal>
           <div class="welcome-banner-photo">
-            <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM" width="900" height="1125" onerror="this.remove()">
+            <img src="/assets/img/photos/dr-mustafa.jpg" alt="Dr. Isin A. Mustafa, DPM" width="900" height="1125" onerror="this.remove()" style="object-position:50% 18%">
             <span class="monogram" aria-hidden="true">IM</span>
           </div>
           <div class="welcome-banner-copy">
@@ -614,82 +618,82 @@
         <ul class="ig-track" style="--ig-duration:56s">
           <li class="ig-item" style="aspect-ratio:640/588">
             <img src="/assets/img/instagram/bunion-xray-before-after.opt.webp" alt="Before and after X-rays of a bunion correction, the realigned bones held with surgical screws"
-                 width="640" height="588" loading="lazy" decoding="async">
+                 width="640" height="588" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Bunion correction, before &amp; after</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/mis-bunion-before.opt.webp" alt="A foot photographed before minimally invasive bunion surgery, showing the bump at the base of the big toe"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Before minimally invasive bunion surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/788">
             <img src="/assets/img/instagram/mis-bunion-3-weeks.opt.webp" alt="The same foot three weeks after minimally invasive bunion surgery, with small healed incision marks"
-                 width="640" height="788" loading="lazy" decoding="async">
+                 width="640" height="788" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Three weeks after surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/583">
             <img src="/assets/img/instagram/toenail-before-after.opt.webp" alt="Before and after photographs of toenail treatment, showing clearer nail growing in"
-                 width="640" height="583" loading="lazy" decoding="async">
+                 width="640" height="583" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Toenail restoration progress</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/669">
             <img src="/assets/img/instagram/dr-cedeno-surgery.opt.webp" alt="Dr. Cedeno in the operating room during a foot reconstruction, an external fixation frame in place"
-                 width="640" height="669" loading="lazy" decoding="async">
+                 width="640" height="669" loading="lazy" decoding="async" style="object-position:30% 28%">
             <span class="ig-cap">Dr. Cedeno in reconstruction surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/723">
             <img src="/assets/img/instagram/dr-cedeno-imaging.opt.webp" alt="Dr. Cedeno positioning a mobile imaging arm in the operating room"
-                 width="640" height="723" loading="lazy" decoding="async">
+                 width="640" height="723" loading="lazy" decoding="async" style="object-position:50% 35%">
             <span class="ig-cap">Imaging during a procedure</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/dr-cedeno-profile.opt.webp" alt="A profile card introducing Dr. Cedeno, podiatrist and foot and ankle surgeon"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 28%">
             <span class="ig-cap">Meet Dr. Cedeno</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787">
             <img src="/assets/img/instagram/dr-mustafa-regenerative.opt.webp" alt="A profile card for Dr. Isin A. Mustafa introducing regenerative care for ankles and feet"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 30%">
             <span class="ig-cap">Regenerative care with Dr. Mustafa</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/588" aria-hidden="true">
             <img src="/assets/img/instagram/bunion-xray-before-after.opt.webp" alt="Before and after X-rays of a bunion correction, the realigned bones held with surgical screws"
-                 width="640" height="588" loading="lazy" decoding="async">
+                 width="640" height="588" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Bunion correction, before &amp; after</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/mis-bunion-before.opt.webp" alt="A foot photographed before minimally invasive bunion surgery, showing the bump at the base of the big toe"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Before minimally invasive bunion surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/788" aria-hidden="true">
             <img src="/assets/img/instagram/mis-bunion-3-weeks.opt.webp" alt="The same foot three weeks after minimally invasive bunion surgery, with small healed incision marks"
-                 width="640" height="788" loading="lazy" decoding="async">
+                 width="640" height="788" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Three weeks after surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/583" aria-hidden="true">
             <img src="/assets/img/instagram/toenail-before-after.opt.webp" alt="Before and after photographs of toenail treatment, showing clearer nail growing in"
-                 width="640" height="583" loading="lazy" decoding="async">
+                 width="640" height="583" loading="lazy" decoding="async" style="object-position:50% 50%">
             <span class="ig-cap">Toenail restoration progress</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/669" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-surgery.opt.webp" alt="Dr. Cedeno in the operating room during a foot reconstruction, an external fixation frame in place"
-                 width="640" height="669" loading="lazy" decoding="async">
+                 width="640" height="669" loading="lazy" decoding="async" style="object-position:30% 28%">
             <span class="ig-cap">Dr. Cedeno in reconstruction surgery</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/723" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-imaging.opt.webp" alt="Dr. Cedeno positioning a mobile imaging arm in the operating room"
-                 width="640" height="723" loading="lazy" decoding="async">
+                 width="640" height="723" loading="lazy" decoding="async" style="object-position:50% 35%">
             <span class="ig-cap">Imaging during a procedure</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/dr-cedeno-profile.opt.webp" alt="A profile card introducing Dr. Cedeno, podiatrist and foot and ankle surgeon"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 28%">
             <span class="ig-cap">Meet Dr. Cedeno</span>
           </li>
           <li class="ig-item" style="aspect-ratio:640/787" aria-hidden="true">
             <img src="/assets/img/instagram/dr-mustafa-regenerative.opt.webp" alt="A profile card for Dr. Isin A. Mustafa introducing regenerative care for ankles and feet"
-                 width="640" height="787" loading="lazy" decoding="async">
+                 width="640" height="787" loading="lazy" decoding="async" style="object-position:50% 30%">
             <span class="ig-cap">Regenerative care with Dr. Mustafa</span>
           </li>
         </ul>
@@ -915,7 +919,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=acfda071dd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -200,7 +204,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-08-21"
+    "dateModified": "2026-09-15"
   }
   </script>
   <script type="application/ld+json">
@@ -288,7 +292,6 @@
           <li><a href="/media/" data-nav="media">Media</a></li>
           <li><a href="/blog/" data-nav="blog">Blog</a></li>
           <li><a href="/new-patients/" data-nav="new-patients">New Patients</a></li>
-          <li><a href="/personal-injury/" data-nav="personal-injury">For Attorneys</a></li>
         </ul>
       </nav>
 
@@ -325,7 +328,7 @@
           <span class="kicker">Treatments</span>
           <figure class="photo-frame photo-atmos" style="margin:2rem 0">
             <img src="/assets/img/atmos/services.opt.webp" alt="Bare feet on a wooden floor beside a pair of walking shoes in warm daylight"
-                 width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()">
+                 width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()" style="object-position:50% 62%">
           </figure>
 
           <h2>Every option, from conservative to advanced</h2>
@@ -337,19 +340,19 @@
             <p>Our flagship service. FDA-cleared dual-wavelength laser reduces pain and inflammation while accelerating tissue repair. Painless 10&ndash;15 minute sessions, zero downtime, and results many patients feel within the first few visits. The go-to treatment for plantar fasciitis, neuropathy, tendonitis, and arthritis.</p>
             <span class="link-arrow">MLS laser in depth</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6M12 8c-3 0-5 2-5 4.5S9 17 9 20M12 8c3 0 5 2 5 4.5S15 17 15 20"/><path d="M7 12.5h10"/></svg></div>
             <h3><a href="/services/vein-treatment/">Vein Treatment</a></h3>
             <p>Swollen ankles, heavy aching legs and bulging veins usually trace back to valves in the leg veins that no longer close. We map the problem with ultrasound and treat it, from sclerotherapy and endovenous laser through to compression management, and deal with what it has already done to the foot.</p>
             <span class="link-arrow">Vein treatment in depth</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></svg></div>
             <h3><a href="/services/shockwave-therapy/">Shockwave Therapy (EPAT)</a></h3>
             <p>Focused acoustic pressure waves break down chronic scar tissue, stimulate new blood vessel growth, and restart healing in tissue that's given up. Especially powerful for stubborn plantar fasciitis and chronic Achilles tendinopathy that has resisted everything else.</p>
             <span class="link-arrow">Shockwave in depth</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v7M12 9a5.5 5.5 0 1 0 5.5 5.5"/><circle cx="12" cy="14.5" r="5.5"/><path d="M9 2h6"/></svg></div>
             <h3><a href="/services/prp-therapy/">Platelet-Rich Plasma (PRP)</a></h3>
             <p>Your own blood, concentrated into a growth-factor-rich serum and precisely injected where healing has stalled. Natural, well-researched, and highly effective for chronic tendon and fascia injuries.</p>
@@ -361,7 +364,7 @@
             <p>How it all fits together. Dr. Cedeno combines laser, shockwave, PRP, and cell therapy into staged healing programs matched to your condition, timeline, and goals, with clear milestones along the way.</p>
             <span class="link-arrow">Our approach in depth</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 7 6.6 7 11a7 7 0 1 1-14 0c0-4.4 4-7 7-11Z"/></svg></div>
             <h3><a href="/services/foot-bbl/">Foot BBL&trade;, Fat Pad Restoration</a></h3>
             <p>Our signature procedure. Rebuild the natural cushion under your heel and forefoot with Liposana&trade; or Sculptra, no liposuction, no downtime that matters, heels back in rotation. The cushion-restoration idea behind the famous BBL, reimagined for your feet.</p>
@@ -373,7 +376,7 @@
             <p>Diabetic ulcers and slow-healing wounds treated systematically, debridement, offloading, biologics, and limb preservation. Expert wound care now saves feet later.</p>
             <span class="link-arrow">Wound care in depth</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></div>
             <h3><a href="/services/foot-ankle-surgery/">Foot &amp; Ankle Surgery</a></h3>
             <p>Bunion correction, reconstruction, trauma, and minimally invasive (MIS) techniques, by two surgeons who recommend the OR only when it's truly the answer.</p>
@@ -473,7 +476,6 @@
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
-            <li><a href="/personal-injury/">Personal Injury &amp; Workers' Comp</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
             <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
@@ -599,7 +601,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

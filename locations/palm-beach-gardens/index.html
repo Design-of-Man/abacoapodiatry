@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=acfda071dd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -213,7 +217,7 @@
         }
       }
     },
-    "dateModified": "2026-09-03"
+    "dateModified": "2026-09-15"
   }
   </script>
   <script type="application/ld+json">
@@ -307,7 +311,6 @@
           <li><a href="/media/" data-nav="media">Media</a></li>
           <li><a href="/blog/" data-nav="blog">Blog</a></li>
           <li><a href="/new-patients/" data-nav="new-patients">New Patients</a></li>
-          <li><a href="/personal-injury/" data-nav="personal-injury">For Attorneys</a></li>
         </ul>
       </nav>
 
@@ -359,7 +362,7 @@
             <h3>Laser, shockwave and regenerative treatment</h3>
             <p>Our <a href="/services/mls-laser-therapy/">MLS robotic laser</a>, <a href="/services/shockwave-therapy/">EPAT shockwave</a> and <a href="/services/regenerative-medicine/">regenerative medicine</a> suites are right here in Palm Beach Gardens. If you're closer to Jupiter, we schedule your evaluation at whichever office suits you and your treatment visits here in the Gardens. One call sorts both.</p>
           </div>
-          <div class="split-aside" data-reveal style="--rd:0.1s">
+          <div class="split-aside" data-reveal style="--rd:var(--stagger-2)">
             <div class="card card-glow" style="position:sticky;top:100px">
               <h3>Palm Beach Gardens office</h3>
               <p style="font-size:0.97rem;margin:0 0 0.6rem"><strong>Abacoa Podiatry &amp; Leg Vein Center</strong><br>11380 Prosperity Farms Road, Suite 204<br>Palm Beach Gardens, FL 33410<br><a href="tel:+15619151934">(561) 915-1934</a></p>
@@ -386,7 +389,7 @@
             <h3 style="font-size:1.05rem">Directions</h3>
             <p style="font-size:0.95rem"><strong>From PGA Boulevard:</strong> head east to Prosperity Farms Road, then south to 11380.<br><strong>From US-1:</strong> turn west on PGA Boulevard or Northlake, then onto Prosperity Farms Road.<br><strong>From I-95:</strong> exit PGA Boulevard and head east about three miles.<br><strong>From North Palm Beach:</strong> Prosperity Farms Road runs straight north to us.</p>
           </div>
-          <div data-reveal style="--rd:0.08s">
+          <div data-reveal style="--rd:var(--stagger-2)">
             <iframe class="map-embed" style="height:300px" src="https://www.google.com/maps?q=11380+Prosperity+Farms+Rd+Suite+204,+Palm+Beach+Gardens,+FL+33410&amp;output=embed" title="Map to the Palm Beach Gardens office at 11380 Prosperity Farms Road Suite 204" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
@@ -397,7 +400,7 @@
       <div class="wrap">
         <figure class="photo-frame photo-atmos" style="margin:0">
           <img src="/assets/img/atmos/locations-palm-beach-gardens.opt.webp" alt="Two players facing the net on a blue pickleball court, paddles raised"
-               width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()">
+               width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()" style="object-position:50% 35%">
         </figure>
       </div>
     </section>
@@ -489,7 +492,6 @@
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
-            <li><a href="/personal-injury/">Personal Injury &amp; Workers' Comp</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
             <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
@@ -615,7 +617,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

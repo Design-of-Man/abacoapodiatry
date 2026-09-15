@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=acfda071dd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -194,7 +198,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-04"
+    "dateModified": "2026-09-15"
   }
   </script>
   <script type="application/ld+json">
@@ -282,7 +286,6 @@
           <li><a href="/media/" data-nav="media">Media</a></li>
           <li><a href="/blog/" data-nav="blog">Blog</a></li>
           <li><a href="/new-patients/" data-nav="new-patients">New Patients</a></li>
-          <li><a href="/personal-injury/" data-nav="personal-injury">For Attorneys</a></li>
         </ul>
       </nav>
 
@@ -316,11 +319,11 @@
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></div>
             <div><h2>Phone &amp; Email</h2><p><a href="tel:+15619151934">(561) 915-1934</a><br><a href="mailto:angela.d@jupiterlaser.com">angela.d@jupiterlaser.com</a><br>Fax: (561)&nbsp;624-5206<br>Follow-up or results review? Ask about a <a href="/telehealth/">telehealth visit</a>.</p></div>
           </div>
-          <div class="info-tile" data-reveal style="--rd:0.06s">
+          <div class="info-tile" data-reveal style="--rd:var(--stagger-1)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div><h3>Two Offices</h3><p><strong>Jupiter:</strong> <a href="/locations/jupiter/">4601 Military Trail, Suite 202</a><br><strong>Palm Beach Gardens:</strong> <a href="/locations/palm-beach-gardens/">11380 Prosperity Farms Rd, Suite 204</a> &middot; <a href="/locations/">Maps &amp; directions</a></p></div>
           </div>
-          <div class="info-tile" data-reveal style="--rd:0.12s">
+          <div class="info-tile" data-reveal style="--rd:var(--stagger-3)">
             <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
             <div><h3>Hours</h3><p><strong>Jupiter:</strong> Mon&ndash;Thu 8 AM&ndash;5 PM &middot; Fri 8 AM&ndash;2 PM<br><strong>Palm Beach Gardens:</strong> Mon&ndash;Wed 8 AM&ndash;4:30 PM &middot; Fri 8 AM&ndash;2 PM<br>Saturday by concierge appointment only at both offices &middot; Closed Sunday</p></div>
           </div>
@@ -402,7 +405,7 @@
               <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
             </form>
           </div>
-          <div data-reveal style="--rd:0.1s">
+          <div data-reveal style="--rd:var(--stagger-2)">
             <span class="kicker">Find Us</span>
             <h2>On Military Trail in Jupiter</h2>
             <p class="form-note" style="margin:0 0 1rem">4601 Military Trail, Suite 202 &middot; free parking on site</p>
@@ -510,7 +513,6 @@
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
-            <li><a href="/personal-injury/">Personal Injury &amp; Workers' Comp</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
             <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
@@ -636,7 +638,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

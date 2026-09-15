@@ -42,12 +42,16 @@
   <link rel="icon" href="/assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Fonts are self-hosted (assets/fonts/). This was three requests to two
+       Google origins that blocked first paint, could not be preloaded across
+       origins, and put every visitor in front of a third party. The latin
+       faces are preloaded because every page uses both immediately. -->
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=acfda071dd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=2144e69a11">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -200,7 +204,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-01"
+    "dateModified": "2026-09-15"
   }
   </script>
   <script type="application/ld+json">
@@ -288,7 +292,6 @@
           <li><a href="/media/" data-nav="media">Media</a></li>
           <li><a href="/blog/" data-nav="blog">Blog</a></li>
           <li><a href="/new-patients/" data-nav="new-patients">New Patients</a></li>
-          <li><a href="/personal-injury/" data-nav="personal-injury">For Attorneys</a></li>
         </ul>
       </nav>
 
@@ -324,7 +327,7 @@
             <p>That surgical foundation shapes everything. <a href="/meet-dr-cedeno/">Dr. Orlando Cedeno, DPM</a> trained in reconstructive and trauma surgery of the foot and ankle; he can operate when operation is needed. Which is exactly why his recommendation <em>not</em> to operate carries weight. Here, advanced non-surgical treatment isn't a consolation prize. It's a deliberate first choice, made by someone qualified to offer you every option.</p>
             <figure class="photo-frame photo-atmos" style="margin:2rem 0">
               <img src="/assets/img/atmos/about.opt.webp" alt="Two people walking up a path to a front door in warm evening light"
-                   width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()">
+                   width="1200" height="675" loading="lazy" decoding="async" onerror="this.remove()" style="object-position:50% 35%">
             </figure>
 
             <h2>What we believe</h2>
@@ -336,7 +339,7 @@
               <li><strong>Respect for your time.</strong> On-time appointments, efficient visits, and treatments designed to fit inside a lunch break.</li>
             </ul>
           </div>
-          <div data-reveal style="--rd:0.12s">
+          <div data-reveal style="--rd:var(--stagger-3)">
             <div class="grid" style="gap:1rem">
               <div class="info-tile">
                 <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M9 13 7 22l5-3 5 3-2-9"/></svg></div>
@@ -369,15 +372,15 @@
         <div class="grid grid-2">
           <article class="card card-glow" data-reveal>
             <div class="author-box" style="margin:0 0 1rem;background:transparent;padding:0">
-              <div class="avatar avatar-photo"><span aria-hidden="true">OC</span><img src="/assets/img/photos/dr-cedeno.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+              <div class="avatar avatar-photo"><span aria-hidden="true">OC</span><img src="/assets/img/photos/dr-cedeno.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:50% 22%" width="900" height="1125"></div>
               <div><h3 style="margin:0"><a href="/meet-dr-cedeno/">Orlando Cedeno, DPM</a></h3><p style="margin:0;font-size:0.9rem">Board-Certified Foot &amp; Ankle Surgeon</p></div>
             </div>
             <p style="font-size:0.96rem">Reconstructive &amp; trauma surgery training (Chestnut Hill Hospital/University of Pennsylvania), extensive expertise in diabetic limb preservation, and the founder of our laser &amp; regenerative medicine program.</p>
             <span class="link-arrow">Meet Dr. Cedeno</span>
           </article>
-          <article class="card card-glow" data-reveal style="--rd:0.08s">
+          <article class="card card-glow" data-reveal style="--rd:var(--stagger-2)">
             <div class="author-box" style="margin:0 0 1rem;background:transparent;padding:0">
-              <div class="avatar avatar-photo"><span aria-hidden="true">IM</span><img src="/assets/img/photos/dr-mustafa.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+              <div class="avatar avatar-photo"><span aria-hidden="true">IM</span><img src="/assets/img/photos/dr-mustafa.jpg" alt="" loading="lazy" onerror="this.remove()" style="object-position:50% 18%" width="900" height="1125"></div>
               <div><h3 style="margin:0"><a href="/meet-dr-mustafa/">Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS</a></h3><p style="margin:0;font-size:0.9rem">Foot &amp; Ankle Surgeon</p></div>
             </div>
             <p style="font-size:0.96rem">Chief Resident at Chino Valley Medical Center, published author and residency faculty, focused on minimally invasive foot surgery (MIS), regenerative medicine, wound care, and sports medicine.</p>
@@ -395,8 +398,8 @@
         </div>
         <div class="grid grid-3">
           <div class="card card-dark" data-reveal><h3>"My shots kept wearing off."</h3><p>Cortisone manages inflammation; it can't rebuild tissue. When relief keeps expiring, you need treatment aimed at healing. That's our specialty.</p></div>
-          <div class="card card-dark" data-reveal style="--rd:0.08s"><h3>"I was told surgery was next."</h3><p>Sometimes it is. But "we've tried nothing else and we're out of ideas" isn't a surgical indication. Patients regularly find they had more options than they were shown.</p></div>
-          <div class="card card-dark" data-reveal style="--rd:0.16s"><h3>"Nobody explained anything."</h3><p>You'll leave every visit knowing what's wrong, why we're doing what we're doing, and what happens next. Informed patients heal better.</p></div>
+          <div class="card card-dark" data-reveal style="--rd:var(--stagger-2)"><h3>"I was told surgery was next."</h3><p>Sometimes it is. But "we've tried nothing else and we're out of ideas" isn't a surgical indication. Patients regularly find they had more options than they were shown.</p></div>
+          <div class="card card-dark" data-reveal style="--rd:var(--stagger-4)"><h3>"Nobody explained anything."</h3><p>You'll leave every visit knowing what's wrong, why we're doing what we're doing, and what happens next. Informed patients heal better.</p></div>
         </div>
       </div>
     </section>
@@ -488,7 +491,6 @@
           <h2 class="footer-h" style="margin-top:1.6rem">Quick Links</h2>
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
-            <li><a href="/personal-injury/">Personal Injury &amp; Workers' Comp</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
             <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
@@ -614,7 +616,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=7274995b91" defer></script>
+  <script src="/assets/js/main.js?v=0d7320772c" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

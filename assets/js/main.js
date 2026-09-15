@@ -6,6 +6,12 @@
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
+  /* One source of truth for motion preference. This used to be declared as
+     `reduced` inside the testimonial-slider forEach, then read again by the
+     stat rings at top-level scope -- a ReferenceError under "use strict" that
+     left every ring stuck at zero. Declared once here, read everywhere. */
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ------------------------------------------------------------------
      Lead tracking
 
@@ -256,8 +262,7 @@
     };
     if (prev) prev.addEventListener("click", function () { go(-1); });
     if (next) next.addEventListener("click", function () { go(1); });
-    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduced) {
+    if (!prefersReduced) {
       var timer = setInterval(function () { go(1); }, 6500);
       ["pointerdown", "touchstart", "mouseenter"].forEach(function (ev) {
         slider.addEventListener(ev, function () { clearInterval(timer); }, { once: true, passive: true });
@@ -542,6 +547,11 @@
 (function () {
   "use strict";
 
+  /* Declared per-IIFE on purpose: this file is two independent IIFEs, and the
+     stat rings below read this. The original bug was a `reduced` declared in
+     the other IIFE entirely, so every ring sat at zero. */
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---- Scroll progress rail ---- */
   var rail = document.querySelector(".scroll-rail i");
   if (rail) {
@@ -595,7 +605,7 @@
   if (rings.length) {
     var C = 2 * Math.PI * 40; // r=40
     rings.forEach(function (r) { r.style.strokeDasharray = C; r.style.strokeDashoffset = C; });
-    if ("IntersectionObserver" in window && !reduced) {
+    if ("IntersectionObserver" in window && !prefersReduced) {
       var ro = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (!e.isIntersecting) return;

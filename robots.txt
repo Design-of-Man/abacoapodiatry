@@ -31,4 +31,22 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
 Sitemap: https://jupiterlaser.com/sitemap.xml

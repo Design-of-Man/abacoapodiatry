@@ -181,8 +181,9 @@ was told this history first, and confirmed anyway. `api/contact.js` is untouched
 in the repo for a future revert. **Do not silently switch the form back to `/api/contact/`
 citing this file** — that decision is the client's to make, not a bug to fix.
 
-**Recipients, as of the 2026-08-18 handover:** `angela.d@jupiterlaser.com` is primary, with
-`janice.j@`, `doctor.cedeno@` and `nicholasbkashuba@gmail.com` on `_cc`. The owner's Gmail
+**Recipients:** `angela.d@jupiterlaser.com` is primary since the 2026-08-18 handover, with
+`janice.j@`, `patricia.g@`, `doctor.cedeno@`, `doctor.mustafa@` and
+`nicholasbkashuba@gmail.com` on `_cc` (`patricia.g@` added 2026-09-17). The owner's Gmail
 stays on CC on purpose — it was the first address activated, and it belongs to the person
 who would notice leads drying up.
 

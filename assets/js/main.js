@@ -365,19 +365,76 @@
 
   /* ------------------------------------------------------------------
      Contact form (Formspree-style endpoint; graceful fallback)
+
+     FormSubmit's /ajax/ endpoint (unlike its normal redirect endpoint)
+     never shows a captcha, so the only thing standing between this form
+     and spam is what we check here. Layers, cheapest first:
+       1. honeypot (_honey) — dumb bots that fill every field trip it
+       2. load-to-submit timing — scripts that POST within ~2.5s of the
+          page loading almost never are a person reading the form first
+       3. phone format — most of the junk we've seen ships an invalid
+          or non-US number (fake toll-free 555s, foreign formats)
+       4. content signals — SEO/VA cold-pitch and crypto-phishing spam
+          identify themselves in their own copy ("seo", "backlink",
+          bitcoin/coinbase, a URL in the message, etc.)
+     Anything caught by 1, 2 or 4 is near-certainly not a person filling
+     out this form by hand, so it fails silently (fake success, nothing
+     sent) rather than teaching the sender what tripped the filter.
+     Anything caught by 3 gets a real, visible validation error, because
+     a legitimate patient can genuinely mistype a phone number.
      ------------------------------------------------------------------ */
   var form = $("#contact-form");
   if (form) {
+    var formLoadedAt = Date.now();
+    var SPAM_PATTERNS = /\b(seo|backlink|guest post|link building|bitcoin|crypto|coinbase|nft|dropshipping|web design services|social media (marketing|services)|virtual assistant|va services)\b|https?:\/\/|www\./i;
+
+    function isValidUsPhone(raw) {
+      var digits = (raw || "").replace(/\D/g, "");
+      if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
+      if (digits.length !== 10) return false;
+      var areaCode = digits.slice(0, 3);
+      var exchange = digits.slice(3, 6);
+      // Reject the FCC-reserved fictional block (555-0100–0199) and codes that can't start with 0/1.
+      if (areaCode.charAt(0) === "0" || areaCode.charAt(0) === "1") return false;
+      if (exchange === "555" && digits.slice(6, 8) === "01") return false;
+      return true;
+    }
+
+    function looksLikeSpam(data) {
+      if ((data.get("_honey") || "").trim() !== "") return true;
+      if (Date.now() - formLoadedAt < 2500) return true;
+      var text = [data.get("name"), data.get("message")].join(" ");
+      return SPAM_PATTERNS.test(text);
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var status = $("#form-status");
       var action = form.getAttribute("action") || "";
       var btn = $('button[type="submit"]', form);
+      var data = new FormData(form);
+
+      var phoneField = $("#f-phone", form);
+      if (!isValidUsPhone(data.get("phone"))) {
+        status.className = "form-status err";
+        status.textContent = "That phone number doesn't look complete — please double-check it (10 digits, US format) so we can call you back.";
+        if (phoneField) phoneField.focus();
+        return;
+      }
+
+      if (looksLikeSpam(data)) {
+        // Fake success: don't send, and don't tip off whatever sent this.
+        status.className = "form-status ok";
+        status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+        form.reset();
+        return;
+      }
+
       btn.disabled = true;
       btn.textContent = "Sending…";
       fetch(action, {
         method: "POST",
-        body: new FormData(form),
+        body: data,
         headers: { Accept: "application/json" }
       }).then(function (r) {
         if (r.ok) {

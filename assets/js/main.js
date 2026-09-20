@@ -447,7 +447,17 @@
       if (secs < 4) flags.push("filled in under 4s");
       var digits = String(payload.phone || "").replace(/\D/g, "");
       if (!(digits.length === 10 || (digits.length === 11 && digits.charAt(0) === "1"))) flags.push("phone not a 10-digit US number");
-      if (/https?:\/\/|www\./i.test(String(payload.message || ""))) flags.push("message contains a link");
+      // A Gmail audit of 30 days of real submissions (2026-09) found
+      // cold-pitch and phishing spam that a message-only link check misses
+      // entirely -- it lives in `name`: SEO/VA outreach
+      // ("kristaseowebexpert@gmail.com" as the name) and crypto phishing
+      // ("Transfer #T4990 from Coinbase. SIGN IN >>>"). Same rule as above:
+      // this only ever adds a flag, never blocks.
+      var nameAndMessage = String(payload.name || "") + " " + String(payload.message || "");
+      if (/https?:\/\/|www\./i.test(nameAndMessage)) flags.push("contains a link");
+      if (/\b(seo|backlink|guest post|link building|bitcoin|crypto|coinbase|nft|virtual assistant|va services)\b/i.test(nameAndMessage)) {
+        flags.push("matches cold-pitch/crypto spam language");
+      }
       payload.flags = flags.length ? flags.join("; ") : "none";
       fetch(action, {
         method: "POST",

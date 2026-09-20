@@ -14,8 +14,23 @@ on:
     # SOURCE ONLY. The commit this workflow pushes back contains built output at the repo
     # root, which does not match these paths — that is what stops it retriggering itself.
     # Removing this filter creates an infinite rebuild loop on a live site.
+    #
+    # assets/js and assets/css are here because build.py's asset_v() stamps a content hash
+    # onto every page's <script> and <link> (see asset_versions(), which hashes main.css,
+    # fonts.css, main.js, assistant.js and media.js). Change one of those files without a
+    # rebuild and all 110 pages keep naming the OLD hash, so a returning visitor is served a
+    # cached asset that is no longer the site's. That is exactly what happened: #77 changed
+    # assets/js/main.js on 20 September and 6a80a025 changed it on 15 September, neither
+    # matched '_src/**', and the pages went stale until a catch-up rebuild.
+    #
+    # Safe against the loop above: build.py READS these files and never writes under assets/
+    # — verified empirically, a full build from main changes 110 files and none of them are
+    # under assets/. A glob rather than the five filenames so adding a sixth asset to
+    # asset_versions() does not silently fall outside the trigger.
     paths:
       - '_src/**'
+      - 'assets/js/**'
+      - 'assets/css/**'
 
 permissions:
   contents: write

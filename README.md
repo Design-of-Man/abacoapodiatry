@@ -108,11 +108,21 @@ Ordered by what cannot be undone if it is missed.
       involved. `_src/vercel-build.sh` was deleted on 2026-08-15 — it fetched a
       tarball of a hardcoded branch from a GitHub org this repo no longer lives in,
       and nothing ran it.
-- [x] ~~**Wire the contact form.**~~ Done — `_src/pages/contact.html` posts to
-      `/api/contact/`, our own serverless function, which stores every request in
-      Supabase and only then reports success. `assets/js/main.js` fires the
-      `form_submit` analytics event only on a confirmed store. FormSubmit was
-      removed on 2026-08-15 after it turned out to have delivered nothing.
+- [x] ~~**Wire the contact form.**~~ Done, but read the history before changing it.
+      FormSubmit was removed on 2026-08-15 after it turned out to have delivered
+      nothing — it had never been activated, so it accepted every submission,
+      answered `200` with `{"success":"false"}` and dropped the lead. It was
+      replaced with `/api/contact/`, our own serverless function, which stores each
+      request in Supabase and only then reports success.
+      **On 2026-08-18 the client asked for FormSubmit specifically, was told that
+      history first, and confirmed anyway**, so `_src/pages/contact.html` posts to
+      `https://formsubmit.co/ajax/angela.d@jupiterlaser.com` today, with the rest of
+      the office on `_cc`. `api/contact.js` is untouched and still in the repo for a
+      future revert. That is the client's decision, not a bug to fix — do not
+      silently switch it back; `CLAUDE.md` has the full account.
+      Either way `assets/js/main.js` reads the response body and fires the
+      `form_submit` analytics event only when it says `success: "true"`, which is
+      what keeps the activation trap from thanking a patient whose lead vanished.
 - [ ] **Switch on email for the contact form.** Capture already works with no
       configuration at all — every request is stored in the Supabase `leads` table
       via the `contact-lead` Edge Function, verified end to end. But **until

@@ -43,6 +43,27 @@ Preview locally: `python3 -m http.server 8000` → http://localhost:8000
 
 The site remains a plain static bundle, so any static host still works. For GitHub Pages, use a **custom domain** — project-subpath URLs would break the absolute links.
 
+## IndexNow (Bing + Yandex instant indexing)
+
+The key file `6a96231baeeed8716d903630bd382e40.txt` at the site root proves domain
+ownership. It does nothing on its own — ping the API when a page changes:
+
+```
+curl -s "https://api.indexnow.org/indexnow?url=https://jupiterlaser.com/&key=6a96231baeeed8716d903630bd382e40"
+```
+
+Swap `url=` for whichever page changed. The host has to be the canonical one
+(`jupiterlaser.com`, matching `BASE_URL` in `_src/build.py`): IndexNow fetches the key
+file from the host you submit. Google ignores IndexNow; Bing, Yandex and several AI
+crawlers act on it within minutes instead of waiting for a crawl.
+
+The key file has to be reachable at `https://jupiterlaser.com/<key>.txt` for the API to
+accept a submission, which it is: the Vercel project deploys this repository's checkout
+directly, with no build command. (`_src/vercel-build.sh` is a leftover from an earlier
+setup that fetched a branch tarball. Nothing references it, and `vercel.json` sets no
+`buildCommand` — verified on the preview deploy, which serves the key file from the
+checkout. Delete it or wire it up, but don't assume it runs.)
+
 ## ⚠️ Pre-launch checklist (do these before pointing the domain)
 
 Ordered by what cannot be undone if it is missed.

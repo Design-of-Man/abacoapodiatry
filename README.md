@@ -51,8 +51,12 @@ Swap `url=` for whichever page changed. The host has to be the canonical one
 file from the host you submit. Google ignores IndexNow; Bing, Yandex and several AI
 crawlers act on it within minutes instead of waiting for a crawl.
 
-Note that `_src/vercel-build.sh` deploys a tarball of a GitHub branch rather than the
-checkout Vercel clones, so the key file only goes live once it is on that branch.
+The key file has to be reachable at `https://jupiterlaser.com/<key>.txt` for the API to
+accept a submission, which it is: the Vercel project deploys this repository's checkout
+directly, with no build command. (`_src/vercel-build.sh` is a leftover from an earlier
+setup that fetched a branch tarball. Nothing references it, and `vercel.json` sets no
+`buildCommand` — verified on the preview deploy, which serves the key file from the
+checkout. Delete it or wire it up, but don't assume it runs.)
 
 ## ⚠️ Pre-launch checklist (do these before pointing the domain)
 

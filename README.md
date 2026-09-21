@@ -58,11 +58,8 @@ file from the host you submit. Google ignores IndexNow; Bing, Yandex and several
 crawlers act on it within minutes instead of waiting for a crawl.
 
 The key file has to be reachable at `https://jupiterlaser.com/<key>.txt` for the API to
-accept a submission, which it is: the Vercel project deploys this repository's checkout
-directly, with no build command. (`_src/vercel-build.sh` is a leftover from an earlier
-setup that fetched a branch tarball. Nothing references it, and `vercel.json` sets no
-`buildCommand` — verified on the preview deploy, which serves the key file from the
-checkout. Delete it or wire it up, but don't assume it runs.)
+accept a submission, which it is: Vercel serves this repository's committed root
+directly, with no build command, so the file ships with the rest of the site.
 
 ## ⚠️ Pre-launch checklist (do these before pointing the domain)
 

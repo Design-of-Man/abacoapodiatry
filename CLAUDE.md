@@ -24,10 +24,12 @@ diff looks fine, which is why this is worth stating twice.
 Pages, `sitemap.xml`, and every redirect surface are generated. CSS, JS, images and video
 under `assets/` are static and edited in place.
 
-One wrinkle: the build stamps **today's date** into every `<lastmod>` in `sitemap.xml`,
-whether or not the page changed. So a rebuild always dirties the sitemap. If your change
-didn't touch page content, `git checkout sitemap.xml` before committing — otherwise you are
-telling search engines all 53 URLs changed when none did.
+`<lastmod>` in `sitemap.xml` is the date each page's SOURCE last changed, from the same
+`modified_dates()` git walk that feeds `dateModified` (see below) — not the build date. A
+rebuild that changes no page therefore leaves the sitemap byte-identical, so a dirty
+`sitemap.xml` means something really did change and should be committed with it. Do not
+`git checkout sitemap.xml` to "clean up" a rebuild: that discards real dates. If you ever
+see all 109 URLs sharing one date, that is the bug, not the baseline.
 
 ## Meta values are escaped at build time
 

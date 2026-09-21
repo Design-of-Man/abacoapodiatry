@@ -37,6 +37,23 @@ Preview locally: `python3 -m http.server 8000` → http://localhost:8000
 
 Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `_redirects` handles the 301s automatically) or Apache-style hosting (`.htaccess` included). For GitHub Pages, use a **custom domain** (project-subpath URLs would break absolute links).
 
+## IndexNow (Bing + Yandex instant indexing)
+
+The key file `6a96231baeeed8716d903630bd382e40.txt` at the site root proves domain
+ownership. It does nothing on its own — ping the API when a page changes:
+
+```
+curl -s "https://api.indexnow.org/indexnow?url=https://jupiterlaser.com/&key=6a96231baeeed8716d903630bd382e40"
+```
+
+Swap `url=` for whichever page changed. The host has to be the canonical one
+(`jupiterlaser.com`, matching `BASE_URL` in `_src/build.py`): IndexNow fetches the key
+file from the host you submit. Google ignores IndexNow; Bing, Yandex and several AI
+crawlers act on it within minutes instead of waiting for a crawl.
+
+Note that `_src/vercel-build.sh` deploys a tarball of a GitHub branch rather than the
+checkout Vercel clones, so the key file only goes live once it is on that branch.
+
 ## ⚠️ Pre-launch checklist (do these before pointing the domain)
 
 - [ ] **Read [`MIGRATION.md`](MIGRATION.md)** — the no-lost-leads cutover plan

@@ -1946,6 +1946,34 @@ details.faq.hidden { display: none; }
 .city-links a:hover { color: var(--accent-light); }
 .city-links li { margin: 0; }
 
+/* Sister practices strip (ELITE Sports Medicine, RegenOrtho Palm Beach) */
+.footer-sisters {
+  border-top: 1px solid rgba(214, 185, 116, 0.14);
+  padding: 2rem 0 2.2rem;
+}
+.footer-sisters h2 {
+  font-size: 0.86rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.sister-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.9rem 1.6rem;
+}
+.sister-links li { margin: 0; }
+.sister-links a { display: block; text-decoration: none; }
+.sister-links strong { display: block; color: #e4c273; font-size: 0.98rem; }
+.sister-links span { display: block; color: #a49b88; font-size: 0.87rem; margin-top: 0.15rem; }
+.sister-links a:hover strong { color: #f2d491; }
+
 /* --------------------------------------------------------------------------
    Virtual assistant
    -------------------------------------------------------------------------- */

@@ -394,12 +394,12 @@
     },
     {
       "source": "/minimally-invasive-bunion-surgery-jupiter/",
-      "destination": "/conditions/bunions/",
+      "destination": "/minimally-invasive-bunion-surgery/",
       "permanent": true
     },
     {
       "source": "/minimally-invasive-bunion-surgery-jupiter",
-      "destination": "/conditions/bunions/",
+      "destination": "/minimally-invasive-bunion-surgery/",
       "permanent": true
     },
     {

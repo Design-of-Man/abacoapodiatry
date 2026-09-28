@@ -39,7 +39,7 @@ RewriteRule ^what-is-achilles-tendonitis-symptoms-causes-and-risk-factors-explai
 RewriteRule ^bunions-what-are-symptoms-causes-treatment/?$ /conditions/bunions/ [R=301,L]
 RewriteRule ^foot-bone-correctors-do-they-really-work-or-is-surgery-better/?$ /conditions/bunions/ [R=301,L]
 RewriteRule ^is-lapiplasty-bunion-surgery-right-for-you/?$ /conditions/bunions/ [R=301,L]
-RewriteRule ^minimally-invasive-bunion-surgery-jupiter/?$ /conditions/bunions/ [R=301,L]
+RewriteRule ^minimally-invasive-bunion-surgery-jupiter/?$ /minimally-invasive-bunion-surgery/ [R=301,L]
 RewriteRule ^signs-you-might-need-bunion-surgery-what-to-expect/?$ /conditions/bunions/ [R=301,L]
 RewriteRule ^what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/?$ /minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/ [R=301,L]
 RewriteRule ^understand-the-common-diabetic-foot-problems-before-its-too-late/?$ /common-diabetic-foot-problems/ [R=301,L]

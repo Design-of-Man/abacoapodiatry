@@ -413,6 +413,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/types-of-bunion-surgery-a-plain-english-guide-to-your-options/",
+      "destination": "/types-of-bunion-surgery-which-procedure-is-right-for-you/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/types-of-bunion-surgery-a-plain-english-guide-to-your-options",
+      "destination": "/types-of-bunion-surgery-which-procedure-is-right-for-you/",
+      "permanent": true
+    },
+    {
       "source": "/what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/",
       "destination": "/minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/",
       "permanent": true

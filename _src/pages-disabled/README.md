@@ -45,3 +45,14 @@ content is ever reworked rather than abandoned.
    page is a content change, so the usual "revert the sitemap" rule does not
    apply. Getting that backwards is what left a redirecting URL in the sitemap
    during the withdrawal.
+
+## The plain-English bunion surgery guide
+
+`blog-types-of-bunion-surgery-a-plain-english-guide-to-your-options.html` was
+parked on 2026-09-28. It covered the same ground as the older
+`post-bunion-surgery-types.html` (`/types-of-bunion-surgery-which-procedure-is-right-for-you/`),
+which carries the ranking history (about 4,300 Search Console impressions in its
+last 28 days, against 34 for this one), so the two were splitting the same
+searches. Its two details the older article lacked (distal vs proximal
+osteotomy names, and "bunionectomy" as an umbrella term) were folded in. Its URL
+301s to the older article.

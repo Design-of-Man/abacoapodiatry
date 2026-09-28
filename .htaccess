@@ -41,6 +41,7 @@ RewriteRule ^foot-bone-correctors-do-they-really-work-or-is-surgery-better/?$ /c
 RewriteRule ^is-lapiplasty-bunion-surgery-right-for-you/?$ /conditions/bunions/ [R=301,L]
 RewriteRule ^minimally-invasive-bunion-surgery-jupiter/?$ /minimally-invasive-bunion-surgery/ [R=301,L]
 RewriteRule ^signs-you-might-need-bunion-surgery-what-to-expect/?$ /conditions/bunions/ [R=301,L]
+RewriteRule ^blog/types-of-bunion-surgery-a-plain-english-guide-to-your-options/?$ /types-of-bunion-surgery-which-procedure-is-right-for-you/ [R=301,L]
 RewriteRule ^what-to-expect-before-during-and-after-bunion-surgery-in-jupiter/?$ /minimally-invasive-bunion-surgery-recovery-tips-what-to-expect/ [R=301,L]
 RewriteRule ^understand-the-common-diabetic-foot-problems-before-its-too-late/?$ /common-diabetic-foot-problems/ [R=301,L]
 RewriteRule ^custom-orthotics-benefits-for-foot-and-ankle-health/?$ /conditions/flat-feet/ [R=301,L]

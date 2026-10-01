@@ -198,7 +198,7 @@
     "about": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-17"
+    "dateModified": "2026-10-01"
   }
   </script>
   <script type="application/ld+json">
@@ -393,10 +393,26 @@
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
                 <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
                 <div class="field full"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+                <!-- Preferred doctor lets the office route a request without a
+                     call-back to ask. main.js preselects it from ?doctor= on
+                     the URL, which is how the ad landing page
+                     (/see-a-podiatrist-this-week/) sends new patients to Dr.
+                     Mustafa. The value rides in the email only; it is never
+                     sent to analytics. -->
+                <div class="field full">
+                  <label for="f-doctor">Preferred doctor</label>
+                  <select id="f-doctor" name="doctor">
+                    <option value="First available">First available</option>
+                    <option value="Dr. Isin Mustafa">Dr. Isin Mustafa</option>
+                    <option value="Dr. Orlando Cedeno">Dr. Orlando Cedeno</option>
+                  </select>
+                </div>
                 <div class="field full">
                   <label for="f-reason">What can we help with?</label>
                   <select id="f-reason" name="reason">
                     <option>Heel or arch pain</option>
+                    <option>Bunion or big-toe problem</option>
+                    <option>Ingrown or painful toenail</option>
                     <option>Neuropathy / burning feet</option>
                     <option>Tendon or ankle problem</option>
                     <option>Arthritis pain</option>
@@ -659,7 +675,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=a781c76e11" defer></script>
+  <script src="/assets/js/main.js?v=bd998c3a51" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

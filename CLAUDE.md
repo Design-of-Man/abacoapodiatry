@@ -222,7 +222,14 @@ deliberately on 2026-08-14 — the field earns its place in triage, and the on-f
 disclaimer asking patients not to add medical detail is the mitigation. If that trade
 ever gets revisited, the options are neutral labels or dropping the field.
 
-Lead events go to **Vercel Web Analytics** (`window.va`), not Google Analytics. `track()`
+**Preferred doctor** (added 2026-10-01) is a select on the form, preselected from
+`?doctor=mustafa` or `?doctor=cedeno` on the URL. The Google Ads landing page
+`/see-a-podiatrist-this-week/` links to `/contact/?doctor=mustafa`, so a patient
+from that campaign arrives with Dr. Mustafa chosen and the office sees it in the
+email. Like the condition field, its value is never sent to analytics. The
+campaign itself lives in `_dev/ads/2026-10-new-patients/`.
+
+Lead events go to **Vercel Web Analytics** (`window.va`) and are mirrored to GA4. `track()`
 no-ops when the script isn't present, which is always the case on localhost — so a local
 form test will never show an event unless you stub `window.va` the way the test harness
 does.

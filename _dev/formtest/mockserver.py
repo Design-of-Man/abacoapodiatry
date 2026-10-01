@@ -37,8 +37,11 @@ class H(SimpleHTTPRequestHandler):
             return super().do_GET()
         with open(f"{ROOT}/contact/index.html", encoding="utf-8") as f:
             html = f.read()
-        html = re.sub(r'action="/api/contact/"',
-                      f'action="/mock/{m.group(1)}"', html)
+        # Rewrite whatever the form posts to -- /api/contact/ or FormSubmit,
+        # which it has used since 2026-08-18. Matching only /api/contact/ left
+        # the "ok" case posting to the real FormSubmit and failing every run.
+        html = re.sub(r'(<form id="contact-form" action=)"[^"]*"',
+                      rf'\1"/mock/{m.group(1)}"', html)
         body = html.encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")

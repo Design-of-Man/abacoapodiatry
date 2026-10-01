@@ -51,18 +51,30 @@ CAMPAIGN = {
                 "switch_when": "30+ conversions from the cleaned set (website "
                                "call_click + form_submit imported from GA4, "
                                "ad calls of 90s or longer)"},
-    # Presence only. The account currently also pays for people in New York,
-    # Philadelphia and Midland, TX ($255 in 90 days).
+    # Presence only. The account currently also pays for people out of state
+    # (New York, Philadelphia and others: $245 in 90 days).
     "location_option": "PRESENCE",
+    # Named places rather than a radius. The areas that produced calls at
+    # $30-39 each run north to Stuart and Palm City (~23 mi from the Jupiter
+    # office), while Wellington and Greenacres, which cost $52-53, sit ~18 mi
+    # south-west -- no single circle takes one without the other.
+    # IDs are Google Ads geo target constants from geotargets-2026-08-12.csv.
     "geo": {
-        "proximity": [{"label": "Jupiter office, 4601 Military Trail",
-                       "lat": 26.8915, "lng": -80.1028, "radius_miles": 18}],
-        "note": "18 mi from the Jupiter office reaches Palm Beach Gardens, "
-                "North Palm Beach, Juno, Tequesta, Hobe Sound, Jupiter Island, "
-                "Port Salerno, Riviera Beach, Lake Park and north West Palm "
-                "Beach -- the area that produced calls at $30-39 each. It stops "
-                "short of Wellington, Greenacres and Lake Worth, which cost "
-                "$52-53 per call.",
+        "targets": [
+            (1015072, "Jupiter"), (9052966, "Tequesta"),
+            (9190942, "Jupiter Island"), (9052212, "Juno Beach"),
+            (9052625, "Palm Beach Gardens"), (1015139, "North Palm Beach"),
+            (9194272, "Lake Park"), (9052756, "Riviera Beach"),
+            (9052626, "Palm Beach Shores"), (1015052, "Hobe Sound"),
+            (9052702, "Port Salerno"), (1015208, "Stuart"),
+            (1015159, "Palm City"), (9192318, "Sewall's Point"),
+            (1015229, "West Palm Beach"), (1015158, "Palm Beach"),
+            # Jupiter ZIPs, for unincorporated Jupiter Farms and the edges of
+            # Tequesta that the city targets don't cover.
+            (9012031, "33458"), (9012038, "33469"),
+            (9012044, "33477"), (9012045, "33478"),
+        ],
+        "excluded": [],
     },
     "languages": ["en"],
     # Office hours from _src/hours.py: Jupiter Mon-Thu 8-5, Fri 8-2. Starting an

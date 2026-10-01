@@ -13,15 +13,89 @@
     },
     "location_option": "PRESENCE",
     "geo": {
-      "proximity": [
-        {
-          "label": "Jupiter office, 4601 Military Trail",
-          "lat": 26.8915,
-          "lng": -80.1028,
-          "radius_miles": 18
-        }
+      "targets": [
+        [
+          1015072,
+          "Jupiter"
+        ],
+        [
+          9052966,
+          "Tequesta"
+        ],
+        [
+          9190942,
+          "Jupiter Island"
+        ],
+        [
+          9052212,
+          "Juno Beach"
+        ],
+        [
+          9052625,
+          "Palm Beach Gardens"
+        ],
+        [
+          1015139,
+          "North Palm Beach"
+        ],
+        [
+          9194272,
+          "Lake Park"
+        ],
+        [
+          9052756,
+          "Riviera Beach"
+        ],
+        [
+          9052626,
+          "Palm Beach Shores"
+        ],
+        [
+          1015052,
+          "Hobe Sound"
+        ],
+        [
+          9052702,
+          "Port Salerno"
+        ],
+        [
+          1015208,
+          "Stuart"
+        ],
+        [
+          1015159,
+          "Palm City"
+        ],
+        [
+          9192318,
+          "Sewall's Point"
+        ],
+        [
+          1015229,
+          "West Palm Beach"
+        ],
+        [
+          1015158,
+          "Palm Beach"
+        ],
+        [
+          9012031,
+          "33458"
+        ],
+        [
+          9012038,
+          "33469"
+        ],
+        [
+          9012044,
+          "33477"
+        ],
+        [
+          9012045,
+          "33478"
+        ]
       ],
-      "note": "18 mi from the Jupiter office reaches Palm Beach Gardens, North Palm Beach, Juno, Tequesta, Hobe Sound, Jupiter Island, Port Salerno, Riviera Beach, Lake Park and north West Palm Beach -- the area that produced calls at $30-39 each. It stops short of Wellington, Greenacres and Lake Worth, which cost $52-53 per call."
+      "excluded": []
     },
     "languages": [
       "en"

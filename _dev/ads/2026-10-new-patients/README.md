@@ -43,7 +43,9 @@ Three broad-match keywords did most of the drifting, $4,650 between them:
 (`/insurance/`) has no Medicaid plan.
 
 **The conversion numbers can't be trusted as they stand.** The only primary
-conversion is "Calls from ads": a tap on the call button in the ad itself. 55%
+conversion is "Calls from ads": a tap on the call button in the ad itself.
+(An offline "Phone Call" upload also started in September, 22 calls; nothing
+in the account says what feeds it.) 55%
 of the conversions on visible search terms came from people searching for a
 hospital, competitor, PT clinic or orthopedic group, which reads as people
 calling the number in the ad thinking it was the place they searched for.
@@ -59,8 +61,8 @@ Other numbers that shaped the settings:
 - 97% of spend is on mobile.
 - Weekend: $1,002 for 9 calls ($111 each). Weekdays: $36 each.
 - Spend by area: north Palm Beach County and Martin County $33 per call;
-  Wellington / Greenacres / Lake Worth $52; out of state (New York,
-  Philadelphia, Midland TX) $255 for 3 calls.
+  Wellington and Greenacres $52–53; out of state (New York, Philadelphia and
+  others) $245 for 2 calls.
 - Clinic, Doctor and Brand each lose 44–59% of impression share to budget,
   but on broad keywords that spend the budget on the queries above.
 - September CPC rose to $7.12 from $4.73 in August (Treatment campaign paused,
@@ -82,7 +84,10 @@ Other numbers that shaped the settings:
 4. **185 negatives**, grouped by the audit row they come from (see `NEGATIVES`
    in `campaign.py`). The non-competitor groups also go on Clinic, Doctor and
    Brand on day one.
-5. **Presence-only location targeting**, 18 miles around the Jupiter office.
+5. **Presence-only location targeting** on named places, Stuart and Palm City
+   south to West Palm Beach and Palm Beach, plus the Jupiter ZIP codes. A
+   radius can't do it: Stuart is ~23 miles from the Jupiter office, and
+   Wellington, which costs half again as much per call, is ~18.
 6. **Office hours only**: Mon–Thu 7am–5pm, Fri 7am–2pm. No weekends.
 
 ## Switch-on order

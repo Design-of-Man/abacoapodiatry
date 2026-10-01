@@ -109,10 +109,27 @@ META-->
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
                 <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
                 <div class="field full"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+                <!-- Preferred doctor lets the office route a request without a
+                     call-back to ask. main.js preselects it from ?doctor=cedeno
+                     or ?doctor=mustafa on the URL, which is what each doctor's
+                     "Book With" button on the ad landing page
+                     (/see-a-podiatrist-this-week/) uses; everything else
+                     arrives on "First available". The value rides in the email
+                     only; it is never sent to analytics. -->
+                <div class="field full">
+                  <label for="f-doctor">Preferred doctor</label>
+                  <select id="f-doctor" name="doctor">
+                    <option value="First available">First available</option>
+                    <option value="Dr. Orlando Cedeno">Dr. Orlando Cedeno</option>
+                    <option value="Dr. Isin Mustafa">Dr. Isin Mustafa</option>
+                  </select>
+                </div>
                 <div class="field full">
                   <label for="f-reason">What can we help with?</label>
                   <select id="f-reason" name="reason">
                     <option>Heel or arch pain</option>
+                    <option>Bunion or big-toe problem</option>
+                    <option>Ingrown or painful toenail</option>
                     <option>Neuropathy / burning feet</option>
                     <option>Tendon or ankle problem</option>
                     <option>Arthritis pain</option>

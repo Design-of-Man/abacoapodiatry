@@ -50,7 +50,8 @@
     var href = a.getAttribute("href") || "";
     if (href.indexOf("tel:") === 0) {
       track("call_click", { placement: placementOf(a) });
-    } else if (href === "/contact/" || href === "/request-an-appointment/") {
+    } else if (/^\/(contact|request-an-appointment)\/(?:[?#]|$)/.test(href)) {
+      // Matches /contact/?doctor=... too: the ad landing page links there.
       track("appointment_cta", { placement: placementOf(a) });
     }
   }, { passive: true, capture: true });
@@ -421,6 +422,16 @@
   var form = $("#contact-form");
   var pageLoadedAt = Date.now();
   if (form) {
+    // ?doctor=cedeno or ?doctor=mustafa preselects the preferred doctor. Each
+    // doctor's "Book With" button on the ad landing page
+    // (/see-a-podiatrist-this-week/) links here that way. Anything else leaves
+    // "First available".
+    var doctorSelect = $("#f-doctor", form);
+    var doctorParam = (window.location.search.match(/[?&]doctor=([a-z]+)/i) || [])[1];
+    var doctorNames = { mustafa: "Dr. Isin Mustafa", cedeno: "Dr. Orlando Cedeno" };
+    if (doctorSelect && doctorParam && doctorNames[doctorParam.toLowerCase()]) {
+      doctorSelect.value = doctorNames[doctorParam.toLowerCase()];
+    }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var status = $("#form-status");

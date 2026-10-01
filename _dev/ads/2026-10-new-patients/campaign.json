@@ -1,0 +1,784 @@
+{
+  "campaign": {
+    "name": "NP | Search | New Patients | N. Palm Beach",
+    "channel": "search",
+    "networks": "Google Search only (no Search Partners, no Display)",
+    "status": "paused",
+    "daily_budget": 85.0,
+    "bidding": {
+      "strategy": "target_spend",
+      "cpc_bid_ceiling": 9.0,
+      "switch_to": "maximize_conversions",
+      "switch_when": "30+ conversions from the cleaned set (website call_click + form_submit imported from GA4, ad calls of 90s or longer)"
+    },
+    "location_option": "PRESENCE",
+    "geo": {
+      "targets": [
+        [
+          1015072,
+          "Jupiter"
+        ],
+        [
+          9052966,
+          "Tequesta"
+        ],
+        [
+          9190942,
+          "Jupiter Island"
+        ],
+        [
+          9052212,
+          "Juno Beach"
+        ],
+        [
+          9052625,
+          "Palm Beach Gardens"
+        ],
+        [
+          1015139,
+          "North Palm Beach"
+        ],
+        [
+          9194272,
+          "Lake Park"
+        ],
+        [
+          9052756,
+          "Riviera Beach"
+        ],
+        [
+          9052626,
+          "Palm Beach Shores"
+        ],
+        [
+          1015052,
+          "Hobe Sound"
+        ],
+        [
+          9052702,
+          "Port Salerno"
+        ],
+        [
+          1015208,
+          "Stuart"
+        ],
+        [
+          1015159,
+          "Palm City"
+        ],
+        [
+          9192318,
+          "Sewall's Point"
+        ],
+        [
+          1015229,
+          "West Palm Beach"
+        ],
+        [
+          1015158,
+          "Palm Beach"
+        ],
+        [
+          9012031,
+          "33458"
+        ],
+        [
+          9012038,
+          "33469"
+        ],
+        [
+          9012044,
+          "33477"
+        ],
+        [
+          9012045,
+          "33478"
+        ]
+      ],
+      "excluded": []
+    },
+    "languages": [
+      "en"
+    ],
+    "ad_schedule": [
+      {
+        "day": "MONDAY",
+        "start": "07:00",
+        "end": "17:00"
+      },
+      {
+        "day": "TUESDAY",
+        "start": "07:00",
+        "end": "17:00"
+      },
+      {
+        "day": "WEDNESDAY",
+        "start": "07:00",
+        "end": "17:00"
+      },
+      {
+        "day": "THURSDAY",
+        "start": "07:00",
+        "end": "17:00"
+      },
+      {
+        "day": "FRIDAY",
+        "start": "07:00",
+        "end": "14:00"
+      }
+    ]
+  },
+  "ad_groups": [
+    {
+      "name": "Podiatrist - Local",
+      "final_url": "https://jupiterlaser.com/see-a-podiatrist-this-week/",
+      "path": [
+        "Podiatrist",
+        "This-Week"
+      ],
+      "max_cpc": 8.0,
+      "keywords": {
+        "phrase": [
+          "podiatrist jupiter",
+          "podiatrist in jupiter",
+          "jupiter podiatrist",
+          "podiatrist palm beach gardens",
+          "podiatrist in palm beach gardens",
+          "podiatrist north palm beach",
+          "podiatrist tequesta",
+          "podiatrist juno beach",
+          "podiatrist hobe sound",
+          "foot doctor jupiter",
+          "foot doctor palm beach gardens",
+          "foot and ankle doctor jupiter",
+          "foot and ankle specialist jupiter",
+          "podiatrist accepting new patients",
+          "female podiatrist",
+          "woman podiatrist",
+          "podiatrist that takes medicare",
+          "medicare podiatrist"
+        ],
+        "exact": [
+          "podiatrist near me",
+          "foot doctor near me",
+          "podiatry near me",
+          "foot specialist near me",
+          "foot and ankle specialist near me",
+          "podiatrist jupiter fl",
+          "podiatrist jupiter florida",
+          "best podiatrist near me"
+        ]
+      },
+      "headlines": [
+        "Podiatrist in Jupiter, FL",
+        "Foot & Ankle Doctor Near You",
+        "Abacoa Podiatry & Vein",
+        "Two Board-Certified Surgeons",
+        "Dr. Cedeno & Dr. Mustafa",
+        "Most Seen Within the Week",
+        "Accepting New Patients",
+        "Medicare & Most Major Plans",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Call (561) 915-1934",
+        "Book Your Foot Exam Today",
+        "Most Need No Referral",
+        "Heel, Bunion & Ankle Care",
+        "Laser & Regenerative Options"
+      ],
+      "descriptions": [
+        "Board-certified foot & ankle surgeons Dr. Orlando Cedeno and Dr. Isin Mustafa.",
+        "Most new patients are seen within the week. Heel pain, bunions, injuries & more.",
+        "Medicare, Aetna, BCBS, Cigna & UHC. We verify your plan before your first visit.",
+        "Offices in Jupiter on Military Trail and Palm Beach Gardens. Call or book online."
+      ]
+    },
+    {
+      "name": "Bunions - MIS",
+      "final_url": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/",
+      "path": [
+        "Bunion",
+        "Surgery"
+      ],
+      "max_cpc": 9.0,
+      "keywords": {
+        "phrase": [
+          "bunion surgery",
+          "minimally invasive bunion surgery",
+          "mis bunion surgery",
+          "keyhole bunion surgery",
+          "bunion surgeon",
+          "bunion doctor",
+          "bunion specialist",
+          "bunion treatment near me",
+          "bunion removal",
+          "bunionectomy",
+          "tailors bunion surgery",
+          "hallux valgus surgery",
+          "bunion correction"
+        ],
+        "exact": [
+          "bunion doctor near me",
+          "bunion surgeon near me"
+        ]
+      },
+      "headlines": [
+        "Minimally Invasive Bunions",
+        "Bunion Surgery in Jupiter",
+        "Smaller Incisions",
+        "Two Board-Certified Surgeons",
+        "Dr. Cedeno & Dr. Mustafa",
+        "Reconstructive Foot Surgeons",
+        "Book a Bunion Evaluation",
+        "Every Option Under One Roof",
+        "Least Invasive Option First",
+        "Medicare & Most Major Plans",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Lapidus & Revision Options",
+        "Call (561) 915-1934",
+        "Bunion Pain Treatment"
+      ],
+      "descriptions": [
+        "Minimally invasive bunion surgery uses far smaller incisions than traditional surgery.",
+        "Two board-certified surgeons: Dr. Cedeno (FACFAS) and Dr. Mustafa, who focuses on MIS.",
+        "We review your X-rays and recommend the least invasive operation that will hold.",
+        "Conservative care, MIS, Lapidus & revision surgery. Book your bunion evaluation."
+      ]
+    },
+    {
+      "name": "Heel Pain - Plantar Fasciitis",
+      "final_url": "https://jupiterlaser.com/conditions/plantar-fasciitis/",
+      "path": [
+        "Heel-Pain",
+        "Treatment"
+      ],
+      "max_cpc": 8.0,
+      "keywords": {
+        "phrase": [
+          "plantar fasciitis doctor",
+          "plantar fasciitis specialist",
+          "plantar fasciitis treatment near me",
+          "heel pain doctor",
+          "heel pain specialist",
+          "heel pain treatment near me",
+          "heel spur doctor",
+          "heel spur treatment",
+          "plantar fasciitis podiatrist",
+          "shockwave therapy plantar fasciitis",
+          "prp for plantar fasciitis",
+          "plantar fasciitis injection near me"
+        ],
+        "exact": [
+          "plantar fasciitis doctor near me",
+          "heel pain doctor near me"
+        ]
+      },
+      "headlines": [
+        "Plantar Fasciitis Treatment",
+        "Heel Pain Doctor in Jupiter",
+        "Heel Pain Specialists",
+        "Most Seen Within the Week",
+        "Board-Certified Foot Surgeons",
+        "Shockwave, Laser & PRP",
+        "Orthotics When You Need Them",
+        "Medicare & Most Major Plans",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Call (561) 915-1934",
+        "Diagnosis at Your First Visit",
+        "Dr. Cedeno & Dr. Mustafa",
+        "Heel Spur Treatment",
+        "Laser & Regenerative Care"
+      ],
+      "descriptions": [
+        "Heel pain that won't quit? Get a diagnosis and a treatment plan at your first visit.",
+        "From stretching plans & orthotics to shockwave, laser and PRP when you need more.",
+        "Board-certified foot & ankle surgeons. Most new patients are seen within the week.",
+        "Medicare, Aetna, BCBS, Cigna & UHC accepted. Jupiter & Palm Beach Gardens offices."
+      ]
+    },
+    {
+      "name": "Ingrown Toenails",
+      "final_url": "https://jupiterlaser.com/see-a-podiatrist-this-week/",
+      "path": [
+        "Podiatrist",
+        "Ingrown-Nail"
+      ],
+      "max_cpc": 7.0,
+      "keywords": {
+        "phrase": [
+          "ingrown toenail doctor",
+          "ingrown toenail removal",
+          "ingrown toenail podiatrist",
+          "ingrown toenail treatment near me",
+          "podiatrist for ingrown toenail",
+          "infected ingrown toenail doctor",
+          "toenail removal near me"
+        ],
+        "exact": [
+          "ingrown toenail doctor near me",
+          "ingrown toenail removal near me"
+        ]
+      },
+      "headlines": [
+        "Ingrown Toenail Treatment",
+        "Ingrown Toenail Doctor",
+        "Podiatrist in Jupiter, FL",
+        "Most Seen Within the Week",
+        "Board-Certified Podiatrists",
+        "Medicare & Most Major Plans",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Call (561) 915-1934",
+        "Dr. Cedeno & Dr. Mustafa",
+        "Toenail Problems Treated",
+        "Accepting New Patients",
+        "Book Online or Call Today",
+        "Abacoa Podiatry & Vein",
+        "Most Need No Referral"
+      ],
+      "descriptions": [
+        "Painful ingrown toenail? Board-certified podiatrists in Jupiter & Palm Beach Gardens.",
+        "Most new patients are seen within the week. Call or request an appointment online.",
+        "Medicare, Aetna, BCBS, Cigna & UHC accepted. We verify your plan before you come.",
+        "Abacoa Podiatry & Leg Vein Center: two board-certified foot & ankle surgeons."
+      ]
+    },
+    {
+      "name": "Injuries - Ankle & Sports",
+      "final_url": "https://jupiterlaser.com/conditions/sprains-strains/",
+      "path": [
+        "Ankle",
+        "Injury"
+      ],
+      "max_cpc": 8.0,
+      "keywords": {
+        "phrase": [
+          "ankle sprain doctor",
+          "sprained ankle doctor",
+          "ankle injury doctor",
+          "foot injury doctor",
+          "sprained ankle treatment near me",
+          "achilles tendonitis doctor",
+          "achilles tendon specialist",
+          "sports podiatrist",
+          "broken toe doctor",
+          "foot fracture doctor"
+        ],
+        "exact": [
+          "ankle doctor near me",
+          "sprained ankle doctor near me"
+        ]
+      },
+      "headlines": [
+        "Ankle Sprain Treatment",
+        "Foot & Ankle Injury Doctor",
+        "Sports Foot & Ankle Care",
+        "Acute Injuries Prioritized",
+        "Two Board-Certified Surgeons",
+        "Trauma-Trained Foot Surgeon",
+        "Achilles & Tendon Injuries",
+        "Same-Day Imaging if Needed",
+        "Medicare & Most Major Plans",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Call (561) 915-1934",
+        "Accepting New Patients",
+        "Rule Out Hidden Fractures",
+        "Heal It Right the First Time"
+      ],
+      "descriptions": [
+        "Rolled your ankle or hurt your foot? Acute injuries get priority scheduling.",
+        "Board-certified foot & ankle surgeons. Same-day imaging when the exam calls for it.",
+        "Sprains, tendon injuries & sports injuries treated in Jupiter & Palm Beach Gardens.",
+        "Medicare, Aetna, BCBS, Cigna & UHC accepted. Call or request an appointment online."
+      ]
+    },
+    {
+      "name": "Diabetic Foot & Neuropathy",
+      "final_url": "https://jupiterlaser.com/conditions/diabetic-foot-care/",
+      "path": [
+        "Diabetic",
+        "Foot-Care"
+      ],
+      "max_cpc": 7.0,
+      "keywords": {
+        "phrase": [
+          "diabetic foot doctor",
+          "diabetic podiatrist",
+          "diabetic foot care",
+          "diabetic foot exam",
+          "diabetic foot ulcer treatment",
+          "foot wound care",
+          "wound care podiatrist",
+          "neuropathy foot doctor",
+          "foot neuropathy treatment",
+          "peripheral neuropathy podiatrist"
+        ],
+        "exact": [
+          "diabetic foot doctor near me",
+          "neuropathy doctor near me"
+        ]
+      },
+      "headlines": [
+        "Diabetic Foot Care",
+        "Diabetic Foot Doctor",
+        "Wound Care Podiatrist",
+        "Neuropathy Foot Treatment",
+        "Medicare Accepted",
+        "Most Seen Within the Week",
+        "Board-Certified Podiatrists",
+        "Board-Certified in Wound Care",
+        "Jupiter & Palm Beach Gardens",
+        "Rated 4.9 on Google",
+        "Call (561) 915-1934",
+        "Diabetic Foot Exams",
+        "Foot Ulcer & Wound Care",
+        "Accepting New Patients",
+        "Drug-Free Laser for Neuropathy"
+      ],
+      "descriptions": [
+        "Diabetic foot exams, wound care and neuropathy care from board-certified podiatrists.",
+        "Dr. Cedeno is board certified in wound care and focuses on diabetic limb preservation.",
+        "Medicare & most major plans accepted. We verify your benefits before your first visit.",
+        "Offices in Jupiter and Palm Beach Gardens. Call (561) 915-1934 or book online."
+      ]
+    }
+  ],
+  "brand_mustafa_ad_group": {
+    "campaign": "Brand",
+    "name": "Dr. Mustafa",
+    "final_url": "https://jupiterlaser.com/meet-dr-mustafa/",
+    "path": [
+      "Dr-Mustafa",
+      null
+    ],
+    "max_cpc": 3.0,
+    "keywords": {
+      "phrase": [
+        "isin mustafa",
+        "dr isin mustafa",
+        "mustafa podiatrist",
+        "dr mustafa podiatrist",
+        "mustafa dpm",
+        "dr mustafa jupiter"
+      ],
+      "exact": [
+        "dr mustafa",
+        "isin mustafa dpm"
+      ]
+    },
+    "headlines": [
+      "Dr. Isin Mustafa, DPM",
+      "Board-Certified Foot Surgeon",
+      "Accepting New Patients",
+      "Most Seen Within the Week",
+      "Minimally Invasive Surgeon",
+      "Abacoa Podiatry & Vein",
+      "Jupiter & Palm Beach Gardens",
+      "Medicare & Most Major Plans",
+      "Call (561) 915-1934",
+      "Book With Dr. Mustafa",
+      "Rated 4.9 on Google",
+      "Former Chief Resident"
+    ],
+    "descriptions": [
+      "Foot & ankle surgeon focused on minimally invasive surgery and regenerative medicine.",
+      "Board certified by the American Board of Foot and Ankle Surgery. Accepting new patients.",
+      "Bunions, wound care, sports injuries & orthotics. Most new patients seen within the week."
+    ]
+  },
+  "assets": {
+    "callouts": [
+      "Most Seen Within a Week",
+      "Medicare & Major Plans",
+      "Most Need No Referral",
+      "Board-Certified Surgeons",
+      "Free On-Site Parking",
+      "Jupiter & PBG Offices",
+      "Rated 4.9 on Google",
+      "Accepting New Patients"
+    ],
+    "sitelinks": [
+      [
+        "Meet Dr. Cedeno",
+        "/meet-dr-cedeno/",
+        "Board-certified foot surgeon",
+        "Laser, regenerative & wound care"
+      ],
+      [
+        "Meet Dr. Mustafa",
+        "/meet-dr-mustafa/",
+        "Board-certified foot surgeon",
+        "Minimally invasive & regenerative"
+      ],
+      [
+        "Insurance We Accept",
+        "/insurance/",
+        "Medicare, Aetna, BCBS, Cigna, UHC",
+        "We verify your plan before you come"
+      ],
+      [
+        "MIS Bunion Surgery",
+        "/minimally-invasive-bunion-surgery/",
+        "Smaller incisions",
+        "Two board-certified surgeons"
+      ],
+      [
+        "Heel Pain Treatment",
+        "/conditions/plantar-fasciitis/",
+        "Plantar fasciitis & heel spurs",
+        "Shockwave, laser, PRP & orthotics"
+      ],
+      [
+        "Your First Visit",
+        "/new-patients/",
+        "What to bring, what to expect",
+        "Plan about 45 to 60 minutes"
+      ],
+      [
+        "Request an Appointment",
+        "/contact/",
+        "Send a request in a minute",
+        "We call you back to schedule"
+      ]
+    ],
+    "structured_snippet": {
+      "header": "Services",
+      "values": [
+        "Bunion Surgery",
+        "Heel Pain",
+        "Ingrown Toenails",
+        "Sports Injuries",
+        "Diabetic Foot Care",
+        "Wound Care",
+        "Neuropathy"
+      ]
+    },
+    "call": {
+      "phone": "(561) 915-1934",
+      "country": "US",
+      "schedule": "match campaign ad schedule"
+    }
+  },
+  "negatives": {
+    "hospitals_and_other_clinics": [
+      "jupiter medical center",
+      "jupiter medical",
+      "jfk hospital",
+      "jfk medical",
+      "good samaritan",
+      "good sam",
+      "st marys",
+      "st mary's",
+      "palm beach gardens medical center",
+      "palm beach garden hospital",
+      "cleveland clinic",
+      "mount sinai",
+      "wellington regional",
+      "hhs hospital",
+      "hospital",
+      "conviva",
+      "cano health",
+      "mycare",
+      "my care medical",
+      "la medical",
+      "my clinic",
+      "health care district",
+      "jupiter west medical",
+      "evolve health",
+      "urgent care center",
+      "walk in clinic",
+      "primary care"
+    ],
+    "physical_therapy": [
+      "physical therapy",
+      "physical therapist",
+      "physiotherapy",
+      "saylor",
+      "bend physical",
+      "gold coast physical",
+      "action physical",
+      "elite physical",
+      "life motion"
+    ],
+    "orthopedic_groups_and_other_specialties": [
+      "pboi",
+      "palm beach orthopedic",
+      "palm beach orthopaedic",
+      "orthopedic institute",
+      "paley",
+      "bone and joint",
+      "bone & joint",
+      "southflaortho",
+      "coastal orthopedics",
+      "knee",
+      "hip",
+      "shoulder",
+      "spine",
+      "back pain",
+      "hand surgeon",
+      "wrist"
+    ],
+    "insurance_not_accepted": [
+      "medicaid",
+      "sunshine health",
+      "simply healthcare"
+    ],
+    "competitor_practices": [
+      "south florida foot",
+      "palm beach foot and ankle",
+      "pga foot",
+      "shoppe foot",
+      "schoppe",
+      "taub podiatry",
+      "dr taub",
+      "luxe podiatry",
+      "family foot center",
+      "hall podiatry",
+      "treasure coast podiatry",
+      "signature foot",
+      "la podiatry",
+      "certified foot and ankle specialists",
+      "ankle and foot center of florida",
+      "advanced foot and ankle",
+      "modern foot and ankle",
+      "mattison podiatry",
+      "florida foot and ankle center"
+    ],
+    "competitor_doctors": [
+      "dr fried",
+      "dr vena",
+      "dr lamm",
+      "dr prager",
+      "dr perkins",
+      "dr pan",
+      "dr spinner",
+      "dr selbst",
+      "dr hartstein",
+      "alan hartstein",
+      "nemeroff",
+      "ostapchuk",
+      "dr daly",
+      "joshua daly",
+      "elgut",
+      "lapoff",
+      "lepoff",
+      "montijo",
+      "gerszberg",
+      "breslauer",
+      "harlis",
+      "jonathan cutler",
+      "nina solomon",
+      "michael sturm",
+      "matthew wolfson",
+      "khoa pham",
+      "gary ackerman",
+      "dr sater",
+      "dr yee",
+      "fishman",
+      "wexler",
+      "andrew noble",
+      "paul weiner",
+      "andrew lerner",
+      "dana desser",
+      "christopher boyes",
+      "lopez viego",
+      "garrett nguyen",
+      "ashley bowles",
+      "tiffany cerda",
+      "desiree garzon",
+      "taylor tendrich",
+      "craig paul"
+    ],
+    "do_it_yourself_and_research": [
+      "how to",
+      "what is",
+      "what causes",
+      "why does",
+      "why do",
+      "home remedy",
+      "home remedies",
+      "cure",
+      "instantly",
+      "overnight",
+      "cream",
+      "ointment",
+      "over the counter",
+      "otc",
+      "essential oil",
+      "apple cider vinegar",
+      "vicks",
+      "epsom",
+      "exercises",
+      "stretches",
+      "taping",
+      "insoles",
+      "shoes",
+      "sandals",
+      "socks",
+      "pedicure",
+      "nail salon",
+      "reddit",
+      "youtube",
+      "pictures",
+      "images",
+      "icd 10",
+      "cpt code",
+      "symptoms"
+    ],
+    "jobs_and_education": [
+      "jobs",
+      "job",
+      "career",
+      "salary",
+      "hiring",
+      "school",
+      "residency",
+      "assistant",
+      "technician"
+    ],
+    "animals": [
+      "dog",
+      "cat",
+      "vet",
+      "horse",
+      "hoof",
+      "farrier"
+    ],
+    "outside_service_area": [
+      "port st lucie",
+      "boca raton",
+      "boynton",
+      "delray",
+      "lake worth",
+      "wellington",
+      "royal palm beach",
+      "greenacres",
+      "fort lauderdale",
+      "miami",
+      "orlando fl",
+      "tampa"
+    ],
+    "veins_belong_elsewhere": [
+      "vein",
+      "veins",
+      "varicose",
+      "spider vein",
+      "sclerotherapy",
+      "lymphedema",
+      "vascular"
+    ]
+  },
+  "shared_negative_groups": [
+    "hospitals_and_other_clinics",
+    "physical_therapy",
+    "orthopedic_groups_and_other_specialties",
+    "insurance_not_accepted",
+    "do_it_yourself_and_research",
+    "jobs_and_education",
+    "animals",
+    "outside_service_area"
+  ]
+}

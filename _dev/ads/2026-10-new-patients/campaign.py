@@ -19,8 +19,9 @@ version: in the 90 days to 2026-09-30, most of the account's visible spend went
 to people searching for a different provider (a hospital, a competitor, a
 physical therapist, an orthopedic group that takes Medicaid). This campaign
 only buys searches from people looking for a podiatrist or naming a foot
-problem, sends each to the page that answers it, and puts Dr. Isin Mustafa's
-availability in front of them.
+problem, sends each to the page that answers it, and sells the practice as a
+whole: two board-certified foot & ankle surgeons, Dr. Orlando Cedeno and
+Dr. Isin Mustafa, who can usually see a new patient within the week.
 
 Every claim in the ad copy is one the site already makes, on the landing page
 the ad points at. If the site changes, check the copy here against it.
@@ -120,17 +121,17 @@ AD_GROUPS = [
         },
         "headlines": [
             "Podiatrist in Jupiter, FL", "Foot & Ankle Doctor Near You",
-            "See Dr. Isin Mustafa, DPM", "Board-Certified Foot Surgeon",
-            "Most Seen Within the Week", "Accepting New Patients",
-            "Medicare & Most Major Plans", "Jupiter & Palm Beach Gardens",
-            "Rated 4.9 on Google", "Call " + PHONE,
-            "Book Your Foot Exam Today", "Abacoa Podiatry & Vein",
-            "Two Board-Certified Surgeons", "Most Need No Referral",
-            "Heel, Bunion & Ankle Care",
+            "Abacoa Podiatry & Vein", "Two Board-Certified Surgeons",
+            "Dr. Cedeno & Dr. Mustafa", "Most Seen Within the Week",
+            "Accepting New Patients", "Medicare & Most Major Plans",
+            "Jupiter & Palm Beach Gardens", "Rated 4.9 on Google",
+            "Call " + PHONE, "Book Your Foot Exam Today",
+            "Most Need No Referral", "Heel, Bunion & Ankle Care",
+            "Laser & Regenerative Options",
         ],
         "descriptions": [
-            "Dr. Isin Mustafa is accepting new patients. Most new patients are seen within the week.",
-            "Board-certified foot & ankle surgeons treating heel pain, bunions, injuries & more.",
+            "Board-certified foot & ankle surgeons Dr. Orlando Cedeno and Dr. Isin Mustafa.",
+            "Most new patients are seen within the week. Heel pain, bunions, injuries & more.",
             "Medicare, Aetna, BCBS, Cigna & UHC. We verify your plan before your first visit.",
             "Offices in Jupiter on Military Trail and Palm Beach Gardens. Call or book online.",
         ],
@@ -152,8 +153,8 @@ AD_GROUPS = [
         },
         "headlines": [
             "Minimally Invasive Bunions", "Bunion Surgery in Jupiter",
-            "Smaller Incisions", "Board-Certified Foot Surgeon",
-            "See Dr. Isin Mustafa, DPM", "Minimally Invasive Surgeon",
+            "Smaller Incisions", "Two Board-Certified Surgeons",
+            "Dr. Cedeno & Dr. Mustafa", "Reconstructive Foot Surgeons",
             "Book a Bunion Evaluation", "Every Option Under One Roof",
             "Least Invasive Option First", "Medicare & Most Major Plans",
             "Jupiter & Palm Beach Gardens", "Rated 4.9 on Google",
@@ -162,7 +163,7 @@ AD_GROUPS = [
         ],
         "descriptions": [
             "Minimally invasive bunion surgery uses far smaller incisions than traditional surgery.",
-            "Dr. Mustafa is a member of the Academy of Minimally Invasive Foot & Ankle Surgery.",
+            "Two board-certified surgeons: Dr. Cedeno (FACFAS) and Dr. Mustafa, who focuses on MIS.",
             "We review your X-rays and recommend the least invasive operation that will hold.",
             "Conservative care, MIS, Lapidus & revision surgery. Book your bunion evaluation.",
         ],
@@ -190,8 +191,8 @@ AD_GROUPS = [
             "Orthotics When You Need Them", "Medicare & Most Major Plans",
             "Jupiter & Palm Beach Gardens", "Rated 4.9 on Google",
             "Call " + PHONE, "Diagnosis at Your First Visit",
-            "See Dr. Isin Mustafa, DPM", "Heel Spur Treatment",
-            "Stubborn Heel Pain Treated",
+            "Dr. Cedeno & Dr. Mustafa", "Heel Spur Treatment",
+            "Laser & Regenerative Care",
         ],
         "descriptions": [
             "Heel pain that won't quit? Get a diagnosis and a treatment plan at your first visit.",
@@ -219,7 +220,7 @@ AD_GROUPS = [
             "Podiatrist in Jupiter, FL", "Most Seen Within the Week",
             "Board-Certified Podiatrists", "Medicare & Most Major Plans",
             "Jupiter & Palm Beach Gardens", "Rated 4.9 on Google",
-            "Call " + PHONE, "See Dr. Isin Mustafa, DPM",
+            "Call " + PHONE, "Dr. Cedeno & Dr. Mustafa",
             "Toenail Problems Treated", "Accepting New Patients",
             "Book Online or Call Today", "Abacoa Podiatry & Vein",
             "Most Need No Referral",
@@ -228,7 +229,7 @@ AD_GROUPS = [
             "Painful ingrown toenail? Board-certified podiatrists in Jupiter & Palm Beach Gardens.",
             "Most new patients are seen within the week. Call or request an appointment online.",
             "Medicare, Aetna, BCBS, Cigna & UHC accepted. We verify your plan before you come.",
-            "Dr. Isin Mustafa is accepting new patients at Abacoa Podiatry & Leg Vein Center.",
+            "Abacoa Podiatry & Leg Vein Center: two board-certified foot & ankle surgeons.",
         ],
     },
     {
@@ -248,7 +249,7 @@ AD_GROUPS = [
         "headlines": [
             "Ankle Sprain Treatment", "Foot & Ankle Injury Doctor",
             "Sports Foot & Ankle Care", "Acute Injuries Prioritized",
-            "Board-Certified Foot Surgeon", "See Dr. Isin Mustafa, DPM",
+            "Two Board-Certified Surgeons", "Trauma-Trained Foot Surgeon",
             "Achilles & Tendon Injuries", "Same-Day Imaging if Needed",
             "Medicare & Most Major Plans", "Jupiter & Palm Beach Gardens",
             "Rated 4.9 on Google", "Call " + PHONE,
@@ -281,7 +282,7 @@ AD_GROUPS = [
             "Diabetic Foot Care", "Diabetic Foot Doctor",
             "Wound Care Podiatrist", "Neuropathy Foot Treatment",
             "Medicare Accepted", "Most Seen Within the Week",
-            "Board-Certified Podiatrists", "See Dr. Isin Mustafa, DPM",
+            "Board-Certified Podiatrists", "Board-Certified in Wound Care",
             "Jupiter & Palm Beach Gardens", "Rated 4.9 on Google",
             "Call " + PHONE, "Diabetic Foot Exams",
             "Foot Ulcer & Wound Care", "Accepting New Patients",
@@ -289,7 +290,7 @@ AD_GROUPS = [
         ],
         "descriptions": [
             "Diabetic foot exams, wound care and neuropathy care from board-certified podiatrists.",
-            "Dr. Mustafa's focus includes wound healing. Most new patients are seen within the week.",
+            "Dr. Cedeno is board certified in wound care and focuses on diabetic limb preservation.",
             "Medicare & most major plans accepted. We verify your benefits before your first visit.",
             "Offices in Jupiter and Palm Beach Gardens. Call " + PHONE + " or book online.",
         ],
@@ -297,8 +298,10 @@ AD_GROUPS = [
 ]
 
 # Brand campaign changes, applied to the existing "Brand" campaign rather than
-# the new one: patients who already know Dr. Mustafa's name have no ad group
-# of their own today ("isin mustafa dpm" gets organic clicks at 44% CTR).
+# the new one. Brand already has a "Dr. Cedeno" ad group (its broad keyword is
+# tightened in README step 2); patients who search Dr. Mustafa by name have no
+# ad group of their own today ("isin mustafa dpm" gets organic clicks at 44%
+# CTR), so she gets one alongside it.
 BRAND_MUSTAFA_AD_GROUP = {
     "campaign": "Brand",
     "name": "Dr. Mustafa",
@@ -333,6 +336,8 @@ ASSETS = {
         "Rated 4.9 on Google", "Accepting New Patients",
     ],
     "sitelinks": [
+        ("Meet Dr. Cedeno", "/meet-dr-cedeno/",
+         "Board-certified foot surgeon", "Laser, regenerative & wound care"),
         ("Meet Dr. Mustafa", "/meet-dr-mustafa/",
          "Board-certified foot surgeon", "Minimally invasive & regenerative"),
         ("Insurance We Accept", "/insurance/",

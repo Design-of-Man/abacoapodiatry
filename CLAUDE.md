@@ -223,9 +223,10 @@ disclaimer asking patients not to add medical detail is the mitigation. If that 
 ever gets revisited, the options are neutral labels or dropping the field.
 
 **Preferred doctor** (added 2026-10-01) is a select on the form, preselected from
-`?doctor=mustafa` or `?doctor=cedeno` on the URL. The Google Ads landing page
-`/see-a-podiatrist-this-week/` links to `/contact/?doctor=mustafa`, so a patient
-from that campaign arrives with Dr. Mustafa chosen and the office sees it in the
+`?doctor=mustafa` or `?doctor=cedeno` on the URL, and "First available"
+otherwise. The Google Ads landing page `/see-a-podiatrist-this-week/` uses the
+plain `/contact/` for its general buttons and the two parameters for each
+doctor's "Book With" button, so the office sees the patient's choice in the
 email. Like the condition field, its value is never sent to analytics. The
 campaign itself lives in `_dev/ads/2026-10-new-patients/`.
 

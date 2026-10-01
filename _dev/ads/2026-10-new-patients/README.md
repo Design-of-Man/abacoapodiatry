@@ -76,11 +76,18 @@ Other numbers that shaped the settings:
 2. **Each ad group lands on the page that answers it**, not the homepage
    (which took 899 ad clicks in 90 days). Generic podiatrist searches and
    ingrown toenails go to the new `/see-a-podiatrist-this-week/`.
-3. **Dr. Isin Mustafa is the face of it.** Every ad group carries her name and
-   "Accepting New Patients"; the landing page leads with her; its booking links
-   open the contact form with her preselected (`/contact/?doctor=mustafa`), so
-   the office sees "Preferred doctor: Dr. Isin Mustafa" on the email. Patients
-   who already know her name get their own ad group in the Brand campaign.
+3. **It sells the practice, with both doctors.** The ads lead with "Two
+   Board-Certified Surgeons" and "Dr. Cedeno & Dr. Mustafa", and each ad group
+   adds whichever doctor's strength fits it: Dr. Cedeno's wound-care board
+   certification for diabetic foot, his trauma training for injuries, his laser
+   and regenerative work for heel pain; Dr. Mustafa's minimally invasive focus
+   for bunions. The landing page gives both doctors equal billing. Its general
+   booking buttons open the form on "First available", so whichever doctor has
+   room gets the patient. That fills open slots without the ads having to name
+   one doctor. Each doctor also has a "Book With" button that preselects them
+   (`/contact/?doctor=cedeno` or `?doctor=mustafa`), and the office sees the
+   choice on the email. In the Brand campaign Dr. Cedeno already has an ad
+   group; Dr. Mustafa gets one too.
 4. **185 negatives**, grouped by the audit row they come from (see `NEGATIVES`
    in `campaign.py`). The non-competitor groups also go on Clinic, Doctor and
    Brand on day one.
@@ -152,8 +159,7 @@ sooner points the bidder back at the wrong-number calls it learned from.
   into `NEGATIVES` here, then into the account.
 - Impression share and lost-to-budget on NP.
 - Calls of 90s+, website call taps and forms, by ad group.
-- From the office: new patients from Google, and how many booked with
-  Dr. Mustafa.
+- From the office: new patients from Google, by doctor.
 
 ## Targets for the first 60 days
 
@@ -164,13 +170,15 @@ These are starting targets from the account's own history, not forecasts.
   this account turned 15% of clicks into ad calls at ~$6.25 a click, about $42
   a call, before website leads were counted at all.
 - **40+ leads a month** from NP by month two.
-- Dr. Mustafa's new-patient bookings: needs a baseline from the office first.
+- New-patient bookings per doctor, against a baseline the office supplies.
+  Dr. Mustafa has the most room to grow: searches for her by name are rare,
+  and in the 90 days the ads spent $10 on them.
 
 ## Open questions for the practice
 
-- Which office(s) and days does Dr. Mustafa see patients? If she is at Palm
-  Beach Gardens, that office gets its own location-targeted ad group.
-- How many new-patient slots does she have open per week? That sets the
+- Which office(s) and days each doctor sees patients. Palm Beach Gardens
+  could get its own location-targeted ad group.
+- How many new-patient slots each doctor has open per week. That sets the
   ceiling on how hard to push.
 - Confirm ingrown toenail treatment is a service you want advertised (it has
   no page on the site yet).

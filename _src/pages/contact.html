@@ -110,17 +110,18 @@ META-->
                 <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
                 <div class="field full"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
                 <!-- Preferred doctor lets the office route a request without a
-                     call-back to ask. main.js preselects it from ?doctor= on
-                     the URL, which is how the ad landing page
-                     (/see-a-podiatrist-this-week/) sends new patients to Dr.
-                     Mustafa. The value rides in the email only; it is never
-                     sent to analytics. -->
+                     call-back to ask. main.js preselects it from ?doctor=cedeno
+                     or ?doctor=mustafa on the URL, which is what each doctor's
+                     "Book With" button on the ad landing page
+                     (/see-a-podiatrist-this-week/) uses; everything else
+                     arrives on "First available". The value rides in the email
+                     only; it is never sent to analytics. -->
                 <div class="field full">
                   <label for="f-doctor">Preferred doctor</label>
                   <select id="f-doctor" name="doctor">
                     <option value="First available">First available</option>
-                    <option value="Dr. Isin Mustafa">Dr. Isin Mustafa</option>
                     <option value="Dr. Orlando Cedeno">Dr. Orlando Cedeno</option>
+                    <option value="Dr. Isin Mustafa">Dr. Isin Mustafa</option>
                   </select>
                 </div>
                 <div class="field full">

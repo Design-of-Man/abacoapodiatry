@@ -17,6 +17,10 @@ _src/
   build.py           builds pages → site root, generates sitemap + redirects
   og_image.py        regenerates assets/img/og-image.png (needs Pillow)
   pages/*.html       one file per page: JSON meta block + body HTML
+  assistant/
+    training_data.py assistant Q&A dataset: practice facts + 51 intents →
+                     fine-tune JSONL, Q&A pairs, RAG knowledge base
+                     (`python3 _src/assistant/training_data.py`; output is git-ignored)
 assets/
   css/main.css       the whole design system
   js/main.js         all interactivity (vanilla JS, no dependencies)
@@ -62,4 +66,8 @@ Any static host. Recommended: **Netlify** (drag-and-drop or connect this repo; `
       /testimonials/ page and Healthgrades via search, so wording may be lightly
       normalized. Copy each from the source before launch (marked `LAUNCH TODO`).
 - [ ] Update `sameAs` links in `_src/template.html` with the practice's real Facebook/Instagram/Google Business Profile URLs
+- [ ] **Sign off the assistant dataset** (`_src/assistant/training_data.py`) before training on it:
+      the 11 intents marked `verify=True`, and its hours, which differ from the site's
+      (it lists a Palm Beach Gardens schedule closed Thursdays and Saturday concierge visits,
+      while the site says closed weekends with a 12:30–1:30 lunch closure)
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above

@@ -235,6 +235,21 @@ no-ops when the script isn't present, which is always the case on localhost — 
 form test will never show an event unless you stub `window.va` the way the test harness
 does.
 
+## Condition detail pages (added 2026-10-07)
+`_src/conditions/{slug}.json` holds 12 researched pages for foot and ankle problems that had no
+page (ingrown toenail, hammertoes, Morton's neuroma, toenail fungus, stress fractures,
+metatarsalgia, gout, corns and calluses, peroneal tendonitis, PTTD, Haglund's, sesamoiditis).
+`_src/condition_details.py` renders them to `/conditions/{slug}/` exactly like `locations.py`
+renders the city pages: virtual sources fed into the normal build. Sources are listed on each
+page; the claim-by-claim fact-check is `_dev/condition-pages-factcheck-log.md`.
+**Review gate:** a page is noindex, out of the sitemap and off `/conditions/` until its slug is
+in `CONDITION_REVIEW` (doctor key + date). That entry prints "Medically reviewed by" and emits
+reviewedBy schema, so add it only when that doctor has read the page. Doctors review from the
+unlisted `/conditions/review/`, which lists each page's open questions (mostly: which standard
+treatments the practice actually offers, e.g. orthotics, cortisone, nail procedures).
+These pages are local by design. Do not add national-intent "how to" articles alongside them;
+that is the pattern that drew traffic and no patients.
+
 ## Conventions
 
 - Match the surrounding code. The CSS is one design system in `assets/css/main.css`; the JS

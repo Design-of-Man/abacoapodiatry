@@ -101,6 +101,7 @@ IMAGE_ORIGIN = os.environ.get("IMAGE_ORIGIN", BASE_URL).rstrip("/")
 
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
+from condition_details import condition_detail_pages, hub_cards  # noqa: E402
 import instagram  # noqa: E402
 import hours  # noqa: E402
 import reviews  # noqa: E402
@@ -687,7 +688,12 @@ def main():
     sitemap_rows = []
     sources = [(p.name, p.read_text(encoding="utf-8")) for p in pages]
     sources += list(location_pages())
+    sources += list(condition_detail_pages())
     for name, raw in sources:
+        # Reviewed condition detail pages are carded on /conditions/ (see condition_details.py).
+        if name == "conditions-index.html" and hub_cards():
+            raw = raw.replace('<p class="med-note" data-reveal>Don\'t see your condition?',
+                              hub_cards() + '\n        <p class="med-note" data-reveal>Don\'t see your condition?', 1)
         for src, versioned in versions.items():
             raw = raw.replace(f'"{src}"', f'"{versioned}"')
         meta = build_page(template, raw, name)

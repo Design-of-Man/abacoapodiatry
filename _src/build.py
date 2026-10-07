@@ -101,6 +101,7 @@ IMAGE_ORIGIN = os.environ.get("IMAGE_ORIGIN", BASE_URL).rstrip("/")
 
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
+from condition_details import condition_detail_pages, hub_cards  # noqa: E402
 import instagram  # noqa: E402
 import hours  # noqa: E402
 import reviews  # noqa: E402
@@ -376,7 +377,14 @@ def build_page(template: str, raw: str, name: str):
     # their own -- they are generated from locations.py, so that is genuinely
     # when their content last changed.
     dates = modified_dates()
-    modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
+    if name.startswith("cond-detail-"):
+        # Condition detail pages come from their own JSON plus the shared renderer;
+        # the later of the two is when the page last changed.
+        slug = name[len("cond-detail-"):-len(".html")]
+        modified = max(filter(None, [dates.get(f"_src/conditions/{slug}.json"),
+                                     dates.get("_src/condition_details.py")]), default=None)
+    else:
+        modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
     # Carried out on meta so the sitemap can report the same honest date this
     # page's own dateModified reports. Two answers for one question is how they
     # drift apart.
@@ -687,7 +695,12 @@ def main():
     sitemap_rows = []
     sources = [(p.name, p.read_text(encoding="utf-8")) for p in pages]
     sources += list(location_pages())
+    sources += list(condition_detail_pages())
     for name, raw in sources:
+        # Reviewed condition detail pages are carded on /conditions/ (see condition_details.py).
+        if name == "conditions-index.html" and hub_cards():
+            raw = raw.replace('<p class="med-note" data-reveal>Don\'t see your condition?',
+                              hub_cards() + '\n        <p class="med-note" data-reveal>Don\'t see your condition?', 1)
         for src, versioned in versions.items():
             raw = raw.replace(f'"{src}"', f'"{versioned}"')
         meta = build_page(template, raw, name)

@@ -43,7 +43,7 @@
     "Female athletes with low energy intake or irregular periods"
   ],
   "how_therapy_helps": {
-    "intro": "Most foot stress fractures heal without surgery when the bone is protected from the load that cracked it. The American Academy of Orthopaedic Surgeons describes treatment built around rest, reduced weight bearing and protective footwear or a brace, with casting or surgery saved for certain locations and fractures that do not heal. The AAOS adds that fractures in areas with a poor blood supply, such as the base of the fifth metatarsal, heal more slowly, and Mayo Clinic notes surgery is more likely there. Our podiatrists match protection to the bone involved.",
+    "intro": "Most foot stress fractures heal without surgery when the bone is protected from the load that cracked it. The American Academy of Orthopaedic Surgeons describes treatment built around rest, reduced weight-bearing and protective footwear or a brace, with casting or surgery saved for certain locations and fractures that do not heal. The AAOS adds that fractures in areas with a poor blood supply, such as the base of the fifth metatarsal, heal more slowly, and Mayo Clinic notes surgery is more likely there. Our podiatrists match protection to the bone involved.",
     "methods": [
       [
         "Offloading the bone",
@@ -51,7 +51,7 @@
       ],
       [
         "Activity changes and cross training",
-        "You stop the activity that caused the fracture and, when your doctor allows, keep your fitness with low impact options such as swimming or cycling, which the AAOS describes as good alternative activities."
+        "You stop the activity that caused the fracture and, when your doctor allows, keep your fitness with low-impact options such as swimming or cycling, which the AAOS describes as good alternative activities."
       ],
       [
         "Casting for some fractures",
@@ -77,7 +77,7 @@
     "Stop running, jumping or other activity that brings on the pain until you have been examined",
     "Rest and elevate the foot, and apply ice wrapped in a thin towel for about 15 minutes at a time",
     "Wear a supportive, stiff soled shoe rather than going barefoot or wearing flip flops",
-    "Ask your doctor before relying on anti inflammatory pain relievers, since Mayo Clinic notes they may slow bone healing"
+    "Ask your doctor before relying on anti-inflammatory pain relievers, since Mayo Clinic notes they may slow bone healing"
   ],
   "see_a_doctor": [
     "Foot pain that keeps coming back with activity or does not ease with a few days of rest",
@@ -89,7 +89,7 @@
   "faqs": [
     {
       "q": "Can you walk on a stress fracture in your foot?",
-      "a": "Walking on a stress fracture keeps loading the cracked bone and can make the crack larger. Some fractures can be managed in a walking boot or stiff shoe, while others need crutches for a period. The right level of weight bearing depends on which bone is involved, so it is worth having the foot examined before you keep walking or training through the pain."
+      "a": "Walking on a stress fracture keeps loading the cracked bone and can make the crack larger. Some fractures can be managed in a walking boot or stiff shoe, while others need crutches for a period. The right level of weight-bearing depends on which bone is involved, so it is worth having the foot examined before you keep walking or training through the pain."
     },
     {
       "q": "How do I know if my foot pain is a stress fracture?",
@@ -109,7 +109,7 @@
     },
     {
       "q": "How can I prevent another stress fracture?",
-      "a": "The AAOS and Mayo Clinic both suggest increasing training by no more than about 10 percent per week, mixing in low impact cross training, replacing worn shoes and keeping calcium and vitamin D intake adequate. Strength training helps too. If you have had more than one stress fracture, ask your doctor whether your bone health or foot mechanics should be checked."
+      "a": "The AAOS and Mayo Clinic both suggest increasing training by no more than about 10 percent per week, mixing in low-impact cross training, replacing worn shoes and keeping calcium and vitamin D intake adequate. Strength training helps too. If you have had more than one stress fracture, ask your doctor whether your bone health or foot mechanics should be checked."
     }
   ],
   "schema": {
@@ -128,7 +128,7 @@
     ],
     "possibleTreatment": [
       "walking boot or protective shoe",
-      "crutches and reduced weight bearing",
+      "crutches and reduced weight-bearing",
       "casting",
       "activity modification",
       "surgical fixation"
@@ -159,7 +159,7 @@
     }
   ],
   "notes_for_reviewer": [
-    "Sources disagree on NSAIDs: AAOS OrthoInfo lists NSAIDs with RICE, while Mayo Clinic says NSAIDs may slow bone healing and suggests acetaminophen. The page follows the Mayo caution in self care. Please confirm your preference.",
+    "Sources disagree on NSAIDs: AAOS OrthoInfo lists NSAIDs with RICE, while Mayo Clinic says NSAIDs may slow bone healing and suggests acetaminophen. The page follows the Mayo caution in self-care. Please confirm your preference.",
     "ICD-10 M84.37 is the non billable category 'Stress fracture, ankle, foot and toes' (verified on ICD10Data); billing requires the site, laterality and 7th character child code.",
     "The practice does not list in-office imaging, so the page says the doctor 'may order' X-rays or MRI. Confirm wording.",
     "Shockwave, MLS laser and PRP were intentionally not presented as stress fracture treatments, since the fetched sources do not support them for this condition.",

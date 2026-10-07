@@ -377,7 +377,14 @@ def build_page(template: str, raw: str, name: str):
     # their own -- they are generated from locations.py, so that is genuinely
     # when their content last changed.
     dates = modified_dates()
-    modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
+    if name.startswith("cond-detail-"):
+        # Condition detail pages come from their own JSON plus the shared renderer;
+        # the later of the two is when the page last changed.
+        slug = name[len("cond-detail-"):-len(".html")]
+        modified = max(filter(None, [dates.get(f"_src/conditions/{slug}.json"),
+                                     dates.get("_src/condition_details.py")]), default=None)
+    else:
+        modified = dates.get(f"_src/pages/{name}") or dates.get("_src/locations.py")
     # Carried out on meta so the sitemap can report the same honest date this
     # page's own dateModified reports. Two answers for one question is how they
     # drift apart.

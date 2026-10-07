@@ -73,7 +73,7 @@
     ]
   },
   "first_visit": "At your first visit the podiatrist looks at where each corn or callus sits and what is rubbing it, checking your toes for hammertoes or bunions and your shoes for fit and wear patterns. They ask about diabetes, circulation problems and any home treatment you have tried, and look for cracks, redness or drainage, and check sensation and pulses. The doctor then explains your options, which may include trimming the thick skin, and how to keep it from returning.",
-  "recovery": "The American Academy of Orthopaedic Surgeons notes that a doctor may trim a corn to relieve pain, but the thick skin can rebuild if the pressure stays the same. The American College of Foot and Ankle Surgeons notes that a corn may come back if its underlying cause is not treated, so long term results depend on footwear, padding and, in some cases, correcting a toe deformity. The NHS advises seeing a professional if a corn or callus has not improved after three weeks of self care. If you have diabetes, Mayo Clinic advises seeing a provider before treating corns or calluses yourself.",
+  "recovery": "The American Academy of Orthopaedic Surgeons notes that a doctor may trim a corn to relieve pain, but the thick skin can rebuild if the pressure stays the same. The American College of Foot and Ankle Surgeons notes that a corn may come back if its underlying cause is not treated, so long term results depend on footwear, padding and, in some cases, correcting a toe deformity. The NHS advises seeing a professional if a corn or callus has not improved after three weeks of self-care. If you have diabetes, Mayo Clinic advises seeing a provider before treating corns or calluses yourself.",
   "self_care": [
     "Wear roomy, cushioned shoes with a low heel and thick socks, and avoid tight or pointed shoes",
     "Use nonmedicated felt pads, toe separators or a little lamb's wool between the toes to cushion the spot",
@@ -86,7 +86,7 @@
     "Bleeding, pus, drainage or an open sore under or around a corn or callus",
     "Redness, warmth, swelling or red streaks spreading from the area",
     "Fever along with a painful, inflamed spot on the foot",
-    "Pain that limits your normal activity, or no improvement after three weeks of self care"
+    "Pain that limits your normal activity, or no improvement after three weeks of self-care"
   ],
   "faqs": [
     {
@@ -170,10 +170,10 @@
     }
   ],
   "notes_for_reviewer": [
-    "Diabetic warning is sourced to ACFAS (avoid home removal and medicated corn pads, serious infection may occur), Mayo Clinic (see a provider before self treating with diabetes or poor blood flow; avoid pumice stones if diabetic; salicylic acid risk) and NHS (do not self treat with diabetes, circulation problems, weakened immune system or older age; do not cut corns yourself). It appears in self care, see_a_doctor, the intro and two FAQs.",
-    "Please confirm the practice offers routine corn and callus paring, padding, custom orthotics and in office salicylic acid application (none are on the listed services). Also confirm whether Medicare routine foot care rules should be mentioned for diabetic patients; nothing about coverage was written.",
+    "Diabetic warning is sourced to ACFAS (avoid home removal and medicated corn pads, serious infection may occur), Mayo Clinic (see a provider before self treating with diabetes or poor blood flow; avoid pumice stones if diabetic; salicylic acid risk) and NHS (do not self treat with diabetes, circulation problems, weakened immune system or older age; do not cut corns yourself). It appears in self-care, see_a_doctor, the intro and two FAQs.",
+    "Please confirm the practice offers routine corn and callus paring, padding, custom orthotics and in-office salicylic acid application (none are on the listed services). Also confirm whether Medicare routine foot care rules should be mentioned for diabetic patients; nothing about coverage was written.",
     "Fact-check: the soft corn FAQ was rewritten to what AAOS OrthoInfo states (toes rubbing against each other; can resemble open sores; lamb's wool, roomy toe box). The earlier moisture and whitish-color wording was unsourced and removed.",
-    "NHS is a UK source; its guidance was used only for general self care and red flags, not for UK-specific referral pathways.",
+    "NHS is a UK source; its guidance was used only for general self-care and red flags, not for UK-specific referral pathways.",
     "ICD-10 L84 'Corns and callosities' (verified, billable).",
     "Fact-check: first_visit no longer implies trimming happens at the first visit (BRIEF: do not invent same-day procedures). Confirm whether corns are typically pared at the first visit."
   ]

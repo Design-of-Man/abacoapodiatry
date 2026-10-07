@@ -22,11 +22,14 @@ The unlisted /conditions/review/ page lists every page with its open questions.
 
 import html
 import json
+import os
+from datetime import date
 from pathlib import Path
 
 SRC = Path(__file__).resolve().parent
 DATA = SRC / "conditions"
-BASE = "https://jupiterlaser.com"
+# Same origin build.py uses, so a SITE_ORIGIN preview build stays self-consistent.
+BASE = os.environ.get("SITE_ORIGIN", "https://jupiterlaser.com").rstrip("/")
 
 DOCTORS = {
     "cedeno": ("Dr. Orlando Cedeno, DPM", "/meet-dr-cedeno/"),
@@ -43,9 +46,11 @@ RELATED = {
     "hammertoes": [("/how-to-use-custom-orthotics-to-manage-hammer-toe-pain/", "Using Custom Orthotics to Manage Hammertoe Pain"),
                    ("/conditions/bunions/", "Bunions")],
     "posterior-tibial-tendon-dysfunction": [("/conditions/flat-feet/", "Flat Feet")],
-    "haglunds-deformity": [("/conditions/achilles-tendonitis/", "Achilles Tendonitis"), ("/conditions/heel-pain/", "Heel Pain")],
+    "haglunds-deformity": [("/conditions/achilles-tendonitis/", "Achilles Tendonitis"), ("/conditions/heel-pain/", "Heel Pain"),
+                           ("/services/shockwave-therapy/", "Shockwave Therapy (EPAT)")],
     "stress-fractures": [("/conditions/sports-injuries/", "Sports Injuries")],
-    "peroneal-tendonitis": [("/conditions/sprains-strains/", "Ankle Sprains and Strains")],
+    "peroneal-tendonitis": [("/conditions/sprains-strains/", "Ankle Sprains and Strains"),
+                            ("/services/prp-therapy/", "PRP Therapy")],
     "gout": [("/conditions/arthritis/", "Foot and Ankle Arthritis")],
     "sesamoiditis": [("/conditions/sports-injuries/", "Sports Injuries")],
     "metatarsalgia": [("/services/foot-bbl/", "Foot BBL fat pad restoration")],
@@ -69,6 +74,23 @@ def load():
 DETAILS = load()
 
 
+def _check_review():
+    """Fail the build on a bad CONDITION_REVIEW entry rather than ship it.
+
+    A typo'd slug leaves a page silently noindex while everyone believes it is live;
+    an unknown doctor key crashes mid-build; a free-text date ships invalid lastReviewed."""
+    for slug, entry in CONDITION_REVIEW.items():
+        if slug not in DETAILS:
+            raise SystemExit(f"CONDITION_REVIEW: no _src/conditions/{slug}.json")
+        doc, when = entry
+        if doc not in DOCTORS:
+            raise SystemExit(f"CONDITION_REVIEW[{slug}]: doctor must be one of {sorted(DOCTORS)}, got {doc!r}")
+        date.fromisoformat(when)
+
+
+_check_review()
+
+
 def live(slug):
     return slug in CONDITION_REVIEW
 
@@ -80,16 +102,17 @@ def _ul(items, cls="check-list"):
 def _schema(d, url, review):
     sch = d.get("schema", {})
     cond = {
-        "@type": "MedicalCondition", "@id": url + "#condition", "name": d["name"],
-        "alternateName": d.get("also_called", []), "description": d["lede"],
+        "@type": "MedicalCondition", "@id": url + "#condition", "name": d["name"], "description": d["lede"],
         "signOrSymptom": [{"@type": "MedicalSignOrSymptom", "name": s} for s in sch.get("signOrSymptom", [])],
         "riskFactor": [{"@type": "MedicalRiskFactor", "name": s} for s in sch.get("riskFactor", [])],
         "possibleTreatment": [{"@type": "MedicalTherapy", "name": t} for t in sch.get("possibleTreatment", [])],
     }
+    if d.get("also_called"):
+        cond["alternateName"] = d["also_called"]
     if sch.get("associatedAnatomy"):
         cond["associatedAnatomy"] = {"@type": "AnatomicalStructure", "name": sch["associatedAnatomy"]}
     if sch.get("icd10"):
-        cond["code"] = {"@type": "MedicalCode", "codeValue": sch["icd10"], "codingSystem": "ICD-10"}
+        cond["code"] = {"@type": "MedicalCode", "codeValue": sch["icd10"], "codingSystem": "ICD-10-CM"}
     page = {
         "@context": "https://schema.org", "@type": "MedicalWebPage", "@id": url + "#webpage",
         "url": url, "name": d["seo_title"], "description": d["seo_desc"],
@@ -131,7 +154,7 @@ def _page(d):
     faqs = "".join(f'<details class="faq"><summary>{e(f["q"])}</summary><div class="faq-a"><p>{e(f["a"])}</p></div></details>'
                    for f in d["faqs"])
     sources = "".join(f'<li><a href="{e(s["url"])}" rel="noopener">{e(s["title"])}</a>, {e(s.get("publisher", ""))}</li>'
-                      for s in d["sources"])
+                      for s in d["sources"] if "icd10data.com" not in s["url"])
     rel = RELATED.get(slug, []) + [(f"/conditions/{s}/", DETAILS[s]["name"]) for s in DETAILS
                                    if s != slug and live(s)][:3]
     rel_html = ""

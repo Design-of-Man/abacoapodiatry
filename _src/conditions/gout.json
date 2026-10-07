@@ -22,8 +22,8 @@
   "seo_desc": "Gout in the big toe or foot? Podiatrists in Jupiter and Palm Beach Gardens confirm the diagnosis, calm the flare and help prevent the next. (561) 915-1934",
   "lede": "A big toe that turns red, hot and too painful to touch overnight is often gout. Our podiatrists can confirm it and help calm the flare.",
   "what_it_is": [
-    "Gout is a type of inflammatory arthritis caused by uric acid that builds up and forms needle shaped crystals in a joint. Your body makes uric acid when it breaks down purines, which come from your own tissues and from foods such as red meat, organ meats, shellfish and beer. The American College of Foot and Ankle Surgeons explains that the big toe joint is hit most often because uric acid crystallizes more easily in cooler areas, and the toe is the coolest point, farthest from the heart.",
-    "According to NIAMS, gout is more common in men and usually appears in middle age, while women rarely develop it before menopause. High blood pressure, diabetes, obesity, kidney disease, a family history and certain medicines such as diuretics and low dose aspirin raise the risk. Gout tends to come in flares separated by quiet periods, and repeated flares can leave lasting joint damage, which is why it is worth treating even after a flare settles."
+    "Gout is a type of inflammatory arthritis caused by uric acid that builds up and forms needle-shaped crystals in a joint. Your body makes uric acid when it breaks down purines, which come from your own tissues and from foods such as red meat, organ meats, shellfish and beer. The American College of Foot and Ankle Surgeons explains that the big toe joint is hit most often because uric acid crystallizes more easily in cooler areas, and the toe is the coolest point, farthest from the heart.",
+    "According to NIAMS, gout is more common in men and usually appears in middle age, while women rarely develop it before menopause. High blood pressure, diabetes, obesity, kidney disease, a family history and certain medicines such as diuretics and low-dose aspirin raise the risk. Gout tends to come in flares separated by quiet periods, and repeated flares can leave lasting joint damage, which is why it is worth treating even after a flare settles."
   ],
   "symptoms": [
     "Sudden, intense pain in the big toe joint, often starting at night or on waking",
@@ -35,14 +35,14 @@
   ],
   "causes": [
     "High uric acid levels from making too much or clearing too little",
-    "Diets rich in red meat, organ meats and shellfish, and drinks such as beer and sugar sweetened beverages",
+    "Diets rich in red meat, organ meats and shellfish, and drinks such as beer and sugar-sweetened beverages",
     "Being overweight, high blood pressure, diabetes or kidney disease",
-    "Diuretics, low dose aspirin, niacin and some other medicines",
+    "Diuretics, low-dose aspirin, niacin and some other medicines",
     "A family history of gout",
     "Recent surgery, injury or illness"
   ],
   "how_therapy_helps": {
-    "intro": "Treating gout has two goals: calming the current flare and lowering the chance of the next one. The American College of Foot and Ankle Surgeons notes that with treatment, symptoms of a gout attack typically resolve in three to ten days. Mayo Clinic describes prescription anti inflammatory medicines, colchicine and corticosteroids, taken by mouth or injected into the joint, for flares, and medicines that lower uric acid for people with repeated attacks. Confirming that a red, swollen toe is gout and not infection is the first step.",
+    "intro": "Treating gout has two goals: calming the current flare and lowering the chance of the next one. The American College of Foot and Ankle Surgeons notes that with treatment, symptoms of a gout attack typically resolve in three to ten days. Mayo Clinic describes prescription anti-inflammatory medicines, colchicine and corticosteroids, taken by mouth or injected into the joint, for flares, and medicines that lower uric acid for people with repeated attacks. Confirming that a red, swollen toe is gout and not infection is the first step.",
     "methods": [
       [
         "Confirming the diagnosis",
@@ -50,7 +50,7 @@
       ],
       [
         "Medicine to calm the flare",
-        "Your podiatrist can prescribe anti inflammatory medicine or colchicine, which Mayo Clinic says works best within 24 hours of the start of symptoms."
+        "Your podiatrist can prescribe anti-inflammatory medicine or colchicine, which Mayo Clinic says works best within 24 hours of the start of symptoms."
       ],
       [
         "Joint injection",
@@ -62,7 +62,7 @@
       ],
       [
         "Diet, fluids and weight",
-        "Drinking plenty of water and cutting back on purine rich foods, beer and sugary drinks are first line advice from the ACFAS and Mayo Clinic, and gradual weight loss can lower uric acid."
+        "Drinking plenty of water and cutting back on purine-rich foods, beer and sugary drinks are first-line advice from the ACFAS and Mayo Clinic, and gradual weight loss can lower uric acid."
       ],
       [
         "Long term uric acid control",
@@ -75,7 +75,7 @@
   "self_care": [
     "Rest the foot and keep it elevated, and use a cool pack wrapped in a thin towel for short periods",
     "Drink plenty of water and avoid alcohol, especially beer, during a flare",
-    "Skip red meat, organ meats, shellfish and sugar sweetened drinks for now",
+    "Skip red meat, organ meats, shellfish and sugar-sweetened drinks for now",
     "Do not start or stop prescription medicines on your own, and ask your doctor before taking aspirin for the pain"
   ],
   "see_a_doctor": [
@@ -120,13 +120,13 @@
     ],
     "riskFactor": [
       "high uric acid",
-      "purine rich diet and alcohol",
+      "purine-rich diet and alcohol",
       "obesity",
       "kidney disease",
       "diuretic medications"
     ],
     "possibleTreatment": [
-      "anti inflammatory medication",
+      "anti-inflammatory medication",
       "colchicine",
       "corticosteroid joint injection",
       "rest and elevation",

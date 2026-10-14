@@ -29,6 +29,22 @@ failures = []
 notes = []
 
 
+BANNED_TYPES = {"AggregateRating", "Review"}
+
+
+def _types(obj):
+    """Every @type value anywhere in a JSON-LD object."""
+    if isinstance(obj, dict):
+        t = obj.get("@type")
+        if t:
+            yield from (t if isinstance(t, list) else [t])
+        for v in obj.values():
+            yield from _types(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _types(v)
+
+
 def fail(category, detail):
     failures.append((category, detail))
 
@@ -87,9 +103,25 @@ def main():
             r'<script type="application/ld\+json">(.*?)</script>', html, re.S
         ):
             try:
-                json.loads(block)
+                data = json.loads(block)
             except json.JSONDecodeError as e:
                 fail("schema", f"{r}: invalid JSON-LD — {e}")
+                continue
+            # Self-serving review markup and unrecorded clinical sign-off are
+            # banned on every practice site (added 2026-10-14, after an
+            # AggregateRating block had shipped sitewide for six weeks).
+            for t in sorted(set(_types(data)) & BANNED_TYPES):
+                fail("schema", f"{r}: {t} in JSON-LD (no review schema; see _src/reviews.py)")
+            if re.search(r'"(reviewedBy|lastReviewed)"', block):
+                fail("schema", f"{r}: reviewedBy/lastReviewed asserts a clinical sign-off that is not on record")
+
+        # --- em dashes in visible prose ---------------------------------------
+        # House rule: zero em dashes in site prose. Comments, scripts and styles
+        # are not prose; JSON-LD is checked because its text is shown in results.
+        visible = re.sub(r"(?s)<!--.*?-->|<script(?![^>]*ld\+json).*?</script>|<style.*?</style>", "", html)
+        n_dash = len(re.findall(r"&mdash;|\u2014|&#8212;|\\u2014", visible))
+        if n_dash:
+            fail("copy", f"{r}: {n_dash} em dash(es) in page text")
 
         # --- placeholders ----------------------------------------------------
         for hit in set(PLACEHOLDER_RE.findall(html)):

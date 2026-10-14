@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=e9be8f96cd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=215f1d4846">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -71,7 +71,7 @@
     "image": "https://jupiterlaser.com/assets/img/og-image.png",
     "logo": "https://jupiterlaser.com/assets/img/logo-abacoa.png",
     "priceRange": "$$",
-    "aggregateRating": {"@type": "AggregateRating", "ratingValue": 4.9, "reviewCount": 188, "itemReviewed": {"@id": "https://jupiterlaser.com/#clinic"}},
+    
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card, Insurance",
     "medicalSpecialty": ["Podiatric", "PhysicalTherapy"],
@@ -120,18 +120,8 @@
     ],
     "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician",
-        "name": "Dr. Orlando Cedeno, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-cedeno/"
-      },
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician",
-        "name": "Dr. Isin A. Mustafa, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-mustafa/"
-      }
+      { "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician" },
+      { "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician" }
     ]
   }
   </script>
@@ -245,34 +235,34 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What does plantar fasciitis feel like?",
+        "name": "Will it go away on its own?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The classic symptom is a sharp, stabbing pain under the heel with the first steps after waking or after sitting for a while. The pain often eases as you move, then returns after rest or long periods of standing. Some patients also feel aching or tightness through the arch."
+          "text": "Sometimes, eventually. But \"eventually\" routinely means 6–18 months of limping, and the longer it persists, the more the tissue degenerates and the harder it is to treat. Early treatment is dramatically faster and cheaper than late treatment."
         }
       },
       {
         "@type": "Question",
-        "name": "How long does plantar fasciitis take to heal?",
+        "name": "Is a heel spur causing my pain?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With early, proper treatment most cases improve in weeks to a few months. Untreated or under-treated cases commonly drag on 6-18 months and become harder to resolve, because inflammation gives way to tissue degeneration. Laser and shockwave therapy are specifically useful for shortening this timeline and for treating chronic cases."
+          "text": "Probably not. Heel spurs show up on X-rays of many pain-free feet; they're usually a result of chronic fascia tension, not the cause of pain. Treating the fascia treats the pain. Spur removal is rarely necessary. More in our heel pain guide ."
         }
       },
       {
         "@type": "Question",
-        "name": "Can plantar fasciitis be cured without surgery?",
+        "name": "Should I stop exercising?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, over 90 percent of plantar fasciitis cases resolve without surgery. Conservative and regenerative care (stretching, footwear changes, orthotics, MLS laser therapy, shockwave therapy, and PRP for resistant cases) resolves the overwhelming majority. Surgery is a last resort for a small minority of cases."
+          "text": "Total rest usually backfires, tissue heals with the right amount of load, not zero load. We'll help you modify activity (bike and swim usually stay; barefoot beach runs pause) while treatment rebuilds the fascia's capacity."
         }
       },
       {
         "@type": "Question",
-        "name": "Do cortisone shots cure plantar fasciitis?",
+        "name": "What results do laser and shockwave actually get?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cortisone can give fast but usually temporary relief. It does not repair the degenerated fascia, and repeated injections can weaken the tissue and, rarely, contribute to fascia rupture or fat pad atrophy. If injections keep wearing off, regenerative options that promote actual healing are typically the better next step."
+          "text": "Published studies of shockwave for chronic plantar fasciitis consistently show significant pain reduction versus placebo, and laser therapy studies report high patient-improvement rates. In our clinic, most patients feel meaningful change within the first weeks of a program. Individual results vary, which is why we track your progress and adapt."
         }
       }
     ],
@@ -313,7 +303,7 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
         <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
       </a>
 
@@ -522,7 +512,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
             <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
           </a>
           <p class="footer-about">Complete foot &amp; ankle care in Jupiter, Florida: MLS laser therapy, shockwave, regenerative medicine, minimally invasive surgery, bunion care, and the Foot BBL&trade;, from surgeons Dr. Orlando Cedeno, DPM, FACFAS and Dr. Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS.</p>
@@ -591,8 +581,13 @@
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
+            <li><a href="/insurance/">Insurance &amp; Medicare</a></li>
+            <li><a href="/glossary/">Patient Glossary</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
-            <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
+            <!-- jupiterveincenter.com only 302s back to this site (checked
+                 2026-10-14), so the old external link was a sitewide loop
+                 through a temporary redirect. Point at the real page. -->
+            <li><a href="/services/vein-treatment/">Jupiter Vein Center</a></li>
           </ul>
         </div>
       </div>
@@ -611,7 +606,7 @@
     <div class="footer-cities">
       <div class="wrap">
         <h2>Patients travel to our offices from</h2>
-        <p class="footer-cities-note">Two offices &mdash; Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens &mdash; serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <p class="footer-cities-note">Two offices, Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
         <ul class="city-links">
             <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
             <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>
@@ -685,7 +680,7 @@
 
 
   <!-- Virtual assistant -->
-  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question — open the practice assistant">
+  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question: open the practice assistant">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9v4a3 3 0 0 0 3 3h1v-7H5v-.2A7 7 0 0 1 19 12v.8h-2v7h1a3 3 0 0 0 3-3v-4a9 9 0 0 0-9-9Z"/></svg>
     <span class="assist-fab-label">Ask a question</span>
   </button>
@@ -713,7 +708,7 @@
     <p class="assist-note">Automated assistant, general info only, not medical advice. For urgent concerns call <a href="tel:+15619151934">(561)&nbsp;915-1934</a>.</p>
   </div>
 
-  <script src="/assets/js/assistant.js?v=57e14751cb" defer></script>
+  <script src="/assets/js/assistant.js?v=fbff872355" defer></script>
 
   <!-- Vercel Web Analytics. Cookieless, stores no IP address and sets nothing
        that identifies a visitor, which is what makes it safe to run on a
@@ -726,7 +721,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=5218667f3e" defer></script>
+  <script src="/assets/js/main.js?v=3972496466" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

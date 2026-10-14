@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=e9be8f96cd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=215f1d4846">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -71,7 +71,7 @@
     "image": "https://jupiterlaser.com/assets/img/og-image.png",
     "logo": "https://jupiterlaser.com/assets/img/logo-abacoa.png",
     "priceRange": "$$",
-    "aggregateRating": {"@type": "AggregateRating", "ratingValue": 4.9, "reviewCount": 188, "itemReviewed": {"@id": "https://jupiterlaser.com/#clinic"}},
+    
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card, Insurance",
     "medicalSpecialty": ["Podiatric", "PhysicalTherapy"],
@@ -120,18 +120,8 @@
     ],
     "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician",
-        "name": "Dr. Orlando Cedeno, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-cedeno/"
-      },
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician",
-        "name": "Dr. Isin A. Mustafa, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-mustafa/"
-      }
+      { "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician" },
+      { "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician" }
     ]
   }
   </script>
@@ -209,7 +199,7 @@
     "provider": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-18"
+    "dateModified": "2026-10-14"
   }
   </script>
   <script type="application/ld+json">
@@ -219,46 +209,54 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is MLS laser therapy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "MLS (Multiwave Locked System) laser therapy is an FDA-cleared treatment that uses two synchronized wavelengths of laser light, 808 nm for inflammation and 905 nm for pain, to reduce pain and swelling and accelerate tissue healing. Sessions are painless and take 10-15 minutes."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Does MLS laser therapy hurt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. MLS laser therapy is completely painless. Most patients feel nothing during treatment or a mild, pleasant warmth. There are no needles, no incisions, and no downtime."
+          "text": "No. Treatment is completely painless, most patients feel nothing, or a mild pleasant warmth. There are no needles, incisions, or numbing required."
         }
       },
       {
         "@type": "Question",
-        "name": "How many MLS laser sessions are needed?",
+        "name": "How fast will I feel results?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most foot and ankle conditions respond within 6-12 sessions scheduled 2-3 times per week. Acute injuries may need fewer sessions, while chronic conditions like long-standing plantar fasciitis or neuropathy may need additional treatments. Many patients notice improvement within the first 1-3 sessions."
+          "text": "Many patients notice reduced pain within their first 1–3 sessions. Because effects are cumulative, improvement typically continues throughout the treatment course, and even for weeks after it ends, as tissue continues rebuilding."
         }
       },
       {
         "@type": "Question",
-        "name": "Is MLS laser therapy safe?",
+        "name": "Is it safe? Are there side effects?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. MLS laser therapy is FDA-cleared with an excellent safety profile and no significant reported side effects. It is drug-free and non-invasive. It is not used over active cancers, directly over a pregnant uterus, or into the eyes, your provider screens for these before treatment."
+          "text": "MLS laser therapy is FDA-cleared and has an excellent safety record, with no significant side effects reported in clinical use. Standard precautions apply: we don't treat over active cancer, over a pregnant uterus, or near the eyes. Dr. Cedeno screens every patient before starting."
         }
       },
       {
         "@type": "Question",
-        "name": "How much does MLS laser therapy cost in Jupiter, FL?",
+        "name": "How is MLS different from \"cold laser\" (LLLT)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cost depends on the condition treated and the number of sessions in your plan. Laser therapy is often not covered by insurance, so our office provides transparent package pricing up front before you commit. Call (561) 915-1934 for current pricing and to verify any applicable insurance benefits."
+          "text": "Traditional cold lasers use a single low-power wavelength, which limits depth and dose. MLS is a higher-powered Class IV system that synchronizes two wavelengths in a patented pulse, delivering a therapeutic dose to deep tissue in far less time, one reason sessions take only 10–15 minutes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does insurance cover laser therapy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually laser therapy itself is an out-of-pocket service, while your evaluation and related podiatric care are often covered. We provide clear package pricing before you start, call (561) 915-1934 and we'll verify your benefits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can laser therapy be combined with other treatments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and it often should be. Laser pairs beautifully with shockwave therapy , PRP , orthotics, and stretching programs. Dr. Cedeno designs combination plans when they'll get you better faster."
         }
       }
     ],
-    "dateModified": "2026-09-18"
+    "dateModified": "2026-10-14"
   }
   </script>
   <script type="application/ld+json">
@@ -295,7 +293,7 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
         <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
       </a>
 
@@ -486,11 +484,19 @@
               <tr><td><strong>Pain during treatment</strong></td><td class="yes">None</td><td>Injection pain</td><td class="yes">None</td><td class="no">Post-op pain</td></tr>
               <tr><td><strong>Downtime</strong></td><td class="yes">None</td><td>1&ndash;2 days rest</td><td class="yes">None</td><td class="no">Weeks to months</td></tr>
               <tr><td><strong>Side-effect risk</strong></td><td class="yes">Minimal</td><td>Tissue weakening with repeat use</td><td>GI, kidney, dependency risks</td><td>Surgical risks</td></tr>
-              <tr><td><strong>Repeatable long-term</strong></td><td class="yes">Yes</td><td class="no">Limited (typically 3/year max)</td><td class="no">Not recommended</td><td class="no">—</td></tr>
+              <tr><td><strong>Repeatable long-term</strong></td><td class="yes">Yes</td><td class="no">Limited (typically 3/year max)</td><td class="no">Not recommended</td><td class="no">Not applicable</td></tr>
             </tbody>
           </table>
         </div>
         <p class="med-note" data-reveal>Every treatment has a place. Dr. Cedeno will tell you honestly when an injection, medication, or surgery is genuinely the better choice for your case.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap-narrow prose" data-reveal>
+        <h2>Where is MLS laser therapy available?</h2>
+        <p>Our robotic MLS laser suite is at the Palm Beach Gardens office, 11380 Prosperity Farms Road, Suite 204 (Mon&ndash;Wed 8 AM&ndash;4:30 PM &middot; Fri 8 AM&ndash;2 PM). Your evaluation can be at whichever office is closer, including 4601 Military Trail, Suite 202 in Jupiter, and the treatment visits are scheduled in the Gardens.</p>
+        <p>Laser therapy is usually classified by insurers as elective, so it is generally out-of-pocket, while the evaluation that decides whether it fits is the part insurance typically covers. Physician-prescribed treatment for a medical condition is generally HSA and FSA eligible. See <a href="/insurance/">insurance and coverage</a>.</p>
       </div>
     </section>
 
@@ -525,6 +531,14 @@
     </section>
 
     <section class="section-tight">
+      <div class="wrap-narrow">
+        <span class="kicker">In a patient&rsquo;s words</span>
+        <figure class="testi" data-reveal><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>&ldquo;Dr. Cedeno was great before, during and after the surgery. … The laser treatments definitely helped. The staff at the office was very professional and caring especially the two nurse assistants!!&rdquo;</p><footer>Patient testimonial &middot; <a href="/reviews/">More patient reviews</a></footer></figure>
+        <p class="med-note">Quoted word for word from a published patient review. Individual results vary.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
       <div class="wrap">
         <div class="cta-band" data-reveal>
           <div>
@@ -545,7 +559,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
             <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
           </a>
           <p class="footer-about">Complete foot &amp; ankle care in Jupiter, Florida: MLS laser therapy, shockwave, regenerative medicine, minimally invasive surgery, bunion care, and the Foot BBL&trade;, from surgeons Dr. Orlando Cedeno, DPM, FACFAS and Dr. Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS.</p>
@@ -614,8 +628,13 @@
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
+            <li><a href="/insurance/">Insurance &amp; Medicare</a></li>
+            <li><a href="/glossary/">Patient Glossary</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
-            <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
+            <!-- jupiterveincenter.com only 302s back to this site (checked
+                 2026-10-14), so the old external link was a sitewide loop
+                 through a temporary redirect. Point at the real page. -->
+            <li><a href="/services/vein-treatment/">Jupiter Vein Center</a></li>
           </ul>
         </div>
       </div>
@@ -634,7 +653,7 @@
     <div class="footer-cities">
       <div class="wrap">
         <h2>Patients travel to our offices from</h2>
-        <p class="footer-cities-note">Two offices &mdash; Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens &mdash; serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <p class="footer-cities-note">Two offices, Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
         <ul class="city-links">
             <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
             <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>
@@ -708,7 +727,7 @@
 
 
   <!-- Virtual assistant -->
-  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question — open the practice assistant">
+  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question: open the practice assistant">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9v4a3 3 0 0 0 3 3h1v-7H5v-.2A7 7 0 0 1 19 12v.8h-2v7h1a3 3 0 0 0 3-3v-4a9 9 0 0 0-9-9Z"/></svg>
     <span class="assist-fab-label">Ask a question</span>
   </button>
@@ -736,7 +755,7 @@
     <p class="assist-note">Automated assistant, general info only, not medical advice. For urgent concerns call <a href="tel:+15619151934">(561)&nbsp;915-1934</a>.</p>
   </div>
 
-  <script src="/assets/js/assistant.js?v=57e14751cb" defer></script>
+  <script src="/assets/js/assistant.js?v=fbff872355" defer></script>
 
   <!-- Vercel Web Analytics. Cookieless, stores no IP address and sets nothing
        that identifies a visitor, which is what makes it safe to run on a
@@ -749,7 +768,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=5218667f3e" defer></script>
+  <script src="/assets/js/main.js?v=3972496466" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

@@ -1211,6 +1211,96 @@
       "source": "/personal-injury",
       "destination": "/conditions/auto-accident/",
       "permanent": true
+    },
+    {
+      "source": "/provider/orlando-cedeno-dpm/",
+      "destination": "/meet-dr-cedeno/",
+      "permanent": true
+    },
+    {
+      "source": "/provider/orlando-cedeno-dpm",
+      "destination": "/meet-dr-cedeno/",
+      "permanent": true
+    },
+    {
+      "source": "/when-is-ankle-replacement-surgery-necessary-signs-you-shouldnt-ignore/",
+      "destination": "/when-is-ankle-replacement-surgery-necessary/",
+      "permanent": true
+    },
+    {
+      "source": "/when-is-ankle-replacement-surgery-necessary-signs-you-shouldnt-ignore",
+      "destination": "/when-is-ankle-replacement-surgery-necessary/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-plate-injuries/",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-plate-injuries",
+      "destination": "/conditions/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fascia-steroid-injection-when-to-consider-it/",
+      "destination": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fascia-steroid-injection-when-to-consider-it",
+      "destination": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fascitis-steroid-injection-when-to-consider-it/",
+      "destination": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
+      "permanent": true
+    },
+    {
+      "source": "/plantar-fascitis-steroid-injection-when-to-consider-it",
+      "destination": "/plantar-fasciitis-steroid-injection-when-to-consider-it/",
+      "permanent": true
+    },
+    {
+      "source": "/is-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/",
+      "destination": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/",
+      "permanent": true
+    },
+    {
+      "source": "/is-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits",
+      "destination": "/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/",
+      "permanent": true
+    },
+    {
+      "source": "/top-5-myths-about-laser-foot-pain-debunked/",
+      "destination": "/top-5-myths-about-laser-therapy-for-foot-pain/",
+      "permanent": true
+    },
+    {
+      "source": "/top-5-myths-about-laser-foot-pain-debunked",
+      "destination": "/top-5-myths-about-laser-therapy-for-foot-pain/",
+      "permanent": true
+    },
+    {
+      "source": "/top-5-myths-about-laser-foot-pain/",
+      "destination": "/top-5-myths-about-laser-therapy-for-foot-pain/",
+      "permanent": true
+    },
+    {
+      "source": "/top-5-myths-about-laser-foot-pain",
+      "destination": "/top-5-myths-about-laser-therapy-for-foot-pain/",
+      "permanent": true
+    },
+    {
+      "source": "/best-guide-to-first-mtp-joint-arthritis/",
+      "destination": "/best-guide-to-first-metatarsophalangeal-joint-arthritis/",
+      "permanent": true
+    },
+    {
+      "source": "/best-guide-to-first-mtp-joint-arthritis",
+      "destination": "/best-guide-to-first-metatarsophalangeal-joint-arthritis/",
+      "permanent": true
     }
   ],
   "headers": [

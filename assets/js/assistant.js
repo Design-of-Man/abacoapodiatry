@@ -11,49 +11,49 @@
     {
       id: "laser",
       match: ["laser", "mls", "photobiomodulation", "light therapy", "cold laser"],
-      a: "<strong>MLS laser therapy</strong> is our flagship treatment — an FDA-cleared laser that uses two synchronized wavelengths to calm pain and inflammation and speed tissue healing. Sessions are <strong>painless</strong>, take <strong>10–15 minutes</strong>, and have no downtime. Most plans run 6–12 sessions.<ul><li><a href='/services/mls-laser-therapy/'>MLS laser therapy in depth</a></li></ul>",
+      a: "<strong>MLS laser therapy</strong> is our flagship treatment: an FDA-cleared laser that uses two synchronized wavelengths to calm pain and inflammation and speed tissue healing. Sessions are <strong>painless</strong>, take <strong>10–15 minutes</strong>, and have no downtime. Most plans run 6–12 sessions.<ul><li><a href='/services/mls-laser-therapy/'>MLS laser therapy in depth</a></li></ul>",
       chips: ["Does it hurt?", "How much does it cost?", "Book an appointment"]
     },
     {
       id: "hurt",
       match: ["hurt", "painful", "pain during", "does it feel", "needles"],
-      a: "No — laser therapy is <strong>completely painless</strong>. Most patients feel nothing at all, or a mild soothing warmth. No needles, no incisions, no recovery time. Shockwave therapy feels like a firm rhythmic tapping — very tolerable, and we adjust intensity to your comfort.",
+      a: "No. Laser therapy is <strong>completely painless</strong>. Most patients feel nothing at all, or a mild soothing warmth. No needles, no incisions, no recovery time. Shockwave therapy feels like a firm rhythmic tapping: very tolerable, and we adjust intensity to your comfort.",
       chips: ["How many sessions?", "What conditions do you treat?", "Book an appointment"]
     },
     {
       id: "sessions",
       match: ["how many sessions", "how long", "how fast", "how quickly", "results", "how soon"],
-      a: "Most conditions respond within <strong>6–12 laser sessions</strong>, scheduled 2–3 times per week — many patients feel improvement in the first 1–3 visits. Shockwave typically runs 3–5 weekly sessions. You'll get a specific plan at your evaluation, adjusted as you progress.",
+      a: "Most conditions respond within <strong>6–12 laser sessions</strong>, scheduled 2–3 times per week: many patients feel improvement in the first 1–3 visits. Shockwave typically runs 3–5 weekly sessions. You'll get a specific plan at your evaluation, adjusted as you progress.",
       chips: ["Does it hurt?", "How much does it cost?", "Book an appointment"]
     },
     {
       id: "cost",
       match: ["cost", "price", "how much", "insurance", "coverage", "covered", "medicare", "pay", "hsa", "fsa", "payment"],
-      a: "Your <strong>evaluation and standard podiatric care are typically covered by insurance</strong>. Laser, shockwave, and regenerative therapies are usually elective (out-of-pocket) — we quote transparent package pricing <em>before</em> you commit, and HSA/FSA funds generally apply. Call " + PHONE_HTML + " and our team will verify your benefits.<ul><li><a href='/faq/'>Cost &amp; insurance FAQ</a></li></ul>",
+      a: "Your <strong>evaluation and standard podiatric care are typically covered by insurance</strong>. Laser, shockwave, and regenerative therapies are usually elective (out-of-pocket): we quote transparent package pricing <em>before</em> you commit, and HSA/FSA funds generally apply. Call " + PHONE_HTML + " and our team will verify your benefits.<ul><li><a href='/faq/'>Cost &amp; insurance FAQ</a></li></ul>",
       chips: ["Do you offer payment plans?", "Book an appointment", "What conditions do you treat?"]
     },
     {
       id: "financing",
       match: ["payment plan", "payment plans", "financing", "carecredit", "care credit", "installment", "package pricing"],
-      a: "Ask our front desk about current packages and payment options when you call " + PHONE_HTML + " — we work to keep effective treatment within reach. For the Foot BBL&trade;, financing is available through CareCredit and similar programs, with transparent pricing given at consultation.<ul><li><a href='/faq/'>Cost &amp; insurance FAQ</a></li><li><a href='/services/foot-bbl/'>Foot BBL&trade; pricing</a></li></ul>",
+      a: "Ask our front desk about current packages and payment options when you call " + PHONE_HTML + ": we work to keep effective treatment within reach. For the Foot BBL&trade;, financing is available through CareCredit and similar programs, with transparent pricing given at consultation.<ul><li><a href='/faq/'>Cost &amp; insurance FAQ</a></li><li><a href='/services/foot-bbl/'>Foot BBL&trade; pricing</a></li></ul>",
       chips: ["Book an appointment", "How much does it cost?"]
     },
     {
       id: "book",
       match: ["book", "appointment", "schedule", "visit", "come in", "see the doctor", "consultation", "availab"],
-      a: "The fastest way to book is to call " + PHONE_HTML + " — most new patients are seen <strong>within the week</strong>. You can also <a href='/contact/'>request an appointment online</a> and our team will call you back to confirm.",
+      a: "The fastest way to book is to call " + PHONE_HTML + ". Most new patients are seen <strong>within the week</strong>. You can also <a href='/contact/'>request an appointment online</a> and our team will call you back to confirm.",
       chips: ["Leave your info, we'll call you back", "What should I bring?", "Where are you located?", "What are your hours?"]
     },
     {
       id: "reschedule",
       match: ["cancel", "reschedul", "change my appointment", "move my appointment", "running late"],
-      a: "No problem — call " + PHONE_HTML + " as soon as you know and our front desk will get you rebooked or adjusted. It's the fastest way to change or cancel a visit.",
+      a: "No problem: call " + PHONE_HTML + " as soon as you know and our front desk will get you rebooked or adjusted. It's the fastest way to change or cancel a visit.",
       chips: ["Book an appointment", "Where are you located?"]
     },
     {
       id: "location",
       match: ["where", "located", "location", "address", "directions", "parking", "office"],
-      a: "We have two offices.<br><strong>Jupiter:</strong> 4601 Military Trail, Suite 202, Jupiter, FL 33458 — minutes from Abacoa and I-95, free on-site parking. Open Mon–Thu 8 AM–5 PM · Fri 8 AM–2 PM.<br><strong>Palm Beach Gardens:</strong> 11380 Prosperity Farms Rd, Suite 204, FL 33410 — our laser center. Open Mon–Wed 8 AM–4:30 PM · Fri 8 AM–2 PM · Sat by concierge appointment only.<ul><li><a href='/locations/palm-beach-gardens/'>Palm Beach Gardens office</a></li><li><a href='/contact/'>Map &amp; directions</a></li><li><a href='/locations/'>All areas we serve</a></li></ul>",
+      a: "We have two offices.<br><strong>Jupiter:</strong> 4601 Military Trail, Suite 202, Jupiter, FL 33458: minutes from Abacoa and I-95, free on-site parking. Open Mon–Thu 8 AM–5 PM · Fri 8 AM–2 PM.<br><strong>Palm Beach Gardens:</strong> 11380 Prosperity Farms Rd, Suite 204, FL 33410: our laser center. Open Mon–Wed 8 AM–4:30 PM · Fri 8 AM–2 PM · Sat by concierge appointment only.<ul><li><a href='/locations/palm-beach-gardens/'>Palm Beach Gardens office</a></li><li><a href='/contact/'>Map &amp; directions</a></li><li><a href='/locations/'>All areas we serve</a></li></ul>",
       chips: ["What are your hours?", "Book an appointment"]
     },
     {
@@ -62,43 +62,43 @@
       // Two offices on different schedules. Kept in step with _src/hours.py by
       // a check in _dev/preflight.py -- this file is not generated by build.py,
       // so nothing else would catch it drifting.
-      a: "<strong>Jupiter</strong> (4601 Military Trail): Mon–Thu 8 AM–5 PM · Fri 8 AM–2 PM — closed Sunday. Saturday is by concierge appointment only.<br><strong>Palm Beach Gardens</strong> (11380 Prosperity Farms Rd): Mon–Wed 8 AM–4:30 PM · Fri 8 AM–2 PM — closed Thursday and Sunday. Saturday is by concierge appointment only.<br>Call " + PHONE_HTML + " to schedule at either office.",
+      a: "<strong>Jupiter</strong> (4601 Military Trail): Mon–Thu 8 AM–5 PM · Fri 8 AM–2 PM. Closed Sunday. Saturday is by concierge appointment only.<br><strong>Palm Beach Gardens</strong> (11380 Prosperity Farms Rd): Mon–Wed 8 AM–4:30 PM · Fri 8 AM–2 PM. Closed Thursday and Sunday. Saturday is by concierge appointment only.<br>Call " + PHONE_HTML + " to schedule at either office.",
       chips: ["Book an appointment", "Where are you located?"]
     },
     {
       id: "heel",
       match: ["heel", "plantar", "fasciitis", "morning pain", "first steps", "spur"],
-      a: "Sharp heel pain with your first steps in the morning is the signature of <strong>plantar fasciitis</strong> — the most common condition we treat, and one that responds very well to laser and shockwave therapy, even after failed injections.<ul><li><a href='/conditions/plantar-fasciitis/'>Plantar fasciitis treatment</a></li><li><a href='/conditions/heel-pain/'>All causes of heel pain</a></li></ul>",
+      a: "Sharp heel pain with your first steps in the morning is the signature of <strong>plantar fasciitis</strong>: the most common condition we treat, and one that responds very well to laser and shockwave therapy, even after failed injections.<ul><li><a href='/conditions/plantar-fasciitis/'>Plantar fasciitis treatment</a></li><li><a href='/conditions/heel-pain/'>All causes of heel pain</a></li></ul>",
       chips: ["How many sessions?", "Book an appointment"]
     },
     {
       id: "neuropathy",
       match: ["neuropathy", "burning", "tingling", "numb", "pins and needles", "diabetic nerve"],
-      a: "Burning, tingling, or numb feet usually point to <strong>peripheral neuropathy</strong>. We offer drug-free MLS laser therapy that improves the microcirculation feeding your nerves — many patients report less burning and better sleep.<ul><li><a href='/conditions/neuropathy/'>Neuropathy treatment</a></li><li><a href='/conditions/diabetic-foot-care/'>Diabetic foot care</a></li></ul>",
+      a: "Burning, tingling, or numb feet usually point to <strong>peripheral neuropathy</strong>. We offer drug-free MLS laser therapy that improves the microcirculation feeding your nerves: many patients report less burning and better sleep.<ul><li><a href='/conditions/neuropathy/'>Neuropathy treatment</a></li><li><a href='/conditions/diabetic-foot-care/'>Diabetic foot care</a></li></ul>",
       chips: ["How many sessions?", "Book an appointment"]
     },
     {
       id: "achilles",
       match: ["achilles", "tendon", "tendonitis", "tendinitis", "back of ankle", "calf"],
-      a: "Pain in the cord above your heel is usually <strong>Achilles tendonitis</strong>. We treat it with loading rehab plus laser and shockwave — and we never inject cortisone into the Achilles (it raises rupture risk).<ul><li><a href='/conditions/achilles-tendonitis/'>Achilles treatment</a></li></ul>",
+      a: "Pain in the cord above your heel is usually <strong>Achilles tendonitis</strong>. We treat it with loading rehab plus laser and shockwave, and we never inject cortisone into the Achilles (it raises rupture risk).<ul><li><a href='/conditions/achilles-tendonitis/'>Achilles treatment</a></li></ul>",
       chips: ["How many sessions?", "Book an appointment"]
     },
     {
       id: "ankle",
       match: ["sprain", "twisted", "rolled", "unstable", "ankle"],
-      a: "Ankle sprains that aren't rehabbed properly become chronic instability — up to 40% leave lingering symptoms. We grade the injury, rule out fracture, accelerate healing with laser, and rebuild strength and balance.<ul><li><a href='/conditions/sprains-strains/'>Sprains &amp; strains</a></li></ul>",
+      a: "Ankle sprains that aren't rehabbed properly become chronic instability: up to 40% leave lingering symptoms. We grade the injury, rule out fracture, accelerate healing with laser, and rebuild strength and balance.<ul><li><a href='/conditions/sprains-strains/'>Sprains &amp; strains</a></li></ul>",
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {
       id: "bunion",
       match: ["bunion", "bony bump", "big toe bump", "hallux valgus", "toe leaning"],
-      a: "A <strong>bunion</strong> is a progressive joint deformity — a bony bulge at the base of the big toe that worsens over time. First-line care is nonsurgical: taping, padding, custom orthotics, footwear changes, and anti-inflammatories. Large or stubbornly painful bunions may need surgical correction, which our board-certified surgeons perform — including minimally invasive techniques.<ul><li><a href='/conditions/bunions/'>Bunion treatment</a></li></ul>",
+      a: "A <strong>bunion</strong> is a progressive joint deformity: a bony bulge at the base of the big toe that worsens over time. First-line care is nonsurgical: taping, padding, custom orthotics, footwear changes, and anti-inflammatories. Large or stubbornly painful bunions may need surgical correction, which our board-certified surgeons perform, including minimally invasive techniques.<ul><li><a href='/conditions/bunions/'>Bunion treatment</a></li></ul>",
       chips: ["Book an appointment", "Do I need surgery?"]
     },
     {
       id: "bbl",
       match: ["bbl", "fat pad", "cushion", "walking on marbles", "walking on bones", "ball of foot", "heels hurt", "liposana", "sculptra"],
-      a: "The <strong>Foot BBL&trade;</strong> is our signature fat-pad restoration procedure — it rebuilds the natural cushion under your heel and forefoot using Liposana&trade; (an adipose allograft) or Sculptra (a collagen stimulator). In-office, under local anesthesia, no liposuction, walk out same day. If it feels like you're walking on marbles or heels have become unbearable, this addresses the actual cause.<ul><li><a href='/services/foot-bbl/'>Foot BBL&trade; in depth</a></li></ul>",
+      a: "The <strong>Foot BBL&trade;</strong> is our signature fat-pad restoration procedure: it rebuilds the natural cushion under your heel and forefoot using Liposana&trade; (an adipose allograft) or Sculptra (a collagen stimulator). In-office, under local anesthesia, no liposuction, walk out same day. If it feels like you're walking on marbles or heels have become unbearable, this addresses the actual cause.<ul><li><a href='/services/foot-bbl/'>Foot BBL&trade; in depth</a></li></ul>",
       chips: ["What's Foot BBL recovery like?", "How much does it cost?", "Book an appointment"]
     },
     {
@@ -110,19 +110,19 @@
     {
       id: "flatfeet",
       match: ["flat feet", "flat foot", "flatfoot", "fallen arch", "arches", "pttd"],
-      a: "Flat feet that ache, tire quickly, or roll inward deserve evaluation — especially if the arch is newly lowering (often a failing posterior tibial tendon). Care runs from custom orthotics and bracing to full flatfoot reconstruction by our surgeons.<ul><li><a href='/conditions/flat-feet/'>Flat feet treatment</a></li></ul>",
+      a: "Flat feet that ache, tire quickly, or roll inward deserve evaluation, especially if the arch is newly lowering (often a failing posterior tibial tendon). Care runs from custom orthotics and bracing to full flatfoot reconstruction by our surgeons.<ul><li><a href='/conditions/flat-feet/'>Flat feet treatment</a></li></ul>",
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {
       id: "wound",
       match: ["wound", "ulcer", "sore that won't heal", "not healing", "open sore", "slow healing", "stitches won't close"],
-      a: "Any wound that hasn't clearly improved in two weeks — or <strong>any wound on a diabetic foot</strong> — should be seen promptly. Healthy healing needs blood supply, pressure relief, infection control, and cooperative body chemistry; a wound that lingers is usually missing one of those. Our advanced wound care program covers debridement, offloading, advanced dressings, infection management, circulation assessment, biologics, and limb preservation, plus surgery in-house when structure demands it. Please call " + PHONE_HTML + " today rather than waiting.<ul><li><a href='/services/wound-care/'>Wound care program</a></li></ul>",
+      a: "Any wound that hasn't clearly improved in two weeks, or <strong>any wound on a diabetic foot</strong>, should be seen promptly. Healthy healing needs blood supply, pressure relief, infection control, and cooperative body chemistry; a wound that lingers is usually missing one of those. Our advanced wound care program covers debridement, offloading, advanced dressings, infection management, circulation assessment, biologics, and limb preservation, plus surgery in-house when structure demands it. Please call " + PHONE_HTML + " today rather than waiting.<ul><li><a href='/services/wound-care/'>Wound care program</a></li></ul>",
       chips: ["Book an appointment", "Where are you located?"]
     },
     {
       id: "diabetic",
       match: ["diabetic", "diabetes", "diabetic foot", "blood sugar", "a1c"],
-      a: "Diabetes threatens feet two ways: nerve damage that silences pain, and slowed circulation that delays healing — a blister you never felt can become an ulcer before anyone notices. See a podiatrist <strong>at least annually</strong>, or every 3–6 months with neuropathy, circulation problems, deformity, or a prior ulcer. Your visit includes sensation testing, circulation assessment, skin/nail evaluation, and pressure-point mapping. Check both feet daily for redness, blisters, cracks, or color changes, and call promptly about anything new.<ul><li><a href='/conditions/diabetic-foot-care/'>Diabetic foot care</a></li><li><a href='/services/wound-care/'>Wound care program</a></li></ul>",
+      a: "Diabetes threatens feet two ways: nerve damage that silences pain, and slowed circulation that delays healing. A blister you never felt can become an ulcer before anyone notices. See a podiatrist <strong>at least annually</strong>, or every 3–6 months with neuropathy, circulation problems, deformity, or a prior ulcer. Your visit includes sensation testing, circulation assessment, skin/nail evaluation, and pressure-point mapping. Check both feet daily for redness, blisters, cracks, or color changes, and call promptly about anything new.<ul><li><a href='/conditions/diabetic-foot-care/'>Diabetic foot care</a></li><li><a href='/services/wound-care/'>Wound care program</a></li></ul>",
       chips: ["Book an appointment", "Where are you located?"]
     },
     {
@@ -134,19 +134,19 @@
     {
       id: "shockwave",
       match: ["shockwave", "epat", "eswt", "acoustic"],
-      a: "<strong>Shockwave (EPAT)</strong> sends acoustic pressure waves into chronically injured tissue to break down scar tissue and restart stalled healing — one of the best-evidenced treatments for stubborn plantar fasciitis and Achilles problems. 3–5 weekly sessions, no downtime.<ul><li><a href='/services/shockwave-therapy/'>Shockwave in depth</a></li></ul>",
+      a: "<strong>Shockwave (EPAT)</strong> sends acoustic pressure waves into chronically injured tissue to break down scar tissue and restart stalled healing: one of the best-evidenced treatments for stubborn plantar fasciitis and Achilles problems. 3–5 weekly sessions, no downtime.<ul><li><a href='/services/shockwave-therapy/'>Shockwave in depth</a></li></ul>",
       chips: ["Does it hurt?", "Book an appointment"]
     },
     {
       id: "regen",
       match: ["prp", "platelet", "stem cell", "regenerative", "injection", "biologic"],
-      a: "We offer <strong>PRP</strong> (your own concentrated growth factors) and <strong>regenerative cell therapies</strong> for tendons, fascia, and joints that have stopped healing — honest, surgeon-supervised, and only recommended when the evidence supports it for your diagnosis.<ul><li><a href='/services/prp-therapy/'>PRP therapy</a></li><li><a href='/services/regenerative-medicine/'>Stem cell therapy</a></li></ul>",
+      a: "We offer <strong>PRP</strong> (your own concentrated growth factors) and <strong>regenerative cell therapies</strong> for tendons, fascia, and joints that have stopped healing: honest, surgeon-supervised, and only recommended when the evidence supports it for your diagnosis.<ul><li><a href='/services/prp-therapy/'>PRP therapy</a></li><li><a href='/services/regenerative-medicine/'>Stem cell therapy</a></li></ul>",
       chips: ["How much does it cost?", "Book an appointment"]
     },
     {
       id: "doctor",
       match: ["doctor", "cedeno", "mustafa", "surgeon", "who", "podiatrist", "credentials", "qualified", "providers"],
-      a: "Care is led by two foot &amp; ankle surgeons: <strong>Dr. Orlando Cedeno, DPM</strong> — board-certified, trained in reconstructive &amp; trauma surgery at Chestnut Hill Hospital/University of Pennsylvania — and <strong>Dr. Isin A. Mustafa, DPM, MSHS</strong> — Chief Resident-trained at Chino Valley Medical Center, specializing in minimally invasive surgery and regenerative medicine.<ul><li><a href='/meet-dr-cedeno/'>Meet Dr. Cedeno</a></li><li><a href='/meet-dr-mustafa/'>Meet Dr. Mustafa</a></li></ul>",
+      a: "Care is led by two foot &amp; ankle surgeons: <strong>Dr. Orlando Cedeno, DPM</strong> (board-certified, trained in reconstructive &amp; trauma surgery at Chestnut Hill Hospital/University of Pennsylvania) and <strong>Dr. Isin A. Mustafa, DPM, MSHS</strong>: Chief Resident-trained at Chino Valley Medical Center, specializing in minimally invasive surgery and regenerative medicine.<ul><li><a href='/meet-dr-cedeno/'>Meet Dr. Cedeno</a></li><li><a href='/meet-dr-mustafa/'>Meet Dr. Mustafa</a></li></ul>",
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {
@@ -158,7 +158,7 @@
     {
       id: "referral",
       match: ["referral", "refer", "hmo", "pcp", "authorization", "primary care"],
-      a: "Most patients <strong>don't need a referral</strong> to see a podiatrist — you can book directly. A few HMO plans require one; call " + PHONE_HTML + " and we'll help you check your plan. We're also happy to coordinate care and send records to any physician you choose, many patients come to us just for the laser or regenerative portion of their care.",
+      a: "Most patients <strong>don't need a referral</strong> to see a podiatrist: you can book directly. A few HMO plans require one; call " + PHONE_HTML + " and we'll help you check your plan. We're also happy to coordinate care and send records to any physician you choose, many patients come to us just for the laser or regenerative portion of their care.",
       chips: ["Book an appointment", "How much does it cost?"]
     },
     {
@@ -170,49 +170,49 @@
     {
       id: "first-visit-depth",
       match: ["what happens at the first visit", "walk me through", "how does the first appointment work", "first exam"],
-      a: "Here's the sequence: call or send an <a href='/contact/'>online request</a> (most new patients seen within the week); arrive ~15 minutes early for check-in; a focused history and hands-on exam with Dr. Cedeno, with digital imaging when needed; a plain-English diagnosis and every reasonable option — conservative, laser/regenerative, and (rarely) surgical — with honest pros, cons, and costs; and treatment can often start the same visit if laser therapy is part of your plan. Plan 45–60 minutes for visit one.<ul><li><a href='/new-patients/'>Full first-visit walkthrough</a></li></ul>",
+      a: "Here's the sequence: call or send an <a href='/contact/'>online request</a> (most new patients seen within the week); arrive ~15 minutes early for check-in; a focused history and hands-on exam with Dr. Cedeno, with digital imaging when needed; a plain-English diagnosis and every reasonable option, conservative, laser/regenerative, and (rarely) surgical, with honest pros, cons, and costs; and treatment can often start the same visit if laser therapy is part of your plan. Plan 45–60 minutes for visit one.<ul><li><a href='/new-patients/'>Full first-visit walkthrough</a></li></ul>",
       chips: ["What should I bring?", "Book an appointment"]
     },
     {
       id: "telehealth",
       match: ["telehealth", "video visit", "virtual visit", "video call", "zoom appointment", "online visit"],
-      a: "Yes — we offer telehealth for visits that don't need hands-on exam: follow-ups, results reviews, wound-photo checks, medication questions, and \"should I come in?\" calls. Diagnosis of a new problem, laser/shockwave treatments, injections, and imaging still need an office visit. Call " + PHONE_HTML + " to schedule a video visit and we'll send you a link — any smartphone, tablet, or computer with a camera works.<ul><li><a href='/telehealth/'>How telehealth works here</a></li></ul>",
+      a: "Yes. We offer telehealth for visits that don't need a hands-on exam: follow-ups, results reviews, wound-photo checks, medication questions, and \"should I come in?\" calls. Diagnosis of a new problem, laser/shockwave treatments, injections, and imaging still need an office visit. Call " + PHONE_HTML + " to schedule a video visit and we'll send you a link: any smartphone, tablet, or computer with a camera works.<ul><li><a href='/telehealth/'>How telehealth works here</a></li></ul>",
       chips: ["Book an appointment", "Where are you located?"]
     },
     {
       id: "vein",
       match: ["vein", "varicose", "spider vein", "evlt", "sclerotherapy", "leg swelling", "swollen ankle", "swollen legs", "venous"],
-      a: "Swollen ankles, aching legs, and bulging veins usually trace back to <strong>venous insufficiency</strong> — leg vein valves that no longer close properly, letting blood pool. We treat it with sclerotherapy (spider/small varicose veins), endovenous laser therapy (EVLT) or radiofrequency ablation (larger veins), and compression therapy, with vein stripping/ligation reserved for advanced cases. An ultrasound maps which veins are involved before we recommend a treatment. Evaluation and medically necessary treatment are often covered by insurance; purely cosmetic spider-vein work generally isn't.<ul><li><a href='/services/vein-treatment/'>Vein treatment in depth</a></li><li><a href='/conditions/venous-insufficiency/'>Venous insufficiency</a></li></ul>",
+      a: "Swollen ankles, aching legs, and bulging veins usually trace back to <strong>venous insufficiency</strong>: leg vein valves that no longer close properly, letting blood pool. We treat it with sclerotherapy (spider/small varicose veins), endovenous laser therapy (EVLT) or radiofrequency ablation (larger veins), and compression therapy, with vein stripping/ligation reserved for advanced cases. An ultrasound maps which veins are involved before we recommend a treatment. Evaluation and medically necessary treatment are often covered by insurance; purely cosmetic spider-vein work generally isn't.<ul><li><a href='/services/vein-treatment/'>Vein treatment in depth</a></li><li><a href='/conditions/venous-insufficiency/'>Venous insufficiency</a></li></ul>",
       chips: ["How much does it cost?", "Book an appointment"]
     },
     {
       id: "pediatric",
       match: ["child", "children", "kid", "kids", "teen", "teenager", "pediatric", "my son", "my daughter"],
-      a: "We see adolescent athletes for sports injuries, heel pain (Sever's disease is common in active kids), and ankle sprains. Call and describe the situation — if a pediatric specialist is a better fit for your child, we'll tell you honestly.",
+      a: "We see adolescent athletes for sports injuries, heel pain (Sever's disease is common in active kids), and ankle sprains. Call and describe the situation. If a pediatric specialist is a better fit for your child, we'll tell you honestly.",
       chips: ["Book an appointment", "What conditions do you treat?"]
     },
     {
       id: "postop",
       match: ["post-op", "post op", "after surgery", "surgical recovery", "recovering from surgery", "weight-bearing", "crutches"],
-      a: "Post-surgical healing is one of MLS laser therapy's best uses — it helps manage swelling and supports tissue repair, and our surgeons routinely build it into post-operative protocols. Your recovery timeline and any weight-bearing restrictions come from the specific procedure performed, so follow the plan your surgeon gave you and call " + PHONE_HTML + " with any concerns during recovery.<ul><li><a href='/services/foot-ankle-surgery/'>Surgical care</a></li><li><a href='/services/mls-laser-therapy/'>MLS laser therapy</a></li></ul>",
+      a: "Post-surgical healing is one of MLS laser therapy's best uses: it helps manage swelling and supports tissue repair, and our surgeons routinely build it into post-operative protocols. Your recovery timeline and any weight-bearing restrictions come from the specific procedure performed, so follow the plan your surgeon gave you and call " + PHONE_HTML + " with any concerns during recovery.<ul><li><a href='/services/foot-ankle-surgery/'>Surgical care</a></li><li><a href='/services/mls-laser-therapy/'>MLS laser therapy</a></li></ul>",
       chips: ["Book an appointment", "Tell me about laser therapy"]
     },
     {
       id: "video",
       match: ["video", "youtube", "watch", "media"],
-      a: "Dr. Cedeno's video library — treatment explainers and foot-health tips — is on our <a href='/media/'>Media page</a> and on <a href='https://www.youtube.com/@abacoapodiatryandlegveincenter' rel='noopener'>YouTube</a>.",
+      a: "Dr. Cedeno's video library (treatment explainers and foot-health tips) is on our <a href='/media/'>Media page</a> and on <a href='https://www.youtube.com/@abacoapodiatryandlegveincenter' rel='noopener'>YouTube</a>.",
       chips: ["Tell me about laser therapy", "Book an appointment"]
     },
     {
       id: "emergency",
       match: ["emergency", "urgent", "can't walk", "cant walk", "pop", "broken", "fracture", "infection", "fever", "swollen"],
-      a: "<strong>If you can't bear weight, felt a pop, have spreading redness, fever with foot pain, or any wound on a diabetic foot — call us now at " + PHONE_HTML + "</strong> and we'll tell you exactly where you need to be. For severe emergencies call 911 or go to the nearest ER.",
+      a: "<strong>If you can't bear weight, felt a pop, have spreading redness, fever with foot pain, or any wound on a diabetic foot: call us now at " + PHONE_HTML + "</strong> and we'll tell you exactly where you need to be. For severe emergencies call 911 or go to the nearest ER.",
       chips: ["Where are you located?"]
     }
   ];
 
   var GREETING = "Hi! I'm the Abacoa Podiatry assistant. I can answer questions about our treatments, conditions we treat, costs, and booking. What's on your mind?";
-  var FALLBACK = "I want to make sure you get an accurate answer, and that one's beyond me. The team can help in one call: " + PHONE_HTML + " (Jupiter office Mon–Thu 8–5, Fri 8–2). You can also browse the<a href='/faq/'>full FAQ</a> — it answers 60+ common questions.";
+  var FALLBACK = "I want to make sure you get an accurate answer, and that one's beyond me. The team can help in one call: " + PHONE_HTML + " (Jupiter office Mon–Thu 8–5, Fri 8–2). You can also browse the<a href='/faq/'>full FAQ</a>: it answers 60+ common questions.";
   var START_CHIPS = ["Tell me about laser therapy", "What conditions do you treat?", "How much does it cost?", "Book an appointment"];
 
   /* --- Lead capture: a tiny state machine layered on top of the same
@@ -242,7 +242,7 @@
 
   function cancelCapture(typing) {
     capture = null;
-    typing.innerHTML = "No problem — what else can I help with?";
+    typing.innerHTML = "No problem: what else can I help with?";
     setChips(START_CHIPS);
     scroll();
   }
@@ -276,7 +276,7 @@
       // success comes back as the string "true", same contract as the contact form.
       var delivered = data && String(data.success).toLowerCase() === "true";
       if (!delivered) throw new Error("not delivered");
-      typing.innerHTML = "Got it, " + escapeHtml(capture.name) + " — our team will call you back at " +
+      typing.innerHTML = "Got it, " + escapeHtml(capture.name) + ". Our team will call you back at " +
         escapeHtml(capture.phone) + " to confirm. Talk soon!";
       setChips(START_CHIPS);
       capture = null;

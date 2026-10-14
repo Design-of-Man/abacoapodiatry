@@ -80,6 +80,29 @@ earn almost nothing, city intent is a GBP lever).
 | CLAUDE.md and `_dev/listings-nap.md` hours corrected to `hours.py`; stale "domains not cut over" section replaced | Both described a schedule the office does not keep |
 | `_dev/measure/measure.sh` accepts `MEASURE_PAGES` | Measure the pages a change touched |
 
+### Measured before and after (2026-10-14)
+
+Lighthouse mobile (simulated throttling), local static server, `origin/main` build vs this
+branch, runs alternated page by page so contention from other sessions on the machine hit
+both sides; medians of 2 or 3 runs.
+
+| Page | Perf before / after | A11y | SEO | LCP before / after | CLS after |
+|---|---|---|---|---|---|
+| `/` | 69 / 68 | 100 / 100 | 100 / 100 | 6,879 / 6,945 ms | 0 |
+| `/services/vein-treatment/` | 86 / 85 | 100 / 100 | 100 / 100 | 3,983 / 4,129 ms | 0 |
+| `/insurance/` | 87 / 84 | 100 / 100 | 100 / 100 | 3,912 / 4,063 ms | 0 |
+| `/conditions/heel-pain/` | 85 / 85 | 100 / 100 | 100 / 100 | 3,983 / 4,010 ms | 0 |
+| `/conditions/bunions/` | 85 / 83 | 100 / 100 | 100 / 100 | 4,064 / 4,072 ms | 0 |
+| `/locations/palm-beach-gardens/` | 82 / 82 | 100 / 100 | 100 / 100 | 3,921 / 3,947 ms | 0 |
+| `/contact/` | 85 / 82 | 100 / 100 | 100 / 100 | 3,907 / 3,910 ms | 0.0001 |
+| `/meet-dr-cedeno/` | 78 / 80 | 100 / 100 | 100 / 100 | 4,817 / 4,824 ms | 0 |
+| `/glossary/` (new) | n/a / 85 | 100 | 100 | 4,052 ms | 0 |
+
+axe-core: 0 violations on 10 pages before and 11 after (glossary included). Differences
+are within run-to-run noise; the longer pages cost tens of milliseconds of LCP. The
+homepage LCP (about 6.9 s here, the hero poster behind the video) is the one real
+performance problem, and it predates this PR.
+
 ## 4. Owner actions (no code), in order
 
 1. Run the Cowork prompt (`docs/COWORK-LOCAL-FIXES.md`), tasks 1 and 2 first (GBP), then

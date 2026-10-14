@@ -174,7 +174,8 @@ def html_list():
                 continue
             aka = (f' <span class="glossary-aka">Also called: {html.escape(", ".join(alts))}.</span>'
                    if alts else "")
-            more = (f' <a href="{html.escape(link)}">Read more</a>' if link else "")
+            more = (f' <a href="{html.escape(link)}">More on {html.escape(term)}</a>'
+                    if link else "")
             out.append(f'<dt id="{slug(term)}">{html.escape(term)}</dt>')
             out.append(f'<dd>{html.escape(definition)}{aka}{more}</dd>')
         out.append("</dl>")

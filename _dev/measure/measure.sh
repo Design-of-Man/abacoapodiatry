@@ -26,6 +26,9 @@ export CHROME_PATH="${CHROME_PATH:-/opt/pw-browsers/chromium-1194/chrome-linux/c
 # service page (the two templates that carry the long tail), the conversion
 # page, and the one page still carrying placeholder content.
 PAGES=(/ /services/vein-treatment/ /conditions/plantar-fasciitis/ /contact/ /reviews/)
+# Override with a space-separated list to measure the pages a change touched:
+#   MEASURE_PAGES="/ /services/vein-treatment/" bash _dev/measure/measure.sh after
+if [ -n "${MEASURE_PAGES:-}" ]; then read -r -a PAGES <<< "$MEASURE_PAGES"; fi
 
 cleanup() {
   [ -n "${SRV:-}" ] && kill "$SRV" 2>/dev/null

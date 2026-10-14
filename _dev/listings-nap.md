@@ -1,5 +1,12 @@
 # Listings and NAP — the canonical values
 
+> **Corrected 2026-10-14.** The hours row below used to give both offices Jupiter's
+> Mon–Thu schedule. `_src/hours.py` is authoritative and is what the rows now say; both
+> Google Business Profiles matched it on 2026-10-14. The full citation table (every
+> directory still carrying the dead (561) 624-4800 number, NPPES included) is in
+> `docs/LOCAL-AUTHORITY-AUDIT-2026-10.md`, and the browser prompt that fixes them is
+> `docs/COWORK-LOCAL-FIXES.md`.
+
 Every directory must carry **identical** name, address and phone. Inconsistent NAP is
 one of the few local-SEO problems that actively costs rankings rather than merely
 failing to help, and it is the easiest to create by accident — four people filling in
@@ -31,7 +38,7 @@ Jupiter, with Palm Beach Gardens as a `department` and a child entity carrying
 
 | Field | Value |
 |---|---|
-| Name | `Abacoa Podiatry & Leg Vein Center — Palm Beach Gardens` |
+| Name | `Abacoa Podiatry & Leg Vein Center` (same name as Jupiter; this is how the live GBP reads, and Google prefers the real-world name without a location suffix) |
 | Street | `11380 Prosperity Farms Rd, Suite 204` |
 | City / State / ZIP | `Palm Beach Gardens`, `FL`, `33410` |
 | Phone | `(561) 915-1934` *(same line)* |
@@ -42,9 +49,10 @@ Jupiter, with Palm Beach Gardens as a `department` and a child entity carrying
 
 | Field | Value |
 |---|---|
-| Hours | Mon–Thu `08:00–17:00`, Fri `08:00–14:00`, Sat–Sun closed |
+| Hours, Jupiter | Mon–Thu `08:00–17:00`, Fri `08:00–14:00`, Sat concierge appointments only (no public hours), Sun closed |
+| Hours, Palm Beach Gardens | Mon, Tue, Wed `08:00–16:30`, Fri `08:00–14:00`, **Thu closed**, Sat concierge appointments only (no public hours), Sun closed |
 | Price range | `$$` |
-| Practitioners | Dr. Orlando Cedeno, DPM · Dr. Isin A. Mustafa, DPM, MSHS |
+| Practitioners | Dr. Orlando Cedeno, DPM (NPI 1700076437) · Dr. Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS (NPI 1639585177) |
 
 **The suite numbers are the thing to watch.** They are the field most often dropped, and
 dropping one is what sends a patient to the right building and the wrong floor.

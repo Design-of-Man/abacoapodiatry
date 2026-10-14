@@ -104,6 +104,7 @@ from locations import location_pages  # noqa: E402
 import instagram  # noqa: E402
 import hours  # noqa: E402
 import reviews  # noqa: E402
+import glossary  # noqa: E402
 
 META_RE = re.compile(r"^<!--META\s*(\{.*?\})\s*META-->\s*", re.DOTALL)
 
@@ -312,6 +313,22 @@ def inject_article_cta(content: str) -> str:
     return content[:at] + ARTICLE_CTA.lstrip("\n") + "        " + content[at:]
 
 
+FAQ_RE = re.compile(
+    r'<details class="faq"[^>]*>\s*<summary>(.*?)</summary>\s*'
+    r'<div class="faq-a">(.*?)</div>\s*</details>', re.S)
+
+
+def _plain(fragment: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", fragment)
+    text = html.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def faq_items(content: str):
+    """(question, answer) pairs exactly as the page shows them."""
+    return [(_plain(q), _plain(a)) for q, a in FAQ_RE.findall(content)]
+
+
 def build_page(template: str, raw: str, name: str):
     m = META_RE.match(raw)
     if not m:
@@ -328,6 +345,33 @@ def build_page(template: str, raw: str, name: str):
     canon = BASE_URL + "/" + path
 
     schemas = list(meta.get("schema", []))
+    # FAQPage is built from the questions the page actually shows, never from
+    # the META block. Until 2026-10-14 the META carried its own hand-written
+    # FAQ list, and on 69 of the 72 pages carrying it that list had drifted from (or never
+    # matched) the visible <details class="faq"> blocks: posts carried FAQ
+    # markup with no FAQ on the page at all. Google requires FAQ markup to be
+    # visible on the page, and it stopped showing FAQ rich results in May
+    # 2026, so markup that does not match is all risk and no reward. Now the
+    # visible list is the single source: a page with no visible FAQ gets no
+    # FAQPage, and one with a visible FAQ gets exactly what it shows.
+    visible_faq = faq_items(content)
+    kept = []
+    for s_ in schemas:
+        if s_.get("@type") == "FAQPage":
+            if not visible_faq:
+                continue
+            s_ = dict(s_)
+            s_["mainEntity"] = [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in visible_faq
+            ]
+        kept.append(s_)
+    schemas = kept
+    # A page that renders {{GLOSSARY_HTML}} declares "glossary": true and gets
+    # the DefinedTermSet built from the very same list (_src/glossary.py).
+    if meta.get("glossary"):
+        schemas.append(glossary.ld(BASE_URL + "/" + meta["path"]))
     crumbs = meta.get("crumbs")
     if crumbs:
         items = [{
@@ -444,6 +488,11 @@ def build_page(template: str, raw: str, name: str):
         # Review count/rating, from _src/reviews.py -- a dated snapshot,
         # not a live fetch. See that file before touching this.
         .replace("{{REVIEW_LD_CLINIC}}", reviews.aggregate_rating_property("https://jupiterlaser.com/#clinic"))
+        # Visible, dated review count. Text only: no review schema (reviews.py).
+        .replace("{{GBP_REVIEWS_LINE}}", reviews.visible_line())
+        # Patient glossary and its DefinedTermSet, rendered from one list so
+        # the JSON-LD can never describe a term the page does not show.
+        .replace("{{GLOSSARY_HTML}}", glossary.html_list())
         # Last, so it also reaches placeholders inside page-level schema and
         # page bodies -- not just the shared template.
         .replace("{{IMAGE_ORIGIN}}", IMAGE_ORIGIN)

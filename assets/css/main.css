@@ -2348,9 +2348,15 @@ body.assist-open .assist-fab { display: none; }
 .callbar .cb-book { background: var(--ink); color: var(--white); }
 .callbar .ic { width: 17px; height: 17px; }
 @media (max-width: 760px) {
-  .callbar { display: grid; }
+  .callbar { display: grid; transition: transform 0.2s var(--ease-entrance), visibility 0.2s; }
   body { padding-bottom: 52px; }
   .to-top { bottom: 4.6rem; }
+  /* main.js sets this while a form's submit button is on screen, so the bar
+     can never sit on top of it. */
+  .submit-in-view .callbar { transform: translateY(110%); visibility: hidden; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .callbar { transition: none; }
 }
 
 /* Reveal animations.
@@ -3071,3 +3077,13 @@ a.btn-ghost { color: var(--head); }
   line-height: 1.45;
   color: var(--head-warm-2);
 }
+
+/* Patient glossary (/glossary/). Rendered from _src/glossary.py. */
+.glossary { margin: 0 0 2rem; }
+.glossary dt { font-family: var(--font-head); color: var(--head); font-size: var(--fs-xl); margin-top: 1.4rem; scroll-margin-top: calc(var(--header-h) + 1rem); }
+.glossary dd { margin: 0.35rem 0 0; }
+.glossary-aka { color: var(--text-soft); }
+.glossary-az { margin-bottom: 1.5rem; }
+.glossary-az .city-links { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; }
+.glossary-az .city-links a { display: inline-block; min-width: 44px; min-height: 44px; line-height: 44px; text-align: center; }
+.prose h2[id^="letter-"] { scroll-margin-top: calc(var(--header-h) + 1rem); }

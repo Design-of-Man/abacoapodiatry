@@ -45,6 +45,30 @@ real `&`, real quotes — and let the build escape them. Don't pre-escape by han
 JSON-LD is emitted with `<` escaped as `<` so a schema value containing a closing
 script tag can't break out of the block.
 
+## SEO and local search
+
+**Start at `docs/seo-kit/README.md`.** It indexes the October 2026 audit (growth plan,
+Search Console deep dive, local authority audit with the citation table, Cowork prompt,
+competitor teardown) with the status of each file.
+
+Rules that came out of that audit and are enforced by the build or preflight:
+
+- **No review schema.** `AggregateRating` and `Review` are banned (an AggregateRating block
+  shipped on every page from 2026-09-03 to 2026-10-14). The Google review count is shown as
+  dated text from `_src/reviews.py` via `{{GBP_REVIEWS_LINE}}`. Preflight fails on either
+  type and on `reviewedBy`/`lastReviewed`.
+- **FAQPage comes from the page.** `build.py` builds it from the visible
+  `<details class="faq">` blocks and drops it from pages that show none. The hand-written
+  FAQ lists still sitting in older META blocks are ignored; edit the visible FAQ instead.
+- **Zero em dashes in page text.** Preflight counts `&mdash;`, the literal character and its
+  escapes in every built page (JSON-LD included) and fails on any. Use a comma, colon,
+  parentheses or a full stop.
+- **Glossary.** `/glossary/` and its DefinedTermSet both render from `_src/glossary.py`
+  (`"glossary": true` in a page's META).
+- **Medicare figures on `/insurance/#medicare` are dated** and change every January.
+- **Local over national.** No new city pages and no new national informational posts; depth
+  goes into pages that already rank for local queries.
+
 ## Two schema fields the build adds for you
 
 Don't hand-author these in a page's META block; `build.py` fills them in.
@@ -115,18 +139,26 @@ behind them. Both need `jupiterlaser.com` reachable. Run both before cutover.
 is deliberate — see the next section. Don't widen that rule to `/(.*)` unconditionally, and
 don't delete it before the domain is attached.
 
-## Domains are not cut over yet
+## Domains (cut over 2026-08-18; this section was stale until 2026-10-14)
 
-`jupiterlaser.com` and `abacoapodiatry.com` are **not attached to the Vercel project** — it
-serves only `*.vercel.app` hostnames. `jupiterlaser.com` still serves the client's old site.
-Read `MIGRATION.md` before doing anything that touches DNS or URLs.
+`jupiterlaser.com` is served by this Vercel project (`server: Vercel` on the apex,
+checked 2026-10-14), and `www.jupiterlaser.com` 308s to the apex. The `*.vercel.app` hosts
+still carry `X-Robots-Tag: noindex` from `vercel.json`, which is correct: any of them is a
+duplicate of the real domain. Read `MIGRATION.md` before doing anything that touches DNS or
+URLs. Never touch DNS from a session; DNS changes go to the owner action list.
 
-Because of that split the live `*.vercel.app` host serves pages canonicalised to a domain
-that returns different content. Search engines ignore a canonical whose target doesn't
-match and index the staging copy instead, so the host is blocked with `X-Robots-Tag` in
-`vercel.json`. The rule keys on hostname, so attaching the real domain lifts it with no
-cleanup step. `MIGRATION.md` step 5 has the two curls that verify it landed the right way
-round.
+The two related domains, as checked on 2026-10-14:
+
+- **`abacoapodiatry.com` is NOT the practice's.** It 302s to a HugeDomains "for sale"
+  page and is registered at NameBright (HugeDomains' registrar), last changed
+  2026-10-03. Do not link it, list it in `sameAs`, or put it on a directory. Whether to buy
+  it back is the owner's call (owner action list, `docs/GROWTH-PLAN-2026-10.md`).
+- **`jupiterveincenter.com`** (GoDaddy DNS) answers a **302** to `http://www.jupiterlaser.com/`,
+  which then takes two more hops (http to https, www to apex). It should be one 301 to
+  `https://jupiterlaser.com/services/vein-treatment/`; that is a registrar-forwarding
+  change for the owner. The footer used to link it as "Jupiter Vein Center", a sitewide
+  link that looped back here through a temporary redirect; it now points at
+  `/services/vein-treatment/` directly.
 
 Two build-time origins exist, and since the 2026-08-18 cutover they both default to the
 real domain:
@@ -156,11 +188,22 @@ into `{{HOURS_JUP_LD}}`, `{{HOURS_PBG_LD}}`, `{{HOURS_JUP_LINE}}`, `{{HOURS_PBG_
 `{{HOURS_PBG_CLOSED}}` and `{{HOURS_FOOTER}}`. Change the schedule there and rebuild;
 do not edit hours in a page or in `template.html`.
 
-Jupiter is Mon–Thu 8–5, Fri 8–2 with a 12:30–1:30 lunch closure. Palm Beach Gardens is
-**Monday and Wednesday only, 8–4:30**. They were identical in the JSON-LD until
-2026-08-15 because PBG's `openingHoursSpecification` had been copied from Jupiter's,
-while the visible copy on `/locations/` said "call for availability" — the schema and the
-page disagreed and both were wrong.
+Current schedule (corrected here 2026-10-14 to match `hours.py`, which is authoritative;
+this paragraph had said "Monday and Wednesday only" for Palm Beach Gardens since August):
+
+- **Jupiter:** Mon–Thu 8 AM–5 PM, Fri 8 AM–2 PM. The office closes for lunch 12:30–1:30,
+  but that closure is deliberately not rendered anywhere since 2026-08-24, at the owner's
+  instruction (see the comment in `hours.py`).
+- **Palm Beach Gardens:** Mon, Tue, Wed 8 AM–4:30 PM, Fri 8 AM–2 PM, **closed Thursday**.
+- **Saturday:** concierge appointments only, at both offices. Kept out of the schema on
+  purpose because no fixed public hours were given. Sunday closed.
+
+Both offices' Google Business Profiles matched these hours when read on 2026-10-14.
+
+The two offices were identical in the JSON-LD until 2026-08-15 because PBG's
+`openingHoursSpecification` had been copied from Jupiter's, while the visible copy on
+`/locations/` said "call for availability" — the schema and the page disagreed and both
+were wrong.
 
 Two consumers are outside the build and must be hand-edited: `assets/js/assistant.js`
 and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either drifts.

@@ -1,5 +1,14 @@
 # Where this stands — 14 Aug 2026
 
+> **Update 2026-10-14 (takeover audit, `docs/seo-kit/README.md`).** Two rows in "Measured
+> state" below were wrong: the em-dash count only counted the literal character, while the
+> page sources held 321 em dashes, mostly as `&mdash;` (all removed; preflight now gates it); and the
+> "no `aggregateRating`" decision had been reversed on 2026-09-03 (removed again, preflight
+> now gates it). `_dev/verify-testimonials.py` had been checking `/reviews/` against itself
+> since the cutover; fixed. Domains are cut over; `abacoapodiatry.com` is held by a domain
+> broker.
+
+
 Handoff note. `CLAUDE.md` covers how the repo works; this covers what has happened and
 what is still open, so a new session does not have to reconstruct it.
 

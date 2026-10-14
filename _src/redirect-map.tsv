@@ -183,3 +183,15 @@ old	destination	why
 /the-role-of-stem-cell-therapy-in-foot-and-ankle-injuries	/services/regenerative-medicine/	article withdrawn 2026-08-18, parked in _src/pages-disabled/
 /how-can-stem-cell-therapy-benefit-leg-injuries	/services/regenerative-medicine/	article withdrawn 2026-08-18, parked in _src/pages-disabled/
 /personal-injury	/conditions/auto-accident/	split into separate Auto Accident and Workers' Comp pages, matching firstrehabnpb.com
+# 2026-10-14: URLs that GA4 shows landing visitors on a 404, or that Search
+# Console shows earning impressions while 404ing (garbled copies of real slugs,
+# mostly from AI answers). Each goes to the page it is obviously a copy of.
+/provider/orlando-cedeno-dpm	/meet-dr-cedeno/	GA4: 10 direct landings in 28 days on a 404 (old directory link)
+/when-is-ankle-replacement-surgery-necessary-signs-you-shouldnt-ignore	/when-is-ankle-replacement-surgery-necessary/	GA4: 8 landings on a 404, longer old slug of the same article
+/plantar-plate-injuries	/conditions/	GA4: 11 landings on a 404; no plantar plate page exists, so the conditions hub
+/plantar-fascia-steroid-injection-when-to-consider-it	/plantar-fasciitis-steroid-injection-when-to-consider-it/	GSC: 29 impressions on a 404 (misspelt slug)
+/plantar-fascitis-steroid-injection-when-to-consider-it	/plantar-fasciitis-steroid-injection-when-to-consider-it/	GSC: impressions on a 404 (misspelt slug)
+/is-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits	/is-foot-and-ankle-surgery-worth-it-understanding-the-risks-and-benefits/	GSC: 12 impressions on a 404 (word dropped from slug)
+/top-5-myths-about-laser-foot-pain-debunked	/top-5-myths-about-laser-therapy-for-foot-pain/	GSC: impressions on a 404 (garbled slug)
+/top-5-myths-about-laser-foot-pain	/top-5-myths-about-laser-therapy-for-foot-pain/	GSC: impressions on a 404 (garbled slug)
+/best-guide-to-first-mtp-joint-arthritis	/best-guide-to-first-metatarsophalangeal-joint-arthritis/	GSC: impressions on a 404 (abbreviated slug)

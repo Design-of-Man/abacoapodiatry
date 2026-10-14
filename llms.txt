@@ -43,6 +43,8 @@
 - [Our Technology](https://jupiterlaser.com/technology/) — robotic MLS laser, EPAT shockwave, Liposana™/Sculptra
 - [FAQ — 60+ answered questions](https://jupiterlaser.com/faq/)
 - [New Patient Information](https://jupiterlaser.com/new-patients/)
+- [Insurance & Medicare Coverage](https://jupiterlaser.com/insurance/) — accepted plans, and the 2026 Medicare Part B rules for podiatry (covered treatment, diabetic foot exams, therapeutic shoes, routine foot care), sourced to Medicare.gov and CMS
+- [Patient Glossary](https://jupiterlaser.com/glossary/) — plain-English definitions of podiatry and leg vein terms
 - [Contact & Directions](https://jupiterlaser.com/contact/)
 - [Patient Reviews](https://jupiterlaser.com/reviews/)
 - [Video Library](https://jupiterlaser.com/media/)
@@ -55,6 +57,7 @@
 - **Is laser therapy covered by insurance?** Evaluations and standard podiatric care are usually covered; laser, shockwave and regenerative therapies are typically elective/out-of-pocket. The practice quotes package pricing before treatment begins.
 - **What is plantar fat pad atrophy?** Thinning of the natural cushioning under the heel and ball of the foot, causing a "walking on bones/marbles" sensation. Treated with the Foot BBL™.
 - **Do I need a referral?** Most patients do not. Some HMO plans require one.
+- **Does Medicare cover podiatry?** Yes, when medically necessary: Part B covers exams and treatment for foot injuries and diseases (20% after the $283 Part B deductible in 2026). Routine foot care is usually not covered. Both physicians are credentialed with Medicare. Details: https://jupiterlaser.com/insurance/#medicare
 - **How do I book?** Call (561) 915-1934 or request an appointment at https://jupiterlaser.com/contact/. Most new patients are seen within the week.
 
 ## Full page index

@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=e9be8f96cd">
+  <link rel="stylesheet" href="/assets/css/main.css?v=215f1d4846">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -71,7 +71,7 @@
     "image": "https://jupiterlaser.com/assets/img/og-image.png",
     "logo": "https://jupiterlaser.com/assets/img/logo-abacoa.png",
     "priceRange": "$$",
-    "aggregateRating": {"@type": "AggregateRating", "ratingValue": 4.9, "reviewCount": 188, "itemReviewed": {"@id": "https://jupiterlaser.com/#clinic"}},
+    
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card, Insurance",
     "medicalSpecialty": ["Podiatric", "PhysicalTherapy"],
@@ -120,18 +120,8 @@
     ],
     "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician",
-        "name": "Dr. Orlando Cedeno, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-cedeno/"
-      },
-      {
-        "@type": "Physician",
-        "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician",
-        "name": "Dr. Isin A. Mustafa, DPM",
-        "url": "https://jupiterlaser.com/meet-dr-mustafa/"
-      }
+      { "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician" },
+      { "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician" }
     ]
   }
   </script>
@@ -214,34 +204,34 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is shockwave therapy (EPAT)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Shockwave therapy, also called EPAT or ESWT, delivers focused acoustic pressure waves into injured tissue. The waves create controlled micro-stimulation that increases blood flow, breaks down chronic scar tissue, and restarts the healing process in tissue where healing has stalled. It is performed in-office with no anesthesia and no downtime."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Does shockwave therapy hurt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You will feel a rhythmic tapping or pulsing during treatment, which some patients describe as mildly uncomfortable but very tolerable. Intensity is adjusted to your comfort. Sessions last about 10-15 minutes and you can walk out and resume your day immediately."
+          "text": "You'll feel a firm, rhythmic tapping at the treatment site. Most patients rate it as mildly uncomfortable at worst, and we adjust intensity to your tolerance. Any post-treatment soreness is usually gone within a day or two, a sign the healing response has been activated."
         }
       },
       {
         "@type": "Question",
-        "name": "How many shockwave sessions are needed?",
+        "name": "How is shockwave different from laser therapy?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A typical course is 3-5 weekly sessions. Because shockwave works by stimulating a healing response, improvement usually builds over several weeks after the sessions end, with many studies showing continued gains up to 12 weeks post-treatment."
+          "text": "Shockwave uses mechanical acoustic energy to provoke a healing response in chronically degenerated tissue; laser uses light energy to boost cellular repair and calm pain and inflammation. Shockwave is typically the heavier hitter for old scarred injuries; laser is gentler and broader. Many patients get both, see our combined programs ."
         }
       },
       {
         "@type": "Question",
-        "name": "Is shockwave therapy effective for plantar fasciitis?",
+        "name": "When will I feel better?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Extracorporeal shockwave therapy is one of the best-studied non-surgical treatments for chronic plantar fasciitis, with multiple randomized trials and meta-analyses supporting meaningful pain reduction, particularly in cases that have not responded to stretching, orthotics, or injections."
+          "text": "Some patients feel improvement after the first session, but shockwave's real gains appear over the weeks after the course finishes, as new tissue rebuilds. Studies commonly measure outcomes at 12 weeks, patience pays off with this therapy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who should not get shockwave therapy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shockwave isn't used over open wounds, active infections, or malignancy, in patients on certain blood thinners or with clotting disorders, or during pregnancy. Dr. Cedeno reviews your history and medications before recommending it."
         }
       }
     ],
@@ -282,7 +272,7 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+      <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
         <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
       </a>
 
@@ -469,7 +459,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center — home">
+          <a class="logo" href="/" aria-label="Abacoa Podiatry &amp; Leg Vein Center: home">
             <img class="logo-wordmark" src="/assets/img/logo-abacoa.png" alt="Abacoa Podiatry and Leg Vein Center" width="699" height="282">
           </a>
           <p class="footer-about">Complete foot &amp; ankle care in Jupiter, Florida: MLS laser therapy, shockwave, regenerative medicine, minimally invasive surgery, bunion care, and the Foot BBL&trade;, from surgeons Dr. Orlando Cedeno, DPM, FACFAS and Dr. Isin A. Mustafa, DPM, MSHS, DABPM, DACFAS.</p>
@@ -538,8 +528,13 @@
           <ul>
             <li><a href="/new-patients/">New Patient Info</a></li>
             <li><a href="/faq/">Frequently Asked Questions</a></li>
+            <li><a href="/insurance/">Insurance &amp; Medicare</a></li>
+            <li><a href="/glossary/">Patient Glossary</a></li>
             <li><a href="/contact/">Contact &amp; Directions</a></li>
-            <li><a href="https://jupiterveincenter.com/" rel="noopener">Jupiter Vein Center</a></li>
+            <!-- jupiterveincenter.com only 302s back to this site (checked
+                 2026-10-14), so the old external link was a sitewide loop
+                 through a temporary redirect. Point at the real page. -->
+            <li><a href="/services/vein-treatment/">Jupiter Vein Center</a></li>
           </ul>
         </div>
       </div>
@@ -558,7 +553,7 @@
     <div class="footer-cities">
       <div class="wrap">
         <h2>Patients travel to our offices from</h2>
-        <p class="footer-cities-note">Two offices &mdash; Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens &mdash; serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
+        <p class="footer-cities-note">Two offices, Military Trail in Jupiter and Prosperity Farms Road in Palm Beach Gardens, serving the northern Palm Beaches and Treasure Coast. Tap a city for directions and drive times.</p>
         <ul class="city-links">
             <li><a href="/locations/west-palm-beach/">West Palm Beach</a></li>
             <li><a href="/locations/riviera-beach/">Riviera Beach</a></li>
@@ -632,7 +627,7 @@
 
 
   <!-- Virtual assistant -->
-  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question — open the practice assistant">
+  <button class="assist-fab" id="assist-open" aria-expanded="false" aria-controls="assist-panel" aria-label="Ask a question: open the practice assistant">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9v4a3 3 0 0 0 3 3h1v-7H5v-.2A7 7 0 0 1 19 12v.8h-2v7h1a3 3 0 0 0 3-3v-4a9 9 0 0 0-9-9Z"/></svg>
     <span class="assist-fab-label">Ask a question</span>
   </button>
@@ -660,7 +655,7 @@
     <p class="assist-note">Automated assistant, general info only, not medical advice. For urgent concerns call <a href="tel:+15619151934">(561)&nbsp;915-1934</a>.</p>
   </div>
 
-  <script src="/assets/js/assistant.js?v=57e14751cb" defer></script>
+  <script src="/assets/js/assistant.js?v=fbff872355" defer></script>
 
   <!-- Vercel Web Analytics. Cookieless, stores no IP address and sets nothing
        that identifies a visitor, which is what makes it safe to run on a
@@ -673,7 +668,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=5218667f3e" defer></script>
+  <script src="/assets/js/main.js?v=3972496466" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

@@ -35,7 +35,7 @@
   };
 
   var placementOf = function (el) {
-    if (el.closest(".call-bar, .cb-call")) return "mobile-call-bar";
+    if (el.closest(".callbar, .call-bar, .cb-call")) return "mobile-call-bar";
     if (el.closest(".site-header")) return "header";
     if (el.closest(".assistant, .assist-note")) return "assistant";
     if (el.closest("footer, .site-footer")) return "footer";
@@ -55,6 +55,27 @@
       track("appointment_cta", { placement: placementOf(a) });
     }
   }, { passive: true, capture: true });
+
+  /* ------------------------------------------------------------------
+     Keep the mobile call bar off a form's submit button
+
+     The fixed .callbar sits over the bottom 52px of a phone screen, and a
+     patient scrolling to "Request Appointment" could land it right under
+     "Call Now" (measured at 393px on /contact/, 2026-10-14). While any form
+     submit button is on screen the bar steps aside; it comes back as soon
+     as the button scrolls away.
+     ------------------------------------------------------------------ */
+  var submits = document.querySelectorAll("form button[type=submit]");
+  if (submits.length && "IntersectionObserver" in window) {
+    var onScreen = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) onScreen.add(en.target); else onScreen.delete(en.target);
+      });
+      document.body.classList.toggle("submit-in-view", onScreen.size > 0);
+    });
+    submits.forEach(function (b) { io.observe(b); });
+  }
 
   /* ------------------------------------------------------------------
      Sticky header shadow
@@ -299,13 +320,13 @@
           $(".quiz-title", res).textContent = strong
             ? "You look like a strong candidate for laser therapy"
             : mid
-              ? "Laser therapy may be a great fit — let's confirm"
+              ? "Laser therapy may be a great fit: let's confirm"
               : "Let's talk through your options together";
           $(".quiz-copy", res).textContent = strong
-            ? "Based on your answers, your symptoms match the conditions MLS laser therapy treats most successfully — chronic pain, inflammation, and slow-healing soft tissue. The next step is a quick evaluation with Dr. Cedeno to build your treatment plan."
+            ? "Based on your answers, your symptoms match the conditions MLS laser therapy treats most successfully: chronic pain, inflammation, and slow-healing soft tissue. The next step is a quick evaluation with Dr. Cedeno to build your treatment plan."
             : mid
               ? "Several of your answers suggest you could benefit from drug-free laser or regenerative treatment. An in-person evaluation with Dr. Cedeno will confirm whether it's the right first step for your specific condition."
-              : "Your situation may need a closer look before choosing a treatment path. Dr. Cedeno will examine your foot and ankle, explain what's going on, and walk you through every option — conservative to advanced.";
+              : "Your situation may need a closer look before choosing a treatment path. Dr. Cedeno will examine your foot and ankle, explain what's going on, and walk you through every option, from conservative to advanced.";
           setStep(steps.length - 1);
         }
       });
@@ -489,7 +510,7 @@
         var delivered = data && String(data.success).toLowerCase() === "true";
         if (!delivered) throw new Error("not delivered");
         status.className = "form-status ok";
-        status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+        status.textContent = "Thank you! Your request has been received. Our team will call you shortly to confirm your appointment.";
         // Fires on confirmed delivery, not on submit, so a failed send is
         // never counted as a lead. No field values are sent -- the visitor
         // typed their name and symptoms into this form.

@@ -73,8 +73,8 @@ CITIES = [
 PAGE_TMPL = """<!--META
 {{
   "path": "locations/{slug}/",
-  "title": "Podiatrist Near {name}, FL | Abacoa Podiatry & Leg Vein Center",
-  "desc": "Foot & ankle care for {name}, FL — {drive} from our Jupiter office. MLS laser, shockwave & regenerative medicine. Call (561) 915-1934.",
+  "title": "Podiatrist Near {name}, FL | Abacoa Podiatry",
+  "desc": "Podiatrist near {name}, FL, {drive} away in Jupiter: foot & ankle surgery, MLS laser, shockwave and regenerative medicine. Call (561) 915-1934.",
   "nav": "about",
   "priority": 0.6,
   "crumbs": [["Locations", "/locations/"], ["{name}", null]],
@@ -101,7 +101,7 @@ META-->
           <li>{name}</li>
         </ol>
         <span class="kicker">{county} &middot; {drive} from our Jupiter office</span>
-        <h1>Advanced Foot &amp; Ankle Care for {name}</h1>
+        <h1>Podiatrist Near {name}: Advanced Foot &amp; Ankle Care</h1>
         <p class="lede">FDA-cleared MLS laser therapy, shockwave, and regenerative medicine — the treatments {name} residents can't find around the corner, {drive} away on Military Trail in Jupiter.</p>
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href="/contact/">Book Your Evaluation</a>

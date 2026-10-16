@@ -12,16 +12,18 @@
       "@type": "MedicalWebPage",
       "name": "Minimally Invasive Bunion Surgery in Jupiter and Palm Beach Gardens, FL",
       "url": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/",
-      "about": {
-        "@type": "MedicalProcedure",
+      "about": [{
+        "@type": ["SurgicalProcedure", "MedicalTherapy"],
+        "@id": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/#procedure",
         "name": "Minimally invasive bunion surgery",
         "alternateName": ["MIS bunion surgery", "Minimally invasive bunionectomy", "Percutaneous bunion correction"],
-        "procedureType": "https://schema.org/SurgicalProcedure",
         "bodyLocation": "First metatarsophalangeal (big toe) joint",
         "howPerformed": "The bunion is corrected through several small incisions, often a few millimeters each, using specialized instruments guided by live X-ray (fluoroscopy) rather than an open view of the joint.",
-        "followup": "Protected weight-bearing in a surgical shoe or boot, scheduled follow-up visits with X-rays, and a gradual return to normal shoes and activity. About six weeks is a common bone-healing milestone; full recovery varies.",
-        "indication": { "@type": "MedicalCondition", "name": "Bunion", "alternateName": "Hallux Valgus", "url": "https://jupiterlaser.com/conditions/bunions/" }
-      },
+        "followup": "Protected weight-bearing in a surgical shoe or boot, scheduled follow-up visits with X-rays, and a gradual return to normal shoes and activity. About six weeks is a common bone-healing milestone; full recovery varies."
+      }, {
+        "@type": "MedicalCondition", "name": "Bunion", "alternateName": "Hallux Valgus", "url": "https://jupiterlaser.com/conditions/bunions/",
+        "possibleTreatment": { "@id": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/#procedure" }
+      }],
       "provider": { "@id": "https://jupiterlaser.com/#clinic" }
     },
     {

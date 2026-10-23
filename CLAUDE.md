@@ -235,6 +235,28 @@ no-ops when the script isn't present, which is always the case on localhost — 
 form test will never show an event unless you stub `window.va` the way the test harness
 does.
 
+## Condition detail pages (added 2026-10-07)
+`_src/conditions/{slug}.json` holds 12 researched pages for foot and ankle problems that had no
+page (ingrown toenail, hammertoes, Morton's neuroma, toenail fungus, stress fractures,
+metatarsalgia, gout, corns and calluses, peroneal tendonitis, PTTD, Haglund's, sesamoiditis).
+`_src/condition_details.py` renders them to `/conditions/{slug}/` exactly like `locations.py`
+renders the city pages: virtual sources fed into the normal build. Sources are listed on each
+page; the claim-by-claim fact-check is `_dev/condition-pages-factcheck-log.md`.
+**Review gate:** a page is noindex, out of the sitemap and off `/conditions/` until its slug is
+in `CONDITION_REVIEW` (doctor key + date). That entry prints "Medically reviewed by" and emits
+reviewedBy schema, so add it only when that doctor has read the page. Doctors review from the
+unlisted `/conditions/review/`, which lists each page's open questions (mostly: which standard
+treatments the practice actually offers, e.g. orthotics, cortisone, nail procedures).
+The build rejects a `CONDITION_REVIEW` entry with an unknown slug, an unknown doctor key or a
+non-ISO date. Publishing a page also takes three hand steps the build does not do:
+1. If `_src/redirect-map.tsv` sends an old URL for that condition to the `/conditions/` hub,
+   repoint it at the new page (today: `/metatarsalgia` and `/category/hammer-toe`).
+2. Add the page to `llms.txt`, which is hand-written (see Opening hours).
+3. Link it from the most relevant hand-written page (e.g. hammertoes from `cond-bunions.html`),
+   or its only inbound link is the hub card.
+These pages are local by design. Do not add national-intent "how to" articles alongside them;
+that is the pattern that drew traffic and no patients.
+
 ## Conventions
 
 - Match the surrounding code. The CSS is one design system in `assets/css/main.css`; the JS

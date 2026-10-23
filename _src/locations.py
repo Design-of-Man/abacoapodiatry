@@ -70,6 +70,38 @@ CITIES = [
      "Walking a brick sidewalk past striped shopfront awnings in a historic downtown"),
 ]
 
+# Optional second paragraph for a city, slotted in after its angle. Facts only:
+# every claim here is already stated elsewhere on the site (the Palm Beach
+# Gardens office page, /telehealth/, hours.py). Hours go through the
+# {{HOURS_*}} tokens so they can never drift from hours.py.
+EXTRA = {
+    # North Palm Beach: the Prosperity Farms Road office is the nearer one, and
+    # this page (not /locations/west-palm-beach/) should own "podiatrist north
+    # palm beach" (2026-10-23 report: WPB was ranking #13 for it).
+    "north-palm-beach":
+        "<p>Closer still for many North Palm Beach patients is our "
+        "<a href=\"/locations/palm-beach-gardens/\">Palm Beach Gardens office</a> "
+        "at 11380 Prosperity Farms Road, Suite 204: Prosperity Farms Road runs "
+        "straight north to it from North Palm Beach. That office is open "
+        "{{HOURS_PBG_LINE}} and is home to our MLS laser and EPAT shockwave "
+        "suites. Our Jupiter office on Military Trail is open "
+        "{{HOURS_JUP_LINE}}. Same physician, same standards, whichever is "
+        "closer.</p>",
+    # Stuart: the farthest city served, so say plainly which visits do not
+    # need the drive.
+    "stuart":
+        "<p>Not every visit needs the drive from Stuart. Follow-ups, results "
+        "reviews, wound-photo checks and &ldquo;should I come in?&rdquo; "
+        "questions can often be handled as a "
+        "<a href=\"/telehealth/\">telehealth video visit</a>, which keeps "
+        "the trip down I-95 for the exam, injections, imaging and the laser "
+        "and shockwave treatments that need hands on your foot. Beyond laser "
+        "and shockwave, the practice also offers <a href=\"/services/vein-treatment/\">vein "
+        "treatment</a>, <a href=\"/services/wound-care/\">wound care</a> and "
+        "<a href=\"/minimally-invasive-bunion-surgery/\">minimally invasive "
+        "bunion surgery</a>.</p>",
+}
+
 PAGE_TMPL = """<!--META
 {{
   "path": "locations/{slug}/",
@@ -115,7 +147,7 @@ META-->
         <div class="split">
           <div class="prose" data-reveal>
             <h2>Why {name} patients make the trip</h2>
-            <p>{angle}</p>
+            <p>{angle}</p>{extra}
             <p>Every treatment plan is designed by <a href="/meet-dr-cedeno/">Dr. Orlando Cedeno, DPM</a>, a board-certified foot and ankle surgeon — which means an honest read on every option from stretching to surgery, and advanced treatment only when it genuinely fits your case.</p>
             <h3>Most requested by {name} patients</h3>
             <ul class="check-list">
@@ -173,6 +205,7 @@ def location_pages():
     for name, slug, county, drive, route, angle, alt in CITIES:
         yield f"loc-{slug}.html", PAGE_TMPL.format(
             name=name, slug=slug, county=county, drive=drive, route=route,
-            angle=angle, alt=alt, dest=DEST, dest_q=DEST_Q,
+            angle=angle, extra=EXTRA.get(slug, ""), alt=alt,
+            dest=DEST, dest_q=DEST_Q,
             origin_q=name.replace(" ", "+") + ",+FL",
         )

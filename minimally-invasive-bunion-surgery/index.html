@@ -74,7 +74,7 @@
     "aggregateRating": {"@type": "AggregateRating", "ratingValue": 4.9, "reviewCount": 188, "itemReviewed": {"@id": "https://jupiterlaser.com/#clinic"}},
     "currenciesAccepted": "USD",
     "paymentAccepted": "Cash, Credit Card, Insurance",
-    "medicalSpecialty": ["Podiatric", "PhysicalTherapy"],
+    "medicalSpecialty": ["Podiatric"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "4601 Military Trail, Suite 202",
@@ -121,13 +121,13 @@
     "department": { "@id": "https://jupiterlaser.com/#clinic-pbg" },
     "employee": [
       {
-        "@type": "Physician",
+        "@type": "Person",
         "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician",
         "name": "Dr. Orlando Cedeno, DPM",
         "url": "https://jupiterlaser.com/meet-dr-cedeno/"
       },
       {
-        "@type": "Physician",
+        "@type": "Person",
         "@id": "https://jupiterlaser.com/meet-dr-mustafa/#physician",
         "name": "Dr. Isin A. Mustafa, DPM",
         "url": "https://jupiterlaser.com/meet-dr-mustafa/"
@@ -143,11 +143,7 @@
     "url": "https://jupiterlaser.com/",
     "name": "Abacoa Podiatry & Leg Vein Center",
     "publisher": { "@id": "https://jupiterlaser.com/#clinic" },
-    "inLanguage": "en-US",
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": ["h1", ".lede"]
-    }
+    "inLanguage": "en-US"
   }
   </script>
   <script type="application/ld+json">
@@ -195,29 +191,44 @@
     "@type": "MedicalWebPage",
     "name": "Minimally Invasive Bunion Surgery in Jupiter and Palm Beach Gardens, FL",
     "url": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/",
-    "about": {
-      "@type": "MedicalProcedure",
-      "name": "Minimally invasive bunion surgery",
-      "alternateName": [
-        "MIS bunion surgery",
-        "Minimally invasive bunionectomy",
-        "Percutaneous bunion correction"
-      ],
-      "procedureType": "https://schema.org/SurgicalProcedure",
-      "bodyLocation": "First metatarsophalangeal (big toe) joint",
-      "howPerformed": "The bunion is corrected through several small incisions, often a few millimeters each, using specialized instruments guided by live X-ray (fluoroscopy) rather than an open view of the joint.",
-      "followup": "Protected weight-bearing in a surgical shoe or boot, scheduled follow-up visits with X-rays, and a gradual return to normal shoes and activity. About six weeks is a common bone-healing milestone; full recovery varies.",
-      "indication": {
+    "about": [
+      {
+        "@type": [
+          "SurgicalProcedure",
+          "MedicalTherapy"
+        ],
+        "@id": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/#procedure",
+        "name": "Minimally invasive bunion surgery",
+        "alternateName": [
+          "MIS bunion surgery",
+          "Minimally invasive bunionectomy",
+          "Percutaneous bunion correction"
+        ],
+        "bodyLocation": "First metatarsophalangeal (big toe) joint",
+        "howPerformed": "The bunion is corrected through several small incisions, often a few millimeters each, using specialized instruments guided by live X-ray (fluoroscopy) rather than an open view of the joint.",
+        "followup": "Protected weight-bearing in a surgical shoe or boot, scheduled follow-up visits with X-rays, and a gradual return to normal shoes and activity. About six weeks is a common bone-healing milestone; full recovery varies."
+      },
+      {
         "@type": "MedicalCondition",
         "name": "Bunion",
         "alternateName": "Hallux Valgus",
-        "url": "https://jupiterlaser.com/conditions/bunions/"
+        "url": "https://jupiterlaser.com/conditions/bunions/",
+        "possibleTreatment": {
+          "@id": "https://jupiterlaser.com/minimally-invasive-bunion-surgery/#procedure"
+        }
       }
-    },
+    ],
     "provider": {
       "@id": "https://jupiterlaser.com/#clinic"
     },
-    "dateModified": "2026-09-28"
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        "h1",
+        ".lede"
+      ]
+    },
+    "dateModified": "2026-10-16"
   }
   </script>
   <script type="application/ld+json">
@@ -282,7 +293,14 @@
         }
       }
     ],
-    "dateModified": "2026-09-28"
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        "h1",
+        ".lede"
+      ]
+    },
+    "dateModified": "2026-10-16"
   }
   </script>
   <script type="application/ld+json">

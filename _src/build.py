@@ -99,6 +99,19 @@ BASE_URL = os.environ.get("SITE_ORIGIN", "https://jupiterlaser.com").rstrip("/")
 #     IMAGE_ORIGIN=https://abacoapodiatry.vercel.app python3 _src/build.py
 IMAGE_ORIGIN = os.environ.get("IMAGE_ORIGIN", BASE_URL).rstrip("/")
 
+# Author @ids as published on the physicians' own pages, the clinic node's
+# employee list and the clinic node itself. Used to name a BlogPosting author
+# that a page declares by @id alone, so the author is complete inside its item.
+# Agency posts name the clinic itself as author, by its @id.
+AUTHOR_REFS = {
+    BASE_URL + "/meet-dr-cedeno/#physician": {
+        "@type": "Person", "name": "Dr. Orlando Cedeno, DPM", "url": BASE_URL + "/meet-dr-cedeno/"},
+    BASE_URL + "/meet-dr-mustafa/#physician": {
+        "@type": "Person", "name": "Dr. Isin A. Mustafa, DPM", "url": BASE_URL + "/meet-dr-mustafa/"},
+    BASE_URL + "/#clinic": {
+        "@type": "Organization", "name": "Abacoa Podiatry & Leg Vein Center", "url": BASE_URL + "/"},
+}
+
 sys.path.insert(0, str(SRC))
 from locations import location_pages  # noqa: E402
 from condition_details import condition_detail_pages, hub_cards  # noqa: E402
@@ -369,6 +382,35 @@ def build_page(template: str, raw: str, name: str):
             "isPartOf": {"@id": BASE_URL + "/#website"},
             "about": {"@id": BASE_URL + "/#clinic"},
         })
+
+    # Schema.org validity fixes for page-level entities (Semrush Site Audit,
+    # 2026-10-16, "structured data items invalid"):
+    # - speakable is a WebPage/Article property. It used to sit on the sitewide
+    #   WebSite node, where it is out of domain; it now rides on this page's own
+    #   entity, with the same selectors.
+    # - A BlogPosting author given only as an @id carried no name inside its own
+    #   item. Expand references to the physicians or the clinic into a named node.
+    # - Articles with no image get the page's own first photo, or else the same
+    #   share card the page already declares as og:image.
+    first_img = None
+    for src in re.findall(r'<img\b[^>]*?\bsrc="(/assets/img/[^"]+)"', content):
+        if "logo" not in src and (ROOT / src.lstrip("/")).exists():
+            first_img = src
+            break
+    for s in schemas:
+        t = s.get("@type")
+        kinds = [str(k) for k in (t if isinstance(t, list) else [t])]
+        is_article = any(k in ("Article", "BlogPosting") for k in kinds)
+        if is_article or any(k.endswith("Page") for k in kinds):
+            s.setdefault("speakable", {"@type": "SpeakableSpecification",
+                                       "cssSelector": ["h1", ".lede"]})
+        if not is_article:
+            continue
+        au = s.get("author")
+        if isinstance(au, dict) and set(au) == {"@id"} and au["@id"] in AUTHOR_REFS:
+            s["author"] = {"@id": au["@id"], **AUTHOR_REFS[au["@id"]]}
+        if not s.get("image"):
+            s["image"] = IMAGE_ORIGIN + (first_img or meta.get("ogimage", "/assets/img/og-image.png"))
 
     # Freshness. 50 of the 54 pages carried no date at all, and every answer
     # engine weights recency when picking what to cite. Only page-level entities

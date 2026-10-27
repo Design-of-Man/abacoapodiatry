@@ -6,12 +6,12 @@ Three outputs, all under assets/img/events/:
   hotworx-sept-15-flyer.png  letter-size print flyer: the poster + a scan-me band
   hotworx-sept-15-og.png     1200x630 link-preview card for Facebook/iMessage/SMS
 
-The QR target is an env var because the site is mid-migration. Until DNS cuts
-over, jupiterlaser.com still serves the OLD site, so a QR pointing there would
-land on a 404 in front of a room full of people. It points at the live Vercel
-host instead. After cutover, rerun with:
+The QR target is an env var, defaulting to the canonical domain. The 2026-08-18
+cutover is done: jupiterlaser.com serves this site, so the QR points at the real
+domain rather than a *.vercel.app host nobody would type. Override only to aim a
+test print somewhere else:
 
-    EVENT_URL=https://jupiterlaser.com/hotworx/ python3 _src/event_hotworx.py
+    EVENT_URL=https://abacoapodiatry.vercel.app/hotworx/ python3 _src/event_hotworx.py
 
 Requires: Pillow, segno.
 """
@@ -25,7 +25,9 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets/img/events"
 POSTER = OUT / "hotworx-sept-15.jpg"
 
-URL = os.environ.get("EVENT_URL", "https://abacoapodiatry.vercel.app/hotworx/")
+URL = os.environ.get("EVENT_URL", "https://jupiterlaser.com/hotworx/")
+# What someone reads off the flyer if they would rather type than scan.
+URL_LABEL = os.environ.get("EVENT_URL_LABEL", "jupiterlaser.com/hotworx")
 
 INK = (10, 10, 12)
 GOLD = (232, 199, 120)
@@ -100,15 +102,13 @@ def build_flyer():
 
     tx = qx + qr.width + 42
     tw = px + pw - tx
-    # Deliberately no typed-out URL beside the QR: the site is mid-migration and
-    # the host the QR can reach today is not a domain anyone would type. The QR
-    # carries the link; the phone number carries everyone else.
-    d.text((tx, qy + 6), "SCAN FOR EVENT DETAILS",
-           font=fit(d, "SCAN FOR EVENT DETAILS", 40, tw), fill=GOLD)
-    l2 = "Questions, or to save a spot for IV night:"
-    d.text((tx, qy + 74), l2, font=fit(d, l2, 27, tw, ""), fill=MUTED)
-    d.text((tx, qy + 116), "(561) 915-1934",
-           font=fit(d, "(561) 915-1934", 60, tw), fill=EMBER)
+    d.text((tx, qy + 2), "SCAN FOR EVENT DETAILS",
+           font=fit(d, "SCAN FOR EVENT DETAILS", 33, tw), fill=GOLD)
+    d.text((tx, qy + 46), URL_LABEL, font=fit(d, URL_LABEL, 42, tw), fill=WHITE)
+    l3 = "Questions, or to save a spot for IV night:"
+    d.text((tx, qy + 112), l3, font=fit(d, l3, 25, tw, ""), fill=MUTED)
+    d.text((tx, qy + 148), "(561) 915-1934",
+           font=fit(d, "(561) 915-1934", 48, tw), fill=EMBER)
 
     img.save(OUT / "hotworx-sept-15-flyer.png", optimize=True)
     print("Wrote assets/img/events/hotworx-sept-15-flyer.png")

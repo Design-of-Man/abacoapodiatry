@@ -51,14 +51,16 @@
   ]
 }
 META-->
-    <!-- LAUNCH TODO (by Dec 31):
-         1. Swap every (561) 915-1934 in this file for the page's CallRail number
-            (tel: href AND visible text). Leave the header/footer alone: those
-            carry the Google Business Profile number and must stay as they are
-            for NAP consistency (see MIGRATION.md).
+    <!-- Before the Dec 31 go-live (checklist in EVENT-FEB-15-TALK.md):
+         1. Calls are already tracked: CallRail's swap.js (template.html) swaps
+            the office number on this page like every other, so CallRail reports
+            calls by traffic source with /rsvp/ as the landing page. Don't
+            hard-code a different number here; a dedicated static CallRail
+            number belongs on the PRINTED cards and flyer, where no script runs.
          2. Delete "robots" and "sitemap" from the META block once Dr. Cedeno
             signs off on the title, so the page can be indexed.
-         3. Submit one test RSVP and click FormSubmit's activation email if asked. -->
+         3. Submit one test RSVP and confirm it reaches the office inbox and the
+            confirmation reaches the test address. -->
     <section class="page-hero">
       <div class="wrap">
         <ol class="crumbs">
@@ -100,7 +102,7 @@ META-->
           <div class="prose" data-reveal>
             <h2>What we'll cover</h2>
             <h3>Leg veins</h3>
-            <p>Spider veins, varicose veins, and the heavy, achy, swollen-by-evening feeling that often comes with them. What the symptoms mean, when they're worth checking, and how sclerotherapy and vein ablation work.</p>
+            <p>Spider veins, varicose veins, and the heavy, achy, swollen-by-evening feeling that often comes with them. What the symptoms mean, when they're worth checking, and how <a href="/services/vein-treatment/">sclerotherapy and vein ablation</a> work.</p>
             <h3>Regenerative medicine</h3>
             <p>What <a href="/services/regenerative-medicine/">regenerative medicine</a> can do, and what it can't, for sore joints, stubborn tendons, and <a href="/services/wound-care/">wounds that are slow to heal</a>. We'll be straight about which uses have good evidence behind them and which are still early.</p>
             <h3>Peptides</h3>
@@ -130,12 +132,20 @@ META-->
           <p class="lede">It takes a minute. We'll email you a confirmation right away, and a reminder before the night.</p>
         </div>
         <div data-reveal>
-          <!-- FormSubmit, same inbox as the contact form. _autoresponse emails the
-               confirmation to whatever address the guest enters. "src" is filled
-               from ?src= (or ?utm_source=) on the link they came in on, so each
-               printed card, blast and ad can carry its own tag; see the promo kit. -->
-          <form id="rsvp-form" action="https://formsubmit.co/ajax/AbacoaPodiatry@gmail.com" method="POST" novalidate data-success="You're on the list! A confirmation is on its way to your email. See you Monday, February 15 at 5:00 PM." data-event="rsvp_submit">
+          <!-- FormSubmit, with the contact form's exact action URL and _cc list.
+               Reusing the already-activated primary address is deliberate: a new
+               address in the action URL needs its own activation click, and until
+               someone clicks it every RSVP is accepted and silently dropped (see
+               CLAUDE.md). _autoresponse emails the guest a confirmation. "src" is
+               filled from ?src= (or ?utm_source=) on the link they came in on, so
+               each printed card, blast and ad carries its own tag; see
+               EVENT-FEB-15-TALK.md. No novalidate: the browser enforces the
+               required email the confirmation depends on. -->
+          <form id="rsvp-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST">
             <input type="hidden" name="_subject" value="New RSVP: Feb 15 evening talk">
+            <input type="hidden" name="verified" value="">
+            <input type="hidden" name="flags" value="">
+            <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,patricia.g@jupiterlaser.com,doctor.cedeno@jupiterlaser.com,doctor.mustafa@jupiterlaser.com,nicholasbkashuba@gmail.com">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_autoresponse" value="You're registered for our free evening talk, &quot;Tired, Achy Legs and Slow-Healing Joints,&quot; on Monday, February 15, 2027. Arrive at 5:00 PM for check-in and light bites; the talk starts at 5:15. Where: Abacoa Podiatry &amp; Leg Vein Center, 4601 Military Trail, Suite 202, Jupiter, FL 33458. Free parking on site. If your plans change, just call us at (561) 915-1934 so we can offer your seat to someone else. See you there!">
             <input type="hidden" name="src" value="">
@@ -182,7 +192,7 @@ META-->
             </div>
             <p class="form-note" style="margin:0.9rem 0">Please don't include medical details here. We'll only use this to confirm your seat and remind you about the event.</p>
             <button class="btn btn-primary btn-lg" type="submit">Save My Seat</button>
-            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            <div id="rsvp-status" class="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
       </div>

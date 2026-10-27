@@ -9,17 +9,17 @@ Landing page: **`/rsvp/`**. Source file: `_src/pages/event-feb-15-talk.html`.
 ## What the page does
 
 - RSVP form: name, cell, email, topic of interest, seats (1 or 2), "how did you hear about this," and an optional text-reminder consent box.
-- Submissions go to AbacoaPodiatry@gmail.com through FormSubmit (same setup as the contact form, same spam filters).
+- Submissions go through FormSubmit to the same recipients as the contact form (angela.d@ primary, with Janice, Patricia, both doctors and Nick on CC). It reuses the contact form's exact action URL, so no new FormSubmit activation is needed. Like the contact form, spam is labelled in the email (`verified`, `flags`), never blocked.
 - **Confirmation email is automatic.** FormSubmit's `_autoresponse` emails the guest the date, time, address, and "call if you can't make it" as soon as they submit.
 - **Confirmation text is not automatic yet.** A static page can't send texts. See "Still open" below.
 - Every RSVP records the link it came from (`src` in the email), so each source can be counted even when the guest skips the "how did you hear" question.
 
 ## Before Dec 31 (Nick)
 
-- [ ] Create the CallRail number for this page and swap it in for every `(561) 915-1934` in `_src/pages/event-feb-15-talk.html` (4 spots, tel: link and visible text). **Leave the header and footer alone:** they carry the Google Business Profile number, and changing them breaks NAP consistency (see `MIGRATION.md`).
+- [ ] **CallRail.** The site already runs CallRail's number swap on every page, this one included, so calls from `/rsvp/` are already tracked by source with no change to the page. What still needs a number is **print**: create one static CallRail number for the invite cards and flyer, so phone RSVPs from paper are counted too. Don't hard-code a number into the page.
 - [ ] Once Dr. Cedeño approves the title, delete `"robots"` and `"sitemap"` from the page's META block so it can be indexed. It is `noindex` and kept out of the sitemap until then.
 - [ ] Rebuild: `python3 _src/build.py`.
-- [ ] Submit one test RSVP to your own email. Check that the RSVP email arrives and the confirmation reaches you.
+- [ ] Submit one test RSVP using your own email. Check that the RSVP email reaches the office inbox and the confirmation reaches you.
 - [ ] Decide how the confirmation text gets sent (below).
 
 ## Source-tagged links
@@ -38,7 +38,7 @@ Give each channel its own link. The tag shows up as `src` in every RSVP email.
 | Wellness Collective | Rosie | `/rsvp/?src=wellness` |
 | RegenOrtho / Elite | Rosie | `/rsvp/?src=regenortho` / `?src=elite` |
 
-Phone RSVPs come in on the CallRail number. Janice adds those to the list by hand and marks them "phone."
+Phone RSVPs from the website show up in CallRail with `/rsvp/` as the landing page; phone RSVPs from print come in on the print number. Janice adds both to the list by hand and marks them "phone."
 
 **Host:** jupiterlaser.com still serves the old site until the domain cutover. Anything printed before cutover should use `https://abacoapodiatry.vercel.app/rsvp/?src=...`, the same reason the HOTWORX flyer did.
 
@@ -63,7 +63,7 @@ Abacoa Podiatry: You're invited to a free evening talk, Mon Feb 15 at 5 PM at ou
 ### Reminder text, Feb 13 ("2 days away")
 
 ```
-Abacoa Podiatry: See you Monday! Our free talk is Feb 15 at 5 PM, 4601 Military Trail, Suite 202, Jupiter. Light bites at 5, talk at 5:15. Can't make it? Call [CallRail number] so we can give your seat away. Reply STOP to opt out.
+Abacoa Podiatry: See you Monday! Our free talk is Feb 15 at 5 PM, 4601 Military Trail, Suite 202, Jupiter. Light bites at 5, talk at 5:15. Can't make it? Call (561) 915-1934 so we can give your seat away. Reply STOP to opt out.
 ```
 
 ### Morning of Feb 15
@@ -111,7 +111,7 @@ Either way, the number that sends texts must be registered for business texting 
 > 3. **Presidents' Day staffing.** Is the office open that Monday? Office hours end at 5:00, so we need someone at check-in from 4:45, plus Danni for setup and food, through about 6:30.
 > 4. **Location and speakers.** I assumed the Jupiter office (4601 Military Trail). Please confirm. Who presents each segment? Is it you for all three, or is RegenOrtho/Elite presenting regenerative medicine or peptides? The page only names you for the welcome.
 > 5. **End time.** Q&A ends at 6:15 and consult booking comes after, so the page says 5:00 to 6:30.
-> 6. **Confirmation text.** The automatic email is working. The automatic text needs a texting service on the CallRail number, plus business-text registration, which takes a few weeks. I'll start that in November. Until then, Janice may need to send confirmation texts by hand.
+> 6. **Confirmation text.** The automatic confirmation email is built in. The automatic text needs a texting service on the CallRail number, plus business-text registration, which takes a few weeks. I'll start that in November. Until then, Janice may need to send confirmation texts by hand.
 > 7. **Patient texts.** The Jan 4 and Jan 18 blasts should only be texted to patients who have agreed to receive texts from us. Everyone else gets the email. Janice, can ModMed filter on that?
 > 8. **Facebook ads.** Age and 10-mile targeting is fine. We should not upload the ModMed patient list to Facebook as an ad audience. There's no Facebook tracking pixel on the RSVP page, and I'll keep it that way.
 > 9. **Giveaways and wine.** Light food is fine. For Medicare patients, keep giveaways under the OIG's nominal-value limit ($15 per item, $75 per patient per year). For wine, it's worth checking with our insurance first.

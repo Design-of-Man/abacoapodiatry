@@ -1,0 +1,620 @@
+category,term,spend,clicks,impr,conv,campaigns
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),abacoa podiatry,203.42,56,101,13.5,Brand;Clinic
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),dr orlando cedeno,151.38,35,55,9.0,Brand;Clinic;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),dr cedeno jupiter,67.29,15,28,11.0,Brand;Clinic;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),dr cedeno podiatrist,57.29,14,18,8.0,Brand;Clinic;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),orlando cedeno,50.73,10,17,5,Brand;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),orlando cedeno dpm,33.23,8,13,1,Brand;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),dr cedeno,30.57,13,16,1.0,Brand
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),abacoa podiatry jupiter,12.01,3,4,2.0,Brand;Clinic;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),dr mustafa podiatrist,10.5,3,3,0,Brand;Clinic;Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),orlando cedeño,8.04,1,2,0,Doctor
+1 Brand (Abacoa / Dr. Cedeno / Dr. Mustafa),abacoa podiatry & leg vein center,1.16,1,1,0,Brand
+2 Generic podiatrist intent,podiatrist near me,343.76,41,252,9.33,Brand;Bunion Boss | Calls | 25 mi;Clinic;Doctor
+2 Generic podiatrist intent,podiatrist jupiter,104.47,20,84,3.0,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist west palm beach,72.83,12,33,0,Brand;Clinic
+2 Generic podiatrist intent,foot doctor near me,64.53,4,13,3,Brand;Clinic;Doctor
+2 Generic podiatrist intent,podiatry,56.19,2,14,0,Bunion Boss | Calls | 25 mi;Clinic
+2 Generic podiatrist intent,foot and ankle specialist royal palm beach,50.62,5,9,1,Clinic;Doctor
+2 Generic podiatrist intent,jupiter foot and ankle,48.72,11,24,0.29,Doctor
+2 Generic podiatrist intent,podiatrist in jupiter fl,45.1,5,10,2.98,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist palm beach gardens,40.28,9,35,0.14,Brand;Clinic;Doctor
+2 Generic podiatrist intent,podiatrist in jupiter,40.25,10,23,0.29,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist jupiter military trail,34.68,7,16,3,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist,34.55,4,57,0,Bunion Boss | Calls | 25 mi;Clinic
+2 Generic podiatrist intent,podiatry near me,34.06,5,17,1,Brand;Bunion Boss | Calls | 25 mi;Doctor
+2 Generic podiatrist intent,foot doctor jupiter,29.39,4,12,1,Brand;Clinic;Doctor
+2 Generic podiatrist intent,jupiter podiatrist,27.06,4,15,0,Brand;Clinic;Doctor
+2 Generic podiatrist intent,podiatrist wellington fl,26.06,3,2,0,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist jupiter fl,25.54,6,10,0,Clinic;Doctor
+2 Generic podiatrist intent,foot and ankle specialist near me,24.19,1,1,1,Doctor
+2 Generic podiatrist intent,foot doctor,19.17,2,4,1,Clinic;Doctor
+2 Generic podiatrist intent,foot and ankle specialist jupiter,18.99,2,1,1,Doctor
+2 Generic podiatrist intent,foot doctor palm beach gardens,17.65,2,3,1,Clinic
+2 Generic podiatrist intent,podiatrist west palm beach okeechobee blvd,15.45,4,4,1,Doctor
+2 Generic podiatrist intent,best podiatrist palm beach gardens,13.64,5,11,0,Brand;Clinic;Doctor
+2 Generic podiatrist intent,podiatrist palm beach gardens fl,13.54,1,3,0,Clinic
+2 Generic podiatrist intent,podiatras cerca de mi,13.06,3,3,1,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist okeechobee blvd,13.0,1,1,1,Clinic
+2 Generic podiatrist intent,foot and ankle royal palm,12.79,1,1,1,Clinic
+2 Generic podiatrist intent,podiatrist jupiter florida,12.31,3,6,0,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist forest hill,10.9,1,1,0,Clinic
+2 Generic podiatrist intent,podiatry jupiter,10.67,2,5,1,Brand;Doctor
+2 Generic podiatrist intent,foot and ankle clinic,9.82,1,1,0,Doctor
+2 Generic podiatrist intent,ankle specialist near me,9.8,1,1,0,Doctor
+2 Generic podiatrist intent,foot and ankle,9.77,4,5,0,Clinic;Doctor
+2 Generic podiatrist intent,podiatrist doctor near me,9.69,1,2,0,Brand
+2 Generic podiatrist intent,podiatrist port st lucie,9.46,2,3,0,Clinic
+2 Generic podiatrist intent,urgent care podiatrist near me,7.64,1,1,0,Doctor
+2 Generic podiatrist intent,pediatric podiatrist near me,6.44,1,5,0,Clinic
+2 Generic podiatrist intent,foot and ankle west palm beach,6.24,2,2,0,Doctor
+2 Generic podiatrist intent,podiatrist foot doctor near me,6.01,1,1,0,Doctor
+2 Generic podiatrist intent,podiatrist in west palm beach,5.68,1,3,0,Clinic
+2 Generic podiatrist intent,best podiatrist in palm beach county,5.56,1,4,0,Doctor
+2 Generic podiatrist intent,best orthopedic surgeons foot and ankle,5.39,1,2,0,Doctor
+2 Generic podiatrist intent,orthopedic foot and ankle specialist,4.96,1,2,0,Brand
+2 Generic podiatrist intent,podiatrist pedicure,4.72,1,2,0,Brand
+2 Generic podiatrist intent,podiatra near me,4.57,1,3,1,Bunion Boss | Calls | 25 mi
+2 Generic podiatrist intent,podiatrist in palm beach gardens,4.44,2,4,0,Brand;Doctor
+2 Generic podiatrist intent,podiatrist cerca de mi,4.42,3,4,0,Brand;Clinic
+2 Generic podiatrist intent,mattison podiatry group,4.12,1,3,0,Brand
+2 Generic podiatrist intent,modern foot and ankle jupiter,3.98,1,2,0,Brand
+2 Generic podiatrist intent,orthopedic foot doctor,3.94,1,1,0,Doctor
+2 Generic podiatrist intent,foot doctor in english,3.93,1,3,0,Bunion Boss | Calls | 25 mi
+2 Generic podiatrist intent,family first podiatry palm city,3.89,1,5,0,Brand
+2 Generic podiatrist intent,podiatry around me,3.35,1,2,0,Bunion Boss | Calls | 25 mi
+2 Generic podiatrist intent,palm beach gardens podiatrist,3.35,1,2,0,Clinic
+2 Generic podiatrist intent,foot and ankle specialist palm beach gardens,3.34,1,1,0,Doctor
+2 Generic podiatrist intent,florida foot and ankle,3.19,1,1,0,Clinic
+2 Generic podiatrist intent,foot doctor around me,3.18,1,1,0,Brand
+2 Generic podiatrist intent,foot and ankle specialist lake worth,3.14,1,1,0,Doctor
+2 Generic podiatrist intent,foot doctor west palm beach,2.67,1,2,0,Clinic
+2 Generic podiatrist intent,podiatrist near me that accept medicare,2.59,1,3,0,Clinic
+2 Generic podiatrist intent,suzanne fuchs podiatrist,2.35,1,2,0,Doctor
+2 Generic podiatrist intent,podiatrists in boca raton,2.3,1,3,0,Bunion Boss | Snowbirds
+2 Generic podiatrist intent,integrated foot and ankle,2.13,1,2,0,Doctor
+2 Generic podiatrist intent,podiatry pedicure,2.11,1,2,0,Doctor
+2 Generic podiatrist intent,pediatric podiatry,1.94,1,1,0,Clinic
+2 Generic podiatrist intent,foot and ankle specialist boca raton,1.93,1,1,0,Clinic
+2 Generic podiatrist intent,palm beach podiatric center,1.78,1,1,0,Doctor
+2 Generic podiatrist intent,pediatric podiatry near me,1.65,1,1,0,Doctor
+2 Generic podiatrist intent,comprehensive foot and ankle,1.44,1,1,0,Clinic
+2 Generic podiatrist intent,podiatrist royal palm beach,1.44,1,1,0,Clinic
+2 Generic podiatrist intent,foot and ankle boca raton,1.4,1,2,0,Clinic
+2 Generic podiatrist intent,foot and ankle jupiter fl,1.28,1,2,0,Clinic
+2 Generic podiatrist intent,family podiatry,1.1,1,1,0,Brand
+2 Generic podiatrist intent,female podiatrist near me,1.06,1,2,0,Brand
+2 Generic podiatrist intent,sports podiatrists near me,0.87,1,1,0,Doctor
+3a Condition / treatment (intent),foot fascia near me,17.1,1,1,1,Doctor
+3a Condition / treatment (intent),toenail fungus,11.03,3,4,0,Treatment
+3a Condition / treatment (intent),toenail fungus treatment,10.25,4,6,0,Treatment
+3a Condition / treatment (intent),laser toenail fungus treatment near me,10.12,4,6,0,Treatment
+3a Condition / treatment (intent),keryflex nail restoration,8.99,2,3,0,Brand
+3a Condition / treatment (intent),edema in legs,8.88,3,3,0,Treatment
+3a Condition / treatment (intent),vein specialists near me,8.72,3,7,0,Treatment
+3a Condition / treatment (intent),lymphologists near me,8.53,3,2,0,Treatment
+3a Condition / treatment (intent),afo braces near me,8.06,2,3,0,Treatment
+3a Condition / treatment (intent),achilles heel support,6.92,2,2,0,Treatment
+3a Condition / treatment (intent),lymphedema therapy specialists near me,6.88,2,3,0,Treatment
+3a Condition / treatment (intent),toenail fungus doctors near me,6.68,3,4,0,Treatment
+3a Condition / treatment (intent),venous insufficiency,6.3,2,3,0,Treatment
+3a Condition / treatment (intent),lymphedema specialist near me,6.11,3,3,0,Treatment
+3a Condition / treatment (intent),nail fungus treatment,6,2,6,0,Treatment
+3a Condition / treatment (intent),vein center west palm beach,5.94,3,5,1,Treatment
+3a Condition / treatment (intent),podiatrist for ingrown toenail near me,5.89,1,1,0,Clinic
+3a Condition / treatment (intent),lymphedema treatment,5.78,2,2,0,Treatment
+3a Condition / treatment (intent),vein doctors near me,5.68,2,1,1,Treatment
+3a Condition / treatment (intent),vein doctor jupiter,5.52,2,3,0,Clinic
+3a Condition / treatment (intent),varicose vein treatment,5.12,2,6,0,Treatment
+3a Condition / treatment (intent),pythium oligandrum for nail fungus,4.99,2,1,0,Treatment
+3a Condition / treatment (intent),leg cream for edema,4.94,1,2,0,Treatment
+3a Condition / treatment (intent),nail fungus,4.74,2,1,0,Treatment
+3a Condition / treatment (intent),keryflex nail restoration near me,4.57,2,6,0,Doctor;Treatment
+3a Condition / treatment (intent),spider veins treatment near me,4.43,2,2,0,Treatment
+3a Condition / treatment (intent),vein doctor palm beach gardens,4.38,2,2,0,Clinic
+3a Condition / treatment (intent),vein specialist west palm beach,4.25,2,8,0,Clinic;Treatment
+3a Condition / treatment (intent),spider vein treatment west palm beach,4.1,2,2,0,Treatment
+3a Condition / treatment (intent),orthotics,3.92,2,1,0,Treatment
+3a Condition / treatment (intent),falk orthotics,3.63,2,1,0,Doctor
+3a Condition / treatment (intent),vein doctor,3.62,1,3,0,Treatment
+3a Condition / treatment (intent),over the counter medicine for achilles tendonitis,3.53,1,2,0,Treatment
+3a Condition / treatment (intent),vein treatment near me,3.41,1,2,0,Treatment
+3a Condition / treatment (intent),anti fungus nail treatment,3.37,1,1,0,Treatment
+3a Condition / treatment (intent),lymphedema clinic near me,3.35,1,2,0,Treatment
+3a Condition / treatment (intent),lymphedema clinic,3.28,1,1,0,Treatment
+3a Condition / treatment (intent),varicose vein treatments near me,3.27,1,2,0,Clinic
+3a Condition / treatment (intent),orthotics for leg length discrepancy near me,3.26,1,2,0,Treatment
+3a Condition / treatment (intent),treatment for achilles tendonitis,3.24,1,1,0,Treatment
+3a Condition / treatment (intent),laser fungal nail treatment,3.23,1,2,0,Treatment
+3a Condition / treatment (intent),shoe brace,3.23,1,1,0,Treatment
+3a Condition / treatment (intent),custom orthotics,3.23,1,3,0,Treatment
+3a Condition / treatment (intent),best toe fungus treatment,3.21,3,2,0,Treatment
+3a Condition / treatment (intent),which nail fungus treatment works best,3.21,1,2,0,Treatment
+3a Condition / treatment (intent),toenail fungus help,3.19,1,2,0,Treatment
+3a Condition / treatment (intent),arthritis in the ankle treatment,3.19,1,2,0,Treatment
+3a Condition / treatment (intent),the best toenail fungus treatment,3.17,1,1,0,Treatment
+3a Condition / treatment (intent),treatments for edema,3.16,1,2,0,Treatment
+3a Condition / treatment (intent),lymphatic clinic near me,3.14,1,2,0,Treatment
+3a Condition / treatment (intent),foot swelling,3.13,1,1,0,Treatment
+3a Condition / treatment (intent),varicose veins treatment,3.13,1,1,0,Treatment
+3a Condition / treatment (intent),laser treatment for toenail fungus near me,3.11,1,3,0,Treatment
+3a Condition / treatment (intent),orville fungus treatment,3.03,1,2,0,Treatment
+3a Condition / treatment (intent),best diabetic podiatrist near me,3.02,1,2,0.33,Doctor
+3a Condition / treatment (intent),spider veins,3.02,1,1,0,Treatment
+3a Condition / treatment (intent),mls laser therapy,3.01,1,2,0,Treatment
+3a Condition / treatment (intent),edema in feet,2.99,1,2,0,Treatment
+3a Condition / treatment (intent),vein clinic near me,2.98,1,5,0,Treatment
+3a Condition / treatment (intent),foot doctor for fungus,2.98,2,2,0,Treatment
+3a Condition / treatment (intent),treatment for swelling in legs and feet,2.95,1,1,0,Treatment
+3a Condition / treatment (intent),antifungal nail treatment,2.91,1,1,0,Treatment
+3a Condition / treatment (intent),ankle heating pad for achilles tendonitis,2.89,1,2,0,Treatment
+3a Condition / treatment (intent),bare feet toenail fungus treatment,2.87,1,2,0,Treatment
+3a Condition / treatment (intent),toe nail fungus treatment,2.8,1,1,0,Treatment
+3a Condition / treatment (intent),swollen feet,2.79,1,1,0,Treatment
+3a Condition / treatment (intent),aqua vein center,2.79,1,3,0,Treatment
+3a Condition / treatment (intent),fungus nail treatment,2.75,1,1,0,Treatment
+3a Condition / treatment (intent),swollen feet and ankles,2.74,2,2,0,Treatment
+3a Condition / treatment (intent),causes for swollen ankles,2.74,1,1,0,Treatment
+3a Condition / treatment (intent),shockwave therapy for achilles near me,2.7,1,1,0,Treatment
+3a Condition / treatment (intent),swollen ankles,2.69,1,5,0,Treatment
+3a Condition / treatment (intent),ankle swelling causes,2.68,1,2,0,Treatment
+3a Condition / treatment (intent),kill toenail fungus,2.68,3,3,0,Treatment
+3a Condition / treatment (intent),sunlight toenail fungus,2.67,1,1,0,Treatment
+3a Condition / treatment (intent),achilles doctor near me,2.66,1,3,0,Treatment
+3a Condition / treatment (intent),where to get custom orthotics,2.66,1,2,0,Treatment
+3a Condition / treatment (intent),best over the counter fungal nail treatment,2.66,3,3,0,Treatment
+3a Condition / treatment (intent),living with ankle arthritis,2.62,1,2,0,Treatment
+3a Condition / treatment (intent),laser toenail fungus treatment,2.61,1,1,0,Treatment
+3a Condition / treatment (intent),swollen feet and ankles treatment,2.6,2,2,0,Treatment
+3a Condition / treatment (intent),treatment for swollen ankles,2.55,2,4,0,Treatment
+3a Condition / treatment (intent),tolcylen nail,2.54,1,1,0,Treatment
+3a Condition / treatment (intent),laser for fungus,2.53,1,2,0,Treatment
+3a Condition / treatment (intent),treatment for sore achilles tendon,2.52,1,2,0,Treatment
+3a Condition / treatment (intent),antifungal nail liquid,2.52,1,5,0,Treatment
+3a Condition / treatment (intent),foot and ankle swelling,2.5,2,2,0,Treatment
+3a Condition / treatment (intent),finger nail fungus treatment,2.49,1,2,0,Treatment
+3a Condition / treatment (intent),best orthotics,2.44,1,3,0,Treatment
+3a Condition / treatment (intent),pain in my achilles heel,2.44,1,2,0,Treatment
+3a Condition / treatment (intent),vein insufficiency legs,2.44,1,3,0,Treatment
+3a Condition / treatment (intent),varicose vein treatment near me,2.42,1,2,0,Clinic
+3a Condition / treatment (intent),varicose veins on feet treatment,2.37,1,1,0,Treatment
+3a Condition / treatment (intent),spider vein treatment near me,2.35,1,1,0,Treatment
+3a Condition / treatment (intent),laser treatment for varicose veins,2.29,1,2,0,Treatment
+3a Condition / treatment (intent),best custom orthotics near me,2.28,1,1,0,Treatment
+3a Condition / treatment (intent),lymphedema therapist near me,2.28,1,1,0,Treatment
+3a Condition / treatment (intent),pinpointe foot laser,2.27,1,1,0,Treatment
+3a Condition / treatment (intent),venous reflux in the legs,2.24,1,2,0,Treatment
+3a Condition / treatment (intent),nail fungus laser removal,2.15,1,1,0,Treatment
+3a Condition / treatment (intent),feet fungus treatment,2.08,1,1,0,Treatment
+3a Condition / treatment (intent),varicose vein doctor near me,2.06,1,2,0,Treatment
+3a Condition / treatment (intent),leg swelling treatment,2.05,1,1,0,Treatment
+3a Condition / treatment (intent),vein centers near me,2.05,1,3,0,Treatment
+3a Condition / treatment (intent),best remedy for toe fungus,2.04,2,1,0,Treatment
+3a Condition / treatment (intent),spider vein treatment cost,2.03,1,1,0,Treatment
+3a Condition / treatment (intent),laser treatment for toenail fungus,2,1,2,0,Treatment
+3a Condition / treatment (intent),decongestive therapy for lymphedema,1.99,1,1,0,Treatment
+3a Condition / treatment (intent),vein center jupiter fl,1.98,1,1,0,Treatment
+3a Condition / treatment (intent),toe nail fungus treatments,1.96,1,1,0,Treatment
+3a Condition / treatment (intent),veins near me,1.94,1,1,0,Treatment
+3a Condition / treatment (intent),custom afo brace near me,1.93,1,2,0,Treatment
+3a Condition / treatment (intent),remedy for swollen ankles,1.83,1,1,0,Treatment
+3a Condition / treatment (intent),swollen feet in seniors,1.78,1,1,0,Treatment
+3a Condition / treatment (intent),best vein clinic near me,1.77,1,1,0,Treatment
+3a Condition / treatment (intent),podiatrist ingrown toenail,1.72,1,1,0,Clinic
+3a Condition / treatment (intent),dermatologist for toenail fungus,1.72,1,2,0,Treatment
+3a Condition / treatment (intent),orthotics near me,1.66,1,2,0,Treatment
+3a Condition / treatment (intent),best varicose vein treatment near me,1.56,1,1,0,Treatment
+3a Condition / treatment (intent),swollen left leg,1.53,1,2,0,Treatment
+3a Condition / treatment (intent),treatment for swollen ankles and feet,1.5,1,1,0,Treatment
+3a Condition / treatment (intent),most effective treatment for fungal nail infection,1.5,1,1,0,Treatment
+3a Condition / treatment (intent),swollen ankles causes,1.47,1,1,0,Treatment
+3a Condition / treatment (intent),toenail cutting service near me,1.4,1,1,0,Doctor
+3a Condition / treatment (intent),toenail fungus treatment that actually works,1.39,1,1,0,Treatment
+3a Condition / treatment (intent),effective treatment for toenail fungus,1.31,1,1,0,Treatment
+3a Condition / treatment (intent),toenail fungus laser treatment near me,1.29,1,1,0,Treatment
+3a Condition / treatment (intent),best custom orthotics,1.22,1,1,0,Treatment
+3a Condition / treatment (intent),toenail fungus home treatment,1.14,1,1,0,Treatment
+3a Condition / treatment (intent),vein insufficiency,1.1,1,2,0,Treatment
+3a Condition / treatment (intent),toenail fungus specialist near me,1.06,1,1,0,Treatment
+3a Condition / treatment (intent),toenail fungus best treatment,1.01,1,1,0,Treatment
+3a Condition / treatment (intent),nail reconstruction near me,0.99,1,1,0,Clinic
+3a Condition / treatment (intent),achilles tendonitis exercise,0.98,2,1,0,Treatment
+3a Condition / treatment (intent),pics of toenail fungus,0.9,1,1,0,Treatment
+3a Condition / treatment (intent),vinegar soak for fingernail fungus,0.8,1,2,0,Treatment
+3a Condition / treatment (intent),kerassentials toenail fungus,0.78,1,1,0,Treatment
+3a Condition / treatment (intent),varicose vein ablation procedure,0.77,1,1,0,Treatment
+3a Condition / treatment (intent),vein insufficiency treatment,0.77,1,2,0,Treatment
+3a Condition / treatment (intent),diabetic foot doctors near me,0.72,1,1,0,Doctor
+3a Condition / treatment (intent),rfa ablation varicose veins,0.72,1,1,0,Treatment
+3a Condition / treatment (intent),best way to get rid of toe fungus,0.71,1,1,0,Treatment
+3a Condition / treatment (intent),exercises for sore achilles,0.59,1,1,0,Treatment
+3a Condition / treatment (intent),removing nail with fungus,0.56,1,3,0,Treatment
+3a Condition / treatment (intent),varicose vein removal,0.53,1,2,0,Clinic
+3a Condition / treatment (intent),swelling feet and ankles,0.52,1,1,0,Treatment
+3a Condition / treatment (intent),exercises for achilles pain,0.44,1,1,0,Treatment
+3a Condition / treatment (intent),arthritis near me,0.44,1,1,0,Clinic
+3a Condition / treatment (intent),removing toe fungus,0.41,1,1,0,Treatment
+3a Condition / treatment (intent),swollen ankles and feet,0.2,1,1,0,Treatment
+3b Condition (info-seeking),what kills toenail fungus instantly,10.4,4,7,0,Treatment
+3b Condition (info-seeking),best treatment for swollen feet and ankles,8.08,6,7,0,Treatment
+3b Condition (info-seeking),how to treat a swollen ankle and foot,6.72,2,1,0,Treatment
+3b Condition (info-seeking),does anything really cure toenail fungus,6.46,2,1,0,Treatment
+3b Condition (info-seeking),how to get rid of swollen feet,6.18,2,3,0,Treatment
+3b Condition (info-seeking),what works for nail fungus,6.04,2,1,0,Treatment
+3b Condition (info-seeking),toenail fungus pedicure near me,5.95,2,3,0,Treatment
+3b Condition (info-seeking),treat arthritis in feet,5.56,2,1,0,Treatment
+3b Condition (info-seeking),what to do for swollen ankles and feet,5.48,2,4,0,Treatment
+3b Condition (info-seeking),what can you do for swelling in your feet,5.14,2,1,0,Treatment
+3b Condition (info-seeking),can toenail fungus be cured,4.64,2,1,0,Treatment
+3b Condition (info-seeking),what is the most effective treatment for toenail fungus,3.55,2,2,0,Treatment
+3b Condition (info-seeking),cure for swollen ankles,3.47,3,3,0,Treatment
+3b Condition (info-seeking),how to clear toe fungus fast,3.36,1,2,0,Treatment
+3b Condition (info-seeking),how to get rid of achilles pain,3.35,1,1,0,Treatment
+3b Condition (info-seeking),what can you do for arthritis in your foot,3.29,1,1,0,Treatment
+3b Condition (info-seeking),what can i take for swollen feet,3.25,1,1,0,Treatment
+3b Condition (info-seeking),how can i reduce swelling in my ankles,3.15,1,2,0,Treatment
+3b Condition (info-seeking),how to cure toenail fungus at home,3.1,2,1,0,Treatment
+3b Condition (info-seeking),what do podiatrists recommend for toenail fungus,3.04,1,1,0,Treatment
+3b Condition (info-seeking),how do you treat varicose veins,3.01,1,1,0,Treatment
+3b Condition (info-seeking),how to cure swollen feet,2.95,1,1,0,Treatment
+3b Condition (info-seeking),how to get rid of edema in legs,2.92,1,1,0,Treatment
+3b Condition (info-seeking),how to remove spider veins in legs,2.87,1,1,0,Treatment
+3b Condition (info-seeking),how to get rid of nail fungus,2.74,1,1,0,Treatment
+3b Condition (info-seeking),what's the best way to get rid of toe fungus,2.74,1,1,0,Treatment
+3b Condition (info-seeking),what to do for swollen feet,2.72,1,2,0,Treatment
+3b Condition (info-seeking),how to get rid of toe nail fungus fast,2.71,1,2,0,Treatment
+3b Condition (info-seeking),how to drain lymphatic fluid in legs,2.7,1,1,0,Treatment
+3b Condition (info-seeking),how to fix a toenail with fungus,2.7,1,2,0,Treatment
+3b Condition (info-seeking),how to treat swollen foot,2.66,1,1,0,Treatment
+3b Condition (info-seeking),what is the cause of swollen legs and feet,2.62,1,1,0,Treatment
+3b Condition (info-seeking),what kills foot fungus instantly,2.48,1,2,0,Treatment
+3b Condition (info-seeking),what causes swollen legs from the knee down,2.48,1,1,0,Treatment
+3b Condition (info-seeking),how do i get rid of toenail fungus,2.45,1,1,0,Treatment
+3b Condition (info-seeking),what kills toenail fungus,2.44,2,2,0,Treatment
+3b Condition (info-seeking),how to treat arthritis in feet,2.43,1,1,0,Treatment
+3b Condition (info-seeking),does arthritis cause foot swelling,2.43,1,2,0,Treatment
+3b Condition (info-seeking),how to get rid if toenail fungus,2.42,1,1,0,Treatment
+3b Condition (info-seeking),how to treat vein insufficiency,2.36,1,1,0,Treatment
+3b Condition (info-seeking),what is the best treatment for venous insufficiency,2.35,1,1,0,Treatment
+3b Condition (info-seeking),what to use for toe fungus,2.25,1,2,0,Treatment
+3b Condition (info-seeking),is there any treatment for venous insufficiency,2.12,1,1,0,Treatment
+3b Condition (info-seeking),how to get rid of toenail fungus,2.1,1,1,0,Treatment
+3b Condition (info-seeking),best treatment for toe nail fungus,2.06,1,1,0,Treatment
+3b Condition (info-seeking),what doctor to see for toenail fungus,2,1,2,0,Treatment
+3b Condition (info-seeking),home remedies for toe fungus,1.99,1,2,0,Treatment
+3b Condition (info-seeking),how to drain swollen ankles,1.96,1,2,0,Treatment
+3b Condition (info-seeking),how do you treat venous insufficiency,1.86,1,1,0,Treatment
+3b Condition (info-seeking),how do i get rid of the pain in my heel,1.77,1,1,0,Doctor
+3b Condition (info-seeking),fungi cure for nail fungus,1.57,1,3,0,Treatment
+3b Condition (info-seeking),how to reduce swelling in lower leg and foot,1.37,1,1,0,Treatment
+3b Condition (info-seeking),what is the best toe fungus medicine,1.13,1,1,0,Treatment
+3b Condition (info-seeking),best cure for toe fungus,0.95,1,1,0,Treatment
+3b Condition (info-seeking),what is best treatment for toenail fungus,0.85,1,1,0,Treatment
+3b Condition (info-seeking),what is the best treatment for toe fungus,0.66,1,1,0,Treatment
+3b Condition (info-seeking),best treatment for varicose veins without surgery,0.3,1,1,0,Treatment
+4 Competitor practice or doctor name,foot dr near me,77.6,2,2,0,Bunion Boss | Calls | 25 mi;Clinic
+4 Competitor practice or doctor name,south florida foot and ankle,68.26,13,49,2.33,Brand;Doctor
+4 Competitor practice or doctor name,south florida foot & ankle centers,67.84,16,42,2,Brand
+4 Competitor practice or doctor name,dr vena jupiter,67.55,10,16,2,Brand;Doctor
+4 Competitor practice or doctor name,shoppe foot and ankle,64.65,7,15,2,Clinic;Doctor
+4 Competitor practice or doctor name,dr spinner podiatrist,54.58,1,4,0,Bunion Boss | Snowbirds
+4 Competitor practice or doctor name,dr fried podiatrist,48.18,6,9,1,Brand;Clinic;Doctor
+4 Competitor practice or doctor name,palm beach foot and ankle,46.69,8,26,2,Brand;Clinic;Doctor
+4 Competitor practice or doctor name,dr alan hartstein,42.61,1,1,0,Brand
+4 Competitor practice or doctor name,luxe podiatry,38.69,5,8,0,Brand
+4 Competitor practice or doctor name,dr tamara nemeroff,36.28,6,7,0,Brand;Doctor
+4 Competitor practice or doctor name,dr lamm podiatrist,36.1,3,5,1,Brand
+4 Competitor practice or doctor name,dr ostapchuk,33.57,2,2,1,Brand
+4 Competitor practice or doctor name,pga foot and ankle,32.18,4,6,0,Brand;Doctor
+4 Competitor practice or doctor name,dr selbst podiatrist,30.7,1,3,0,Bunion Boss | Snowbirds
+4 Competitor practice or doctor name,dr perkins podiatrist,28.41,4,8,2,Brand;Doctor
+4 Competitor practice or doctor name,tiffany cerda,27.63,1,1,0,Doctor
+4 Competitor practice or doctor name,dr prager podiatrist,27.6,3,5,1,Brand
+4 Competitor practice or doctor name,taub podiatry stuart fl,27.0,4,5,0,Doctor
+4 Competitor practice or doctor name,palm beach foot and ankle palm beach gardens,26.39,4,4,0,Brand;Doctor
+4 Competitor practice or doctor name,taub podiatry stuart,24.79,3,6,1,Clinic;Doctor
+4 Competitor practice or doctor name,south florida foot and ankle lake worth,24.77,1,2,0,Brand
+4 Competitor practice or doctor name,dr daly palm beach gardens,24.28,1,1,0,Brand
+4 Competitor practice or doctor name,dr khoa pham,24.25,1,3,1,Brand
+4 Competitor practice or doctor name,dr christopher boyes,23.0,3,8,0,Clinic
+4 Competitor practice or doctor name,dr lopez viego,22.6,1,2,0,Clinic
+4 Competitor practice or doctor name,dr pan perkins,22.37,3,3,0,Brand
+4 Competitor practice or doctor name,dr pan podiatrist,22.08,4,6,1,Brand;Doctor
+4 Competitor practice or doctor name,dr lapoff,21.69,2,3,1,Brand;Doctor
+4 Competitor practice or doctor name,dr gerszberg,21.17,3,6,0,Brand;Doctor
+4 Competitor practice or doctor name,south florida foot and ankle palm beach gardens,20.12,2,2,0,Brand
+4 Competitor practice or doctor name,garrett nguyen dpm,19.85,1,1,1,Doctor
+4 Competitor practice or doctor name,joshua daly,19.45,1,2,0,Brand
+4 Competitor practice or doctor name,certified foot and ankle specialists llc,19.26,1,1,1,Brand
+4 Competitor practice or doctor name,vein clinics of america,18.71,2,4,2,Clinic
+4 Competitor practice or doctor name,dr lamm,18.54,2,1,0,Brand
+4 Competitor practice or doctor name,dr breslauer stuart fl,17.96,2,2,0.5,Doctor
+4 Competitor practice or doctor name,dr harlis,17.5,1,1,1,Doctor
+4 Competitor practice or doctor name,south florida foot and ankle center,16.55,5,10,0,Brand;Doctor
+4 Competitor practice or doctor name,family foot center boynton beach,16.44,2,3,1,Clinic
+4 Competitor practice or doctor name,dr jonathan cutler podiatrist,15.95,1,3,1,Doctor
+4 Competitor practice or doctor name,dr reed podiatrist the villages fl,15.87,1,1,0,Bunion Boss | Snowbirds
+4 Competitor practice or doctor name,south florida foot and ankle centers,15.63,1,2,1,Brand
+4 Competitor practice or doctor name,dr fried podiatry,15.07,1,1,1,Doctor
+4 Competitor practice or doctor name,dr elgut palm beach gardens,14.98,4,5,1,Brand
+4 Competitor practice or doctor name,dr matthew wolfson,14.26,1,1,1,Doctor
+4 Competitor practice or doctor name,dr montijo,14.23,1,2,0,Doctor
+4 Competitor practice or doctor name,hall podiatry boynton beach,14.21,1,2,0,Doctor
+4 Competitor practice or doctor name,dr jason gold podiatrist boynton beach,13.88,1,1,0,Doctor
+4 Competitor practice or doctor name,la podiatry wellington,13.21,1,1,0,Doctor
+4 Competitor practice or doctor name,united vein center lake worth,12.98,1,1,0,Clinic
+4 Competitor practice or doctor name,south florida foot and ankle lantana,12.76,1,1,0,Brand
+4 Competitor practice or doctor name,dr mendez vascular,12.6,2,4,1,Clinic
+4 Competitor practice or doctor name,dr craig paul,12.57,2,3,1,Doctor
+4 Competitor practice or doctor name,dr mora palm beach gardens,12.24,1,1,1,Doctor
+4 Competitor practice or doctor name,dr harvey montijo jupiter fl,11.99,2,7,0,Brand;Clinic
+4 Competitor practice or doctor name,dr michael cooney west palm beach,11.93,1,2,1,Doctor
+4 Competitor practice or doctor name,dr vena,11.76,2,5,1,Clinic
+4 Competitor practice or doctor name,treasure coast podiatry stuart,10.72,1,2,1,Doctor
+4 Competitor practice or doctor name,ashley bowles podiatrist,10.33,1,1,1,Clinic
+4 Competitor practice or doctor name,dr sater podiatrist,10.21,1,2,0,Brand
+4 Competitor practice or doctor name,dr gary ackerman,10.2,2,1,0,Doctor
+4 Competitor practice or doctor name,dr montijo west palm beach,10.15,2,1,0,Doctor
+4 Competitor practice or doctor name,dr nina solomon,9.72,1,2,1,Doctor
+4 Competitor practice or doctor name,dr michael sturm,9.55,1,1,1,Doctor
+4 Competitor practice or doctor name,dr yee royal palm beach,9.5,1,2,1,Doctor
+4 Competitor practice or doctor name,dr brian hill jupiter,9.29,1,1,0,Doctor
+4 Competitor practice or doctor name,dr gary wexler palm beach gardens,8.91,2,3,0,Clinic;Doctor
+4 Competitor practice or doctor name,taylor tendrich,8.42,1,1,0,Brand
+4 Competitor practice or doctor name,dr andrew noble jupiter fl,8.22,2,2,0,Brand
+4 Competitor practice or doctor name,dr taub stuart,8.08,1,1,1,Doctor
+4 Competitor practice or doctor name,desiree garzon,8.06,1,2,0,Doctor
+4 Competitor practice or doctor name,ankle and foot center of florida,8,4,9,0,Brand
+4 Competitor practice or doctor name,dr fishman jupiter,7.94,1,3,0,Doctor
+4 Competitor practice or doctor name,dr gold boynton beach,7.86,2,2,0,Clinic
+4 Competitor practice or doctor name,advanced foot and ankle,7.46,1,1,0,Clinic
+4 Competitor practice or doctor name,dr daly foot and ankle,7.41,1,1,1,Brand
+4 Competitor practice or doctor name,paul weiner podiatrist,7.38,1,1,1,Doctor
+4 Competitor practice or doctor name,joshua daly podiatrist,6.98,3,11,0,Brand;Doctor
+4 Competitor practice or doctor name,dr glenn chapman,6.74,1,2,0,Doctor
+4 Competitor practice or doctor name,signature foot and ankle boynton beach,6.65,2,2,0,Clinic
+4 Competitor practice or doctor name,dr harry podiatrist,6.42,1,2,0,Clinic
+4 Competitor practice or doctor name,vein clinics of america near me,6.38,1,1,0,Clinic
+4 Competitor practice or doctor name,dr lilly podiatrist,6.38,1,2,0,Doctor
+4 Competitor practice or doctor name,dr dana desser,6.27,1,1,0,Doctor
+4 Competitor practice or doctor name,dr diamond stuart,6.14,1,2,0,Clinic
+4 Competitor practice or doctor name,dr ariel lepoff,5.98,2,7,0,Brand;Clinic
+4 Competitor practice or doctor name,schoppe foot and ankle stuart fl,5.84,2,1,0,Clinic
+4 Competitor practice or doctor name,dr anderson vascular,5.71,1,2,0,Clinic
+4 Competitor practice or doctor name,michael fishman podiatrist,5.53,1,2,0,Doctor
+4 Competitor practice or doctor name,dr andrew lerner podiatrist,5.47,1,1,0,Brand
+4 Competitor practice or doctor name,dr caballes vero,5.46,1,2,0,Doctor
+4 Competitor practice or doctor name,daniel elgut,5.45,1,1,1,Brand
+4 Competitor practice or doctor name,dr costa podiatrist,5.34,2,1,0,Doctor
+4 Competitor practice or doctor name,dr joseph taub,5.33,1,2,0,Doctor
+4 Competitor practice or doctor name,dr xavier sanchez,5.15,1,2,0,Doctor
+4 Competitor practice or doctor name,dr julio ortiz west palm beach,5.02,2,2,0,Doctor
+4 Competitor practice or doctor name,lily pan perkins dpm,5.02,1,1,0,Brand
+4 Competitor practice or doctor name,dr patel podiatrist,5.01,1,1,0,Clinic
+4 Competitor practice or doctor name,dr swancutt,4.98,2,3,0,Doctor
+4 Competitor practice or doctor name,dr pero podiatrist,4.98,1,2,0,Brand
+4 Competitor practice or doctor name,dr alan macgill boca raton,4.93,1,1,0,Doctor
+4 Competitor practice or doctor name,dr garrett stuart fl,4.88,1,4,0,Doctor
+4 Competitor practice or doctor name,dr husted stuart fl,4.86,1,1,0,Doctor
+4 Competitor practice or doctor name,south florida foot and ankle royal palm beach,4.56,2,2,0,Brand;Doctor
+4 Competitor practice or doctor name,dr charisse dunn,4.55,2,2,0,Clinic
+4 Competitor practice or doctor name,dr veronica pedro,4.52,2,1,0,Doctor
+4 Competitor practice or doctor name,dr brett fried podiatrist,4.5,2,4,0,Clinic
+4 Competitor practice or doctor name,dr cutler podiatrist,4.38,1,3,0,Brand
+4 Competitor practice or doctor name,dr boyes,4.32,1,2,0,Clinic
+4 Competitor practice or doctor name,dr bradley lamm west palm beach,4.24,1,1,0,Bunion Boss | Snowbirds
+4 Competitor practice or doctor name,dr abeyewardene,3.95,1,2,0,Doctor
+4 Competitor practice or doctor name,dr shoppe stuart fl,3.86,1,1,0,Doctor
+4 Competitor practice or doctor name,dr mamun al rashid,3.8,1,1,0,Doctor
+4 Competitor practice or doctor name,dr schoenhaus podiatrist,3.75,1,2,0,Brand
+4 Competitor practice or doctor name,dr gerszberg palm beach,3.65,1,1,0,Doctor
+4 Competitor practice or doctor name,dr anthony romano,3.57,1,1,0,Doctor
+4 Competitor practice or doctor name,dr taylor bergstrom,3.52,1,2,0,Doctor
+4 Competitor practice or doctor name,dr steven lashley,3.24,2,1,0,Doctor
+4 Competitor practice or doctor name,dr andrew noble palm beach gardens,3.21,1,2,0,Doctor
+4 Competitor practice or doctor name,dr elgut,3.18,1,2,0,Clinic
+4 Competitor practice or doctor name,advanced foot and ankle specialists,3.11,1,2,0,Clinic
+4 Competitor practice or doctor name,dr conti podiatrist,3.08,1,1,0,Clinic
+4 Competitor practice or doctor name,dr palmer podiatrist,3.07,1,2,0,Clinic
+4 Competitor practice or doctor name,dr virginio vena,3.02,1,1,0,Brand
+4 Competitor practice or doctor name,dr elgut podiatry,2.92,2,2,0,Brand
+4 Competitor practice or doctor name,dr christopher boyes jupiter,2.91,1,2,0,Clinic
+4 Competitor practice or doctor name,dr slater podiatrist,2.89,1,2,0,Brand
+4 Competitor practice or doctor name,dr sebag port st lucie,2.85,1,1,0,Doctor
+4 Competitor practice or doctor name,dr nguyen foot doctor,2.74,1,1,0,Clinic
+4 Competitor practice or doctor name,juan sardina dpm,2.65,1,2,0,Clinic
+4 Competitor practice or doctor name,advanced foot and ankle specialist,2.62,1,3,0,Brand
+4 Competitor practice or doctor name,advanced foot & ankle specialists pa dr john thomas mccain dpm,2.58,2,3,0,Brand;Clinic
+4 Competitor practice or doctor name,dr daly foot doctor,2.58,1,3,0,Brand
+4 Competitor practice or doctor name,dr andrew noble,2.52,1,1,0,Doctor
+4 Competitor practice or doctor name,dr sapenoff,2.52,1,1,0,Brand
+4 Competitor practice or doctor name,dr fishman jupiter fl,2.47,1,1,0,Clinic
+4 Competitor practice or doctor name,dr clancy podiatrist,2.47,1,3,0,Doctor
+4 Competitor practice or doctor name,dr brody medical vein center,2.42,1,1,0,Treatment
+4 Competitor practice or doctor name,dr steinlauf university of miami,2.31,1,2,0,Doctor
+4 Competitor practice or doctor name,dr urooj,2.31,1,1,0,Doctor
+4 Competitor practice or doctor name,dr anthony lee boca raton,2.28,1,2,0,Clinic
+4 Competitor practice or doctor name,dr patel foot doctor,2.27,1,2,0,Clinic
+4 Competitor practice or doctor name,dr levy podiatrist,2.15,1,2,0,Brand
+4 Competitor practice or doctor name,daly podiatrist,2.1,1,1,0,Brand
+4 Competitor practice or doctor name,dr greenblatt podiatrist,1.88,1,2,0,Doctor
+4 Competitor practice or doctor name,dr daniel elgut,1.87,1,5,0,Doctor
+4 Competitor practice or doctor name,dr dina hansen mccoy,1.86,1,1,0,Clinic
+4 Competitor practice or doctor name,dr pham podiatrist,1.38,1,1,1,Brand
+4 Competitor practice or doctor name,dr lerner podiatrist,1.38,1,2,0,Brand
+4 Competitor practice or doctor name,dr orlando podiatrist,1.37,1,1,0,Doctor
+4 Competitor practice or doctor name,dr iannacone podiatrist,1.05,1,2,0,Doctor
+4 Competitor practice or doctor name,dr machado podiatrist,0.94,1,1,0,Doctor
+4 Competitor practice or doctor name,joshua daly dpm,0.41,1,1,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical center,885.5,107,368,17,Brand;Clinic
+5 Hospital / unrelated clinic,jupiter medical center jupiter fl,57.6,3,2,2,Doctor
+5 Hospital / unrelated clinic,jupiter medical center phone number,53.24,4,5,3,Clinic
+5 Hospital / unrelated clinic,la medical jupiter fl,47.07,3,4,1,Doctor
+5 Hospital / unrelated clinic,my care medical jupiter,47.01,8,11,0,Clinic;Doctor
+5 Hospital / unrelated clinic,la medical jupiter,40.67,6,6,0,Clinic;Doctor
+5 Hospital / unrelated clinic,mycare medical jupiter,34.8,5,6,0,Doctor
+5 Hospital / unrelated clinic,jfk hospital atlantis,33.19,2,5,1,Doctor
+5 Hospital / unrelated clinic,cano health jupiter florida,30.82,1,2,0,Clinic
+5 Hospital / unrelated clinic,good samaritan hospital west palm beach,28.62,2,3,1,Clinic;Doctor
+5 Hospital / unrelated clinic,my clinic jupiter,28.25,3,4,1,Brand;Doctor
+5 Hospital / unrelated clinic,palm beach garden hospital,27.8,2,3,1,Brand;Clinic
+5 Hospital / unrelated clinic,conviva care center,25.73,2,1,1,Doctor
+5 Hospital / unrelated clinic,hhs hospital,23.35,2,2,1,Doctor
+5 Hospital / unrelated clinic,conviva military trail,23.29,2,1,1,Doctor
+5 Hospital / unrelated clinic,cleveland clinic kanner highway,22.68,2,3,1,Doctor
+5 Hospital / unrelated clinic,jupiter medical center in jupiter florida,22.31,3,6,1,Doctor
+5 Hospital / unrelated clinic,jfk hospital lake worth,22.29,1,2,0,Doctor
+5 Hospital / unrelated clinic,mount sinai jupiter,20.04,2,3,1,Doctor
+5 Hospital / unrelated clinic,jupiter medical center jupiter florida,17.56,2,5,0,Clinic;Doctor
+5 Hospital / unrelated clinic,good sam hospital,16.9,1,2,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical center physical therapy phone number,16.34,2,4,1,Clinic;Doctor
+5 Hospital / unrelated clinic,mycare medical jupiter florida,16.34,1,2,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical physical therapy,15.82,1,1,1,Brand
+5 Hospital / unrelated clinic,good samaritan west palm beach,15.3,1,1,0,Brand
+5 Hospital / unrelated clinic,dr brandt jupiter medical center,14.99,1,1,0,Brand
+5 Hospital / unrelated clinic,jupiter medical center hospital,13.3,1,2,1.5,Brand
+5 Hospital / unrelated clinic,my care medical group jupiter,12.96,1,1,0,Doctor
+5 Hospital / unrelated clinic,cleveland clinic stuart,12.75,1,1,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical,12.54,1,1,1,Clinic
+5 Hospital / unrelated clinic,jupiter medical center stuart florida,12.38,1,1,1,Doctor
+5 Hospital / unrelated clinic,good samaritan medical center west palm beach florida,12.15,1,1,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical center florida,11.47,1,2,1,Doctor
+5 Hospital / unrelated clinic,jupiter hospital medical center,10.98,1,2,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical center jupiter,10.69,1,2,0,Doctor
+5 Hospital / unrelated clinic,jfk hospital in lake worth,9.86,1,1,1,Doctor
+5 Hospital / unrelated clinic,good samaritan medical center west palm beach,9.75,1,1,1.0,Brand
+5 Hospital / unrelated clinic,jupiter medical center palm beach gardens,9.69,1,1,0,Doctor
+5 Hospital / unrelated clinic,wellington regional hospital,9.02,1,1,0,Doctor
+5 Hospital / unrelated clinic,cleveland clinic hospital west palm beach,7.85,1,1,0,Doctor
+5 Hospital / unrelated clinic,jupiter florida hospital,7.65,1,1,0,Clinic
+5 Hospital / unrelated clinic,jupiter medical center directory,7.2,1,2,1.5,Brand
+5 Hospital / unrelated clinic,jupiter west medical center,6.62,1,1,0,Brand
+5 Hospital / unrelated clinic,jupiter health center health care district pbc,6.51,1,2,0,Doctor
+5 Hospital / unrelated clinic,evolve health,5.88,1,1,0,Brand
+5 Hospital / unrelated clinic,jupiter medical center phone,4.96,2,1,1,Clinic
+5 Hospital / unrelated clinic,jupiter medical center scheduling,4.88,1,1,0,Doctor
+5 Hospital / unrelated clinic,cleveland clinic kanner highway stuart florida,4.32,1,1,0,Doctor
+5 Hospital / unrelated clinic,la medical associates palm beach gardens,4.17,1,2,1,Brand
+5 Hospital / unrelated clinic,la medical associates west palm beach,4.08,1,1,0,Clinic
+5 Hospital / unrelated clinic,orthopedic urgent care wellington,3.95,1,3,0,Doctor
+5 Hospital / unrelated clinic,sanitas medical center,3.69,1,1,0,Doctor
+5 Hospital / unrelated clinic,la medical,3.42,1,1,0,Doctor
+5 Hospital / unrelated clinic,cleveland clinic jupiter,3.38,1,1,0,Brand
+5 Hospital / unrelated clinic,wellington hospital florida,3.19,1,2,0,Doctor
+5 Hospital / unrelated clinic,integrated medical center jupiter,3.12,1,1,0,Doctor
+5 Hospital / unrelated clinic,orthopedic urgent care west palm beach,2.73,1,1,0,Doctor
+5 Hospital / unrelated clinic,evolve health jupiter,2.45,1,1,0,Doctor
+5 Hospital / unrelated clinic,jupiter medical center south old dixie highway jupiter fl,1.79,1,1,0,Clinic
+5 Hospital / unrelated clinic,services offered by jupiter medical center,1.52,1,1,0,Doctor
+5 Hospital / unrelated clinic,conviva care center jupiter,1.38,1,1,0,Clinic
+5 Hospital / unrelated clinic,jupiter medical center near me,0.92,1,2,0,Clinic
+6 Physical therapy,bend physical therapy jupiter,31.17,3,5,0,Brand;Clinic;Doctor
+6 Physical therapy,gold coast physical therapy jupiter,30.94,2,3,1,Clinic;Doctor
+6 Physical therapy,action physical therapy,27.19,1,2,1,Doctor
+6 Physical therapy,gold coast physical therapy boynton beach,25.62,1,1,1,Doctor
+6 Physical therapy,saylor physical therapy jupiter,20.98,3,6,1,Doctor
+6 Physical therapy,bend physical therapy palm beach gardens,20.07,1,1,1,Clinic
+6 Physical therapy,action physical therapy west palm beach,19.36,2,1,0,Doctor
+6 Physical therapy,saylor pt jupiter,13.02,1,1,1,Doctor
+6 Physical therapy,life motion physical therapy jupiter,6.28,1,1,0,Clinic
+6 Physical therapy,elite physical therapy jupiter,5.94,1,1,0,Doctor
+6 Physical therapy,barwis physical therapy jupiter,3.29,1,1,0,Clinic
+7 Orthopedics / other specialty,paley institute jupiter,53.83,3,6,2,Doctor
+7 Orthopedics / other specialty,pboi,50.76,2,2,1,Doctor
+7 Orthopedics / other specialty,orthopedic doctors west palm beach,32.15,2,1,0,Doctor
+7 Orthopedics / other specialty,dr avino orthopedic surgeon,27.51,4,3,1,Clinic;Doctor
+7 Orthopedics / other specialty,walk in orthopedic near me,21.54,1,1,1,Doctor
+7 Orthopedics / other specialty,southflaortho,19.05,1,1,1,Doctor
+7 Orthopedics / other specialty,palm beach orthopedics jupiter florida,17.49,1,1,0,Doctor
+7 Orthopedics / other specialty,orthopedic stuart fl,16.99,1,1,1,Doctor
+7 Orthopedics / other specialty,orthopedic west palm beach,16.58,2,4,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedic group,16.58,1,1,1,Doctor
+7 Orthopedics / other specialty,palm beach orthopedics,14.66,2,4,1,Doctor
+7 Orthopedics / other specialty,dr randazzo orthopedic surgeon,14.58,2,4,1,Clinic
+7 Orthopedics / other specialty,pboi jupiter,13.72,3,5,0,Brand
+7 Orthopedics / other specialty,palm beach orthopedic institute palm beach gardens,13.35,2,2,0,Brand;Clinic
+7 Orthopedics / other specialty,center for bone & joint surgery wellington,11.92,1,1,1,Doctor
+7 Orthopedics / other specialty,dr panchal ortho,10.66,1,2,1,Brand
+7 Orthopedics / other specialty,center for bone and joint royal palm beach,9.96,2,1,0,Doctor
+7 Orthopedics / other specialty,matthew harris orthopedic jupiter,8.94,1,3,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedic institute doctors,8.13,1,2,0,Doctor
+7 Orthopedics / other specialty,dr lugo coastal orthopedics,7.7,1,6,0,Doctor
+7 Orthopedics / other specialty,dr hamm vascular surgeon,6.96,2,1,0,Clinic
+7 Orthopedics / other specialty,orthopedic doctors near me,6.06,1,3,0,Doctor
+7 Orthopedics / other specialty,kyle petersen m d palm beach orthopaedic institute west palm beach flagler dr at gsmc,5.91,1,1,0,Doctor
+7 Orthopedics / other specialty,dr hinson orthopedic surgeon,5.85,1,2,0,Doctor
+7 Orthopedics / other specialty,pboi palm beach gardens,4.78,1,2,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedics institute,4.29,1,3,0,Doctor
+7 Orthopedics / other specialty,dr ricotta vascular surgeon,3.86,1,2,0,Clinic
+7 Orthopedics / other specialty,dr andrew schneider orthopedic surgeon,3.58,1,1,0,Doctor
+7 Orthopedics / other specialty,dr lall vascular surgeon,3.38,2,4,0,Clinic
+7 Orthopedics / other specialty,best orthopedic doctor near me,3.32,1,2,0,Doctor
+7 Orthopedics / other specialty,the best vascular surgeon near me,3.29,1,1,0,Treatment
+7 Orthopedics / other specialty,dr noble orthopedic,3.27,1,1,0,Clinic
+7 Orthopedics / other specialty,dr tapper vascular surgeon,3.26,1,2,0,Doctor
+7 Orthopedics / other specialty,center for bone and joint surgery of palm beaches,3.2,1,1,0,Doctor
+7 Orthopedics / other specialty,center for bone and joint wellington,3.02,1,2,0,Doctor
+7 Orthopedics / other specialty,jupiter orthopedics,2.84,1,2,0,Doctor
+7 Orthopedics / other specialty,paley orthopedic and spine institute jupiter,2.75,1,2,0,Doctor
+7 Orthopedics / other specialty,dr press orthopedic boynton beach,2.72,1,4,0,Doctor
+7 Orthopedics / other specialty,dr noble palm beach orthopedics,2.6,1,2,0,Doctor
+7 Orthopedics / other specialty,dr noble orthopedic surgeon,2.29,1,1,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedic institute southern boulevard,2.28,1,1,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedic,2.04,1,1,0,Doctor
+7 Orthopedics / other specialty,vascular surgeon jupiter fl,2.04,1,3,0,Treatment
+7 Orthopedics / other specialty,vascular surgeon jupiter,1.86,1,1,0,Treatment
+7 Orthopedics / other specialty,pboi southern,1.76,1,1,0,Doctor
+7 Orthopedics / other specialty,paley orthopedic & spine institute west palm beach fl,1.74,1,2,0,Doctor
+7 Orthopedics / other specialty,dr steven saslow orthopedic,1.53,1,1,0,Doctor
+7 Orthopedics / other specialty,palm beach orthopedic jupiter florida,1.16,1,1,0,Doctor
+8 Other,onychomycosis treatment,5.24,2,1,0,Treatment
+8 Other,clinica para varices near me,5.05,1,1,0,Clinic
+8 Other,jupiter health care,4.8,1,2,0,Doctor
+8 Other,vascular doctor near me,4.8,2,10,0,Clinic
+8 Other,300 palm beach lakes blvd west palm beach fl 33401,4.63,1,2,0,Doctor
+8 Other,how to treat athlete's foot,4.58,2,2,0,Treatment
+8 Other,scott strolla,4.46,1,2,0,Doctor
+8 Other,exercise for ankle tendonitis,4.24,2,1,0,Treatment
+8 Other,wellington regional outpatient surgery center,3.82,1,2,0,Doctor
+8 Other,christopher w boyes md facs palm beach gardens,3.77,1,4,0,Clinic
+8 Other,peroneal tendonitis treatment,3.48,1,1,0,Treatment
+8 Other,onychomycosis repair,3.36,1,1,0,Treatment
+8 Other,what causes my foot to swell,3.3,1,2,0,Treatment
+8 Other,why would your feet swell,3.29,1,1,0,Treatment
+8 Other,podologos cerca de mi,3.24,1,2,0,Clinic
+8 Other,sclerotherapy near me,3.16,1,1,0,Treatment
+8 Other,tendonitis ankle,2.99,1,2,0,Treatment
+8 Other,2055 military trail suite 200 jupiter fl 33458,2.97,1,2,0,Doctor
+8 Other,torn ligament in big toe treatment,2.89,1,1,0,Treatment
+8 Other,best treatment for athlete's foot,2.86,1,1,0,Treatment
+8 Other,afk sports clinic,2.74,1,1,0,Clinic
+8 Other,210 s dixie hwy suite 4 lake worth fl 33460,2.68,2,2,0,Doctor
+8 Other,what doctor to see for poor leg circulation,2.67,2,2,0,Treatment
+8 Other,custom shoe insert,2.64,1,1,0,Treatment
+8 Other,athlete's foot treatment,2.61,1,1,0,Treatment
+8 Other,vascular doctor,2.6,1,1,0,Treatment
+8 Other,why does my feet swell up,2.48,1,1,0,Treatment
+8 Other,quiropedia cerca de mi,2.47,1,2,0,Clinic
+8 Other,foot surgeons near me,2.23,1,4,0,Doctor
+8 Other,ankle ligament surgery,2.18,1,1,0,Treatment
+8 Other,vascular doctors near me,2.1,1,2,0.5,Doctor
+8 Other,fungal infection on feet cure,2.04,1,1,0,Treatment
+8 Other,treatment for dvt in foot,1.92,1,1,0,Treatment
+8 Other,physiotherapy near me,1.92,1,1,0,Brand
+8 Other,antifungal pedicure near me,1.91,1,3,0,Brand
+8 Other,spencer stringham,1.9,1,2,0,Doctor
+8 Other,inframalleolar posterior tibial tendon,1.84,1,2,0,Treatment
+8 Other,fluid in feet and ankles,1.77,1,1,0,Treatment
+8 Other,radu purtuc,1.6,1,1,0,Clinic
+8 Other,palm beach sports medicine jupiter,1.54,1,1,0,Doctor
+8 Other,david rondon md,1.47,1,1,0,Doctor
+8 Other,charisse dunn,1.31,1,1,0,Brand
+8 Other,medical pedicure,1.3,1,3,0,Doctor
+8 Other,podología cerca de mi,1.05,1,1,0,Clinic
+8 Other,strongest antifungal cream,1.02,1,1,0,Treatment
+8 Other,fungal disease treatment,0.75,1,1,0,Treatment
+8 Other,peroneal tendonitis stretches and exercises,0.68,1,1,0,Treatment
+8 Other,shoe lifts for shorter leg,0.66,1,1,0,Treatment
+8 Other,brevis tendon pain,0.62,1,2,0,Treatment
+8 Other,planters fasciitis shot,0.56,1,2,0,Treatment
+8 Other,medical pedicure west palm beach,0.46,1,1,0,Doctor

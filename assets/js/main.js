@@ -383,22 +383,30 @@
      Anything caught by 3 gets a real, visible validation error, because
      a legitimate patient can genuinely mistype a phone number.
      ------------------------------------------------------------------ */
-  var form = $("#contact-form");
-  if (form) {
-    var formLoadedAt = Date.now();
-    var SPAM_PATTERNS = /\b(seo|backlink|guest post|link building|bitcoin|crypto|coinbase|nft|dropshipping|web design services|social media (marketing|services)|virtual assistant|va services)\b|https?:\/\/|www\./i;
+  var SPAM_PATTERNS = /\b(seo|backlink|guest post|link building|bitcoin|crypto|coinbase|nft|dropshipping|web design services|social media (marketing|services)|virtual assistant|va services)\b|https?:\/\/|www\./i;
 
-    function isValidUsPhone(raw) {
-      var digits = (raw || "").replace(/\D/g, "");
-      if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
-      if (digits.length !== 10) return false;
-      var areaCode = digits.slice(0, 3);
-      var exchange = digits.slice(3, 6);
-      // Reject the FCC-reserved fictional block (555-0100–0199) and codes that can't start with 0/1.
-      if (areaCode.charAt(0) === "0" || areaCode.charAt(0) === "1") return false;
-      if (exchange === "555" && digits.slice(6, 8) === "01") return false;
-      return true;
-    }
+  function isValidUsPhone(raw) {
+    var digits = (raw || "").replace(/\D/g, "");
+    if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
+    if (digits.length !== 10) return false;
+    var areaCode = digits.slice(0, 3);
+    var exchange = digits.slice(3, 6);
+    // Reject the FCC-reserved fictional block (555-0100–0199) and codes that can't start with 0/1.
+    if (areaCode.charAt(0) === "0" || areaCode.charAt(0) === "1") return false;
+    if (exchange === "555" && digits.slice(6, 8) === "01") return false;
+    return true;
+  }
+
+  // The contact form and the event RSVP form share every layer above. Each
+  // form can override its success copy (data-success) and the analytics
+  // event it fires (data-event); the defaults are the contact form's.
+  function guardForm(form) {
+    var formLoadedAt = Date.now();
+    var btn = $('button[type="submit"]', form);
+    var btnLabel = btn.textContent;
+    var successMsg = form.getAttribute("data-success") ||
+      "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+    var eventName = form.getAttribute("data-event") || "contact_form_submit";
 
     function looksLikeSpam(data) {
       if ((data.get("_honey") || "").trim() !== "") return true;
@@ -409,12 +417,11 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var status = $("#form-status");
+      var status = $("#form-status", form);
       var action = form.getAttribute("action") || "";
-      var btn = $('button[type="submit"]', form);
       var data = new FormData(form);
 
-      var phoneField = $("#f-phone", form);
+      var phoneField = $('input[type="tel"]', form);
       if (!isValidUsPhone(data.get("phone"))) {
         status.className = "form-status err";
         status.textContent = "That phone number doesn't look complete — please double-check it (10 digits, US format) so we can call you back.";
@@ -422,10 +429,27 @@
         return;
       }
 
+      // Native required/type checks, run only after the phone check so that
+      // field keeps its friendlier message. Covers the RSVP form's required
+      // email, which the confirmation email depends on.
+      var invalid = $$("input, select, textarea", form).filter(function (el) {
+        return el.willValidate && !el.checkValidity();
+      })[0];
+      if (invalid) {
+        var label = form.querySelector('label[for="' + invalid.id + '"]');
+        var fieldName = label ? label.textContent.replace(/\s*\*$/, "").toLowerCase() : "highlighted";
+        status.className = "form-status err";
+        status.textContent = invalid.validity.typeMismatch
+          ? "That " + fieldName + " doesn't look quite right. Please double-check it."
+          : "Please fill in the " + fieldName + " field so we can reach you.";
+        invalid.focus();
+        return;
+      }
+
       if (looksLikeSpam(data)) {
         // Fake success: don't send, and don't tip off whatever sent this.
         status.className = "form-status ok";
-        status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+        status.textContent = successMsg;
         form.reset();
         return;
       }
@@ -439,9 +463,9 @@
       }).then(function (r) {
         if (r.ok) {
           status.className = "form-status ok";
-          status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
+          status.textContent = successMsg;
           form.reset();
-          track("contact_form_submit", { path: window.location.pathname });
+          track(eventName, { path: window.location.pathname });
         } else {
           throw new Error("bad status");
         }
@@ -450,9 +474,28 @@
         status.textContent = "Something went wrong sending your request. Please call us at (561) 915-1934 and we'll take care of you.";
       }).finally(function () {
         btn.disabled = false;
-        btn.textContent = "Request Appointment";
+        btn.textContent = btnLabel;
       });
     });
+  }
+
+  var form = $("#contact-form");
+  if (form) guardForm(form);
+
+  /* ------------------------------------------------------------------
+     Event RSVP: record which link the guest arrived on (?src=card,
+     ?src=blast1, ?utm_source=facebook ...) so every RSVP carries its
+     source even when the guest skips "How did you hear about this?".
+     ------------------------------------------------------------------ */
+  var rsvp = $("#rsvp-form");
+  if (rsvp) {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var srcTag = params.get("src") || params.get("utm_source") || "";
+      var srcField = $('input[name="src"]', rsvp);
+      if (srcField) srcField.value = srcTag.slice(0, 40) || "direct";
+    } catch (e) {}
+    guardForm(rsvp);
   }
 
   /* ------------------------------------------------------------------

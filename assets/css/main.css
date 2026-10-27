@@ -1148,6 +1148,10 @@ details.faq.hidden { display: none; }
   box-shadow: 0 0 0 4px rgba(232, 199, 120, 0.16);
 }
 .field textarea { min-height: 130px; resize: vertical; }
+/* Consent checkbox: sits beside its label instead of stretching like a text input. */
+.field.field-check { flex-direction: row; align-items: flex-start; gap: 0.7rem; }
+.field.field-check input { width: 1.2rem; height: 1.2rem; padding: 0; margin: 0.15rem 0 0; flex: none; accent-color: var(--cyan); }
+.field.field-check label { font-family: inherit; font-weight: 400; font-size: 0.88rem; color: var(--text-soft); }
 .form-note { font-size: 0.84rem; color: var(--text-soft); }
 .form-status { display: none; padding: 1em 1.3em; border-radius: 12px; font-weight: 500; margin-top: 1rem; }
 .form-status.ok { display: block; background: #e7f8f1; color: #0c6b4c; border: 1px solid #b5e6d3; }

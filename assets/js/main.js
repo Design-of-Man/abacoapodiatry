@@ -535,7 +535,7 @@
       btn.textContent = "Sending…";
       var payload = {};
       new FormData(rsvp).forEach(function (v, k) { payload[k] = v; });
-      payload._subject = "New RSVP: Feb 15 evening talk (from website)";
+      payload._subject = "New RSVP: Nov 16 evening talk (from website)";
       payload.verified = "yes";
       var flags = [];
       if ((Date.now() - pageLoadedAt) / 1000 < 4) flags.push("filled in under 4s");
@@ -553,7 +553,7 @@
       }).then(function (data) {
         if (!(data && String(data.success).toLowerCase() === "true")) throw new Error("not delivered");
         status.className = "form-status ok";
-        status.textContent = "You're on the list! A confirmation is on its way to your email. See you Monday, February 15 at 5:00 PM.";
+        status.textContent = "You're on the list! A confirmation is on its way to your email. See you Monday, November 16 at 5:00 PM.";
         track("form_submit", { form: "rsvp" });
         rsvp.reset();
       }).catch(function () {

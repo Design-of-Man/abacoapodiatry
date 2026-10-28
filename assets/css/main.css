@@ -1617,7 +1617,7 @@ details.faq.hidden { display: none; }
    a stacked serif headline whose last line burns gold to ember, letter-spaced
    ember labels, ember-outlined boxes, and the red-to-gold date band.
    -------------------------------------------------------------------------- */
-.flyer, .flyer-topics, .flyer-boxes, #rsvp, .flyer-end {
+.flyer, .flyer-topics, #rsvp, .flyer-end {
   --ember: #e96e32;
   --ember-deep: #c63d2a;
   --ember-gold: #f3c35e;

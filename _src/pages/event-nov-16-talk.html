@@ -156,16 +156,22 @@ META-->
             <span class="flyer-label">Seating is limited</span>
             <h2>Save your seat</h2>
             <p>It takes a minute. We'll email you a confirmation right away, and a reminder before the night.</p>
-              <!-- FormSubmit, with the contact form's exact action URL and _cc list.
-                   Reusing the already-activated primary address is deliberate: a new
-                   address in the action URL needs its own activation click, and until
-                   someone clicks it every RSVP is accepted and silently dropped (see
-                   CLAUDE.md). _autoresponse emails the guest a confirmation. "src" is
-                   filled from ?src= (or ?utm_source=) on the link they came in on, so
-                   each printed card, blast and ad carries its own tag; see
-                   EVENT-NOV-16-TALK.md. No novalidate: the browser enforces the
-                   required email the confirmation depends on. -->
-              <form id="rsvp-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST">
+              <!-- FormSubmit's STANDARD endpoint (not /ajax/), on purpose: FormSubmit
+                   only sends the _autoresponse confirmation to the guest for normal
+                   form posts with its captcha left on. Its docs: autoresponse "won't
+                   work with forms that are disabled reCAPTCHA and forms that are
+                   submitting through AJAX" -- confirmed by a live test on 2026-10-28,
+                   where the AJAX version delivered to the office but sent the guest
+                   nothing. So the guest passes FormSubmit's "I'm not a robot" page and
+                   lands on _next (/rsvp/thanks/). Don't add _captcha=false, and don't
+                   move this back to /ajax/, or the confirmation email stops.
+                   Same primary address and _cc list as the contact form, so there is
+                   no new activation (see CLAUDE.md). "src" is filled from ?src= (or
+                   ?utm_source=) on the link they came in on; see EVENT-NOV-16-TALK.md.
+                   No novalidate: the browser enforces the required email the
+                   confirmation goes to. -->
+              <form id="rsvp-form" action="https://formsubmit.co/angela.d@jupiterlaser.com" method="POST">
+                <input type="hidden" name="_next" value="https://jupiterlaser.com/rsvp/thanks/">
                 <input type="hidden" name="_subject" value="New RSVP: Nov 16 evening talk">
                 <input type="hidden" name="verified" value="">
                 <input type="hidden" name="flags" value="">
@@ -217,7 +223,7 @@ META-->
                 </div>
                 <p class="form-note" style="margin:0.9rem 0">Please don't include medical details here. We'll only use this to confirm your seat and remind you about the event.</p>
                 <button class="btn btn-primary btn-lg" type="submit">Save My Seat</button>
-                <div id="rsvp-status" class="form-status" role="status" aria-live="polite"></div>
+                <p class="form-note" style="margin:0.9rem 0 0">Next you'll see a quick &ldquo;I&rsquo;m not a robot&rdquo; check, then your confirmation.</p>
               </form>
           </div>
         </div>

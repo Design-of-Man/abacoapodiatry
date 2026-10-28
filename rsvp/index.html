@@ -459,15 +459,16 @@
           <div class="rsvp-card" data-reveal style="--rd:0.08s">
             <span class="flyer-label">Seating is limited</span>
             <h2>Save your seat</h2>
-            <p>It takes a minute. Our team will confirm your seat by text or phone, and remind you before the night.</p>
+            <p>It takes a minute. We'll email you a confirmation right away, and remind you before the night.</p>
               <!-- FormSubmit, with the contact form's exact action URL and _cc list.
                    Reusing the already-activated primary address is deliberate: a new
                    address in the action URL needs its own activation click, and until
                    someone clicks it every RSVP is accepted and silently dropped (see
-                   CLAUDE.md). No guest confirmation email: FormSubmit's _autoresponse
-                   does not work over AJAX (its docs, and a live test on 2026-10-28),
-                   and its standard endpoint needs a separate activation, so the office
-                   confirms each RSVP by text or phone instead. "src" is
+                   CLAUDE.md). The office copy comes from FormSubmit as before; the
+                   guest's confirmation email comes from api/rsvp-confirm.js (Resend),
+                   which main.js calls only after FormSubmit confirms the office copy.
+                   FormSubmit's own _autoresponse does not work over AJAX (its docs,
+                   and a live test on 2026-10-28), so don't add it back here. "src" is
                    filled from ?src= (or ?utm_source=) on the link they came in on, so
                    each printed card, blast and ad carries its own tag; see
                    EVENT-NOV-16-TALK.md. No novalidate: the browser enforces the
@@ -777,7 +778,7 @@
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script src="/_vercel/insights/script.js" defer></script>
 
-  <script src="/assets/js/main.js?v=67c9f898ca" defer></script>
+  <script src="/assets/js/main.js?v=007e7ca674" defer></script>
   <!-- Prerender the page a visitor is about to open, so the second pageview
        costs roughly nothing. Deliberately "conservative" (starts on pointerdown)
        rather than "moderate" (starts after ~200ms hover): a prerender runs the

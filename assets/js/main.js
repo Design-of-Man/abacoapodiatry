@@ -551,10 +551,26 @@
         return r.json();
       }).then(function (data) {
         if (!(data && String(data.success).toLowerCase() === "true")) throw new Error("not delivered");
-        status.className = "form-status ok";
-        status.textContent = "You're on the list! Our team will confirm your seat by text or phone. See you Monday, November 16 at 5:00 PM.";
+        // The office has the RSVP. Now email the guest their confirmation
+        // (api/rsvp-confirm.js, via Resend). Only after FormSubmit succeeded,
+        // so nobody is told they're registered for an RSVP the office never
+        // got. If the confirmation fails, the RSVP still stands: the message
+        // just falls back to the office confirming by text or phone.
         track("form_submit", { form: "rsvp" });
         rsvp.reset();
+        return fetch("/api/rsvp-confirm/", {
+          method: "POST",
+          body: JSON.stringify({ name: payload.name, email: payload.email, seats: payload.seats, _honey: payload._honey }),
+          headers: { "Content-Type": "application/json", Accept: "application/json" }
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .catch(function () { return null; })
+          .then(function (c) {
+            var emailed = c && String(c.success).toLowerCase() === "true";
+            status.className = "form-status ok";
+            status.textContent = emailed
+              ? "You're on the list! A confirmation is on its way to your email. See you Monday, November 16 at 5:00 PM."
+              : "You're on the list! Our team will confirm your seat by text or phone. See you Monday, November 16 at 5:00 PM.";
+          });
       }).catch(function () {
         status.className = "form-status err";
         status.textContent = "Something went wrong saving your seat. Please call us at (561) 915-1934 and we'll put your name down.";

@@ -11,8 +11,8 @@ The date moved from Feb 15, 2027 to Nov 16, 2026. Anything still saying February
 ## What the page does
 
 - RSVP form: name, cell, email, topic of interest, seats (1 or 2), "how did you hear about this," and an optional text-reminder consent box.
-- Submissions go through FormSubmit to the same recipients as the contact form (angela.d@ primary, with Janice, Patricia, both doctors and Nick on CC). It reuses the contact form's exact action URL, so no new FormSubmit activation is needed. Like the contact form, spam is labelled in the email (`verified`, `flags`), never blocked.
-- **No automatic confirmation email.** Janice confirms each new RSVP by text or phone the same business day (the page tells guests to expect that). Why: FormSubmit's `_autoresponse` doesn't work for AJAX forms like this one (its docs; live test Oct 28: the RSVP reached the office, the guest got nothing). Its standard, non-AJAX endpoint does send it, but FormSubmit treats that as a new form needing activation: a test on Oct 28 sent an "Activate Form" email to angela.d@jupiterlaser.com and held the RSVP. To turn confirmations on later: have Angela click that link, re-test from a preview, and only then switch the form (PR #95 has the code).
+- Submissions go through FormSubmit's standard endpoint. **Primary recipient: Nick's Gmail**, with Angela, Janice, Patricia and both doctors on CC (CC needs no activation). Nick is primary so he can click FormSubmit's one-time activation link himself; with angela.d@ as primary the link went to Angela (Oct 28). Spam is labelled in the email (`verified`, `flags`), never blocked.
+- **Confirmation email.** FormSubmit's `_autoresponse` emails the guest the date, time, address and "call if you can't make it." It only works on the standard (non-AJAX) endpoint with the robot check on, so after "Save My Seat" the guest sees FormSubmit's "I'm not a robot" page, then lands on `/rsvp/thanks/` (add-to-calendar buttons). The lead is counted in analytics there.
 - **Confirmation text is not automatic.** A static page can't send texts. See "Texting" below.
 - Every RSVP records the link it came from (`src` in the email), so each source can be counted even when the guest skips the "how did you hear" question.
 - **Calls are already tracked.** CallRail's number swap runs on every page, this one included, so calls from `/rsvp/` show up in CallRail with `/rsvp/` as the landing page.
@@ -21,7 +21,8 @@ The date moved from Feb 15, 2027 to Nov 16, 2026. Anything still saying February
 
 - [ ] **Today (Wed Oct 28):** get PR #94 reviewed and merged. The page and the QR codes only work once it's on `main`. HotWorx is tomorrow.
 - [ ] **Today:** create one static CallRail number for print (cards and flyer) and send it to Rosie, so phone RSVPs from paper are counted. Don't hard-code it into the page. If it can't be done by Thursday, print the office number and rely on "how did you hear."
-- [x] Live test Oct 28 ("TEST - Nick, please ignore"): reached the office with every field. No guest email, by design now (see above).
+- [x] Live test Oct 28 (AJAX version): reached the office with every field; no guest email, which is why the form moved to the standard endpoint.
+- [ ] **Activation + test (before merge):** submit a test RSVP on the preview, click FormSubmit's "Activate Form" email in Nick's Gmail, submit again, and confirm the office email AND the guest confirmation arrive. Repeat once on the live page right after merge, in case FormSubmit asks to activate the live address too.
 - [ ] **Thu Oct 29:** send Rosie and Janice their tagged links and QR codes (below).
 - [ ] **Tue Nov 17:** take the page down. Add `/rsvp/` to `_src/redirect-map.tsv` pointing at `/services/vein-treatment/` (or a future events page), delete the page source, rebuild.
 
@@ -111,10 +112,10 @@ The plan asks for an automatic confirmation text by Friday. That depends on one 
 
 > Hi Dr. Cedeño,
 >
-> The RSVP page is built with the November 16 date: name, cell, email, topic, number of seats, and "how did you hear about this." Each sign-up reaches the office right away (Janice confirms by text or phone), and every RSVP records which link it came from (patient blast, card, flyer, ad, HotWorx, Chamber), so we'll see what worked. It's live at jupiterlaser.com/rsvp, so the QR code works at HotWorx tomorrow. A few questions and conflicts:
+> The RSVP page is built with the November 16 date: name, cell, email, topic, number of seats, and "how did you hear about this." Each sign-up gets a confirmation email after a quick "I'm not a robot" check, and every RSVP records which link it came from (patient blast, card, flyer, ad, HotWorx, Chamber), so we'll see what worked. It's live at jupiterlaser.com/rsvp, so the QR code works at HotWorx tomorrow. A few questions and conflicts:
 >
 > 1. **12 seats vs. 25 RSVPs.** If we advertise "limited to 12 seats," we should stop taking RSVPs at 12, but the plan needs 25. If more people show up than expected (15 at a 60% show rate), we'd also be over capacity. I'd suggest "seating is limited" and setting up 15 to 18 chairs. The page says "seating is limited" for now.
-> 2. **Confirmation texts by Friday.** There's no automatic confirmation email (our form service can't send one from this page), so Janice confirms each RSVP by text or phone. An automatic text needs a number registered for business texting, which takes days to weeks if we don't already have one. Until then, Janice would send confirmation texts by hand, and the Nov 2 blast may need to go mostly by email.
+> 2. **Confirmation texts by Friday.** The confirmation email is working. An automatic text needs a number registered for business texting, which takes days to weeks if we don't already have one. Until then, Janice would send confirmation texts by hand, and the Nov 2 blast may need to go mostly by email.
 > 3. **Patient texts.** The Nov 2 blast should only be texted to patients who have agreed to receive texts from us. Everyone else gets the email. Janice, can ModMed filter on that?
 > 4. **CallRail.** Calls from the page are already tracked. For the printed cards and flyer, I'll set up a separate tracked number today and send it to Rosie.
 > 5. **HotWorx tomorrow.** Rosie will have a QR code that goes straight to the sign-up page, plus a paper sheet as backup for anyone who won't scan.

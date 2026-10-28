@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Abacoa Podiatry & Leg Vein Center//Evening Talk//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nov-16-2026-evening-talk@jupiterlaser.com
+DTSTAMP:20261028T000000Z
+DTSTART:20261116T220000Z
+DTEND:20261116T233000Z
+SUMMARY:Free evening talk: Tired\, Achy Legs and Slow-Healing Joints
+LOCATION:Abacoa Podiatry & Leg Vein Center\, 4601 Military Trail\, Suite 202\, Jupiter\, FL 33458
+DESCRIPTION:Arrive at 5:00 PM for check-in and light bites. The talk starts at 5:15. Can't make it? Call (561) 915-1934 so we can offer your seat to someone else.
+URL:https://jupiterlaser.com/rsvp/
+END:VEVENT
+END:VCALENDAR

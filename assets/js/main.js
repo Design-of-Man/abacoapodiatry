@@ -516,8 +516,7 @@
      Same rules as the contact form above: label spam, never block it;
      believe only success:"true" in the body; send no field values to
      analytics. The form has no novalidate, so the browser has already
-     enforced the required fields (the email the confirmation goes to)
-     before this runs.
+     enforced the required fields before this runs.
      ------------------------------------------------------------------ */
   var rsvp = $("#rsvp-form");
   if (rsvp) {
@@ -553,7 +552,7 @@
       }).then(function (data) {
         if (!(data && String(data.success).toLowerCase() === "true")) throw new Error("not delivered");
         status.className = "form-status ok";
-        status.textContent = "You're on the list! A confirmation is on its way to your email. See you Monday, November 16 at 5:00 PM.";
+        status.textContent = "You're on the list! Our team will confirm your seat by text or phone. See you Monday, November 16 at 5:00 PM.";
         track("form_submit", { form: "rsvp" });
         rsvp.reset();
       }).catch(function () {

@@ -558,7 +558,7 @@
         // just falls back to the office confirming by text or phone.
         track("form_submit", { form: "rsvp" });
         rsvp.reset();
-        return fetch("/api/rsvp-confirm", {
+        return fetch("/api/rsvp-confirm/", {
           method: "POST",
           body: JSON.stringify({ name: payload.name, email: payload.email, seats: payload.seats, _honey: payload._honey }),
           headers: { "Content-Type": "application/json", Accept: "application/json" }

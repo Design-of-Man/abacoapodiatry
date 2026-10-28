@@ -513,14 +513,10 @@
   /* ------------------------------------------------------------------
      Event RSVP form (/rsvp/)
 
-     Unlike the contact form, this one is a normal form post to FormSubmit's
-     standard endpoint: FormSubmit only emails the guest their confirmation
-     (_autoresponse) for non-AJAX posts that go through its captcha. So this
-     handler never cancels the submit. It only labels the submission the
-     way the contact form does (spam is labelled, never blocked), then lets
-     the browser post it. The guest passes FormSubmit's "I'm not a robot"
-     page and lands on /rsvp/thanks/, which counts the lead (below). The
-     browser has already enforced the required fields: no novalidate.
+     Same rules as the contact form above: label spam, never block it;
+     believe only success:"true" in the body; send no field values to
+     analytics. The form has no novalidate, so the browser has already
+     enforced the required fields before this runs.
      ------------------------------------------------------------------ */
   var rsvp = $("#rsvp-form");
   if (rsvp) {
@@ -528,40 +524,45 @@
     // ?utm_source=facebook ...), so every RSVP carries its source even
     // when the guest skips "How did you hear about this?".
     var srcMatch = window.location.search.match(/[?&](?:src|utm_source)=([\w.-]{1,40})/i);
-    rsvp.elements.src.value = srcMatch ? srcMatch[1] : "direct";
-    var rsvpBtn = $('button[type="submit"]', rsvp);
+    $('input[name="src"]', rsvp).value = srcMatch ? srcMatch[1] : "direct";
 
-    rsvp.addEventListener("submit", function () {
-      rsvp.elements._subject.value = "New RSVP: Nov 16 evening talk (from website)";
-      rsvp.elements.verified.value = "yes";
+    rsvp.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var status = $("#rsvp-status");
+      var btn = $('button[type="submit"]', rsvp);
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      var payload = {};
+      new FormData(rsvp).forEach(function (v, k) { payload[k] = v; });
+      payload._subject = "New RSVP: Nov 16 evening talk (from website)";
+      payload.verified = "yes";
       var flags = [];
       if ((Date.now() - pageLoadedAt) / 1000 < 4) flags.push("filled in under 4s");
-      var digits = String(rsvp.elements.phone.value).replace(/\D/g, "");
+      var digits = String(payload.phone || "").replace(/\D/g, "");
       if (!(digits.length === 10 || (digits.length === 11 && digits.charAt(0) === "1"))) flags.push("phone not a 10-digit US number");
-      if (/https?:\/\/|www\./i.test(rsvp.elements.name.value)) flags.push("contains a link");
-      rsvp.elements.flags.value = flags.length ? flags.join("; ") : "none";
-      // Lets /rsvp/thanks/ tell a real submission from someone opening the
-      // URL directly, so only real RSVPs are counted.
-      try { sessionStorage.setItem("rsvpSent", "1"); } catch (err) {}
-      rsvpBtn.disabled = true;
-      rsvpBtn.textContent = "One moment…";
-    });
-    // Back button from FormSubmit's page restores this page from the
-    // back/forward cache with the button still disabled.
-    window.addEventListener("pageshow", function (e) {
-      if (e.persisted) { rsvpBtn.disabled = false; rsvpBtn.textContent = "Save My Seat"; }
-    });
-  }
-
-  // /rsvp/thanks/: FormSubmit only redirects here after accepting the RSVP,
-  // so this is where the lead is counted. No field values are sent.
-  if ($("[data-rsvp-thanks]")) {
-    try {
-      if (sessionStorage.getItem("rsvpSent")) {
-        sessionStorage.removeItem("rsvpSent");
+      if (/https?:\/\/|www\./i.test(String(payload.name || ""))) flags.push("contains a link");
+      payload.flags = flags.length ? flags.join("; ") : "none";
+      fetch(rsvp.getAttribute("action"), {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      }).then(function (r) {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (data) {
+        if (!(data && String(data.success).toLowerCase() === "true")) throw new Error("not delivered");
+        status.className = "form-status ok";
+        status.textContent = "You're on the list! Our team will confirm your seat by text or phone. See you Monday, November 16 at 5:00 PM.";
         track("form_submit", { form: "rsvp" });
-      }
-    } catch (err) {}
+        rsvp.reset();
+      }).catch(function () {
+        status.className = "form-status err";
+        status.textContent = "Something went wrong saving your seat. Please call us at (561) 915-1934 and we'll put your name down.";
+      }).finally(function () {
+        btn.disabled = false;
+        btn.textContent = "Save My Seat";
+      });
+    });
   }
 
   /* ------------------------------------------------------------------

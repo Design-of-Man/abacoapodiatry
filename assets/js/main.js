@@ -511,6 +511,62 @@
   }
 
   /* ------------------------------------------------------------------
+     Event RSVP form (/rsvp/)
+
+     Same rules as the contact form above: label spam, never block it;
+     believe only success:"true" in the body; send no field values to
+     analytics. The form has no novalidate, so the browser has already
+     enforced the required fields (the email the confirmation goes to)
+     before this runs.
+     ------------------------------------------------------------------ */
+  var rsvp = $("#rsvp-form");
+  if (rsvp) {
+    // Which link the guest arrived on (?src=card, ?src=blast1,
+    // ?utm_source=facebook ...), so every RSVP carries its source even
+    // when the guest skips "How did you hear about this?".
+    var srcMatch = window.location.search.match(/[?&](?:src|utm_source)=([\w.-]{1,40})/i);
+    $('input[name="src"]', rsvp).value = srcMatch ? srcMatch[1] : "direct";
+
+    rsvp.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var status = $("#rsvp-status");
+      var btn = $('button[type="submit"]', rsvp);
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      var payload = {};
+      new FormData(rsvp).forEach(function (v, k) { payload[k] = v; });
+      payload._subject = "New RSVP: Nov 16 evening talk (from website)";
+      payload.verified = "yes";
+      var flags = [];
+      if ((Date.now() - pageLoadedAt) / 1000 < 4) flags.push("filled in under 4s");
+      var digits = String(payload.phone || "").replace(/\D/g, "");
+      if (!(digits.length === 10 || (digits.length === 11 && digits.charAt(0) === "1"))) flags.push("phone not a 10-digit US number");
+      if (/https?:\/\/|www\./i.test(String(payload.name || ""))) flags.push("contains a link");
+      payload.flags = flags.length ? flags.join("; ") : "none";
+      fetch(rsvp.getAttribute("action"), {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      }).then(function (r) {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (data) {
+        if (!(data && String(data.success).toLowerCase() === "true")) throw new Error("not delivered");
+        status.className = "form-status ok";
+        status.textContent = "You're on the list! A confirmation is on its way to your email. See you Monday, November 16 at 5:00 PM.";
+        track("form_submit", { form: "rsvp" });
+        rsvp.reset();
+      }).catch(function () {
+        status.className = "form-status err";
+        status.textContent = "Something went wrong saving your seat. Please call us at (561) 915-1934 and we'll put your name down.";
+      }).finally(function () {
+        btn.disabled = false;
+        btn.textContent = "Save My Seat";
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------
      Current year in footer
      ------------------------------------------------------------------ */
   $$("[data-year]").forEach(function (el) {

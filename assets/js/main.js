@@ -37,7 +37,7 @@
   var placementOf = function (el) {
     if (el.closest(".call-bar, .cb-call")) return "mobile-call-bar";
     if (el.closest(".site-header")) return "header";
-    if (el.closest(".assistant, .assist-note")) return "assistant";
+    if (el.closest(".assistant, .assist-note, .assist-panel")) return "assistant";
     if (el.closest("footer, .site-footer")) return "footer";
     return "body";
   };

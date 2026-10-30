@@ -156,14 +156,19 @@ into `{{HOURS_JUP_LD}}`, `{{HOURS_PBG_LD}}`, `{{HOURS_JUP_LINE}}`, `{{HOURS_PBG_
 `{{HOURS_PBG_CLOSED}}` and `{{HOURS_FOOTER}}`. Change the schedule there and rebuild;
 do not edit hours in a page or in `template.html`.
 
-Jupiter is Mon–Thu 8–5, Fri 8–2 with a 12:30–1:30 lunch closure. Palm Beach Gardens is
-**Monday and Wednesday only, 8–4:30**. They were identical in the JSON-LD until
+Current schedule (read `hours.py` itself, this line is only a convenience): Jupiter
+Mon–Thu 8–5, Fri 8–2, no lunch closure (removed 2026-08-24); Palm Beach Gardens Mon–Wed
+8–4:30, Fri 8–2, closed Thursday (since 2026-08-21); Saturday is concierge appointments
+only at both. This paragraph said "PBG Monday and Wednesday only" and "12:30–1:30 lunch"
+until 2026-10-30, long after `hours.py` changed. They were identical in the JSON-LD until
 2026-08-15 because PBG's `openingHoursSpecification` had been copied from Jupiter's,
 while the visible copy on `/locations/` said "call for availability" — the schema and the
 page disagreed and both were wrong.
 
 Two consumers are outside the build and must be hand-edited: `assets/js/assistant.js`
-and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either drifts.
+and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either drifts;
+for the assistant it requires each office's `plain()` string verbatim in its `HOURS`
+object, because the booking flow quotes both schedules in full.
 
 ## The contact form is the only lead path, and it can fail silently
 
@@ -240,7 +245,44 @@ campaign itself lives in `_dev/ads/2026-10-new-patients/`.
 Lead events go to **Vercel Web Analytics** (`window.va`) and are mirrored to GA4. `track()`
 no-ops when the script isn't present, which is always the case on localhost — so a local
 form test will never show an event unless you stub `window.va` the way the test harness
-does.
+does. `form_submit` fires with `{form: "contact"}`, `{form: "rsvp"}` and, since
+2026-10-30, `{form: "assistant"}` (a chat booking or message, after `/api/contact/`
+confirms it stored the lead, including a queued one that goes through on a later page
+load). Before that the assistant fired no conversion at all, so chat leads were invisible
+to GA4 and Google Ads. Same payload rule: the form name only, never a field value or topic.
+
+## The assistant (assets/js/assistant.js)
+
+Set answers and a booking flow, no AI. Rebuilt 2026-10-30 on First Rehab's intake
+pattern (`Design-of-Man/firstrehabnpb`, `assets/js/intake.js`), keeping this site's look,
+its markup in `template.html` and every existing answer in `TOPICS`.
+
+- **Opening chips:** Request an appointment / Ask a question / Just looking around. Typed
+  text at that point is treated as a question.
+- **Questions** are answered from `TOPICS` by the same keyword scoring as before. A
+  question nothing matches is never guessed at: it becomes a message to the front desk
+  (name, phone, optional email, confirm), sent with `intent: "question"`.
+- **Appointment request**, one question per bubble: reason (the contact form's "What can
+  we help with?" options plus leg veins and wound care), office (with both schedules and
+  "closed Thursdays" for PBG), preferred doctor (the contact form's three values), a
+  sentence about what's going on, name, phone (US 10 digits, re-asked if not), optional
+  email, best time to call (windows inside office hours only), optional insurance (only
+  the plans on `/insurance/`), then a summary card with "Yes, send it" / "Fix something".
+- **Delivery:** POST JSON to `/api/contact/` with `source: "assistant"`, a reference code
+  `AB-XXXXX`, `intent`, `topic` (also sent as `reason`), `office`, `doctor`,
+  `preferred_time`, `insurance`, `page` and `_subject`. `api/contact.js` prints these as
+  EXTRAS lines in the stored message and the office email, and repeats only the reference
+  code in the patient confirmation. Success is HTTP 200 with `success: "true"`; anything
+  else queues the request in `localStorage` `ap.assist.queue.v1`, tells the visitor to
+  call, and resends on the next page load.
+- **Drafts:** every answer is saved to `ap.assist.draft.v1`; reopening mid-flow after a
+  reload offers Continue / Start over. Cleared on send. A header "Start over" button
+  resets the conversation.
+- **Phones:** while open, the panel follows `window.visualViewport` (`--assist-kb`,
+  `--assist-vh`) so the iOS keyboard cannot cover it.
+- No auto-invite or teaser, on purpose: the old assistant had none.
+- If a fact changes (hours, doctors, plans, contact-form reasons), change it at its source
+  first, then in the constants at the top of the booking section of `assistant.js`.
 
 ## Condition detail pages (added 2026-10-07)
 `_src/conditions/{slug}.json` holds 12 researched pages for foot and ankle problems that had no

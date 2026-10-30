@@ -413,17 +413,18 @@
       <div class="assist-avatar" aria-hidden="true">AP</div>
       <div>
         <h2 id="assist-title">Abacoa Podiatry Assistant</h2>
-        <p>Answers about treatments, visits &amp; booking</p>
+        <p>Appointment requests, answers &amp; messages</p>
       </div>
+      <button class="assist-restart" id="assist-restart" type="button">Start over</button>
       <button class="assist-close" id="assist-close" aria-label="Close assistant">&times;</button>
     </header>
     <div class="assist-log" id="assist-log" role="log" aria-live="polite" aria-atomic="false"></div>
     <div class="assist-chips" id="assist-chips"></div>
     <form class="assist-form" id="assist-form">
-      <label class="skip-link" for="assist-input">Ask the assistant a question</label>
+      <label class="skip-link" for="assist-input">Reply to the assistant</label>
       <input id="assist-input" type="text" autocomplete="off"
-             placeholder="Type your question…">
-      <button type="submit" aria-label="Send question">
+             maxlength="600" placeholder="Type a reply or a question…">
+      <button type="submit" aria-label="Send">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
       </button>
     </form>

@@ -1,6 +1,35 @@
 /* Abacoa Podiatry virtual assistant.
-   Self-contained concierge: keyword-matched answers grounded in the site's own
-   pages. No external services, no data leaves the browser. */
+
+   Two jobs in one panel, both set answers only: no AI, no external service
+   beyond the site's own /api/contact/ endpoint, no medical advice.
+
+   1. Questions. TOPICS below are keyword-matched answers grounded in the
+      site's own pages. Anything they cannot answer is passed to the front
+      desk as a message, never guessed at.
+   2. Booking. A one-question-per-bubble appointment request (the First Rehab
+      intake pattern): topic, office, preferred doctor, a sentence about what's
+      going on, name, phone, optional email, best time to call, optional
+      insurance, then a summary to confirm. It posts JSON to /api/contact/ with
+      source "assistant", the same endpoint and contract as the contact form.
+
+   Facts and where they come from (change them there first, then here):
+     hours        _src/hours.py (plain()); _dev/preflight.py fails if HOURS
+                  below stops matching it
+     topics       "What can we help with?" in _src/pages/contact.html, plus
+                  the vein and wound care service pages
+     doctors      "Preferred doctor" in _src/pages/contact.html
+     insurance    "Insurance plans we're credentialed with", insurance.html
+     addresses    _src/pages/loc-palm-beach-gardens.html, contact.html
+
+   Delivery: success means HTTP 200 AND {"success":"true"} (the string), which
+   api/contact.js only answers once the lead is stored. Anything else keeps the
+   request in localStorage (QUEUE_KEY) and retries on the next page load; the
+   visitor is told to call. Every answer is drafted to localStorage as it is
+   given (DRAFT_KEY) so a reload can pick up where it left off.
+
+   Analytics: one form_submit {form: "assistant"} after a confirmed send, the
+   same event and payload shape main.js fires for the contact form. Never a
+   field value, never the topic. */
 (function () {
   "use strict";
 
@@ -211,193 +240,676 @@
     }
   ];
 
-  var GREETING = "Hi! I'm the Abacoa Podiatry assistant. I can answer questions about our treatments, conditions we treat, costs, and booking. What's on your mind?";
-  var FALLBACK = "I want to make sure you get an accurate answer, and that one's beyond me. The team can help in one call: " + PHONE_HTML + " (Jupiter office Mon–Thu 8–5, Fri 8–2). You can also browse the<a href='/faq/'>full FAQ</a> — it answers 60+ common questions.";
-  var START_CHIPS = ["Tell me about laser therapy", "What conditions do you treat?", "How much does it cost?", "Book an appointment"];
+  /* ------------------------------------------------------------------
+     Facts the booking flow states. See the header for each source.
+     ------------------------------------------------------------------ */
 
-  /* --- Lead capture: a tiny state machine layered on top of the same
-     #assist-input/#assist-form text box. When `capture` is non-null, the
-     next submitted message is consumed as a form field instead of being run
-     through answer(). Mirrors the /contact/ form's exact POST contract
-     (assets/js/main.js ~L386-435, api/contact.js) so success/failure read
-     the same way. */
-  var LEAD_TRIGGER_RE = /leave your info|call you back/i;
-  var LEAD_LIMITS = { name: 200, phone: 50, reason: 120, message: 4000 };
-  var CANCEL_CHIP = "Never mind";
-  var capture = null;          // { step, name, phone, reason, message }
-  var lastQuestion = "";       // most recent free-text question, threaded through as the lead's "reason"
+  // _src/hours.py plain() output, verbatim. _dev/preflight.py imports
+  // hours.plain() and fails the gate if either string stops matching.
+  var HOURS = {
+    jupiter: "Mon–Thu 8 AM–5 PM · Fri 8 AM–2 PM",
+    pbg: "Mon–Wed 8 AM–4:30 PM · Fri 8 AM–2 PM"
+  };
 
-  function escapeHtml(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
-  }
+  var OFFICES = [
+    { value: "Jupiter", where: "4601 Military Trail, Suite 202", hours: HOURS.jupiter, re: /jup|military/i },
+    { value: "Palm Beach Gardens", where: "11380 Prosperity Farms Rd, Suite 204", hours: HOURS.pbg, re: /garden|pbg|prosperity/i }
+  ];
+  var EITHER_OFFICE = "Either office";
 
-  function isCancelWord(t) {
-    var n = t.trim().toLowerCase();
-    return n === "cancel" || n === "nevermind" || n === "never mind" || n === CANCEL_CHIP.toLowerCase();
-  }
+  // The contact form's "What can we help with?" options (minus "Something
+  // else", which typing covers), plus the vein and wound care service lines.
+  var REASONS = [
+    "Heel or arch pain", "Bunion or big-toe problem", "Ingrown or painful toenail",
+    "Neuropathy / burning feet", "Tendon or ankle problem", "Arthritis pain",
+    "Sports injury", "Diabetic foot care", "Leg veins / swelling", "Wound care",
+    "Interested in laser / regenerative therapy", "Not sure yet"
+  ];
 
-  function typingBubble() {
-    return addMsg('<span class="assist-typing"><i></i><i></i><i></i></span>', "bot");
-  }
+  // Same three values as the contact form's "Preferred doctor" select, so the
+  // office reads one vocabulary whichever form the request came from.
+  var DOCTORS = ["First available", "Dr. Orlando Cedeno", "Dr. Isin Mustafa"];
 
-  function cancelCapture(typing) {
-    capture = null;
-    typing.innerHTML = "No problem — what else can I help with?";
-    setChips(START_CHIPS);
-    scroll();
-  }
+  // insurance.html, "Insurance plans we're credentialed with", in page order.
+  var PLANS = ["Medicare", "Medicare RR", "Aetna", "BCBS", "Cigna", "UHC", "Coventry",
+    "Dimension", "Florida College System", "Multiplan / PHCS", "Medicarease",
+    "Prime Health Services", "CorVel (WC)", "Rockport (WC)", "DOL"];
+  var PLANS_FIRST = ["Medicare", "Aetna", "BCBS", "Cigna", "UHC"];
 
-  function beginCapture() {
-    capture = { step: "name", reason: (lastQuestion || "").slice(0, LEAD_LIMITS.reason) };
-    var typing = typingBubble();
-    window.setTimeout(function () {
-      typing.innerHTML = "Happy to have our team call you back. What's your name?";
-      setChips([CANCEL_CHIP]);
-      scroll();
-    }, 450);
-  }
+  // Every window sits inside both offices' published hours (earliest open 8,
+  // Friday close 2). "Afternoon" runs to whichever office's close applies.
+  var TIMES = ["Morning (8–11)", "Midday (11–2)", "Afternoon (2–close)", "Any time"];
 
-  function submitLead(typing) {
-    var payload = {
-      name: capture.name,
-      phone: capture.phone,
-      reason: (capture.reason || "").slice(0, LEAD_LIMITS.reason),
-      message: capture.message || "",
-      source: "assistant"
-    };
-    fetch("/api/contact/", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json", Accept: "application/json" }
-    }).then(function (r) {
-      if (!r.ok) throw new Error("http " + r.status);
-      return r.json();
-    }).then(function (data) {
-      // success comes back as the string "true", same contract as the contact form.
-      var delivered = data && String(data.success).toLowerCase() === "true";
-      if (!delivered) throw new Error("not delivered");
-      typing.innerHTML = "Got it, " + escapeHtml(capture.name) + " — our team will call you back at " +
-        escapeHtml(capture.phone) + " to confirm. Talk soon!";
-      setChips(START_CHIPS);
-      capture = null;
-      scroll();
-    }).catch(function () {
-      typing.innerHTML = "Something went wrong sending that through. Please call us directly at " + PHONE_HTML +
-        " and we'll take care of you.";
-      setChips(START_CHIPS);
-      capture = null;
-      scroll();
+  var LIMITS = { name: 200, phone: 50, email: 200, reason: 120, message: 4000 };
+  var DRAFT_KEY = "ap.assist.draft.v1";
+  var QUEUE_KEY = "ap.assist.queue.v1";
+  var DRAFT_MAX_AGE = 72 * 3600 * 1000;
+  var ENDPOINT = "/api/contact/";   // trailingSlash: true in vercel.json
+
+  /* ------------------------------------------------------------------
+     Small helpers
+     ------------------------------------------------------------------ */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function norm(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, ""); }
+  function plainLabel(label) { return String(label).replace(/^[^A-Za-z0-9]+/, ""); }
+  function hint(text) { return ' <span class="assist-hint">' + text + "</span>"; }
 
-  function handleCaptureInput(text) {
-    if (isCancelWord(text)) {
-      cancelCapture(typingBubble());
-      return;
-    }
-    var typing = typingBubble();
-    if (capture.step === "name") {
-      window.setTimeout(function () {
-        capture.name = text.slice(0, LEAD_LIMITS.name);
-        capture.step = "phone";
-        typing.innerHTML = "Thanks, " + escapeHtml(capture.name) + ". What's the best phone number to reach you?";
-        setChips([CANCEL_CHIP]);
-        scroll();
-      }, 450);
-    } else if (capture.step === "phone") {
-      window.setTimeout(function () {
-        capture.phone = text.slice(0, LEAD_LIMITS.phone);
-        capture.step = "reason";
-        typing.innerHTML = 'Got it. Anything specific you\'d like us to know before we call? (Or type "skip".)';
-        setChips(["Skip", CANCEL_CHIP]);
-        scroll();
-      }, 450);
-    } else if (capture.step === "reason") {
-      capture.message = /^skip$/i.test(text.trim()) ? "" : text.slice(0, LEAD_LIMITS.message);
-      window.setTimeout(function () { submitLead(typing); }, 450);
-    }
+  function storage() { try { return window.localStorage; } catch (e) { return null; } }
+  function load(key) {
+    var s = storage(); if (!s) return null;
+    try { return JSON.parse(s.getItem(key)); } catch (e) { return null; }
+  }
+  function save(key, val) {
+    var s = storage(); if (!s) return;
+    try { s.setItem(key, JSON.stringify(val)); } catch (e) { /* full or blocked */ }
+  }
+  function drop(key) {
+    var s = storage(); if (!s) return;
+    try { s.removeItem(key); } catch (e) {}
   }
 
+  /* Same shape as track() in assets/js/main.js, which is private to that
+     file's closure. Fired only after the endpoint confirms the lead is stored. */
+  function trackLead() {
+    if (typeof window.va === "function") window.va("event", { name: "form_submit", data: { form: "assistant" } });
+    if (typeof window.gtag === "function") window.gtag("event", "form_submit", { form: "assistant" });
+  }
+
+  function answer(q) {
+    var n = q.toLowerCase();
+    var best = null, bestScore = 0;
+    TOPICS.forEach(function (topic) {
+      var score = 0;
+      topic.match.forEach(function (term) {
+        if (n.indexOf(term) !== -1) score += term.length; // longer term = stronger signal
+      });
+      if (score > bestScore) { bestScore = score; best = topic; }
+    });
+    return best;
+  }
+
+  /* ------------------------------------------------------------------
+     DOM
+     ------------------------------------------------------------------ */
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var fab = $("#assist-open"), panel = $("#assist-panel");
   if (!fab || !panel) return;
   var log = $("#assist-log"), chipsBox = $("#assist-chips"),
-      form = $("#assist-form"), input = $("#assist-input");
-  var opened = false;
+      form = $("#assist-form"), input = $("#assist-input"),
+      restartBtn = $("#assist-restart");
 
   function scroll() { log.scrollTop = log.scrollHeight; }
 
-  function addMsg(html, who) {
+  function addMsg(html, who, extra) {
     var el = document.createElement("div");
-    el.className = "assist-msg " + who;
+    el.className = "assist-msg " + who + (extra ? " " + extra : "");
     el.innerHTML = html;
     log.appendChild(el);
     scroll();
     return el;
   }
 
-  function setChips(labels) {
+  var curChips = [];
+  function setChips(defs) {
     chipsBox.innerHTML = "";
-    (labels || []).forEach(function (label) {
+    curChips = (defs || []).map(function (d) {
+      return typeof d === "string" ? { label: d, value: d } : d;
+    });
+    curChips.forEach(function (c) {
       var b = document.createElement("button");
       b.type = "button";
-      b.className = "assist-chip";
-      b.textContent = label;
-      b.addEventListener("click", function () { ask(label); });
+      b.className = "assist-chip" + (c.cls ? " " + c.cls : "");
+      b.textContent = c.label;
+      b.addEventListener("click", function () { handle(c.value, plainLabel(c.label)); });
       chipsBox.appendChild(b);
     });
+    // The chips bar just changed height, which moves the bottom of the log.
+    chipsBox.scrollTop = 0;
+    scroll();
   }
 
-  function answer(q) {
-    var norm = q.toLowerCase();
-    var best = null, bestScore = 0;
-    TOPICS.forEach(function (topic) {
-      var score = 0;
-      topic.match.forEach(function (term) {
-        if (norm.indexOf(term) !== -1) score += term.length; // longer term = stronger signal
-      });
-      if (score > bestScore) { bestScore = score; best = topic; }
-    });
-    return best || { a: FALLBACK, chips: START_CHIPS };
-  }
-
-  function ask(q) {
-    var trimmed = q.trim();
-    if (!trimmed) return;
-    addMsg(escapeHtml(trimmed), "user");
+  var busy = false;
+  // Bot messages, one bubble at a time, each behind a short typing indicator.
+  function botSay(msgs, done) {
+    busy = true;
     setChips([]);
+    var i = 0;
+    (function next() {
+      if (i >= msgs.length) { busy = false; if (done) done(); return; }
+      var m = msgs[i];
+      var html = typeof m === "string" ? m : m.html;
+      var typing = addMsg('<span class="assist-typing"><i></i><i></i><i></i></span>', "bot");
+      window.setTimeout(function () {
+        typing.innerHTML = html;
+        if (m.cls) typing.className += " " + m.cls;
+        scroll();
+        i++;
+        next();
+      }, Math.min(320 + html.replace(/<[^>]+>/g, "").length * 3, 900));
+    })();
+  }
 
-    // Mid-capture: the next message is a form field, not a question.
-    if (capture) {
-      handleCaptureInput(trimmed);
+  /* ------------------------------------------------------------------
+     Conversation
+     ------------------------------------------------------------------ */
+  var flow = { state: "intent", data: {}, fixing: false };
+  var FLOW_STATES = ["topic", "office", "doctor", "message", "name", "phone", "email",
+    "time", "insurance", "confirm", "fix"];
+
+  var APPT_CHIP = { label: "📅 Request an appointment", value: "go:appointment", cls: "primary" };
+  var MESSAGE_CHIP = { label: "📨 Leave a message for the front desk", value: "go:message" };
+  var FAQ_MENU = ["Tell me about laser therapy", "What conditions do you treat?",
+    "How much does it cost?", "What are your hours?", "Where are you located?", "What should I bring?"];
+
+  function faqChips(labels) {
+    var out = [APPT_CHIP], seen = {};
+    (labels || FAQ_MENU).forEach(function (l) {
+      // The old lead-capture chips now start the appointment request.
+      if (/^book an appointment$|call you back/i.test(l) || seen[l]) return;
+      seen[l] = 1;
+      out.push({ label: l, value: "q:" + l });
+    });
+    out.push(MESSAGE_CHIP);
+    return out;
+  }
+
+  function officeFor(d) {
+    for (var i = 0; i < OFFICES.length; i++) if (OFFICES[i].value === d.office) return OFFICES[i];
+    return null;
+  }
+  function firstName(d) { return (d.name || "").trim().split(/\s+/)[0] || ""; }
+
+  var STEPS = {
+    intent: {
+      prompt: function () {
+        return ["Hi! I'm the Abacoa Podiatry &amp; Leg Vein Center assistant. I can request an appointment for you, answer questions about our treatments, costs and offices, or pass a message to the front desk.",
+          "What brings you in today?"];
+      },
+      chips: function () {
+        return [APPT_CHIP, { label: "💬 Ask a question", value: "go:faq" },
+          { label: "👀 Just looking around", value: "go:browse" }];
+      }
+    },
+    browse_end: {
+      prompt: function () {
+        return ["Enjoy looking around! I'll be right here in the corner if a question comes up. You can also call us at " + PHONE_HTML + "."];
+      },
+      chips: function () {
+        return [{ label: "📅 Actually, book me in", value: "go:appointment", cls: "primary" },
+          { label: "💬 I do have a question", value: "go:faq" }];
+      }
+    },
+    topic: {
+      prompt: function () {
+        return ["Happy to set that up. What would you like us to look at?" + hint("Tap one, or type it in your own words.")];
+      },
+      chips: function () { return REASONS; },
+      accept: function (v) {
+        if (v.trim().length < 2) return { error: "Could you tell me in a word or two what it's about?" };
+        return { value: v.slice(0, LIMITS.reason) };
+      },
+      save: "topic",
+      next: function () { return "office"; }
+    },
+    office: {
+      prompt: function () {
+        return ["Which office suits you best?<br><strong>Jupiter</strong>, " + OFFICES[0].where + ": " + OFFICES[0].hours +
+          ".<br><strong>Palm Beach Gardens</strong>, " + OFFICES[1].where + ": " + OFFICES[1].hours +
+          "." + hint("Palm Beach Gardens is open fewer days and is closed Thursdays.")];
+      },
+      chips: function () {
+        return [{ label: "Jupiter", value: "Jupiter" }, { label: "Palm Beach Gardens", value: "Palm Beach Gardens" },
+          { label: "Either is fine", value: EITHER_OFFICE }];
+      },
+      accept: function (v) {
+        if (v === EITHER_OFFICE || /either|any|no pref|whichever|doesn.?t matter|both/i.test(v)) return { value: EITHER_OFFICE, echo: "Either is fine" };
+        for (var i = 0; i < OFFICES.length; i++) if (v === OFFICES[i].value || OFFICES[i].re.test(v)) return { value: OFFICES[i].value };
+        return { error: "We have two offices, Jupiter and Palm Beach Gardens. Which one works for you?" };
+      },
+      save: "office",
+      next: function () { return "doctor"; }
+    },
+    doctor: {
+      prompt: function () { return ["Do you have a preferred doctor?" + hint("Optional. First available is fine.")]; },
+      chips: function () { return DOCTORS; },
+      accept: function (v) {
+        if (/cedeno/i.test(v)) return { value: DOCTORS[1] };
+        if (/mustafa/i.test(v)) return { value: DOCTORS[2] };
+        if (/first|either|any|no pref|whoever|skip|doesn.?t matter/i.test(v)) return { value: DOCTORS[0] };
+        return { error: "Our doctors are Dr. Orlando Cedeno and Dr. Isin Mustafa. Pick one, or First available." };
+      },
+      save: "doctor",
+      next: function () { return "message"; }
+    },
+    message: {
+      prompt: function (d) {
+        var note = hint("No detailed medical history needed, just the basics please.");
+        return d.intent === "question"
+          ? ["Of course. What would you like to ask? I'll pass it straight to the front desk." + note]
+          : ["Tell me a little about what's going on. A sentence or two is perfect." + note];
+      },
+      chips: function (d) { return d.intent === "question" ? [{ label: "Never mind", value: "go:faq" }] : []; },
+      accept: function (v) {
+        if (v.trim().length < 2) return { error: "Could you give me just a few words about it?" };
+        return { value: v.slice(0, LIMITS.message) };
+      },
+      save: "message",
+      next: function () { return "name"; }
+    },
+    name: {
+      prompt: function () {
+        return ["Thanks. Now your contact details so the front desk can reach you. What's your <strong>first and last name</strong>?"];
+      },
+      chips: function (d) { return d.intent === "question" ? [{ label: "Never mind", value: "go:faq" }] : []; },
+      accept: function (v) {
+        if (v.replace(/[^A-Za-zÀ-ɏ]/g, "").length < 2) return { error: "Please type your first and last name." };
+        return { value: v.slice(0, LIMITS.name) };
+      },
+      save: "name",
+      next: function () { return "phone"; }
+    },
+    phone: {
+      prompt: function (d) {
+        var first = firstName(d);
+        return ["Thanks" + (first ? ", " + esc(first) : "") + "! What's the best <strong>phone number</strong> to reach you?"];
+      },
+      accept: function (v) {
+        var digits = v.replace(/\D/g, "");
+        if (digits.length === 11 && digits.charAt(0) === "1") digits = digits.slice(1);
+        if (digits.length !== 10) {
+          return { error: "Hmm, that doesn't look like a full US phone number. Mind double-checking it? (For example 561-555-1234.)" };
+        }
+        return { value: "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6) };
+      },
+      save: "phone",
+      next: function () { return "email"; }
+    },
+    email: {
+      prompt: function () {
+        return ["And your <strong>email address</strong>, in case we can't reach you by phone?" + hint("Optional. Tap Skip if you'd rather not.")];
+      },
+      chips: function () { return [{ label: "Skip", value: "__skip__" }]; },
+      accept: function (v) {
+        if (v === "__skip__" || /^(skip|no|none|no thanks|n\/a)$/i.test(v.trim())) return { value: "", echo: "Skip" };
+        if (!/^[^\s@<>]+@[^\s@<>]+\.[A-Za-z]{2,}$/.test(v.trim())) return { error: "That email doesn't look quite right. Want to try again, or tap Skip?" };
+        return { value: v.trim().slice(0, LIMITS.email) };
+      },
+      save: "email",
+      next: function (d) { return d.intent === "question" ? "confirm" : "time"; }
+    },
+    time: {
+      prompt: function (d) {
+        var o = officeFor(d) || OFFICES[0];
+        return ["When's the best time for the front desk to call you? They call during " + o.value + " office hours, " + o.hours + "."];
+      },
+      chips: function () { return TIMES; },
+      accept: function (v) {
+        for (var i = 0; i < TIMES.length; i++) if (norm(v) === norm(TIMES[i])) return { value: TIMES[i] };
+        if (/any/i.test(v)) return { value: TIMES[3] };
+        if (/morn/i.test(v)) return { value: TIMES[0] };
+        if (/mid|noon|lunch/i.test(v)) return { value: TIMES[1] };
+        if (/after/i.test(v)) return { value: TIMES[2] };
+        return { error: "The front desk calls during office hours, so pick one of these windows." };
+      },
+      save: "preferred_time",
+      next: function () { return "insurance"; }
+    },
+    insurance: {
+      prompt: function () {
+        return ["Last one: which insurance do you have? Dr. Cedeno and Dr. Mustafa are credentialed with the plans below, and our team verifies your exact plan before your visit." + hint("Optional.")];
+      },
+      chips: function () { return planChips(PLANS_FIRST, true); },
+      accept: function (v) {
+        if (v === "__more__") return { rechips: planChips(PLANS.filter(function (p) { return PLANS_FIRST.indexOf(p) === -1; }), false), echo: "More plans" };
+        if (v === "__skip__" || /^(skip|none|no)$/i.test(v.trim())) return { value: "", echo: "Skip" };
+        if (/not sure|don.?t know|unsure/i.test(v)) return { value: "Not sure" };
+        for (var i = 0; i < PLANS.length; i++) if (norm(v) === norm(PLANS[i])) return { value: PLANS[i] };
+        return { value: v.trim().slice(0, 120) };
+      },
+      save: "insurance",
+      next: function () { return "confirm"; }
+    },
+    confirm: {
+      prompt: function (d) { return [{ html: summaryHTML(d), cls: "assist-card" }, "Did I get everything right?"]; },
+      chips: function () {
+        return [{ label: "✅ Yes, send it", value: "__send__", cls: "primary" }, { label: "✏️ Fix something", value: "__fix__" }];
+      },
+      accept: function (v) {
+        if (v === "__fix__" || /\b(fix|no|nope|edit|change|wrong|not right)\b/i.test(v)) return { goto: "fix", echo: "Fix something" };
+        if (v === "__send__" || /^(y|yes|yep|yeah|send|send it|correct|right|ok|okay|looks good)\b/i.test(v.trim())) return { send: true, echo: "Yes, send it" };
+        return { error: "Tap “Yes, send it” when you're ready, or “Fix something” to change an answer." };
+      }
+    },
+    fix: {
+      prompt: function () { return ["No problem. Which part should I change?"]; },
+      chips: function (d) {
+        var out = rows(d).filter(function (r) { return r[2]; }).map(function (r) {
+          return { label: r[0], value: "fix:" + r[2] };
+        });
+        out.push({ label: "↩ It's all correct", value: "go:confirm" });
+        return out;
+      }
+    },
+    sent: {}, queued: {}, faq: {}, resume: {}
+  };
+
+  function planChips(list, first) {
+    var out = list.map(function (p) { return { label: p, value: p }; });
+    if (first) out.push({ label: "More plans…", value: "__more__" });
+    out.push({ label: "Not sure", value: "Not sure" }, { label: "Skip", value: "__skip__" });
+    return out;
+  }
+
+  // [label, value, step that edits it]
+  function rows(d) {
+    if (d.intent === "question") {
+      return [["Request", "A question for the front desk", null], ["Message", d.message, "message"],
+        ["Name", d.name, "name"], ["Phone", d.phone, "phone"], ["Email", d.email || "Not given", "email"]];
+    }
+    return [["Reason", d.topic, "topic"], ["Office", d.office, "office"], ["Doctor", d.doctor, "doctor"],
+      ["Details", d.message, "message"], ["Name", d.name, "name"], ["Phone", d.phone, "phone"],
+      ["Email", d.email || "Not given", "email"], ["Call time", d.preferred_time, "time"],
+      ["Insurance", d.insurance || "Not given", "insurance"]];
+  }
+
+  function summaryHTML(d) {
+    var html = '<dl class="assist-summary">';
+    rows(d).forEach(function (r) {
+      if (r[1]) html += "<div><dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>";
+    });
+    return html + "</dl>";
+  }
+
+  function persist() {
+    if (FLOW_STATES.indexOf(flow.state) !== -1) {
+      save(DRAFT_KEY, { state: flow.state, data: flow.data, fixing: flow.fixing, t: Date.now() });
+    } else if (flow.state !== "resume") {
+      drop(DRAFT_KEY);
+    }
+  }
+
+  function focusInput() {
+    // Not on phones: focusing would throw up the keyboard over the chips.
+    if (!panel.hidden && window.matchMedia("(min-width: 761px)").matches) input.focus();
+  }
+
+  function runStep(id) {
+    flow.state = id;
+    persist();
+    var step = STEPS[id];
+    botSay(step.prompt(flow.data), function () {
+      if (step.chips) setChips(step.chips(flow.data));
+      focusInput();
+    });
+  }
+
+  function enterFaq() {
+    flow.state = "faq";
+    flow.fixing = false;
+    persist();
+    botSay(["Happy to help. Tap a question below or type your own. If it's one I can't answer, I'll pass it to the front desk."],
+      function () { setChips(faqChips()); focusInput(); });
+  }
+
+  function askQuestion(q) {
+    var res = answer(q);
+    if (res) {
+      flow.state = "faq";
+      persist();
+      botSay([res.a], function () { setChips(faqChips(res.chips)); });
       return;
     }
+    // Unknown: never guess. The question becomes a front-desk message.
+    flow.data = { intent: "question", message: q.slice(0, LIMITS.message) };
+    flow.fixing = false;
+    botSay(["That one's beyond me, and I'd rather not guess. I'll pass it to the front desk so the right person can answer. (Or call " + PHONE_HTML + ".)"],
+      function () { runStep("name"); });
+  }
 
-    // Entry point into lead capture, from the "Leave your info…" chip or
-    // someone typing the same intent.
-    if (LEAD_TRIGGER_RE.test(trimmed)) {
-      beginCapture();
-      return;
+  function action(name) {
+    if (name === "appointment") { flow.data = { intent: "appointment" }; flow.fixing = false; runStep("topic"); }
+    else if (name === "message") { flow.data = { intent: "question" }; flow.fixing = false; runStep("message"); }
+    else if (name === "faq") enterFaq();
+    else if (name === "browse") runStep("browse_end");
+    else if (name === "confirm") { flow.fixing = false; runStep("confirm"); }
+    else if (name === "close") close();
+    else if (name === "restart") restart();
+    else if (name === "resume") resume();
+  }
+
+  // One entry point for chips and typed text alike.
+  function handle(value, echo, typed) {
+    if (busy) return false;
+
+    // Typing a chip's label is the same as tapping it.
+    if (typed) {
+      for (var i = 0; i < curChips.length; i++) {
+        if (norm(curChips[i].label) && norm(curChips[i].label) === norm(value)) {
+          value = curChips[i].value;
+          break;
+        }
+      }
     }
 
-    lastQuestion = trimmed;
-    var typing = typingBubble();
-    window.setTimeout(function () {
-      var res = answer(trimmed);
-      typing.innerHTML = res.a;
-      setChips(res.chips || START_CHIPS);
-      scroll();
-    }, 550);
+    if (value.indexOf("go:") === 0) {
+      addMsg(esc(echo), "user");
+      action(value.slice(3));
+      return true;
+    }
+    if (value.indexOf("q:") === 0) {
+      addMsg(esc(echo), "user");
+      askQuestion(value.slice(2));
+      return true;
+    }
+    if (value.indexOf("fix:") === 0) {
+      addMsg(esc(echo), "user");
+      flow.fixing = true;
+      runStep(value.slice(4));
+      return true;
+    }
+
+    var step = STEPS[flow.state];
+    if (flow.state === "fix") {
+      addMsg(esc(echo), "user");
+      botSay(["Tap the part you'd like to change."], function () { setChips(STEPS.fix.chips(flow.data)); });
+      return true;
+    }
+    if (!step || !step.accept) {
+      // Not in a flow step: anything typed is a question.
+      addMsg(esc(echo), "user");
+      askQuestion(value);
+      return true;
+    }
+
+    var res = step.accept(value);
+    addMsg(esc(res.echo || (typed ? value : echo)), "user");
+    if (res.error) {
+      botSay([res.error], function () { if (step.chips) setChips(step.chips(flow.data)); });
+      return true;
+    }
+    if (res.rechips) { setChips(res.rechips); return true; }
+    if (res.send) { submit(); return true; }
+    if (res.goto) { runStep(res.goto); return true; }
+
+    if (step.save) flow.data[step.save] = res.value;
+    if (flow.fixing) { flow.fixing = false; runStep("confirm"); return true; }
+    runStep(step.next(flow.data));
+    return true;
+  }
+
+  /* ------------------------------------------------------------------
+     Delivery
+     ------------------------------------------------------------------ */
+  function refCode() {
+    var abc = "ABCDEFGHJKMNPQRSTUVWXYZ23456789", out = "";
+    for (var i = 0; i < 5; i++) out += abc.charAt(Math.floor(Math.random() * abc.length));
+    return "AB-" + out;
+  }
+
+  function payloadFor(d) {
+    var question = d.intent === "question";
+    return {
+      name: (d.name || "").slice(0, LIMITS.name),
+      phone: (d.phone || "").slice(0, LIMITS.phone),
+      email: d.email || "",
+      reason: question ? "Website question" : (d.topic || "").slice(0, LIMITS.reason),
+      topic: question ? "" : (d.topic || ""),
+      office: question ? "" : (d.office || ""),
+      doctor: question ? "" : (d.doctor || ""),
+      preferred_time: question ? "" : (d.preferred_time || ""),
+      insurance: question ? "" : (d.insurance || ""),
+      message: (d.message || "").slice(0, LIMITS.message),
+      ref: d.ref,
+      intent: question ? "question" : "appointment",
+      page: location.pathname,
+      source: "assistant",
+      _subject: (question ? "Website question " : "Appointment request ") + d.ref + " (website chat)"
+    };
+  }
+
+  // Resolves only on HTTP 200 with success:"true" (a string, see api/contact.js).
+  function deliver(payload) {
+    return fetch(ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json", Accept: "application/json" }
+    }).then(function (r) {
+      if (r.status !== 200) throw new Error("http " + r.status);
+      return r.json();
+    }).then(function (data) {
+      if (!data || String(data.success).toLowerCase() !== "true") throw new Error("not stored");
+      return true;
+    });
+  }
+
+  function enqueue(payload) {
+    var q = load(QUEUE_KEY);
+    q = Array.isArray(q) ? q : [];
+    q.push(payload);
+    save(QUEUE_KEY, q.slice(-20));
+  }
+
+  var flushing = false;
+  function flushQueue() {
+    if (flushing) return;
+    var q = load(QUEUE_KEY);
+    if (!Array.isArray(q) || !q.length) return;
+    flushing = true;
+    var payload = q[0];
+    deliver(payload).then(function () {
+      trackLead();
+      var rest = (load(QUEUE_KEY) || []).filter(function (p) { return p && p.ref !== payload.ref; });
+      if (rest.length) save(QUEUE_KEY, rest); else drop(QUEUE_KEY);
+      flushing = false;
+      flushQueue();
+    }).catch(function () { flushing = false; /* still failing; next page load */ });
+  }
+
+  function afterChips() {
+    return [{ label: "💬 Ask a question", value: "go:faq" }, { label: "Close", value: "go:close" }];
+  }
+
+  function submit() {
+    flow.data.ref = refCode();
+    var payload = payloadFor(flow.data);
+    busy = true;
+    setChips([]);
+    var typing = addMsg('<span class="assist-typing"><i></i><i></i><i></i></span>', "bot");
+
+    deliver(payload).then(function () {
+      trackLead();
+      typing.remove();
+      busy = false;
+      flow.state = "sent";
+      drop(DRAFT_KEY);
+      botSay([
+        "Perfect, it's on its way! 🎉 Your reference number is <strong>" + payload.ref + "</strong>.",
+        "Our front desk will " + (payload.intent === "question" ? "get back to you" : "call you") + " at " +
+          esc(payload.phone) + ", usually within one business day. Need us sooner? Call " + PHONE_HTML + "."
+      ], function () { setChips(afterChips()); });
+    }).catch(function () {
+      typing.remove();
+      busy = false;
+      // The request lives in the queue now, so the draft would only duplicate it.
+      enqueue(payload);
+      flow.state = "queued";
+      drop(DRAFT_KEY);
+      botSay([
+        "I couldn't get that through to the office just now, so it hasn't been received yet. It's saved on this device and I'll send it automatically the next time you open a page on this site.",
+        "To make sure we reach you, please call us at " + PHONE_HTML + "."
+      ], function () { setChips(afterChips()); });
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     Open, close, resume, restart
+     ------------------------------------------------------------------ */
+  function restart() {
+    log.innerHTML = "";
+    flow = { state: "intent", data: {}, fixing: false };
+    drop(DRAFT_KEY);
+    runStep("intent");
+  }
+
+  var pendingDraft = null;
+  function resume() {
+    var d = pendingDraft;
+    pendingDraft = null;
+    if (!d) { restart(); return; }
+    flow.data = d.data;
+    flow.fixing = false;
+    runStep(d.state === "fix" ? "confirm" : d.state);
+  }
+
+  var opened = false;
+  function firstOpen() {
+    var d = load(DRAFT_KEY);
+    if (d && d.data && FLOW_STATES.indexOf(d.state) !== -1 && Date.now() - (d.t || 0) < DRAFT_MAX_AGE) {
+      pendingDraft = d;
+      flow.state = "resume";
+      var what = d.data.intent === "question" ? "a message for the front desk" : "an appointment request";
+      botSay(["Welcome back! You were partway through " + what + ". Pick up where you left off?"], function () {
+        setChips([{ label: "Continue", value: "go:resume", cls: "primary" }, { label: "Start over", value: "go:restart" }]);
+      });
+    } else {
+      runStep("intent");
+    }
+  }
+
+  /* iOS does not shrink the layout viewport for the on-screen keyboard, so a
+     panel pinned to the bottom slides behind it. On phones, follow the visual
+     viewport instead: lift the panel by the keyboard's height and cap it to
+     what is actually visible. */
+  var vv = window.visualViewport;
+  var phone = window.matchMedia("(max-width: 760px)");
+  function fitViewport() {
+    if (!vv || panel.hidden || !phone.matches) {
+      panel.style.removeProperty("--assist-kb");
+      panel.style.removeProperty("--assist-vh");
+      return;
+    }
+    var kb = Math.max(0, window.innerHeight - (vv.offsetTop + vv.height));
+    panel.style.setProperty("--assist-kb", kb + "px");
+    panel.style.setProperty("--assist-vh", vv.height + "px");
+    scroll();
+  }
+  if (vv) {
+    vv.addEventListener("resize", fitViewport);
+    vv.addEventListener("scroll", fitViewport);
   }
 
   function open() {
     panel.hidden = false;
     document.body.classList.add("assist-open");
     fab.setAttribute("aria-expanded", "true");
+    fitViewport();
     if (!opened) {
       opened = true;
-      addMsg(GREETING, "bot");
-      setChips(START_CHIPS);
+      firstOpen();
     }
     input.focus();
   }
@@ -405,19 +917,25 @@
     panel.hidden = true;
     document.body.classList.remove("assist-open");
     fab.setAttribute("aria-expanded", "false");
+    fitViewport();
     fab.focus();
   }
 
   fab.addEventListener("click", open);
   $("#assist-close").addEventListener("click", close);
+  if (restartBtn) restartBtn.addEventListener("click", function () { if (!busy) restart(); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !panel.hidden) close();
   });
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var q = input.value.trim();
-    if (!q) return;
+    if (!q || busy) return;   // keep the text while the bot is still typing
     input.value = "";
-    ask(q);
+    handle(q, q, true);
   });
+
+  // Requests that failed to send on an earlier visit go out now.
+  flushQueue();
+  window.addEventListener("online", flushQueue);
 })();

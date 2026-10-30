@@ -172,6 +172,17 @@ def main():
             elif pbg_12h not in text and pbg_close not in text:
                 fail("hours", f"{rel_path}: Palm Beach Gardens hours are stale — "
                               f"expected {pbg_12h} from _src/hours.py")
+        # The assistant's booking flow quotes each office's schedule in full
+        # (office step and best-time-to-call step), so hold it to the exact
+        # rendered string, not just the distinctive closing time.
+        f = ROOT / "assets/js/assistant.js"
+        if f.exists():
+            text = f.read_text(encoding="utf-8")
+            for office in _hours.OFFICES:
+                expected = _hours.plain(office)
+                if f'"{expected}"' not in text:
+                    fail("hours", f"assets/js/assistant.js: {office.label} hours must read "
+                                  f"\"{expected}\" (hours.plain()) in HOURS")
 
     # --- report ---------------------------------------------------------------
     print(f"preflight: {len(seen_pages)} pages checked\n")

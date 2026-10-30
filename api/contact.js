@@ -69,8 +69,20 @@ const SOURCES = ["contact-form", "assistant", "rsvp"];
 
 // Form fields beyond the five columns. They are stored in front of the
 // message and printed in the email so the office sees everything it used to.
-const EXTRAS = [["doctor", "Preferred doctor"], ["topic", "Most interested in"],
-  ["seats", "Seats"], ["src", "Heard via"], ["flags", "Spam checks"]];
+// The assistant (source "assistant") sends ref, intent, topic, office,
+// preferred_time, insurance and page; the contact form sends doctor; the RSVP
+// form sends topic, seats and src. A label can depend on the source: RSVP's
+// topic is the talk subject a guest is most interested in, the assistant's is
+// the reason for the visit.
+const EXTRAS = [["ref", "Reference"], ["intent", "Request type"],
+  ["topic", (source) => (source === "rsvp" ? "Most interested in" : "Topic")],
+  ["office", "Office"], ["doctor", "Preferred doctor"],
+  ["preferred_time", "Best time to call"], ["insurance", "Insurance"],
+  ["seats", "Seats"], ["src", "Heard via"], ["page", "Page"], ["flags", "Spam checks"]];
+
+// The assistant's reference code, e.g. AB-7K2QD. Only a value of exactly this
+// shape is repeated back to the patient.
+const REF_RE = /^[A-Z]{2}-[A-Z0-9]{5}$/;
 
 // Supabase project "Design of Man". See the header comment on why the
 // publishable key is committed rather than held in an environment variable.
@@ -122,15 +134,17 @@ module.exports = async function handler(req, res) {
     return json(res, 400, NOT_OK);
   }
 
+  const source = SOURCES.includes(body.source) ? body.source : "contact-form";
+
   const extras = EXTRAS
-    .map(([k, label]) => [label, clean(body[k], 200)])
-    .filter(([, v]) => v);
+    .map(([k, label]) => [typeof label === "function" ? label(source) : label, clean(body[k], 200)])
+    // The assistant sends its topic as `reason` too (that is the column the
+    // office sorts on); printing it twice in the message would only be noise.
+    .filter(([l, v]) => v && !(l === "Topic" && v === lead.reason));
   if (extras.length) {
     lead.message = [extras.map(([l, v]) => `${l}: ${v}`).join("\n"), lead.message]
       .filter(Boolean).join("\n\n").slice(0, LIMITS.message);
   }
-
-  const source = SOURCES.includes(body.source) ? body.source : "contact-form";
 
   const forwarded = req.headers["x-forwarded-for"];
   const row = {
@@ -230,6 +244,9 @@ module.exports = async function handler(req, res) {
   if (source !== "rsvp" && process.env.RESEND_API_KEY && process.env.CONFIRM_FROM &&
       lead.email && /^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(lead.email)) {
     const first = /https?:|www\.|[<>]/i.test(lead.name) ? "there" : lead.name.split(/\s+/)[0];
+    // The reference code is the one detail of the request repeated back; it
+    // says nothing about why the patient is coming in.
+    const ref = typeof body.ref === "string" && REF_RE.test(body.ref) ? body.ref : "";
     try {
       const r = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -247,6 +264,7 @@ module.exports = async function handler(req, res) {
             "",
             "Thank you for reaching out to Abacoa Podiatry & Leg Vein Center. Your request came through and our team will contact you within one business day.",
             "",
+            ...(ref ? [`Your reference number is ${ref}.`, ""] : []),
             "If it's urgent, call us at (561) 915-1934.",
             "",
             "Abacoa Podiatry & Leg Vein Center",

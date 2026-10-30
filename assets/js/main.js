@@ -28,13 +28,18 @@
   var track = function (name, data) {
     if (typeof window.va === "function") window.va("event", { name: name, data: data || {} });
     // Mirror into GA4 (gtag is loaded sitewide from template.html) so the same
-    // three events can be imported into Google Ads as conversions. Ads today
+    // events can be imported into Google Ads as conversions. Ads today
     // optimises on call-extension taps alone and sees nothing that happens on
     // the site. Same payload rules: placement only, never a field value.
     if (typeof window.gtag === "function") window.gtag("event", name, data || {});
   };
 
   var placementOf = function (el) {
+    // A link can name its own placement, as the home hero's call button does
+    // with data-call-location="hero". This used to be ignored, so the hero
+    // button was filed as "body". Authored slugs only, never page text.
+    var own = el.getAttribute("data-call-location");
+    if (own && /^[a-z0-9-]{1,40}$/.test(own)) return own;
     if (el.closest(".call-bar, .cb-call")) return "mobile-call-bar";
     if (el.closest(".site-header")) return "header";
     if (el.closest(".assistant, .assist-note, .assist-panel")) return "assistant";
@@ -42,14 +47,46 @@
     return "body";
   };
 
-  // Delegated so it covers every tel: and /contact/ link on any page, including
-  // markup added later, without each template having to opt in.
+  // Map hosts a directions link can point at. Every one on the site today is
+  // google.com/maps; the rest keep a future Apple Maps or Waze link counted.
+  var MAP_LINK = /google\.[a-z.]+\/maps|maps\.google\.|goo\.gl\/maps|maps\.app\.goo\.gl|maps\.apple\.com|waze\.com/i;
+
+  // Once per page view: reopening the chat on the same page is not a new
+  // visitor deciding to use it.
+  var chatOpened = false;
+
+  // Delegated so it covers every tel:, mailto:, map and /contact/ link on any
+  // page, including markup added later, without each template having to opt
+  // in. Capture phase, so a tap that navigates away at once is still counted.
+  // The three later events also carry path; call_click and appointment_cta
+  // keep the payload Ads and GA4 already import.
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a[href]");
+    if (!e.target.closest) return;
+
+    // The assistant launcher. Enter or Space on the focused button arrives as
+    // a click too. This runs before assistant.js opens the panel, so a hidden
+    // panel means this click is the one that opens it. The assistant has no
+    // auto-invite, and nothing else opens it, so only a visitor counts here.
+    if (e.target.closest("#assist-open")) {
+      var panel = document.getElementById("assist-panel");
+      if (!chatOpened && panel && panel.hidden) {
+        chatOpened = true;
+        track("chat_open", { placement: "assistant", path: location.pathname });
+      }
+      return;
+    }
+
+    var a = e.target.closest("a[href]");
     if (!a) return;
     var href = a.getAttribute("href") || "";
     if (href.indexOf("tel:") === 0) {
       track("call_click", { placement: placementOf(a) });
+    } else if (href.indexOf("mailto:") === 0) {
+      // Never the address: the only one on the site is the front desk's, and
+      // the event is about where the click happened, not who it went to.
+      track("email_click", { placement: placementOf(a), path: location.pathname });
+    } else if (MAP_LINK.test(href)) {
+      track("directions_click", { placement: placementOf(a), path: location.pathname });
     } else if (/^\/(contact|request-an-appointment)\/(?:[?#]|$)/.test(href)) {
       // Matches /contact/?doctor=... too: the ad landing page links there.
       track("appointment_cta", { placement: placementOf(a) });

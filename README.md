@@ -96,7 +96,8 @@ Ordered by what cannot be undone if it is missed.
 - [x] **Enable Web Analytics** on the Vercel project. On since 2026-08-20; `call_click`,
       `form_submit` and `appointment_cta` are recording (first two weeks: 41 / 15 / 49).
       The same three events are mirrored into GA4 (`G-0JJYDN1063`) as of 2026-09-03 so
-      they can be imported into Google Ads as conversions.
+      they can be imported into Google Ads as conversions. `email_click`,
+      `directions_click` and `chat_open` were added on 2026-10-30 (full list in CLAUDE.md).
 - [ ] **Confirm services offered** (telehealth page, PRP, stem cell) match what the practice currently offers
 - [x] ~~Add real photos~~ — Dr. Cedeno, Dr. Mustafa and the logo are installed.
 - [ ] **Remaining photos**: drop `office.jpg` and `mls-laser.jpg` into

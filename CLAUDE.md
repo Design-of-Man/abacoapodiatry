@@ -251,6 +251,27 @@ confirms it stored the lead, including a queued one that goes through on a later
 load). Before that the assistant fired no conversion at all, so chat leads were invisible
 to GA4 and Google Ads. Same payload rule: the form name only, never a field value or topic.
 
+Every event `assets/js/main.js` sends, through the one `track()` helper and the one delegated
+click listener (capture phase, so a tap that navigates away immediately is still counted):
+
+| Event | Fires when | Payload |
+|---|---|---|
+| `call_click` | any `tel:` link is clicked | `placement` |
+| `appointment_cta` | a link to `/contact/` or `/request-an-appointment/` (query allowed) | `placement` |
+| `email_click` | any `mailto:` link is clicked (added 2026-10-30) | `placement`, `path` |
+| `directions_click` | a link to Google Maps, Apple Maps or Waze is clicked (added 2026-10-30) | `placement`, `path` |
+| `chat_open` | the visitor opens the assistant from its launcher, by click or Enter/Space; once per page view (added 2026-10-30) | `placement` (`"assistant"`), `path` |
+| `form_submit` | confirmed stored lead: contact form, `/rsvp/`, or the assistant (`assistant.js`) | `form` |
+
+`placement` is `mobile-call-bar`, `header`, `assistant`, `footer` or `body`, unless the link
+carries its own `data-call-location` slug, which wins (the home hero's call button is
+`hero`, the event pages use `event-*` / `rsvp-*`). Until 2026-10-30 that attribute was
+ignored and the hero button was filed as `body`. `call_click`, `appointment_cta` and
+`form_submit` keep the names and keys GA4 and Google Ads already import; only the three
+new events carry `path`. Never add an address, a typed value or a topic to any of them.
+The assistant has no auto-invite, so nothing but a visitor's own click opens it and fires
+`chat_open`. The 18 redirect stubs load no analytics at all.
+
 ## The assistant (assets/js/assistant.js)
 
 Set answers and a booking flow, no AI. Rebuilt 2026-10-30 on First Rehab's intake

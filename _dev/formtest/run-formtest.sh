@@ -4,7 +4,7 @@
 set -u
 export NO_PROXY=127.0.0.1,localhost no_proxy=127.0.0.1,localhost
 S="$(cd "$(dirname "$0")" && pwd)"
-CHROME=/opt/pw-browsers/chromium-1194/chrome-linux/chrome
+CHROME="${CHROME:-$(ls /opt/pw-browsers/chromium-*/chrome-linux*/chrome 2>/dev/null | head -1)}"
 
 cleanup() {
   [ -n "${CHROME_PID:-}" ] && kill "$CHROME_PID" 2>/dev/null

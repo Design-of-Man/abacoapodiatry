@@ -201,7 +201,7 @@
         ".lede"
       ]
     },
-    "dateModified": "2026-10-01"
+    "dateModified": "2026-10-30"
   }
   </script>
   <script type="application/ld+json">
@@ -358,7 +358,12 @@
                  (String(data.success) === "true") already matches FormSubmit's
                  own response shape -- that contract was built to mirror
                  FormSubmit's format in the first place. -->
-            <form id="contact-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST" novalidate>
+            <!-- 2026-10-30: FormSubmit went down (Cloudflare 521) on 10-28 and dropped every
+                 request. Nick moved this form to api/contact.js that day: stored in
+                 Supabase first, then emailed via Resend to LEAD_TO (the five office
+                 addresses) with LEAD_CC (hello@designofman.com). The comment above
+                 is history. -->
+            <form id="contact-form" action="/api/contact/" method="POST" novalidate>
               <!-- Subject is overwritten to "New Patient (from website)" by
                    main.js at submit time, and a verified=yes field added.
                    A bot posting straight to FormSubmit never runs that script,
@@ -367,6 +372,7 @@
               <input type="hidden" name="_subject" value="New Patient">
               <input type="hidden" name="verified" value="">
               <input type="hidden" name="flags" value="">
+              <input type="hidden" name="source" value="contact-form">
               <!-- Handed over to the office on 2026-08-18. angela.d@ is the
                    primary recipient; the rest ride on _cc, which needs no
                    activation of its own.
@@ -390,7 +396,6 @@
                    the address in the action URL only, so a new CC recipient
                    starts receiving submissions with no click and no effect on
                    the form's activation state. -->
-              <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,patricia.g@jupiterlaser.com,doctor.cedeno@jupiterlaser.com,doctor.mustafa@jupiterlaser.com,nicholasbkashuba@gmail.com">
               <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty">
               <div class="form-grid">
                 <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>

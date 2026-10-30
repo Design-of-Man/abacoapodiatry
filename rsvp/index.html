@@ -207,7 +207,7 @@
         ".lede"
       ]
     },
-    "dateModified": "2026-10-28"
+    "dateModified": "2026-10-30"
   }
   </script>
   <script type="application/ld+json">
@@ -473,12 +473,15 @@
                    each printed card, blast and ad carries its own tag; see
                    EVENT-NOV-16-TALK.md. No novalidate: the browser enforces the
                    required fields. -->
-              <form id="rsvp-form" action="https://formsubmit.co/ajax/angela.d@jupiterlaser.com" method="POST">
+              <!-- 2026-10-30: FormSubmit went down (Cloudflare 521) on 10-28 and dropped every
+                   RSVP. Now posts to api/contact.js (source rsvp): stored in Supabase,
+                   emailed via Resend to LEAD_TO / LEAD_CC. The guest confirmation still
+                   comes from api/rsvp-confirm.js. The comment above is history. -->
+              <form id="rsvp-form" action="/api/contact/" method="POST">
                 <input type="hidden" name="_subject" value="New RSVP: Nov 16 evening talk">
                 <input type="hidden" name="verified" value="">
                 <input type="hidden" name="flags" value="">
-                <input type="hidden" name="_cc" value="janice.j@jupiterlaser.com,patricia.g@jupiterlaser.com,doctor.cedeno@jupiterlaser.com,doctor.mustafa@jupiterlaser.com,nicholasbkashuba@gmail.com">
-                <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="source" value="rsvp">
                 <input type="hidden" name="src" value="">
                 <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off" aria-label="Leave this field empty">
                 <div class="form-grid">

@@ -36,7 +36,15 @@
  *   SUPABASE_ANON_KEY override the publishable key
  *   RESEND_API_KEY    enable email notification
  *   LEAD_TO           comma-separated office recipients
+ *   LEAD_CC           comma-separated copies (hello@designofman.com)
  *   LEAD_FROM         verified Resend sender
+ *   CONFIRM_FROM      sender for the patient's "we got it" email; unset = none
+ *
+ * Since 2026-10-30 this also serves the /contact/ form and the /rsvp/ form,
+ * which had gone back to FormSubmit on 2026-08-18 at the client's request.
+ * FormSubmit went down on 2026-10-28 (Cloudflare 521) and dropped them both;
+ * Nick moved every form here that day. Extra fields those forms send
+ * (preferred doctor, RSVP topic/seats/src, spam flags) ride in the message.
  */
 
 "use strict";
@@ -57,7 +65,12 @@ const TIMEOUT_MS = 8000;
 // pollute the Supabase column -- anything not on the list quietly becomes the
 // historical default so old callers (and anyone omitting the field) keep
 // working exactly as before.
-const SOURCES = ["contact-form", "assistant"];
+const SOURCES = ["contact-form", "assistant", "rsvp"];
+
+// Form fields beyond the five columns. They are stored in front of the
+// message and printed in the email so the office sees everything it used to.
+const EXTRAS = [["doctor", "Preferred doctor"], ["topic", "Most interested in"],
+  ["seats", "Seats"], ["src", "Heard via"], ["flags", "Spam checks"]];
 
 // Supabase project "Design of Man". See the header comment on why the
 // publishable key is committed rather than held in an environment variable.
@@ -109,6 +122,14 @@ module.exports = async function handler(req, res) {
     return json(res, 400, NOT_OK);
   }
 
+  const extras = EXTRAS
+    .map(([k, label]) => [label, clean(body[k], 200)])
+    .filter(([, v]) => v);
+  if (extras.length) {
+    lead.message = [extras.map(([l, v]) => `${l}: ${v}`).join("\n"), lead.message]
+      .filter(Boolean).join("\n\n").slice(0, LIMITS.message);
+  }
+
   const source = SOURCES.includes(body.source) ? body.source : "contact-form";
 
   const forwarded = req.headers["x-forwarded-for"];
@@ -158,14 +179,17 @@ module.exports = async function handler(req, res) {
         "",
         lead.message || "(no additional message)",
         "",
-        "-- Submitted from the appointment form on jupiterlaser.com.",
+        `-- Submitted from jupiterlaser.com (${source}).`,
       ];
       const payload = {
         from: process.env.LEAD_FROM,
         to: process.env.LEAD_TO.split(",").map((a) => a.trim()).filter(Boolean),
-        subject: `New appointment request — ${lead.name}`,
+        subject: `${clean(body._subject, 150) ||
+          (source === "rsvp" ? "New RSVP" : "New appointment request")} — ${lead.name}`,
         text: lines.join("\n"),
       };
+      const cc = (process.env.LEAD_CC || "").split(",").map((a) => a.trim()).filter(Boolean);
+      if (cc.length) payload.cc = cc;
       // Lets the office hit reply and reach the patient directly.
       if (lead.email) payload.reply_to = lead.email;
 
@@ -199,6 +223,42 @@ module.exports = async function handler(req, res) {
       "contact: lead stored but NO email sent -- unset: " + missing.join(", ") +
       ". Someone must be reading the Supabase leads table."
     );
+  }
+
+  // Patient confirmation: fixed text, first name only, never the reason or
+  // message. RSVPs get their own from api/rsvp-confirm.js.
+  if (source !== "rsvp" && process.env.RESEND_API_KEY && process.env.CONFIRM_FROM &&
+      lead.email && /^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(lead.email)) {
+    const first = /https?:|www\.|[<>]/i.test(lead.name) ? "there" : lead.name.split(/\s+/)[0];
+    try {
+      const r = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: process.env.CONFIRM_FROM,
+          to: [lead.email],
+          reply_to: (process.env.LEAD_TO || "").split(",")[0].trim() || undefined,
+          subject: "We received your request: Abacoa Podiatry & Leg Vein Center",
+          text: [
+            `Hi ${first},`,
+            "",
+            "Thank you for reaching out to Abacoa Podiatry & Leg Vein Center. Your request came through and our team will contact you within one business day.",
+            "",
+            "If it's urgent, call us at (561) 915-1934.",
+            "",
+            "Abacoa Podiatry & Leg Vein Center",
+            "https://jupiterlaser.com",
+          ].join("\n"),
+        }),
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+      });
+      if (!r.ok) console.error("contact: confirmation failed", r.status, await r.text());
+    } catch (err) {
+      console.error("contact: confirmation threw", err && err.message);
+    }
   }
 
   return json(res, 200, OK);

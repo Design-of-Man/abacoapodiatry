@@ -167,9 +167,16 @@ and `llms.txt`. `_dev/preflight.py` imports `hours.plain()` and fails if either 
 
 ## The contact form is the only lead path, and it can fail silently
 
-`_src/pages/contact.html` posts to FormSubmit (`https://formsubmit.co/ajax/...`) again as
-of 2026-08-18, by explicit, informed client request — see below. The assistant's own lead
-capture (`assets/js/assistant.js`) still posts to `/api/contact/` (Supabase), unchanged.
+**Since 2026-10-30 every form posts to `/api/contact/`**: the contact form (`source`
+`contact-form`), the `/rsvp/` form (`rsvp`) and the assistant (`assistant`). FormSubmit went
+down on 2026-10-28 (Cloudflare 521 from every network) and dropped every contact and RSVP
+submission; Nick moved both forms here that day. `api/contact.js` stores the lead in Supabase
+first, then emails it through Resend: To `LEAD_TO` (angela.d@, janice.j@, patricia.g@,
+doctor.cedeno@, doctor.mustafa@ jupiterlaser.com), CC `LEAD_CC` (hello@designofman.com), from
+`LEAD_FROM`, plus a short patient confirmation from `CONFIRM_FROM` (first name only, never the
+reason or message; RSVPs get theirs from `api/rsvp-confirm.js`). Preferred doctor, RSVP
+topic/seats/src and the spam `flags` ride in the stored message and the email. The FormSubmit
+history below is kept for context; do not move a form back to FormSubmit.
 
 **It used to be FormSubmit, and it delivered nothing — read this before touching the form
 again.** FormSubmit requires a one-time activation link to be clicked in the recipient's

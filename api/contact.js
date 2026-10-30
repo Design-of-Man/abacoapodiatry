@@ -49,6 +49,10 @@
 
 "use strict";
 
+const { officeEmail, confirmEmail } = require("./_email.js");
+const BRAND = { name: "Abacoa Podiatry & Leg Vein Center", color: "#0a0a0b",
+  accent: "#d3ac57", accentInk: "#0a0a0b", kicker: "#d3ac57" };
+
 // Bound what a single request can write. The columns are text, so without
 // these one POST could push an arbitrarily large row.
 const LIMITS = {
@@ -136,6 +140,9 @@ module.exports = async function handler(req, res) {
 
   const source = SOURCES.includes(body.source) ? body.source : "contact-form";
 
+  // What the patient typed, before the extras are folded in for storage.
+  const ownWords = lead.message;
+
   const extras = EXTRAS
     .map(([k, label]) => [typeof label === "function" ? label(source) : label, clean(body[k], 200)])
     // The assistant sends its topic as `reason` too (that is the column the
@@ -201,6 +208,16 @@ module.exports = async function handler(req, res) {
         subject: `${clean(body._subject, 150) ||
           (source === "rsvp" ? "New RSVP" : "New appointment request")} — ${lead.name}`,
         text: lines.join("\n"),
+        html: officeEmail({
+          brand: BRAND,
+          title: source === "rsvp" ? "New RSVP: Nov 16 evening talk"
+            : body.intent === "question" ? "New website question" : "New appointment request",
+          fields: [["name", lead.name], ["phone", lead.phone], ["email", lead.email || ""],
+            ["Reason", lead.reason || ""],
+            ...extras.filter(([l]) => l !== "Spam checks"),
+            ["message", ownWords || ""]],
+          meta: { site: "jupiterlaser.com", source: source.replace(/-/g, " "), flags: clean(body.flags, 200) },
+        }),
       };
       const cc = (process.env.LEAD_CC || "").split(",").map((a) => a.trim()).filter(Boolean);
       if (cc.length) payload.cc = cc;
@@ -259,6 +276,10 @@ module.exports = async function handler(req, res) {
           to: [lead.email],
           reply_to: (process.env.LEAD_TO || "").split(",")[0].trim() || undefined,
           subject: "We received your request: Abacoa Podiatry & Leg Vein Center",
+          html: confirmEmail({
+            brand: BRAND, first, ref, phone: "(561) 915-1934", site: "jupiterlaser.com",
+            promise: "Your request came through and our team will contact you within one business day.",
+          }),
           text: [
             `Hi ${first},`,
             "",

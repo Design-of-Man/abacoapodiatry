@@ -177,7 +177,7 @@ object, because the booking flow quotes both schedules in full.
 down on 2026-10-28 (Cloudflare 521 from every network) and dropped every contact and RSVP
 submission; Nick moved both forms here that day. `api/contact.js` stores the lead in Supabase
 first, then emails it through Resend: To `LEAD_TO` (janice.j@, danni.l@, doctor.cedeno@,
-doctor.mustafa@ jupiterlaser.com, set 2026-11-02 at the practice's request), no CC, from
+doctor.mustafa@ jupiterlaser.com, set 2026-11-02 at the practice's request), CC `LEAD_CC` (hello@designofman.com), from
 `LEAD_FROM`, plus a short patient confirmation from `CONFIRM_FROM` (first name only, never the
 reason or message; RSVPs get theirs from `api/rsvp-confirm.js`). Preferred doctor, RSVP
 topic/seats/src and the spam `flags` ride in the stored message and the email. The FormSubmit
@@ -202,7 +202,9 @@ reply-to is the first `LEAD_TO` entry, and she is also the public contact email 
 contact page, clinic schema, `llms.txt`). Angela's address was removed at the practice's request: do not
 re-add her address anywhere. Do not add personal addresses (Gmail etc.) as recipients;
 anyone else gets added only once they have a confirmed `jupiterlaser.com` address.
-`LEAD_CC` was removed from production the same day for the same reason. The FormSubmit
+`LEAD_CC` stays `hello@designofman.com` on production: that is Nick's agency inbox, the
+monitoring copy that catches a silent failure, and it is a business address, not a personal
+one. The FormSubmit
 recipient history below is kept for context only.
 
 **Changing the primary recipient re-arms the trap.** FormSubmit binds activation to the one

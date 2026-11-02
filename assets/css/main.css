@@ -690,7 +690,7 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
 }
 
 @media (max-width: 640px) {
-  /* The callbar's "Book Online" covers this CTA; keep the header slim */
+  /* The callbar's "Request Appointment" covers this CTA; keep the header slim */
   .header-cta .btn { display: none; }
   .logo-name { font-size: var(--fs-lg); }
 }
@@ -2563,7 +2563,10 @@ body.assist-open .assist-fab { display: none; }
 .callbar .cb-book { background: var(--ink); color: var(--white); }
 .callbar .ic { width: 17px; height: 17px; }
 @media (max-width: 760px) {
-  .callbar { display: grid; }
+  /* "Request Appointment" is too long for an even split and wrapped to two
+     lines, doubling the bar's height: size that column to its label. */
+  .callbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .callbar a { padding-inline: 0.7em; white-space: nowrap; }
   body { padding-bottom: 52px; }
   .to-top { bottom: 4.6rem; }
 }
@@ -3072,6 +3075,9 @@ a.btn-ghost { color: var(--head); }
    Scoped to coarse pointers and to <=980px so the desktop layout — where a
    mouse makes an 18px row perfectly clickable — is untouched.
    -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .callbar .ic { display: none; }
+}
 @media (max-width: 980px), (pointer: coarse) {
   /* Controls: full 44px. inline-flex + centring keeps the label optically
      centred as the box grows, so nothing shifts visually. */

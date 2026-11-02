@@ -5,7 +5,7 @@ Complete redesign of **Jupiter Laser & Regenerative Medicine** (Abacoa Podiatry 
 ## What's in the box
 
 - **33 pages**: home, 5 service pages + hub, 8 condition pages + hub, 45+ question FAQ, blog with 4 articles, about/doctor/technology/reviews/service-areas cluster, new patients, contact, telehealth, privacy, accessibility, 404
-- **Interactive features**: "Where does it hurt?" clickable foot map, 5-question treatment-fit quiz, live FAQ search + category filters, testimonial slider, animated counters, scroll-reveal animations, mobile call bar (sticky Call Now / Book Online)
+- **Interactive features**: "Where does it hurt?" clickable foot map, 5-question treatment-fit quiz, live FAQ search + category filters, testimonial slider, animated counters, scroll-reveal animations, mobile call bar (sticky Call Now / Request Appointment)
 - **SEO**: unique titles/descriptions, canonical URLs, JSON-LD on every page (MedicalClinic, Physician, MedicalCondition, MedicalTherapy, FAQPage, BlogPosting, BreadcrumbList), OpenGraph/Twitter cards + generated share image, `sitemap.xml`, `robots.txt`, `llms.txt` for AI assistants, geo meta for local search
 - **Migration safety**: legacy URLs preserved or 301-redirected — see [`MIGRATION.md`](MIGRATION.md) **(read this before launch)**
 

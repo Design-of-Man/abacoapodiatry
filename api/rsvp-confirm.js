@@ -28,7 +28,7 @@
  *   RESEND_API_KEY  required. Without it this answers 503 and the page shows
  *                   the text-or-phone fallback.
  *   RSVP_FROM       optional sender, default events@jupiterlaser.com
- *   RSVP_REPLY_TO   optional reply-to, default angela.d@jupiterlaser.com
+ *   RSVP_REPLY_TO   optional reply-to, default janice.j@jupiterlaser.com
  */
 
 "use strict";
@@ -36,7 +36,7 @@
 const TIMEOUT_MS = 8000;
 const FROM = process.env.RSVP_FROM ||
   "Abacoa Podiatry & Leg Vein Center <events@jupiterlaser.com>";
-const REPLY_TO = process.env.RSVP_REPLY_TO || "angela.d@jupiterlaser.com";
+const REPLY_TO = process.env.RSVP_REPLY_TO || "janice.j@jupiterlaser.com";
 const OK = { success: "true" };
 const NOT_OK = { success: "false" };
 

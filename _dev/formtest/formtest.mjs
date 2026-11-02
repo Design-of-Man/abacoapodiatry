@@ -27,6 +27,7 @@ const waitFor = (ws, pred) =>
 
 const CASES = [
   ["ok",      "stored",                 "expect SUCCESS + conversion"],
+  ["bot",     "dropped bot",            "expect SUCCESS + no conversion"],
   ["dropped", "accepted then dropped",  "expect ERROR + no conversion"],
   ["invalid", "rejected 400",           "expect ERROR + no conversion"],
   ["down",    "database write failed",  "expect ERROR + no conversion"],
@@ -97,7 +98,9 @@ for (const [kase, label, expectation] of CASES) {
   const r = JSON.parse(raw);
 
   const isOk = r.cls.includes("ok");
-  const pass = kase === "ok" ? (isOk && r.fired) : (!isOk && !r.fired);
+  const pass = kase === "ok" ? (isOk && r.fired)
+    : kase === "bot" ? (isOk && !r.fired)
+    : (!isOk && !r.fired);
   if (!pass) failures++;
 
   console.log(`  ${pass ? "PASS" : "FAIL"}  ${kase.padEnd(8)} (${label})`);

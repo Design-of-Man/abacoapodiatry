@@ -197,7 +197,9 @@ Checked against all 13 jupiterlaser.com rows in `leads`: it drops exactly the 8 
 and keeps the 5 others (one real patient, two cold pitches, two of Nick's August tests).
 A dropped bot gets the normal `success: "true"` and leaves only a `contact: dropped bot
 submission` line in the function log. `leads` has no status column, so old bot rows are
-not tagged.
+not tagged. The response carries `v`: `"1"` for a stored lead, `"0"` for a dropped bot or a
+filled honeypot. Same shape and length on purpose, so a bot learns nothing from it.
+`main.js` and `assistant.js` skip `form_submit` on `"0"`; a missing `v` counts as normal.
 
 **It used to be FormSubmit, and it delivered nothing — read this before touching the form
 again.** FormSubmit requires a one-time activation link to be clicked in the recipient's
@@ -283,7 +285,7 @@ click listener (capture phase, so a tap that navigates away immediately is still
 | `email_click` | any `mailto:` link is clicked (added 2026-10-30) | `placement`, `path` |
 | `directions_click` | a link to Google Maps, Apple Maps or Waze is clicked (added 2026-10-30) | `placement`, `path` |
 | `chat_open` | the visitor opens the assistant from its launcher, by click or Enter/Space; once per page view (added 2026-10-30) | `placement` (`"assistant"`), `path` |
-| `form_submit` | confirmed stored lead: contact form, `/rsvp/`, or the assistant (`assistant.js`) | `form` |
+| `form_submit` | confirmed stored lead (response `v` is not `"0"`): contact form, `/rsvp/`, or the assistant (`assistant.js`) | `form` |
 
 `placement` is `mobile-call-bar`, `header`, `assistant`, `footer` or `body`, unless the link
 carries its own `data-call-location` slug, which wins (the home hero's call button is

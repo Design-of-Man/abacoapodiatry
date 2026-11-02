@@ -6,7 +6,8 @@ conversion fires. It does not prove api/contact.js itself -- that needs a real
 request against a deployment.
 
 /test/<case>  -> the real contact page with its form action pointed at /mock/<case>
-/mock/ok      -> 200 {"success":"true"}   stored, and reported as stored
+/mock/ok      -> 200 {"success":"true","v":"1"}  stored, and reported as stored
+/mock/bot     -> 200 {"success":"true","v":"0"}  dropped bot: thanked, never counted
 /mock/dropped -> 200 {"success":"false"}  accepted but NOT stored: the silent failure
 /mock/invalid -> 400 {"success":"false"}  rejected: name or phone missing
 /mock/down    -> 502 {"success":"false"}  database write failed
@@ -17,7 +18,8 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = "/home/user/abacoapodiatry"
 CASES = {
-    "ok":      (200, {"success": "true"}),
+    "ok":      (200, {"success": "true", "v": "1"}),
+    "bot":     (200, {"success": "true", "v": "0"}),
     "dropped": (200, {"success": "false"}),
     "invalid": (400, {"success": "false"}),
     "down":    (502, {"success": "false"}),

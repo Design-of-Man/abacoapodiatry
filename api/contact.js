@@ -109,7 +109,14 @@ function json(res, status, body) {
 // only success signal, matching the shape FormSubmit used. Keeping that
 // contract means the success/failure logic there did not have to change, and
 // anything unexpected still routes the patient to the phone number.
-const OK = { success: "true" };
+//
+// `v` tells the browser whether to count the conversion: "1" for a stored lead,
+// "0" for a dropped bot. Both answers have the same shape and length and a
+// neutral key, so a bot reading the response learns nothing. A dropped bot
+// still sees success, and main.js and assistant.js skip form_submit on "0", so
+// it never reaches GA4 or Google Ads.
+const OK = { success: "true", v: "1" };
+const DROPPED = { success: "true", v: "0" };
 const NOT_OK = { success: "false" };
 
 // Bot filter (2026-11-02). Only patterns no real patient produces; anything
@@ -157,7 +164,7 @@ module.exports = async function handler(req, res) {
 
   // Honeypot. A bot that fills the hidden _honey field gets a cheerful 200 and
   // nothing is stored: a visible rejection just tells it to try again.
-  if (clean(body._honey, 100)) return json(res, 200, OK);
+  if (clean(body._honey, 100)) return json(res, 200, DROPPED);
 
   // Two bots the honeypot does not catch, same cheerful 200 and nothing stored
   // or emailed (see isBot above). Every one of them had been triggering the
@@ -165,7 +172,7 @@ module.exports = async function handler(req, res) {
   const why = isBot(req, body);
   if (why) {
     console.warn("contact: dropped bot submission:", why);
-    return json(res, 200, OK);
+    return json(res, 200, DROPPED);
   }
 
   const lead = {

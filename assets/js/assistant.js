@@ -771,7 +771,8 @@
     };
   }
 
-  // Resolves only on HTTP 200 with success:"true" (a string, see api/contact.js).
+  // Resolves only on HTTP 200 with success:"true" (a string, see api/contact.js),
+  // and with whether to count it: false when the API dropped it as a bot (v "0").
   function deliver(payload) {
     return fetch(ENDPOINT, {
       method: "POST",
@@ -782,7 +783,7 @@
       return r.json();
     }).then(function (data) {
       if (!data || String(data.success).toLowerCase() !== "true") throw new Error("not stored");
-      return true;
+      return String(data.v) !== "0";
     });
   }
 
@@ -800,8 +801,8 @@
     if (!Array.isArray(q) || !q.length) return;
     flushing = true;
     var payload = q[0];
-    deliver(payload).then(function () {
-      trackLead();
+    deliver(payload).then(function (counted) {
+      if (counted) trackLead();
       var rest = (load(QUEUE_KEY) || []).filter(function (p) { return p && p.ref !== payload.ref; });
       if (rest.length) save(QUEUE_KEY, rest); else drop(QUEUE_KEY);
       flushing = false;
@@ -820,8 +821,8 @@
     setChips([]);
     var typing = addMsg('<span class="assist-typing"><i></i><i></i><i></i></span>', "bot");
 
-    deliver(payload).then(function () {
-      trackLead();
+    deliver(payload).then(function (counted) {
+      if (counted) trackLead();
       typing.remove();
       busy = false;
       flow.state = "sent";

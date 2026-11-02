@@ -529,8 +529,9 @@
         status.textContent = "Thank you! Your request has been received — our team will call you shortly to confirm your appointment.";
         // Fires on confirmed delivery, not on submit, so a failed send is
         // never counted as a lead. No field values are sent -- the visitor
-        // typed their name and symptoms into this form.
-        track("form_submit", { form: "contact" });
+        // typed their name and symptoms into this form. v "0" means the API
+        // dropped this as a bot: same message, but not a lead to count.
+        if (String(data.v) !== "0") track("form_submit", { form: "contact" });
         form.reset();
       }).catch(function () {
         // Anything unexpected -- non-JSON body, network failure, a 502 because
@@ -593,7 +594,7 @@
         // so nobody is told they're registered for an RSVP the office never
         // got. If the confirmation fails, the RSVP still stands: the message
         // just falls back to the office confirming by text or phone.
-        track("form_submit", { form: "rsvp" });
+        if (String(data.v) !== "0") track("form_submit", { form: "rsvp" });
         rsvp.reset();
         return fetch("/api/rsvp-confirm/", {
           method: "POST",

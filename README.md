@@ -117,10 +117,8 @@ Ordered by what cannot be undone if it is missed.
       request in Supabase and only then reports success.
       **On 2026-08-18 the client asked for FormSubmit specifically, was told that
       history first, and confirmed anyway**, so `_src/pages/contact.html` posts to
-      `https://formsubmit.co/ajax/angela.d@jupiterlaser.com` today, with the rest of
-      the office on `_cc`. `api/contact.js` is untouched and still in the repo for a
-      future revert. That is the client's decision, not a bug to fix — do not
-      silently switch it back; `CLAUDE.md` has the full account.
+      FormSubmit. FormSubmit then went down on 2026-10-28 and every form moved
+      back to `/api/contact/` on 2026-10-30; `CLAUDE.md` has the full account.
       Either way `assets/js/main.js` reads the response body and fires the
       `form_submit` analytics event only when it says `success: "true"`, which is
       what keeps the activation trap from thanking a patient whose lead vanished.

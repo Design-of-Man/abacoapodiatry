@@ -176,8 +176,8 @@ object, because the booking flow quotes both schedules in full.
 `contact-form`), the `/rsvp/` form (`rsvp`) and the assistant (`assistant`). FormSubmit went
 down on 2026-10-28 (Cloudflare 521 from every network) and dropped every contact and RSVP
 submission; Nick moved both forms here that day. `api/contact.js` stores the lead in Supabase
-first, then emails it through Resend: To `LEAD_TO` (angela.d@, janice.j@, patricia.g@,
-doctor.cedeno@, doctor.mustafa@ jupiterlaser.com), CC `LEAD_CC` (hello@designofman.com), from
+first, then emails it through Resend: To `LEAD_TO` (janice.j@, danni.l@, doctor.cedeno@,
+doctor.mustafa@ jupiterlaser.com, set 2026-11-02 at the practice's request), no CC, from
 `LEAD_FROM`, plus a short patient confirmation from `CONFIRM_FROM` (first name only, never the
 reason or message; RSVPs get theirs from `api/rsvp-confirm.js`). Preferred doctor, RSVP
 topic/seats/src and the spam `flags` ride in the stored message and the email. The FormSubmit
@@ -195,11 +195,15 @@ was told this history first, and confirmed anyway. `api/contact.js` is untouched
 in the repo for a future revert. **Do not silently switch the form back to `/api/contact/`
 citing this file** — that decision is the client's to make, not a bug to fix.
 
-**Recipients:** `angela.d@jupiterlaser.com` is primary since the 2026-08-18 handover, with
-`janice.j@`, `patricia.g@`, `doctor.cedeno@`, `doctor.mustafa@` and
-`nicholasbkashuba@gmail.com` on `_cc` (`patricia.g@` added 2026-09-17). The owner's Gmail
-stays on CC on purpose — it was the first address activated, and it belongs to the person
-who would notice leads drying up.
+**Recipients (2026-11-02, client instruction):** only `jupiterlaser.com` addresses, and
+they live in the Vercel `LEAD_TO` env var, not in the repo: `janice.j@`, `danni.l@`,
+`doctor.cedeno@`, `doctor.mustafa@`. Janice is first because the patient confirmation's
+reply-to is the first `LEAD_TO` entry, and she is also the public contact email (footer,
+contact page, clinic schema, `llms.txt`). Angela's address was removed at the practice's request: do not
+re-add her address anywhere. Do not add personal addresses (Gmail etc.) as recipients;
+anyone else gets added only once they have a confirmed `jupiterlaser.com` address.
+`LEAD_CC` was removed from production the same day for the same reason. The FormSubmit
+recipient history below is kept for context only.
 
 **Changing the primary recipient re-arms the trap.** FormSubmit binds activation to the one
 address in the action URL, so every change to it mints a *new* activation requirement, and

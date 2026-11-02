@@ -71,10 +71,9 @@ Don't hand-author these in a page's META block; `build.py` fills them in.
 
 Verified working end to end on 2026-08-10: push → webhook → build, ~10s to READY.
 
-**The repo's default branch is `claude/jupiter-laser-redesign-55fr8l`, not `main`.** This
-does not affect production (Vercel targets `main` by name), but it means a new PR defaults
-to the wrong base and a fresh clone checks out the wrong branch. **Always set a PR's base to
-`main` explicitly** until someone fixes the repo setting.
+**The repo's default branch is `main`** (switched from `claude/jupiter-laser-redesign-55fr8l`
+on 2026-11-02). New PRs, fresh clones and GitHub's web editor now start from the branch
+production deploys from. The old branch has no commits that aren't in `main`; don't build on it.
 
 **Redirects come from `_src/redirect-map.tsv` and nowhere else.** Add a line there and
 rebuild. `build.py` writes all four surfaces from it: the `redirects` array in `vercel.json`

@@ -130,7 +130,7 @@ Ordered by what cannot be undone if it is missed.
       needs a redeploy to take effect.
 - [x] ~~**Update `sameAs`.**~~ Done 2026-08-15 — Facebook, Instagram, X, LinkedIn, YouTube and Yelp are in `_src/template.html`. Google Business Profile URLs still owed for BOTH offices once the Palm Beach Gardens listing exists.
 - [ ] Rebuild (`python3 _src/build.py`) after any of the above
-- [ ] **Switch the default branch to `main`** (Settings, General). The stale branch has 0 commits not in `main`.
+- [x] ~~**Switch the default branch to `main`**~~ Done 2026-11-02.
 - [ ] **Allow-list `jupiterlaser.com`** for the session, or the old-site crawl cannot run.
       (The image CDN `d8j0ntlcm91z4.cloudfront.net` and `higgsfield.ai` were allow-listed on
       2026-08-14 and that unblocked the 42 images; `jupiterlaser.com` is still blocked.)

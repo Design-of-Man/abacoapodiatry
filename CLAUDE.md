@@ -183,6 +183,23 @@ reason or message; RSVPs get theirs from `api/rsvp-confirm.js`). Preferred docto
 topic/seats/src and the spam `flags` ride in the stored message and the email. The FormSubmit
 history below is kept for context; do not move a form back to FormSubmit.
 
+**Two bots are dropped before storage (since 2026-11-02, `isBot()` in `api/contact.js`).**
+Everything else is still labelled, never blocked. Once FormSubmit's spam filter was gone,
+both bots landed in the office inbox, and each one triggered a patient confirmation email
+to a scraped stranger's address, which put spam complaints against the shared Resend
+account:
+- The random-string bot (also hitting firstrehabnpb.com): a user agent wrapped in literal
+  quote marks, and a name AND a message that are each one random mixed-case word
+  ("ohfosiipvYLhyCXhBJm"). Either signal drops it.
+- The direct-POST bot ("Robertnat", "SamuelMexub"): it never loads the page, so it sends
+  no `flags`, AND its phone is 11 digits not starting with 1. Missing flags on their own
+  never block, because a patient whose JavaScript failed looks the same.
+Checked against all 13 jupiterlaser.com rows in `leads`: it drops exactly the 8 bot rows
+and keeps the 5 others (one real patient, two cold pitches, two of Nick's August tests).
+A dropped bot gets the normal `success: "true"` and leaves only a `contact: dropped bot
+submission` line in the function log. `leads` has no status column, so old bot rows are
+not tagged.
+
 **It used to be FormSubmit, and it delivered nothing — read this before touching the form
 again.** FormSubmit requires a one-time activation link to be clicked in the recipient's
 inbox before it forwards anything; until then it accepts every submission and drops it,

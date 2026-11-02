@@ -112,6 +112,39 @@ function json(res, status, body) {
 const OK = { success: "true" };
 const NOT_OK = { success: "false" };
 
+// Bot filter (2026-11-02). Only patterns no real patient produces; anything
+// merely odd still goes through and keeps its "Spam checks" label, because a
+// missed lead costs more than a read spam email (see main.js).
+//
+// 1. The random-string bot, also hitting firstrehabnpb.com: a user agent
+//    wrapped in literal quote marks ("\"Mozilla/5.0 ...\""), and a name AND a
+//    message that are each one random mixed-case word ("ohfosiipvYLhyCXhBJm" /
+//    "QQYXRZmQdSfmeKyA"). Either signal alone is enough; on every row so far
+//    both were present.
+// 2. The direct-POST bot ("Robertnat", "SamuelMexub"): never loads the page,
+//    so it sends no `flags` (main.js always sets "none" or a list on both page
+//    forms), and its phone is 11 digits not starting with 1. A real patient
+//    whose JavaScript failed would also send no flags, which is why that alone
+//    never blocks: the bad phone has to come with it.
+//
+// looksRandom: one letters-only word of 10+ letters with at least two capitals
+// after the first. "Christopher" and "McDonald" pass. Keep identical to the
+// copy in firstrehabnpb's api/lead.js.
+function looksRandom(s) {
+  s = String(s || "").trim();
+  if (!/^[A-Za-z]{10,}$/.test(s)) return false;
+  return (s.slice(1).match(/[A-Z]/g) || []).length >= 2;
+}
+function isBot(req, body) {
+  if (/^["']/.test(String(req.headers["user-agent"] || ""))) return "quoted user agent";
+  if (looksRandom(body.name) && looksRandom(body.message)) return "random-string name and message";
+  const pageForm = body.source === undefined || body.source === "contact-form" || body.source === "rsvp";
+  const digits = String(body.phone || "").replace(/\D/g, "");
+  const usPhone = digits.length === 10 || (digits.length === 11 && digits[0] === "1");
+  if (pageForm && body.flags === undefined && !usPhone) return "skipped the page, non-US phone";
+  return "";
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -125,6 +158,15 @@ module.exports = async function handler(req, res) {
   // Honeypot. A bot that fills the hidden _honey field gets a cheerful 200 and
   // nothing is stored: a visible rejection just tells it to try again.
   if (clean(body._honey, 100)) return json(res, 200, OK);
+
+  // Two bots the honeypot does not catch, same cheerful 200 and nothing stored
+  // or emailed (see isBot above). Every one of them had been triggering the
+  // patient confirmation to a scraped stranger's address.
+  const why = isBot(req, body);
+  if (why) {
+    console.warn("contact: dropped bot submission:", why);
+    return json(res, 200, OK);
+  }
 
   const lead = {
     name: clean(body.name, LIMITS.name),

@@ -29,9 +29,23 @@
  *                   the text-or-phone fallback.
  *   RSVP_FROM       optional sender, default events@jupiterlaser.com
  *   RSVP_REPLY_TO   optional reply-to, default janice.j@jupiterlaser.com
+ *   TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY
+ *                   Cloudflare Turnstile (2026-11-03). Once both are set,
+ *                   this refuses (403) any request without a verified
+ *                   `_turnstile` token, so a bot can no longer use it to mail
+ *                   a confirmation to a scraped address. main.js fetches a
+ *                   fresh token for this call (tokens are single use, and the
+ *                   one on the RSVP itself was spent by api/contact.js). The
+ *                   RSVP is already stored by then; a refusal only means the
+ *                   page shows the "we'll confirm by text or phone" fallback.
+ *
+ * Note: since 2026-10-30 the office copy comes from api/contact.js (source
+ * "rsvp"), not FormSubmit; the paragraphs above are history.
  */
 
 "use strict";
+
+const { turnstileCheck } = require("./_turnstile.js");
 
 const TIMEOUT_MS = 8000;
 const FROM = process.env.RSVP_FROM ||
@@ -84,6 +98,12 @@ module.exports = async function handler(req, res) {
   const body = req.body && typeof req.body === "object" ? req.body : {};
   // Honeypot: pretend success, send nothing.
   if (typeof body._honey === "string" && body._honey.trim()) return json(res, 200, OK);
+
+  // No confirmation for an unverified request ("off" and "verified" pass).
+  if ((await turnstileCheck(req, body)) === "unverified") {
+    console.warn("rsvp-confirm: unverified turnstile");
+    return json(res, 403, NOT_OK);
+  }
 
   const email = typeof body.email === "string" ? body.email.trim().slice(0, 200) : "";
   const fullName = typeof body.name === "string" ? body.name.trim().slice(0, 200) : "";

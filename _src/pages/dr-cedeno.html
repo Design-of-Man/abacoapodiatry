@@ -46,23 +46,58 @@
         "addressCountry": "US"
       },
       "telephone": "+1-561-915-1934"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Meet Dr. Orlando Cedeno, DPM",
+      "description": "Dr. Orlando Cedeno, DPM, on foot and ankle reconstructive surgery, sports medicine and varicose vein treatment at Abacoa Podiatry & Leg Vein Center in Jupiter, FL.",
+      "thumbnailUrl": "{{IMAGE_ORIGIN}}/assets/img/dr-cedeno-hero-poster.webp",
+      "contentUrl": "https://jupiterlaser.com/assets/video/dr-cedeno-bg.mp4",
+      "uploadDate": "2026-11-03",
+      "duration": "PT1M5S",
+      "about": { "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician" },
+      "publisher": { "@id": "https://jupiterlaser.com/#clinic" }
     }
   ]
 }
 META-->
-    <section class="page-hero">
+    <!-- Same machinery as the home hero (#hero-video / #video-toggle in main.js):
+         one source attached by screen size, poster under reduced motion or Save-Data.
+         The encodes are the Abacoa spot cropped above its lower-third bars and
+         stopped before the end card, so the loop never shows a logo or a phone number. -->
+    <section class="hero has-video doctor-hero">
+      <div class="hero-media" aria-hidden="true">
+        <video id="hero-video" autoplay muted loop playsinline preload="none"
+               poster="/assets/img/dr-cedeno-hero-poster.webp"
+               data-mp4-full="/assets/video/dr-cedeno-bg.mp4"
+               data-mp4-mobile="/assets/video/dr-cedeno-bg-mobile.mp4"></video>
+      </div>
+      <button class="video-sound" id="video-sound" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+        <span>Watch with sound</span>
+      </button>
+      <button class="video-toggle" id="video-toggle" aria-pressed="false"
+              aria-label="Pause background video">
+        <svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.9l11-6.8a1 1 0 0 0 0-1.7l-11-6.8a1 1 0 0 0-1.5.8Z"/></svg>
+      </button>
       <div class="wrap">
-        <ol class="crumbs">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about/">About</a></li>
-          <li>Meet Dr. Cedeno</li>
-        </ol>
-        <span class="kicker">Your Physician</span>
-        <h1>Dr. Orlando Cedeno, DPM, FACFAS</h1>
-        <p class="lede">Board-certified podiatrist and foot &amp; ankle surgeon in Jupiter, Florida, with hospital privileges at Jupiter Medical Center. Trained to operate, dedicated to helping you avoid it whenever medicine allows.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="/contact/">Book With Dr. Cedeno</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+        <div class="hero-inner">
+          <div class="hero-glass">
+            <ol class="crumbs">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li>Meet Dr. Cedeno</li>
+            </ol>
+            <span class="kicker">Your Physician</span>
+            <h1>Dr. Orlando Cedeno, DPM, FACFAS</h1>
+            <p class="lede">Board-certified podiatrist and foot &amp; ankle surgeon in Jupiter, Florida, with hospital privileges at Jupiter Medical Center. Trained to operate, dedicated to helping you avoid it whenever medicine allows.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary btn-lg" href="/contact/">Book With Dr. Cedeno</a>
+              <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

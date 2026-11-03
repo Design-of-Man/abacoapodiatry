@@ -857,6 +857,78 @@ body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate
   .hero-media video { display: none; }
 }
 
+/* Doctor page variant (/meet-dr-cedeno/): the same full-bleed loop as the home
+   hero, but the panel sits on the left and fades up after load, and the footage
+   is anchored right so his face stays clear of the panel. The encode is 2.37:1,
+   so on a 16:10 screen `cover` trims the sides and 78% keeps the right side. */
+.hero.doctor-hero .hero-media { background-image: url("/assets/img/dr-cedeno-hero-poster.webp"); background-position: 78% 50%; }
+.hero.doctor-hero .hero-media video { object-position: 78% 50%; }
+.hero.doctor-hero .hero-media::after {
+  /* Darkens the left edge under the panel only; the right half stays untouched. */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(var(--c-ink-warm) / 0.7) 0%, rgb(var(--c-ink-warm) / 0.25) 45%, transparent 70%);
+  pointer-events: none;
+}
+.hero.doctor-hero .hero-inner {
+  justify-content: flex-start;
+  text-align: left;
+  align-items: center;
+  min-height: clamp(560px, 80vh, 800px);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+.hero.doctor-hero .hero-glass { max-width: 600px; animation: doctor-hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
+.hero.doctor-hero .hero-glass .lede { margin-inline: 0; }
+.hero.doctor-hero .hero-glass .btn-row { justify-content: flex-start; }
+.hero.doctor-hero .crumbs { margin-bottom: 1.1rem; }
+@keyframes doctor-hero-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.doctor-hero .hero-glass { animation: none; }
+}
+/* Phones get the square mobile encode as a full-width square at the top of the
+   hero, fading into the page colour, with the panel overlapping its lower edge
+   rather than covering his face. */
+@media (max-width: 760px) {
+  .hero.doctor-hero .hero-media { inset: 0 0 auto 0; height: 100vw; background-position: 50% 0; }
+  .hero.doctor-hero .hero-media video { object-position: 50% 0; }
+  .hero.doctor-hero .hero-media::after {
+    background: linear-gradient(180deg, transparent 55%, var(--ink-warm-solid) 100%);
+  }
+  .hero.doctor-hero .hero-inner { min-height: 0; padding: 74vw 0 1.6rem; }
+}
+
+/* "Watch with sound": the loop is the doctor talking, so it gets an opt-in way
+   to hear him, from the start. Styled as a pill next to the pause control. */
+.video-sound {
+  position: absolute;
+  right: 4.3rem;
+  bottom: 1.1rem;
+  z-index: 4;
+  height: 44px;
+  padding: 0 1.05rem 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgb(var(--c-accent-warm) / 0.5);
+  background: rgb(var(--c-ink-warm) / 0.72);
+  color: var(--accent-light);
+  font: 600 0.9rem/1 inherit;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.video-sound:hover { background: rgb(var(--c-ink-warm) / 0.92); border-color: var(--accent-light); }
+.video-sound svg { width: 18px; height: 18px; }
+@media (max-width: 760px) {
+  .video-sound { top: 1rem; bottom: auto; right: 1rem; }
+  .hero.doctor-hero .video-toggle { top: 1rem; bottom: auto; right: auto; left: 1rem; }
+}
+
 /* laser beam sweep */
 .laser-beams {
   position: absolute;

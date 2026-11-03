@@ -438,6 +438,33 @@
     // Under prefers-reduced-motion we attach no sources at all, so there is no
     // motion to pause either.
     if (!heroVideo.querySelector("source")) hideToggle();
+
+    // "Watch with sound" (/meet-dr-cedeno/): restarts the loop from the top with
+    // audio, since the footage is the doctor talking. Pressing again mutes. Under
+    // reduced motion or Save-Data there is no source, so it plays the mobile or
+    // full encode only on this explicit request.
+    var soundBtn = $("#video-sound");
+    if (soundBtn) {
+      var soundLabel = soundBtn.querySelector("span");
+      soundBtn.addEventListener("click", function () {
+        var on = soundBtn.getAttribute("aria-pressed") !== "true";
+        if (on && !heroVideo.querySelector("source")) {
+          var s = document.createElement("source");
+          s.src = window.matchMedia("(max-width: 1024px)").matches
+            ? heroVideo.dataset.mp4Mobile : heroVideo.dataset.mp4Full;
+          s.type = "video/mp4";
+          heroVideo.appendChild(s);
+          heroVideo.load();
+          videoToggle.style.display = "";
+        }
+        if (on) heroVideo.style.display = "block";  // reduced motion hides it in CSS
+        heroVideo.muted = !on;
+        if (on) heroVideo.currentTime = 0;
+        setPaused(false);
+        soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        soundLabel.textContent = on ? "Mute" : "Watch with sound";
+      });
+    }
   }
 
   /* ------------------------------------------------------------------

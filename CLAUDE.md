@@ -190,9 +190,13 @@ account:
 - The random-string bot (also hitting firstrehabnpb.com): a user agent wrapped in literal
   quote marks, and a name AND a message that are each one random mixed-case word
   ("ohfosiipvYLhyCXhBJm"). Either signal drops it.
-- The direct-POST bot ("Robertnat", "SamuelMexub"): it never loads the page, so it sends
-  no `flags`, AND its phone is 11 digits not starting with 1. Missing flags on their own
-  never block, because a patient whose JavaScript failed looks the same.
+- The direct-POST bots ("Robertnat", "SamuelMexub", and since 2026-11-03 "Test" /
+  `+79990000000` with a different stranger's Gmail each time): they never run `main.js`, AND
+  the phone is not a US number. `main.js` always writes "phone not a 10-digit US number"
+  into `flags` for such a phone, so a non-US phone without that note did not come through
+  the page. The rule used to test `flags === undefined`, and the "Test" bot got past it by
+  posting the form's empty hidden `flags` input as `""`. A missing flag on its own never
+  blocks, because a patient whose JavaScript failed looks the same.
 Checked against all 13 jupiterlaser.com rows in `leads`: it drops exactly the 8 bot rows
 and keeps the 5 others (one real patient, two cold pitches, two of Nick's August tests).
 A dropped bot gets the normal `success: "true"` and leaves only a `contact: dropped bot

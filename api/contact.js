@@ -126,11 +126,12 @@ const NOT_OK = { success: "false" };
 //    message that are each one random mixed-case word ("ohfosiipvYLhyCXhBJm" /
 //    "QQYXRZmQdSfmeKyA"). Either signal alone is enough; on every row so far
 //    both were present.
-// 2. The direct-POST bot ("Robertnat", "SamuelMexub"): never loads the page,
-//    so it sends no `flags` (main.js always sets "none" or a list on both page
-//    forms), and its phone is 11 digits not starting with 1. A real patient
-//    whose JavaScript failed would also send no flags, which is why that alone
-//    never blocks: the bad phone has to come with it.
+// 2. The direct-POST bots ("Robertnat", "SamuelMexub", "Test" with
+//    +79990000000): never run the page script, so `flags` is missing or the
+//    hidden input's empty value, and the phone is not a US number. main.js
+//    always flags a non-US phone, so a non-US phone whose flags lack that
+//    note did not come through the page. A real patient whose JavaScript
+//    failed looks the same, which is why the bad phone has to come with it.
 //
 // looksRandom: one letters-only word of 10+ letters with at least two capitals
 // after the first. "Christopher" and "McDonald" pass. Keep identical to the
@@ -146,7 +147,14 @@ function isBot(req, body) {
   const pageForm = body.source === undefined || body.source === "contact-form" || body.source === "rsvp";
   const digits = String(body.phone || "").replace(/\D/g, "");
   const usPhone = digits.length === 10 || (digits.length === 11 && digits[0] === "1");
-  if (pageForm && body.flags === undefined && !usPhone) return "skipped the page, non-US phone";
+  // main.js writes "phone not a 10-digit US number" into flags for exactly
+  // this phone, every time. Without that note the page script never ran:
+  // flags missing ("Robertnat"), or the form's empty hidden input posted
+  // as-is (the "Test" / +79990000000 bot, 2026-11-03, which slipped past the
+  // old `flags === undefined` test with flags: "").
+  if (pageForm && !usPhone && !/phone not a 10-digit US number/.test(String(body.flags || ""))) {
+    return "skipped the page, non-US phone";
+  }
   return "";
 }
 

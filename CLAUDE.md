@@ -199,6 +199,21 @@ A dropped bot gets the normal `success: "true"` and leaves only a `contact: drop
 submission` line in the function log. `leads` has no status column, so old bot rows are
 not tagged.
 
+**Cloudflare Turnstile sits on top of those filters (2026-11-03), never instead of them.** It
+is OFF until both `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are set in Vercel
+(optional `TURNSTILE_UNVERIFIED_TO`); with them unset everything behaves as before. `GET
+/api/contact/` hands the browser the site key (`""` when off). Every send fetches a fresh
+invisible token and posts it as `_turnstile`: the contact form and `/rsvp/` (`main.js`), and
+the assistant including its queued resends (`assistant.js`, never stored in the queue). A
+lead with no or a rejected token is "unverified": still stored and still answered
+`success: "true"`, but the office copy goes only to `TURNSTILE_UNVERIFIED_TO` (else
+`LEAD_CC`) with `[Unverified] ` on the subject, and no patient confirmation is sent;
+`api/rsvp-confirm.js` answers 403 and sends nothing, so the page shows its "we'll confirm by
+text or phone" fallback. Cloudflare unreachable counts as verified. The token never reaches
+an email, the stored row or analytics. The client block (top of `assistant.js`, which loads
+before `main.js`) and the server block (`api/_turnstile.js`) are shared verbatim with the
+four sister sites: keep them identical, change all five or none.
+
 **It used to be FormSubmit, and it delivered nothing — read this before touching the form
 again.** FormSubmit requires a one-time activation link to be clicked in the recipient's
 inbox before it forwards anything; until then it accepts every submission and drops it,

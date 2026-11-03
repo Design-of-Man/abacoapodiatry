@@ -458,6 +458,22 @@
      ------------------------------------------------------------------ */
   var form = $("#contact-form");
   var pageLoadedAt = Date.now();
+
+  // Cloudflare Turnstile (shared block in assistant.js, which loads first).
+  // Off until the Vercel keys exist, and never able to block a send: the
+  // token resolves to "" on any failure and the server files that lead as
+  // unverified. Fetched fresh for every send (tokens are single use). Never
+  // sent to analytics.
+  var LEAD_ENDPOINT = "/api/contact/";
+  var turnstileToken = function () {
+    if (!window.dmTurnstile) return Promise.resolve("");
+    return window.dmTurnstile.token(LEAD_ENDPOINT).catch(function () { return ""; });
+  };
+  var warmOnFocus = function (f) {
+    f.addEventListener("focusin", function () {
+      if (window.dmTurnstile) window.dmTurnstile.warm(LEAD_ENDPOINT);
+    }, { once: true });
+  };
   if (form) {
     // ?doctor=cedeno or ?doctor=mustafa preselects the preferred doctor. Each
     // doctor's "Book With" button on the ad landing page
@@ -469,6 +485,7 @@
     if (doctorSelect && doctorParam && doctorNames[doctorParam.toLowerCase()]) {
       doctorSelect.value = doctorNames[doctorParam.toLowerCase()];
     }
+    warmOnFocus(form);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var status = $("#form-status");
@@ -507,10 +524,13 @@
         flags.push("matches cold-pitch/crypto spam language");
       }
       payload.flags = flags.length ? flags.join("; ") : "none";
-      fetch(action, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      turnstileToken().then(function (t) {
+        payload._turnstile = t;
+        return fetch(action, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json", Accept: "application/json" }
+        });
       }).then(function (r) {
         // A 2xx is still not proof on its own, and the reason is worth keeping
         // even though the backend changed. Under FormSubmit this endpoint
@@ -562,6 +582,7 @@
     // when the guest skips "How did you hear about this?".
     var srcMatch = window.location.search.match(/[?&](?:src|utm_source)=([\w.-]{1,40})/i);
     $('input[name="src"]', rsvp).value = srcMatch ? srcMatch[1] : "direct";
+    warmOnFocus(rsvp);
 
     rsvp.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -579,10 +600,13 @@
       if (!(digits.length === 10 || (digits.length === 11 && digits.charAt(0) === "1"))) flags.push("phone not a 10-digit US number");
       if (/https?:\/\/|www\./i.test(String(payload.name || ""))) flags.push("contains a link");
       payload.flags = flags.length ? flags.join("; ") : "none";
-      fetch(rsvp.getAttribute("action"), {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      turnstileToken().then(function (t) {
+        payload._turnstile = t;
+        return fetch(rsvp.getAttribute("action"), {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json", Accept: "application/json" }
+        });
       }).then(function (r) {
         if (!r.ok) throw new Error("http " + r.status);
         return r.json();
@@ -595,10 +619,14 @@
         // just falls back to the office confirming by text or phone.
         track("form_submit", { form: "rsvp" });
         rsvp.reset();
-        return fetch("/api/rsvp-confirm/", {
-          method: "POST",
-          body: JSON.stringify({ name: payload.name, email: payload.email, seats: payload.seats, _honey: payload._honey }),
-          headers: { "Content-Type": "application/json", Accept: "application/json" }
+        // A second, fresh Turnstile token: api/contact.js spent the first, and
+        // api/rsvp-confirm.js refuses an unverified request once Turnstile is on.
+        return turnstileToken().then(function (t) {
+          return fetch("/api/rsvp-confirm/", {
+            method: "POST",
+            body: JSON.stringify({ name: payload.name, email: payload.email, seats: payload.seats, _honey: payload._honey, _turnstile: t }),
+            headers: { "Content-Type": "application/json", Accept: "application/json" }
+          });
         }).then(function (r) { return r.ok ? r.json() : null; })
           .catch(function () { return null; })
           .then(function (c) {

@@ -1,3 +1,112 @@
+/* ---- shared Turnstile block (start) --------------------------------------
+   Lives here, not in main.js, because this file is loaded on every page that
+   has a lead form (both are in _src/template.html) and runs FIRST, so
+   window.dmTurnstile exists before the assistant flushes its retry queue at
+   load. main.js (contact + RSVP forms) uses it too. Copied verbatim from the
+   shared Design of Man block; do not edit it here alone. */
+/* Cloudflare Turnstile bot check, shared by every Design of Man client site
+   (keep this block identical across abacoapodiatry, elite, regenortho,
+   firstrehabnpb and legacymed).
+
+   OFF until TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY are both set in the
+   site's Vercel environment. The site key reaches the browser through a GET on
+   the site's own lead endpoint ({"siteKey": "..."}, empty when off), so turning
+   it on or off is an env change, never a code change.
+
+   It NEVER blocks a send. Any failure (key unset, script blocked by an ad
+   blocker, Cloudflare down, challenge timeout) resolves token() to "", the
+   form still posts, and the server routes that lead as "unverified" (kept and
+   sent to the monitoring inbox, no patient confirmation) instead of dropping it.
+
+   Nothing loads from Cloudflare until a visitor starts a form or opens the chat
+   (warm) or sends (token), so pages without a lead form never contact it.
+
+   Usage:
+     dmTurnstile.warm('/api/lead/');               // on first focus / chat open
+     dmTurnstile.token('/api/lead/').then(function (t) { body._turnstile = t; ... });
+*/
+(function () {
+  if (window.dmTurnstile) return;
+  var SCRIPT = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  var cfg = {}, lib = null, widget = null, waiting = [];
+
+  function config(endpoint) {
+    if (!cfg[endpoint]) {
+      cfg[endpoint] = fetch(endpoint, { method: 'GET', headers: { Accept: 'application/json' }, credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .then(function (j) { return j && typeof j.siteKey === 'string' ? j.siteKey : ''; })
+        .catch(function () { return ''; });
+    }
+    return cfg[endpoint];
+  }
+
+  function load() {
+    if (!lib) {
+      lib = new Promise(function (resolve, reject) {
+        if (window.turnstile) return resolve(window.turnstile);
+        var s = document.createElement('script');
+        s.src = SCRIPT;
+        s.async = true;
+        s.onload = function () { window.turnstile ? resolve(window.turnstile) : reject(new Error('no turnstile')); };
+        s.onerror = function () { lib = null; reject(new Error('turnstile blocked')); };
+        document.head.appendChild(s);
+      });
+    }
+    return lib;
+  }
+
+  function settle(tok) {
+    var w = waiting;
+    waiting = [];
+    for (var i = 0; i < w.length; i++) w[i](tok || '');
+  }
+
+  function ensure(ts, key) {
+    if (widget !== null) return;
+    // interaction-only: invisible unless Cloudflare needs the visitor to click,
+    // in which case it appears pinned bottom-centre above everything else.
+    var box = document.createElement('div');
+    box.className = 'dm-turnstile';
+    box.style.cssText = 'position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;';
+    document.body.appendChild(box);
+    widget = ts.render(box, {
+      sitekey: key,
+      execution: 'execute',
+      appearance: 'interaction-only',
+      'refresh-expired': 'manual',
+      callback: function (t) { settle(t); },
+      'error-callback': function () { settle(''); return true; },
+      'timeout-callback': function () { settle(''); }
+    });
+  }
+
+  function token(endpoint, ms) {
+    return config(endpoint).then(function (key) {
+      if (!key) return '';
+      return load().then(function (ts) {
+        return new Promise(function (resolve) {
+          var done = false;
+          function finish(t) { if (!done) { done = true; resolve(t || ''); } }
+          waiting.push(finish);
+          setTimeout(function () { finish(''); }, ms || 20000);
+          try {
+            ensure(ts, key);
+            ts.reset(widget);   // tokens are single-use: a fresh one per send
+            ts.execute(widget);
+          } catch (e) { finish(''); }
+        });
+      });
+    }).catch(function () { return ''; });
+  }
+
+  function warm(endpoint) {
+    config(endpoint).then(function (key) { if (key) load().catch(function () {}); });
+  }
+
+  window.dmTurnstile = { token: token, warm: warm };
+})();
+/* ---- shared Turnstile block (end) ---- */
+
 /* Abacoa Podiatry virtual assistant.
 
    Two jobs in one panel, both set answers only: no AI, no external service
@@ -771,12 +880,27 @@
     };
   }
 
+  // Turnstile token for one send. Always resolves, to "" on any failure, so it
+  // can never stop a request going out (the server files a tokenless request
+  // as unverified instead of dropping it).
+  function turnstileToken() {
+    if (!window.dmTurnstile) return Promise.resolve("");
+    return window.dmTurnstile.token(ENDPOINT).catch(function () { return ""; });
+  }
+
   // Resolves only on HTTP 200 with success:"true" (a string, see api/contact.js).
+  // The token is added to a COPY: the queued payload never holds one, because
+  // tokens are single use and expire in 300 s, so a retry fetches a fresh one.
   function deliver(payload) {
-    return fetch(ENDPOINT, {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json", Accept: "application/json" }
+    return turnstileToken().then(function (t) {
+      var send = {};
+      for (var k in payload) if (Object.prototype.hasOwnProperty.call(payload, k)) send[k] = payload[k];
+      send._turnstile = t;
+      return fetch(ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(send),
+        headers: { "Content-Type": "application/json", Accept: "application/json" }
+      });
     }).then(function (r) {
       if (r.status !== 200) throw new Error("http " + r.status);
       return r.json();
@@ -903,6 +1027,7 @@
   }
 
   function open() {
+    if (window.dmTurnstile) window.dmTurnstile.warm(ENDPOINT);
     panel.hidden = false;
     document.body.classList.add("assist-open");
     fab.setAttribute("aria-expanded", "true");

@@ -39,6 +39,10 @@
  *   LEAD_CC           comma-separated copies (hello@designofman.com)
  *   LEAD_FROM         verified Resend sender
  *   CONFIRM_FROM      sender for the patient's "we got it" email; unset = none
+ *   TURNSTILE_SITE_KEY, TURNSTILE_SECRET_KEY, TURNSTILE_UNVERIFIED_TO
+ *                     Cloudflare Turnstile (2026-11-03). Off until both keys
+ *                     are set; see api/_turnstile.js and the "unverified"
+ *                     branch below.
  *
  * Since 2026-10-30 this also serves the /contact/ form and the /rsvp/ form,
  * which had gone back to FormSubmit on 2026-08-18 at the client's request.
@@ -50,6 +54,7 @@
 "use strict";
 
 const { officeEmail, confirmEmail } = require("./_email.js");
+const { turnstileConfig, turnstileCheck, unverifiedRecipients } = require("./_turnstile.js");
 const BRAND = { name: "Abacoa Podiatry & Leg Vein Center", color: "#0a0a0b",
   accent: "#d3ac57", accentInk: "#0a0a0b", kicker: "#d3ac57" };
 
@@ -146,8 +151,14 @@ function isBot(req, body) {
 }
 
 module.exports = async function handler(req, res) {
+  // GET hands the browser the Turnstile site key ("" while Turnstile is off).
+  // It is public by design; nothing else is readable here.
+  if (req.method === "GET") {
+    res.setHeader("Cache-Control", "public, max-age=300");
+    return json(res, 200, turnstileConfig());
+  }
   if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
+    res.setHeader("Allow", "GET, POST");
     return json(res, 405, NOT_OK);
   }
 
@@ -167,6 +178,16 @@ module.exports = async function handler(req, res) {
     console.warn("contact: dropped bot submission:", why);
     return json(res, 200, OK);
   }
+
+  // Turnstile (2026-11-03), on top of the filters above, never instead of
+  // them. "off" and "verified" behave exactly as before. "unverified" (no or
+  // a rejected token, e.g. a bot that never loaded the page) is still stored
+  // and still answered success, but the office copy goes only to the
+  // monitoring inbox with "[Unverified] " on the subject, and the patient
+  // confirmation is not sent. The token itself is never stored or printed:
+  // the row and both emails are built from named fields only.
+  const unverified = (await turnstileCheck(req, body)) === "unverified";
+  if (unverified) console.warn("contact: unverified turnstile");
 
   const lead = {
     name: clean(body.name, LIMITS.name),
@@ -244,10 +265,11 @@ module.exports = async function handler(req, res) {
         "",
         `-- Submitted from jupiterlaser.com (${source}).`,
       ];
+      const monitor = unverified ? unverifiedRecipients() : null;
       const payload = {
         from: process.env.LEAD_FROM,
-        to: process.env.LEAD_TO.split(",").map((a) => a.trim()).filter(Boolean),
-        subject: `${clean(body._subject, 150) ||
+        to: monitor || process.env.LEAD_TO.split(",").map((a) => a.trim()).filter(Boolean),
+        subject: `${unverified ? "[Unverified] " : ""}${clean(body._subject, 150) ||
           (source === "rsvp" ? "New RSVP" : "New appointment request")} — ${lead.name}`,
         text: lines.join("\n"),
         html: officeEmail({
@@ -262,7 +284,9 @@ module.exports = async function handler(req, res) {
         }),
       };
       const cc = (process.env.LEAD_CC || "").split(",").map((a) => a.trim()).filter(Boolean);
-      if (cc.length) payload.cc = cc;
+      // An unverified lead sent to the monitoring inbox gets no copies: that
+      // inbox is usually LEAD_CC already.
+      if (cc.length && !monitor) payload.cc = cc;
       // Lets the office hit reply and reach the patient directly.
       if (lead.email) payload.reply_to = lead.email;
 
@@ -299,8 +323,10 @@ module.exports = async function handler(req, res) {
   }
 
   // Patient confirmation: fixed text, first name only, never the reason or
-  // message. RSVPs get their own from api/rsvp-confirm.js.
-  if (source !== "rsvp" && process.env.RESEND_API_KEY && process.env.CONFIRM_FROM &&
+  // message. RSVPs get their own from api/rsvp-confirm.js. Never for an
+  // unverified lead: confirmations to scraped addresses are what drew spam
+  // complaints against the shared Resend account.
+  if (!unverified && source !== "rsvp" && process.env.RESEND_API_KEY && process.env.CONFIRM_FROM &&
       lead.email && /^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(lead.email)) {
     const first = /https?:|www\.|[<>]/i.test(lead.name) ? "there" : lead.name.split(/\s+/)[0];
     // The reference code is the one detail of the request repeated back; it

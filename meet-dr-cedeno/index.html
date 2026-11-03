@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=c325beb842">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="preload" as="image" href="/assets/img/hero-poster.webp" fetchpriority="high" media="(min-width: 1px)">
-  <link rel="stylesheet" href="/assets/css/main.css?v=7f3a5fbe6a">
+  <link rel="stylesheet" href="/assets/css/main.css?v=d2b8b61bb9">
   <script>document.documentElement.className += " js";</script>
   <noscript><style>[data-reveal]{opacity:1 !important;transform:none !important}</style></noscript>
 
@@ -207,7 +207,7 @@
         ".lede"
       ]
     },
-    "dateModified": "2026-10-23"
+    "dateModified": "2026-11-03"
   }
   </script>
   <script type="application/ld+json">
@@ -278,6 +278,24 @@
       "addressCountry": "US"
     },
     "telephone": "+1-561-915-1934"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Meet Dr. Orlando Cedeno, DPM",
+    "description": "Dr. Orlando Cedeno, DPM, on foot and ankle reconstructive surgery, sports medicine and varicose vein treatment at Abacoa Podiatry & Leg Vein Center in Jupiter, FL.",
+    "thumbnailUrl": "https://jupiterlaser.com/assets/img/dr-cedeno-video-poster.webp",
+    "contentUrl": "https://jupiterlaser.com/assets/video/dr-cedeno.mp4",
+    "uploadDate": "2026-11-03",
+    "duration": "PT1M13S",
+    "about": {
+      "@id": "https://jupiterlaser.com/meet-dr-cedeno/#physician"
+    },
+    "publisher": {
+      "@id": "https://jupiterlaser.com/#clinic"
+    }
   }
   </script>
   <script type="application/ld+json">
@@ -394,12 +412,24 @@
           <li><a href="/about/">About</a></li>
           <li>Meet Dr. Cedeno</li>
         </ol>
-        <span class="kicker">Your Physician</span>
-        <h1>Dr. Orlando Cedeno, DPM, FACFAS</h1>
-        <p class="lede">Board-certified podiatrist and foot &amp; ankle surgeon in Jupiter, Florida, with hospital privileges at Jupiter Medical Center. Trained to operate, dedicated to helping you avoid it whenever medicine allows.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="/contact/">Book With Dr. Cedeno</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+        <div class="hero-split">
+          <div>
+            <span class="kicker">Your Physician</span>
+            <h1>Dr. Orlando Cedeno, DPM, FACFAS</h1>
+            <p class="lede">Board-certified podiatrist and foot &amp; ankle surgeon in Jupiter, Florida, with hospital privileges at Jupiter Medical Center. Trained to operate, dedicated to helping you avoid it whenever medicine allows.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary btn-lg" href="/contact/">Book With Dr. Cedeno</a>
+              <a class="btn btn-ghost btn-lg" href="tel:+15619151934">(561) 915-1934</a>
+            </div>
+          </div>
+          <!-- Plays on click with sound: it's him talking, so no muted autoplay loop.
+               preload="none" keeps the 9MB file off the wire until someone presses play. -->
+          <figure class="hero-video-frame">
+            <video controls playsinline preload="none" poster="/assets/img/dr-cedeno-video-poster.webp"
+                   width="1280" height="720" aria-label="Meet Dr. Orlando Cedeno, DPM (1 minute 13 seconds)">
+              <source src="/assets/video/dr-cedeno.mp4" type="video/mp4">
+            </video>
+          </figure>
         </div>
       </div>
     </section>

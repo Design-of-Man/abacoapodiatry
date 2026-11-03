@@ -15,11 +15,11 @@ just verify is worse than one that is a few weeks stale but honestly dated.
 """
 
 JUPITER = {
-    "count": 188,
+    "count": 193,
     "rating": 4.9,
 }
 
-AS_OF = "2026-09-04"
+AS_OF = "2026-11-03"
 SOURCE = "Google Business Profile, Jupiter location"
 
 

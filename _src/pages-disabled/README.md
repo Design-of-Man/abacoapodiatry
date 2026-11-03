@@ -56,3 +56,24 @@ last 28 days, against 34 for this one), so the two were splitting the same
 searches. Its two details the older article lacked (distal vs proximal
 osteotomy names, and "bunionectomy" as an umbrella term) were folded in. Its URL
 301s to the older article.
+
+## The heel pain / plantar fasciitis articles
+
+Parked on 2026-11-03. Six pages targeted Jupiter heel pain and plantar fasciitis,
+and Google was ranking an article instead of the condition page ("plantar fasciitis
+treatment jupiter" and "heel pain treatment near me" both landed on
+`/innovative-treatments-for-plantar-fasciitis-beyond-traditional-methods/`). Their
+unique material was folded into the two survivors, and each URL 301s there:
+
+| file | was served at | now 301s to |
+|---|---|---|
+| `post-plantar-fasciitis-advanced-treatments.html` | `/innovative-treatments-for-plantar-fasciitis-beyond-traditional-methods/` | `/conditions/plantar-fasciitis/` |
+| `post-plantar-fasciitis-laser-shockwave-prp.html` | `/plantar-fasciitis-treatment-laser-shockwave-prp-jupiter/` | `/conditions/plantar-fasciitis/` |
+| `post-heel-pain-jupiter-causes-treatment.html` | `/heel-pain-jupiter-fl-causes-treatment/` | `/conditions/plantar-fasciitis/` |
+| `post-heel-pain-other-causes.html` | `/heel-pain-causes-not-plantar-fasciitis/` | `/conditions/heel-pain/` |
+
+`/conditions/plantar-fasciitis/` is the plantar fasciitis diagnosis and treatment
+page; `/conditions/heel-pain/` is the "heel pain that isn't plantar fasciitis" page.
+Unsourced figures in the parked articles (shockwave success rates, the share of
+chronic heel pain from Baxter's nerve, the share needing surgery, PRP-vs-cortisone
+study results) were deliberately not carried over.

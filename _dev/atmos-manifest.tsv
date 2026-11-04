@@ -41,3 +41,4 @@ index	slug	model	job_id	framing	result_url	status	qc
 40	faq	flux_2	f601dcef-1b8c-43cc-9067-b55a4f08962d	full-figure	https://d8j0ntlcm91z4.cloudfront.net/user_3HkLI9IXLAxVdKIyIjEVhU0SAy9/hf_20260814_170502_f601dcef-1b8c-43cc-9067-b55a4f08962d.png	generated-v2	pass
 41	media	flux_2	0554d800-99f1-40eb-ada3-98057b7a0786	full-figure	https://d8j0ntlcm91z4.cloudfront.net/user_3HkLI9IXLAxVdKIyIjEVhU0SAy9/hf_20260814_170502_0554d800-99f1-40eb-ada3-98057b7a0786.png	generated-v2	pass
 42	reviews	flux_2	e8094ae8-bc72-4106-9509-2778de15ca7f	full-figure	https://d8j0ntlcm91z4.cloudfront.net/user_3HkLI9IXLAxVdKIyIjEVhU0SAy9/hf_20260814_170501_e8094ae8-bc72-4106-9509-2778de15ca7f.png	generated-v2	pass
+43	services-cosmetic-foot-surgery	gpt_image_2_5	09fb70be-35bf-4b8c-8975-5636ae00b0c8	knee-down	https://d8j0ntlcm91z4.cloudfront.net/user_3HkLI9IXLAxVdKIyIjEVhU0SAy9/hf_20261104_154758_09fb70be-35bf-4b8c-8975-5636ae00b0c8.png	generated-v2	pass

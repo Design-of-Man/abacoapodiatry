@@ -3361,3 +3361,73 @@ a.btn-ghost { color: var(--head); }
   line-height: 1.45;
   color: var(--head-warm-2);
 }
+
+/* ===== Cosmetic foot surgery (/services/cosmetic-foot-surgery/) =====
+   Full-bleed photo hero: same glass panel as the home and doctor heroes, the
+   photo anchored right so the feet stay clear of the panel on the left. */
+.hero.aesthetic-hero .hero-media {
+  background: url("/assets/img/atmos/services-cosmetic-foot-surgery.opt.webp") 70% 60%/cover no-repeat var(--ink-warm-solid);
+}
+.hero.aesthetic-hero .hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(var(--c-ink-warm) / 0.78) 0%, rgb(var(--c-ink-warm) / 0.3) 48%, transparent 72%);
+  pointer-events: none;
+}
+.hero.aesthetic-hero::before { opacity: 0; }
+.hero.aesthetic-hero .hero-inner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: clamp(560px, 78vh, 760px);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+.hero.aesthetic-hero .hero-glass { max-width: 600px; animation: doctor-hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.hero.aesthetic-hero .crumbs { margin-bottom: 1.1rem; }
+@media (max-width: 760px) {
+  .hero.aesthetic-hero .hero-media { background-position: 78% 50%; }
+  .hero.aesthetic-hero .hero-inner { min-height: 0; align-items: flex-end; padding-top: 14rem; }
+}
+@media (prefers-reduced-motion: reduce) { .hero.aesthetic-hero .hero-glass { animation: none; } }
+
+/* Procedure cards: numbered, gold hairline on hover */
+.proc-card { position: relative; padding-top: 2.2rem; }
+.proc-card .proc-num {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  font-family: var(--font-head);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  background: var(--laser);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.55;
+}
+.proc-card .proc-tag {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+}
+
+/* Two-column "what we do / what we don't" panel */
+.ethos { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 760px) { .ethos { grid-template-columns: 1fr; } }
+.ethos > div {
+  border: 1px solid rgb(var(--c-accent-warm) / 0.22);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  background: rgb(var(--c-white) / 0.04);
+}
+.ethos h3 { margin-bottom: 0.8rem; }
+.ethos .no-list { list-style: none; padding: 0; margin: 0; }
+.ethos .no-list li { position: relative; padding-left: 1.6rem; margin-bottom: 0.6rem; color: var(--text-on-dark); }
+.ethos .no-list li::before { content: "\2715"; position: absolute; left: 0; color: var(--text-soft); font-size: 0.85em; top: 0.15em; }
+/* A word, not a number, in a .stat tile: one size down so it fits a two-up phone grid. */
+.stat b.stat-word { font-size: clamp(1.6rem, 4vw, 2.6rem); white-space: nowrap; }
